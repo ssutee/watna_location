@@ -15,6 +15,8 @@ class Location(models.Model):
     activities = models.ManyToManyField('Activity', related_name="locations", blank=True, null=True, verbose_name=_('Activities'))
     
     additional_info = models.TextField(verbose_name=_('Additional information'))
+    
+    approved = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = _('Location')
