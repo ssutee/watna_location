@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Map{% endblock %}
+{% block head %}Map{% endblock %}
+{% block content %}
+  <script type="text/javascript">
+      window.myobj = {
+          markerOver: function() { this.openInfoWindow(); },
+          markerOut: function() { this.closeInfoWindow(); }
+      };
+  </script>
+  {{ form.gmap }}
+  {{ form.media.js }}  
+{% endblock %}
+{% block flash %}
+  {% if alert_type %}
+    <div class="alert {{ alert_type }} fade in">
+      <a class="close" data-dismiss="alert">&#215;</a>
+      <h4> {{ alert_message }}</h4>
+    </div>
+  {% endif %}
+{% endblock %}

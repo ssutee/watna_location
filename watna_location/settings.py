@@ -4,6 +4,9 @@ import os.path, os, sys
 
 sys.path.append(os.path.abspath(sys.path[0]+'/..'))
 
+GMAPI_MAPS_URL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAsPczcWkcD5o1TLY22ViG_QvMPkWYMsPk&sensor=false"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -61,11 +64,11 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/home/sutee/watna_location/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/home/sutee/watna_location/static/'
+STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -99,8 +102,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'djangoflash.middleware.FlashMiddleware',    
 )
 
 ROOT_URLCONF = 'watna_location.urls'
@@ -120,13 +123,26 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django_countries',
+    'crispy_forms',
     'location',
     'gmapi',
     'south',
     'jquery',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'emailusernames',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'emailusernames.backends.EmailAuthBackend',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.static',
+    'django.contrib.auth.context_processors.auth',
+    'djangoflash.context_processors.flash',
+)
+
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

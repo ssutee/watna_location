@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load l10n %}
+{% block title %}My places{% endblock %}
+{% block head %}My places{% endblock %}
+{% block content %}
+
+  <div id="confirm_modal" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <input id="location_pk" type="hidden" value="2" />
+      <h3 id="modal_header_text"></h3>
+    </div>
+    <div class="modal-body">
+      <p>Do you want to delete this place?</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</a>
+      <a href="#" class="btn btn-danger btn-confirm-delete">Delete</a>
+    </div>
+  </div>
+
+  <form class="pull-right" method="GET" action="/place/">
+    <input class="btn btn-primary" type="submit" value="{{'Add place'|localize}}" />
+  </form>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Country</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for location in locations %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{ location.place_name }}</td>
+          <td>{{ location.latitude }}</td>
+          <td>{{ location.longitude }}</td>
+          <td><img src="{{ location.country.flag }}"/> {{ location.country.name}}</td>
+          <td style="width: 1%;">
+            <form style="margin: 0px;" method="GET" action="/place/{{location.pk}}">
+              <input type="submit" style="width: 80px;" class="btn btn-warning" value="{{'Edit'|localize}}"/>
+            </form>
+          </td>          
+          <td style="width: 1%;">
+            <input type="button" class="btn btn-danger btn-delete" 
+              value="{{'Delete'|localize}}" 
+              onClick="confirm_delete('{{location.place_name}}', '{{location.pk}}');"/>
+          </td>          
+        </tr>
+      {% endfor %}      
+    </tbody>
+  </table>
+  
+  <script type="text/javascript">
+    $(".btn-confirm-delete").on("click", function(event){
+      $('#confirm_modal').modal('hide');
+      $.post("/delete_place/", { pk: $('#location_pk').val() }, function(data) {
+        location.reload()
+      });
+    });
+    
+    function confirm_delete(title, pk) {
+      $('#modal_header_text').text(title);
+      $('#location_pk').val(pk);
+      $('#confirm_modal').modal('show');      
+    }
+  </script>
+  
+{% endblock %}

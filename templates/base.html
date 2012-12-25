@@ -1,0 +1,68 @@
+{% load l10n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>
+      Buddhawajana institution | {% block title %}{% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}bootstrap/css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}bootstrap/css/bootstrap-responsive.min.css" type="text/css"/>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">{{'Buddhawajana'|localize}}</a>
+          <div class="nav-collapse collapse">
+            {% if user.is_authenticated %}
+              <p class="navbar-text pull-right">
+                {{'Logged in as'|localize}} <a href="#" class="navbar-link">{{user.email}}</a>
+              </p>
+            {% endif %}
+            <ul class="nav">
+              <li class="{% if active_menu == 0 %}active{% else %}{% endif %}">
+                <a href="/">{{'Map'|localize}}</a>
+              </li>              
+              {% if user.is_authenticated %}
+                <li class="{% if active_menu == 1 %}active{% else %}{% endif %}">
+                  <a href="/places/">{{'My places'|localize}}</a>
+                </li>              
+                <li>
+                  <a href="/logout/">{{'Logout'|localize}}</a>
+                </li>
+              {% else %}
+                <li class="{% if active_menu == 1 %}active{% else %}{% endif %}">
+                  <a href="/register/">{{'Register'|localize}}</a>
+                </li>
+              {% endif %}                            
+            </ul>
+            {% if not user.is_authenticated %}
+            <form class="navbar-form pull-right" method="POST" action="/login/">{% csrf_token %}
+              <input name="email" class="span2" type="text" placeholder={{'Email'|localize}}>
+              <input name="password" class="span2" type="password" placeholder={{'Password'|localize}}>
+              <button type="submit" class="btn">{{'Login'|localize}}</button>
+            </form>
+            {% endif %}
+          </div>
+        </div>        
+      </div>      
+    </div>
+
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}bootstrap/js/bootstrap.js"></script>
+    
+    <div class="container">
+      {% block flash %}{% endblock %}
+      <h2>{% block head %}{% endblock %}</h2>
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

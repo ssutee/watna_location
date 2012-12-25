@@ -1,15 +1,21 @@
 from django.conf.urls import patterns, include, url
+from django.views.generic.simple import direct_to_template
+from emailusernames.forms import EmailAuthenticationForm
 
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'watna_location.views.home', name='home'),
-    # url(r'^watna_location/', include('watna_location.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
+    url(r'', include('gmapi.urls.media')), # Use for debugging only.
+    url(r'^$', 'location.views.map_page'),
+    url(r'^places/$', 'location.views.locations_page'),
+    url(r'^place/(?P<pk>\d+)$', 'location.views.edit_location_page'),
+    url(r'^place/$', 'location.views.add_location_page'),
+    url(r'^delete_place/$', 'location.views.delete_location_page'),    
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^login/$', 'location.views.login_page'), 
+    url(r'^logout/$', 'location.views.logout_page'),
+    url(r'^register/$', 'location.views.register_page'),
+    url(r'^register/success/$', direct_to_template,
+        {'template': 'registration/register_success.html'}),    
 )

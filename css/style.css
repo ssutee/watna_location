@@ -1,0 +1,23 @@
+body {
+  padding-top: 60px;
+}
+
+div.gmap img {
+  height: 100%;
+  max-width: none;
+}
+
+td.activities ul li label {
+  display: inline;
+}
+
+td.activities ul {
+  list-style-type: none;  
+  padding: 0px;
+  margin: 0px;
+}
+
+td.activities ul li {
+  display: inline;
+  padding-left: 10px;
+}
