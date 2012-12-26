@@ -5,12 +5,14 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import simplejson
+from django.db.models import Count
 
 from location.forms import MapForm, SearchMapForm, LocationForm, RegistrationForm, UserForm
 from location.models import Location
 
 from gmapi import maps
 from emailusernames.utils import create_user
+from django_countries.fields import Country
 
 def create_info_content(location):
     activities = '<ul>'
@@ -46,18 +48,25 @@ def map_page(request):
             'content': create_info_content(location),
             'disableAutoPan': True
         })
-        info.open(gmap, marker)    
-    
-    context = {'form': MapForm(initial={'gmap': gmap}), 'active_menu':0 }
+        info.open(gmap, marker)        
+        
+    nav_list = []    
+    for value in Location.objects.values('country').annotate(total=Count('country')):
+        nav_list.append({'type':'header', 'value': unicode(Country(code=value['country']).name)})        
+        for location in Location.objects.filter(country=value['country']).all():
+            nav_list.append({'type':'item', 'value': location})    
+            
+    context = {'form': MapForm(initial={'gmap': gmap}), 
+        'active_menu':0, 'nav_list': nav_list }
     if 'message' in request.flash and request.flash['message']:
         context['alert_type'], context['alert_message'] = request.flash['message']
         
     return render(request, 'map_page.html', context)
 
-def create_search_map_form():
+def create_search_map_form(lat, lng):
     gmap = maps.Map(
         opts = {
-            'center': maps.LatLng(15.87003, 100.99254),
+            'center': maps.LatLng(lat, lng),
             'mapTypeId': maps.MapTypeId.ROADMAP,
             'zoom': 6,
             'mapTypeControlOptions': {
@@ -71,7 +80,7 @@ def create_search_map_form():
     
     marker = maps.Marker(opts = {
         'map': gmap,
-        'position': maps.LatLng(15.87003, 100.99254),
+        'position': maps.LatLng(lat, lng),
         'draggable': True,
     })
     
@@ -113,7 +122,8 @@ def edit_user_page(request):
 
 @login_required
 def edit_location_page(request, pk):
-    location = Location.objects.get(pk=int(pk))    
+    location = Location.objects.get(pk=int(pk))   
+    lat, lng = location.latitude, location.longitude     
     if request.method == 'POST':
         form = LocationForm(request.POST, instance=location)
         if form.is_valid():
@@ -122,14 +132,21 @@ def edit_location_page(request, pk):
             location.save()
             request.flash['message'] = ('alert-success', _('Place updated successfully'))
             return HttpResponseRedirect('/places')
-    else:        
+        else:
+            try:
+                lat = float(form.data.get('latitude'))
+                lng = float(form.data.get('longitude'))                
+            except ValueError,e:
+                pass
+    else:                
         form = LocationForm(instance=location)
     
-    context = {'form': form, 'map_form': create_search_map_form()}
+    context = {'form': form, 'map_form': create_search_map_form(lat, lng)}
     return render(request, 'edit_location_page.html', context)
     
 @login_required
 def add_location_page(request):
+    lat, lng = 15.87003, 100.99254 # Thailand     
     if request.method == 'POST':
         form = LocationForm(request.POST)
         if form.is_valid():
@@ -138,10 +155,16 @@ def add_location_page(request):
             location.save()
             request.flash['message'] = ('alert-success', _('New place added successfully'))
             return HttpResponseRedirect('/places')
-    else:
+        else:
+            try:
+                lat = float(form.data.get('latitude'))
+                lng = float(form.data.get('longitude'))                
+            except ValueError,e:
+                pass
+    else:       
         form = LocationForm()
     
-    context = {'form': form, 'map_form': create_search_map_form()}
+    context = {'form': form, 'map_form': create_search_map_form(lat, lng)}
     return render(request, 'add_location_page.html', context)
 
 @csrf_exempt

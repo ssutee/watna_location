@@ -1,85 +1,8 @@
 {% extends "base.html" %}
-{% load l10n %}
-{% load crispy_forms_tags %}
 {% block title %}Add place{% endblock %}
 {% block head %}Add place{% endblock %}
 {% block content %}
 
-  <div id="alert_not_found" class="modal hide fade">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h3>{{'Search Result'|localize}}</h3>
-    </div>
-    <div class="modal-body">
-      <p id="alert_text"></p>
-    </div>
-    <div class="modal-footer">
-      <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
-    </div>
-  </div>
+{% include 'location_content.html' %}
 
-  <div class="row">
-    <div class="span7">
-      {% crispy form %}
-    </div>
-    <div class="span5">
-      <form class="form-search">
-        <input type="text" class="input-large search-query">
-        <button type="button" class="btn" onClick="search($('.search-query').val());">Search</button>
-      </form>
-      {{ map_form.media.js }}
-      {{ map_form.gmap }}
-      <p class="text-info">Drag and drop the marker to pinpoint the place.</p>
-    </div>
-  </div>
-  
-  <script type="text/javascript">
-  
-    $('.search-query').keypress(function(e) {
-      if (e.which == 13) {
-        e.preventDefault();
-        search($('.search-query').val());
-      }
-    });
-    
-    $('#id_country').change(function () {
-      search($("#id_country option:selected").text());
-    });
-  
-    var geocoder = new google.maps.Geocoder();
-    
-    function search(query) {
-      if (query.trim().length > 0) {        
-        geocoder.geocode( {'address': query}, function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            var gmap = $('div.gmap:visible');
-            var position = results[0].geometry.location;
-            gmap.getMap().panTo(position);            
-          } else {
-            $('#alert_text').text('"'+query+'"' + ' not found')
-            $('#alert_not_found').modal();
-          }
-        });
-      }
-    }
-  </script>
-  
-  <script type="text/javascript">
-      window.m_listener = {
-          markerDragEnd: function(point) { 
-            this.getMap().panTo(point.latLng);
-          },
-          mapIdle: function() {
-            var gmap = $('div.gmap:visible');
-            var marker = gmap.getMarkers()[0];
-            gmap.removeMarkers();
-            var center = gmap.getMap().getCenter();
-            marker.setPosition(center);
-            gmap.addMarkers([marker]);
-            console.log(center);
-            $('#id_latitude').val(center.lat().toFixed(5));
-            $('#id_longitude').val(center.lng().toFixed(5));
-          },
-      };
-  </script>
 {% endblock %}

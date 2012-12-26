@@ -6,8 +6,46 @@
       window.m_listener = {
           markerOver: function() { this.openInfoWindow(); },
           markerOut: function() { this.closeInfoWindow(); }
-      };
+      };      
+
+      $(document).ready(function() {
+        $.waypoints.settings.scrollThrottle = 30;
+        $('div.gmap').waypoint(function(e, direction) {
+          $(this).toggleClass('sticky', direction == "down");
+          e.stopPropagation();
+        });
+        
+        $("a.location").click(function(event) {
+          event.preventDefault();
+          move_to($(this).attr('lat'), $(this).attr('lng'));
+        });        
+      });
+      
+      function move_to(lat, lng) {
+        var gmap = $('div.gmap:visible');        
+        var point = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+        gmap.getMap().panTo(point);
+        gmap.getMap().setZoom(10);
+      }
+
   </script>
-  {{ form.gmap }}
-  {{ form.media.js }}  
+  <div class="row-fluid">
+    <div class="span2 hidden-phone hidden-tablet">
+      <ul class="nav nav-list">        
+        {% for nav in nav_list %}
+          {% if nav.type == 'header' %}
+            <li class="nav-header">{{ nav.value }}</li>
+          {% else %}
+            <li><a lat="{{nav.value.latitude}}" lng="{{nav.value.longitude}}" 
+              class="location" href="#">{{ nav.value.place_name }}</a></li>
+          {% endif %}
+        {% endfor %}        
+      </ul>      
+    </div>    
+    <div class="span10 span12-tablet">
+      {{ form.gmap }}
+      {{ form.media.js }}        
+    </div>
+  </div>
+  
 {% endblock %}

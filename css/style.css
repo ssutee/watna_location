@@ -1,5 +1,13 @@
 body {
   padding-top: 60px;
+  width: 100%; 
+  height: 100%;  
+}
+
+.sticky {
+	position:fixed !important;
+	top: 0;
+  margin-top: 50px;	
 }
 
 div.gmap img {
@@ -22,18 +30,28 @@ td.activities ul li {
   padding-left: 10px;
 }
 
-.fill{
-  min-height: 100%;
-  position: relative;    
+#wrap {
+  position: relative;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -46px; /* the bottom margin is the negative value of the footer's height */
 }
 
-.filler:after{
-  background-color: inherit;
-  bottom: 0;
-  content: "";
-  right: 0;
-  position: absolute;
-  top: 0;
-  width: inherit;
-  z-index: -1;  
+p.credit {
+  margin-bottom: 0px;
+}
+
+#push {
+  height: 46px; /* .push must be the same height as .footer */
+}
+
+#footer {
+  padding: 10px 0px; 
+  background-color: #121212;
+  vertical-align: middle;
+  text-align: center;
+  position:absolute;
+  bottom:0;
+  width:100%;
 }

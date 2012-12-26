@@ -57,19 +57,29 @@
     </div>
 
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
-    <script type="text/javascript" src="{{STATIC_URL}}bootstrap/js/bootstrap.js"></script>
-    
-    <div class="container">
+    <script type="text/javascript" src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}waypoints/js/waypoints.min.js"></script>
+    <div id="wrap">
+      <div class="container">
       
-      {% if alert_type %}
-        <div class="alert {{ alert_type }} fade in">
-          <a class="close" data-dismiss="alert">&#215;</a>
-          <h4> {{ alert_message }}</h4>
+        {% if alert_type %}
+          <div class="alert {{ alert_type }} fade in">
+            <a class="close" data-dismiss="alert">&#215;</a>
+            <h4> {{ alert_message }}</h4>
+          </div>
+        {% endif %}
+      
+        <div class="page-header">
+          <h2>{% block head %}{% endblock %}</h2>
         </div>
-      {% endif %}
-      
-      <h2>{% block head %}{% endblock %}</h2>
-      {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
+      </div>
+      <div id="push"></div>
+    </div>
+    <div id="footer" class="muted credit">
+      <div class="container" style="vertical-align: middle; margin-top:auto; margin-bottom:auto;">
+        COPYRIGHT © 2012 Sutee Sudprasert All rights reserved.
+      </div>
     </div>
   </body>
 </html>
