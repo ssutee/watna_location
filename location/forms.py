@@ -60,7 +60,10 @@ class RegistrationForm(forms.Form):
         raise forms.ValidationError(_('Username is already taken.'))
         
 class MapForm(forms.Form):
-    gmap = forms.Field(widget=GoogleMap(attrs={'width':1024, 'height':600}))
+    gmap = forms.Field(widget=GoogleMap(attrs={'width':1024, 'height':600, 'nojquery':True}))
+    
+class SearchMapForm(forms.Form):
+    gmap = forms.Field(widget=GoogleMap(attrs={'width':380, 'height':400, 'nojquery':True}))
     
 class LocationForm(ModelForm):
 
@@ -68,14 +71,14 @@ class LocationForm(ModelForm):
         self.helper = FormHelper()
         self.helper.form_class = 'form-horizontal'
         self.helper.layout = Layout(
-            Field('place_name', css_class='input-xlarge'),
-            Field('phone_number', css_class='input-xlarge'),
-            Field('address', rows="4", css_class='input-xlarge'),
-            Field('latitude', css_class='input-xlarge'),
-            Field('longitude', css_class='input-xlarge'),
-            Field('country'),
+            Field('place_name', css_class='input-large'),
+            Field('phone_number', css_class='input-large'),
+            Field('address', rows="4", css_class='input-large'),
+            Field('latitude', css_class='input-large'),
+            Field('longitude', css_class='input-large'),
+            Field('country', css_class='input-large'),
             Field('activities', style="background: #FAFAFA; padding: 10px;"),
-            Field('additional_info', rows="4", css_class='input-xlarge'),
+            Field('additional_info', rows="4", css_class='input-large'),
             FormActions(
                 Submit('save', 'Save', css_class="btn btn-primary"),
             )
@@ -98,8 +101,4 @@ class LocationForm(ModelForm):
         queryset=Activity.objects.all(), 
         widget=forms.widgets.CheckboxSelectMultiple()
     )
-    
-    longitude = forms.CharField(
-        help_text = '<a href="http://universimmedia.pagesperso-orange.fr/geo/loc.htm">Find my latitude and longitude</a>'
-    )    
         
