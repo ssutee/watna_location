@@ -44,7 +44,7 @@
           <td>{{ location.longitude }}</td>
           <td><img src="{{ location.country.flag }}"/> {{ location.country.name}}</td>
           <td style="width: 1%;">
-            <form style="margin: 0px;" method="GET" action="/place/{{location.pk}}">
+            <form style="margin: 0px;" method="GET" action="/places/{{location.pk}}">
               <input type="submit" style="width: 80px;" class="btn btn-warning" value="{{'Edit'|localize}}"/>
             </form>
           </td>          

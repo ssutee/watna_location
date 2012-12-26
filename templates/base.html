@@ -24,7 +24,7 @@
           <div class="nav-collapse collapse">
             {% if user.is_authenticated %}
               <p class="navbar-text pull-right">
-                {{'Logged in as'|localize}} <a href="#" class="navbar-link">{{user.email}}</a>
+                {{'Logged in as'|localize}} <a href="/edit_user/" class="navbar-link">{{user.email}}</a>
               </p>
             {% endif %}
             <ul class="nav">
