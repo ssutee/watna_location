@@ -1,11 +1,29 @@
 {% extends "base.html" %}
+{% load l10n %}
 {% block title %}Map{% endblock %}
 {% block head %}Map{% endblock %}
 {% block content %}
   <script type="text/javascript">
       window.m_listener = {
           markerOver: function() { this.openInfoWindow(); },
-          markerOut: function() { this.closeInfoWindow(); }
+          markerOut: function() { this.closeInfoWindow(); },
+          markerClick: function(e) {
+            var id = $(this.getInfoWindow().content).attr('id');
+            $.post("/find_location_by_id/", 
+              { id: id, lat: e.latLng.lat(), lng: e.latLng.lng() }, 
+              function(data) {
+                console.log(data.place_name);
+                console.log(data.activities)
+                $('#info_modal_label').text(data.place_name);
+                $('#contact_name').text(data.first_name + " " + data.last_name);
+                $('#email').text(data.email);
+                $('#phone_number').text(data.phone_number);
+                $('#address').text(data.address);
+                $('#city').text(data.city);
+                $('#activities').text(data.activities);                
+                $('#info_modal').modal({backdrop:true, keyboard:true});
+              });
+          },
       };      
 
       $(document).ready(function() {
@@ -29,20 +47,68 @@
       }
 
   </script>
+
+  <div id="info_modal" class="modal hide fade" tabindex="-1" role="dialog" 
+    aria-labelledby="info_modal_label" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3 id="info_modal_label"></h3>
+    </div>    
+    <div class="modal-body">
+      <table class="table" style="border-color: blue !important;">
+        <tbody>
+          <tr>
+            <td>
+              <strong>{{'Contact name'|localize}}</strong>
+              <p id="contact_name"> </p>  
+            </td>
+            <td>
+              <strong>{{'Phone number'|localize}}</strong>
+              <p id="phone_number"> </p>            
+            </td>
+            <td>
+              <strong>{{'E-mail'|localize}}</strong>
+              <p id="email"> </p>            
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <strong>{{'Address'|localize}}</strong>
+              <p id="address"> </p>            
+            </td>
+            <td>
+              <strong>{{'City'|localize}}</strong>
+              <p id="city"> </p>            
+            </td>            
+          </tr>
+          <tr>
+            <td colspan="3">
+              <strong>{{'Activities'|localize}}</strong>
+              <p id="activities"> </p>            
+            </td>            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+  </div>
+    
   <div class="row-fluid">
-    <div class="span2 hidden-phone hidden-tablet">
-      <ul class="nav nav-list">        
+    <div class="span3 hidden-phone hidden-tablet">
+      <ul class="nav nav-list bs-sidenav">        
         {% for nav in nav_list %}
           {% if nav.type == 'header' %}
             <li class="nav-header">{{ nav.value }}</li>
           {% else %}
             <li><a lat="{{nav.value.latitude}}" lng="{{nav.value.longitude}}" 
-              class="location" href="#">{{ nav.value.place_name }}</a></li>
+              class="location" href="#">{{ nav.value.place_name }}, {{ nav.value.city }}</a></li>
           {% endif %}
         {% endfor %}        
       </ul>      
     </div>    
-    <div class="span10 span12-tablet">
+    <div class="span9 span12-tablet">
       {{ form.gmap }}
       {{ form.media.js }}        
     </div>

@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>
-      Buddhawajana institution | {% block title %}{% endblock %}
+      Buddhawajana Institution | {% block title %}{% endblock %}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{STATIC_URL}}css/style.css" type="text/css"/>
@@ -20,7 +20,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">{{'Buddhawajana'|localize}}</a>
+          <a class="brand" href="#">{{'Buddhawajana Institution'|localize}}</a>
           <div class="nav-collapse collapse">
             {% if user.is_authenticated %}
               <p class="navbar-text pull-right">
@@ -60,26 +60,37 @@
     <script type="text/javascript" src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}waypoints/js/waypoints.min.js"></script>
     <div id="wrap">
-      <div class="container">
-      
+      <div id="main" class="container">      
+        
         {% if alert_type %}
           <div class="alert {{ alert_type }} fade in">
             <a class="close" data-dismiss="alert">&#215;</a>
             <h4> {{ alert_message }}</h4>
           </div>
         {% endif %}
-      
+        
         <div class="page-header">
-          <h2>{% block head %}{% endblock %}</h2>
+          <div class="media">
+            <a class="pull-right" href="#">
+              <img class="media-object" src="http://watnapp.com/images/logo_header.png">              
+            </a>
+            <div class="media-body pull-left">
+              <h1 class="media-heading" style="height:80px; line-height: 80px;">
+                {% block head %}{% endblock %}
+              </h1>
+            </div>
+          </div>
         </div>
+        
         {% block content %}{% endblock %}
       </div>
-      <div id="push"></div>
-    </div>
-    <div id="footer" class="muted credit">
-      <div class="container" style="vertical-align: middle; margin-top:auto; margin-bottom:auto;">
-        COPYRIGHT © 2012 Sutee Sudprasert All rights reserved.
+      
+      <div id="footer" class="muted credit">
+        <div class="container" style="vertical-align: middle; margin-top:auto; margin-bottom:auto;">
+          COPYRIGHT © 2012 Sutee Sudprasert All rights reserved.
+        </div>
       </div>
+      
     </div>
   </body>
 </html>

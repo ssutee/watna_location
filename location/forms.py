@@ -118,14 +118,15 @@ class LocationForm(ModelForm):
         self.helper = FormHelper()
         self.helper.form_class = 'form-horizontal'
         self.helper.layout = Layout(
-            Field('place_name', css_class='input-large'),
-            Field('phone_number', css_class='input-large'),
-            Field('address', rows="4", css_class='input-large'),
-            Field('latitude', css_class='input-large'),
-            Field('longitude', css_class='input-large'),
-            Field('country', css_class='input-large'),
+            Field('place_name', css_class='input-xlarge'),
+            Field('phone_number', css_class='input-xlarge'),
+            Field('address', rows="4", css_class='input-xlarge'),
+            Field('latitude', css_class='input-xlarge'),
+            Field('longitude', css_class='input-xlarge'),
+            Field('city', css_class='input-xlarge'),
+            Field('country', css_class='input-xlarge'),
             Field('activities', style="background: #FAFAFA; padding: 10px;"),
-            Field('additional_info', rows="4", css_class='input-large'),
+            Field('additional_info', rows="4", css_class='input-xlarge'),
             FormActions(
                 Submit('save', 'Save', css_class="btn btn-primary"),
             )
@@ -137,7 +138,7 @@ class LocationForm(ModelForm):
         fields = (
             'place_name', 'longitude', 'latitude', 
             'address', 'phone_number',
-            'activities', 'additional_info', 'country')
+            'activities', 'additional_info', 'city', 'country')
         widgets = {
             'address': forms.Textarea(attrs={'rows':4, 'cols':40}),
             'additional_info': forms.Textarea(attrs={'rows':4, 'cols':40}),            

@@ -15,14 +15,10 @@ from emailusernames.utils import create_user
 from django_countries.fields import Country
 
 def create_info_content(location):
-    activities = '<ul>'
-    for activity in location.activities.all():
-        activities += '<li>'+activity.name+'</li>'
-    activities += '</ul>'    
-    return '<div style="height:130px; width:300px;">%s</br>%s %s</br>%s, %s%s</div>' % (
-        location.place_name, location.user.first_name, 
-        location.user.last_name, location.phone_number, 
-        location.user.email, activities)
+    return '<div id="%d" style="height:70px; width:300px;"><h4>%s, %s</h4>%s</div>' % (
+        location.id,
+        location.place_name, location.city,
+        ', '.join(map(lambda x:x.name,location.activities.all())))
 
 def map_page(request):
     request.session['next'] = '/'
@@ -37,23 +33,26 @@ def map_page(request):
         }
     )
     
-    for location in Location.objects.all():
+    marker_mapper = {}
+    for index, location in enumerate(Location.objects.all()):
         marker = maps.Marker(opts = {
                 'map': gmap,
                 'position': maps.LatLng(location.latitude, location.longitude),
             })
         maps.event.addListener(marker, 'mouseover', 'm_listener.markerOver')
         maps.event.addListener(marker, 'mouseout', 'm_listener.markerOut')
+        maps.event.addListener(marker, 'click', 'm_listener.markerClick')
         info = maps.InfoWindow({
             'content': create_info_content(location),
             'disableAutoPan': True
         })
-        info.open(gmap, marker)        
+        info.open(gmap, marker)
+        marker_mapper[str(index)] = {location}
         
     nav_list = []    
     for value in Location.objects.values('country').annotate(total=Count('country')):
         nav_list.append({'type':'header', 'value': unicode(Country(code=value['country']).name)})        
-        for location in Location.objects.filter(country=value['country']).all():
+        for location in Location.objects.filter(country=value['country']).order_by('city', 'place_name').all():
             nav_list.append({'type':'item', 'value': location})    
             
     context = {'form': MapForm(initial={'gmap': gmap}), 
@@ -172,6 +171,24 @@ def add_location_page(request):
 def delete_location_page(request):    
     Location.objects.filter(pk=int(request.POST.get('pk'))).delete()
     return HttpResponse(simplejson.dumps(0), mimetype="application/json")
+    
+@csrf_exempt
+def find_location_by_id_page(request):    
+    location = Location.objects.get(pk=int(request.POST.get('id')))    
+
+    data = {
+        'place_name': location.place_name,
+        'email': location.user.email,
+        'first_name': location.user.first_name,
+        'last_name': location.user.last_name,
+        'address': location.address,
+        'city': location.city,
+        'country': unicode(location.country.name),
+        'phone_number': location.phone_number,
+        'activities': ', '.join(map(lambda x:x.name,location.activities.all())),
+    }
+        
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     
 def logout_page(request):
     logout(request)

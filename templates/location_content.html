@@ -15,10 +15,10 @@
 </div>
 
 <div class="row">
-  <div class="span7">
+  <div class="span7 span12-tablet">
     {% crispy form %}
   </div>
-  <div class="span5">
+  <div class="span5 hidden-phone hidden-tablet">
     <form class="form-search">
       <input type="text" class="input-large search-query">
       <button type="button" class="btn" onClick="search($('.search-query').val());">Search</button>
