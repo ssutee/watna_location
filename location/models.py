@@ -11,6 +11,7 @@ class Location(models.Model):
     latitude = models.FloatField(verbose_name=_('Latitude'))
     
     address = models.TextField(verbose_name=_('Address'))
+    city = models.CharField(max_length=200, verbose_name=_('City'))
     country = CountryField(default='TH')
     phone_number = models.CharField(max_length=30, verbose_name=_('Phone number'))
 
