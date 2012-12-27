@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load l10n %}
-{% block title %}My places{% endblock %}
-{% block head %}My places{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "My places" %}{% endblock %}
+{% block head %}{% trans "My places" %}{% endblock %}
 {% block content %}
 
   <div id="confirm_modal" class="modal hide fade">
@@ -20,17 +21,17 @@
   </div>
 
   <form class="pull-right" method="GET" action="/place/">
-    <input class="btn btn-primary" type="submit" value="{{'Add place'|localize}}" />
+    <input class="btn btn-primary" type="submit" value="{% trans 'Add place' %}" />
   </form>
 
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>#</th>
-        <th>{{'Name'|localize}}</th>
-        <th>{{'Latitude'|localize}}</th>
-        <th>{{'Longitude'|localize}}</th>
-        <th>{{'Country'|localize}}</th>
+        <th>{% trans 'Name' %}</th>
+        <th>{% trans 'Latitude' %}</th>
+        <th>{% trans 'Longitude' %}</th>
+        <th>{% trans 'Country' %}</th>
         <th></th>
       </tr>
     </thead>
@@ -43,8 +44,8 @@
           <td>{{ location.longitude }}</td>
           <td><img src="{{ location.country.flag }}"/> {{ location.country.name}}</td>
           <td style="width: 1%;">
-            <input type="button" class="btn btn-mini btn-danger btn-delete" 
-              value="{{'Delete'|localize}}" 
+            <input style="width:60px;" type="button" class="btn btn-mini btn-danger btn-delete" 
+              value="{% trans 'Delete' %}" 
               onClick="confirm_delete('{{location.place_name}}', '{{location.pk}}');"/>
           </td>          
         </tr>

@@ -1,0 +1,209 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-12-27 15:32+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: location/forms.py:28 location/forms.py:131
+msgid "Save"
+msgstr ""
+
+#: location/forms.py:33 location/forms.py:85 templates/map_page.html:102
+msgid "E-mail"
+msgstr ""
+
+#: location/forms.py:36 location/forms.py:83
+msgid "First name"
+msgstr ""
+
+#: location/forms.py:37 location/forms.py:84
+msgid "Last name"
+msgstr ""
+
+#: location/forms.py:40 location/forms.py:87 templates/base.html:79
+msgid "Password"
+msgstr ""
+
+#: location/forms.py:44
+msgid "New password"
+msgstr ""
+
+#: location/forms.py:48
+msgid "New password (again)"
+msgstr ""
+
+#: location/forms.py:56
+msgid "Wrong password"
+msgstr ""
+
+#: location/forms.py:64 location/forms.py:99
+msgid "Password do not match"
+msgstr ""
+
+#: location/forms.py:78 templates/base.html:62
+msgid "Register"
+msgstr ""
+
+#: location/forms.py:90
+msgid "Password (again)"
+msgstr ""
+
+#: location/forms.py:107
+msgid "E-mail is already taken."
+msgstr ""
+
+#: location/models.py:9
+msgid "Place name"
+msgstr ""
+
+#: location/models.py:10 templates/locations_page.html:33
+msgid "Longitude"
+msgstr ""
+
+#: location/models.py:11 templates/locations_page.html:32
+msgid "Latitude"
+msgstr ""
+
+#: location/models.py:13 templates/map_page.html:108
+msgid "Address"
+msgstr ""
+
+#: location/models.py:14 templates/map_page.html:112
+msgid "City"
+msgstr ""
+
+#: location/models.py:16 templates/map_page.html:98
+msgid "Phone number"
+msgstr ""
+
+#: location/models.py:18 location/models.py:32 templates/map_page.html:118
+msgid "Activities"
+msgstr ""
+
+#: location/models.py:20
+msgid "Additional information"
+msgstr ""
+
+#: location/models.py:25
+msgid "Location"
+msgstr ""
+
+#: location/models.py:26
+msgid "Locations"
+msgstr ""
+
+#: location/models.py:29 templates/locations_page.html:31
+msgid "Name"
+msgstr ""
+
+#: location/models.py:33
+msgid "Activity"
+msgstr ""
+
+#: location/views.py:110
+msgid "User updated successfully"
+msgstr ""
+
+#: location/views.py:132
+msgid "Place updated successfully"
+msgstr ""
+
+#: location/views.py:155
+msgid "New place added successfully"
+msgstr ""
+
+#: location/views.py:195
+msgid "Logout successfully"
+msgstr ""
+
+#: location/views.py:202
+msgid "Login successfully"
+msgstr ""
+
+#: location/views.py:204
+msgid "Invalid email or password"
+msgstr ""
+
+#: location/views.py:219
+msgid "Registration completed successfully"
+msgstr ""
+
+#: templates/add_location_page.html:3 templates/add_location_page.html.py:4
+#: templates/locations_page.html:24
+msgid "Add place"
+msgstr ""
+
+#: templates/base.html:47
+msgid "Buddhawajana Institution"
+msgstr ""
+
+#: templates/base.html:51 templates/map_page.html:4
+#: templates/map_page.html.py:5
+msgid "Map"
+msgstr ""
+
+#: templates/base.html:55 templates/locations_page.html:4
+#: templates/locations_page.html.py:5
+msgid "My places"
+msgstr ""
+
+#: templates/base.html:58
+msgid "Logout"
+msgstr ""
+
+#: templates/base.html:78
+msgid "Email"
+msgstr ""
+
+#: templates/base.html:80
+msgid "Login"
+msgstr ""
+
+#: templates/base.html:85
+msgid "Logged in as"
+msgstr ""
+
+#: templates/edit_location_page.html:3 templates/edit_location_page.html:4
+msgid "Edit place"
+msgstr ""
+
+#: templates/edit_user_page.html:5 templates/edit_user_page.html.py:6
+msgid "Edit user"
+msgstr ""
+
+#: templates/location_content.html:8
+msgid "Search Result"
+msgstr ""
+
+#: templates/locations_page.html:34
+msgid "Country"
+msgstr ""
+
+#: templates/locations_page.html:48
+msgid "Delete"
+msgstr ""
+
+#: templates/map_page.html:94
+msgid "Contact name"
+msgstr ""
+
+#: watna_location/settings.py:21
+msgid "Thai"
+msgstr ""
+
+#: watna_location/settings.py:22
+msgid "English"
+msgstr ""

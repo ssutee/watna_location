@@ -1,4 +1,5 @@
 {% load l10n %}
+{% load i18n %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -18,9 +19,19 @@
         var map_menu = $('#top_menu>li').first();
         var saved_class = map_menu.attr('class');
         map_menu.attr('class', $('.btn-navbar').is(':visible') ? 'active' : saved_class);
+        
         $(window).resize(function() {
           map_menu.attr('class', $('.btn-navbar').is(':visible') ? 'active' : saved_class);
         });
+        
+        $('#en_btn').click(function(e) {
+          $('#language').val('en');
+        });
+
+        $('#th_btn').click(function(e) {
+          $('#language').val('th');
+        });
+        
       });
     </script>  
   </head>
@@ -33,37 +44,47 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">{{'Buddhawajana Institution'|localize}}</a>
-          <div class="nav-collapse collapse">
-            {% if user.is_authenticated %}
-              <p class="navbar-text pull-right">
-                {{'Logged in as'|localize}} <a href="/edit_user/" class="navbar-link">{{user.email}}</a>
-              </p>
-            {% endif %}
+          <a class="brand" href="#">{% trans 'Buddhawajana Institution' %}</a>
+          <div class="nav-collapse collapse">           
             <ul id="top_menu" class="nav">
               <li class="{% if active_menu == 0 %}active{% else %}{% endif %}">
-                <a href="/">{{'Map'|localize}}</a>
+                <a href="/">{% trans 'Map' %}</a>
               </li>              
               {% if user.is_authenticated %}
                 <li class="{% if active_menu == 1 %}active{% else %}{% endif %}">
-                  <a href="/places/">{{'My places'|localize}}</a>
+                  <a href="/places/">{% trans 'My places' %}</a>
                 </li>              
                 <li>
-                  <a href="/logout/">{{'Logout'|localize}}</a>
+                  <a href="/logout/">{% trans 'Logout' %}</a>
                 </li>
               {% else %}
                 <li class="{% if active_menu == 1 %}active{% else %}{% endif %}">
-                  <a href="/register/">{{'Register'|localize}}</a>
+                  <a href="/register/">{% trans 'Register' %}</a>
                 </li>
               {% endif %}                            
             </ul>
+            <form class="navbar-form pull-right" 
+              action="{% url django.views.i18n.set_language %}" method="post">{% csrf_token %}
+              <div class="btn-group">
+                <input style="height:32px;" id="th_btn" type="submit" class="btn" value="TH"/>
+                <input style="height:32px;" id="en_btn" type="submit" class="btn" value="EN"/>
+              </div>
+              <input id="language" name="language" value="en" type="hidden" />
+              <input name="next" type="hidden" value="{{ redirect_to }}" />
+            </form>
             {% if not user.is_authenticated %}
-            <form class="navbar-form pull-right" method="POST" action="/login/">{% csrf_token %}
-              <input name="email" class="span2" type="text" placeholder={{'Email'|localize}}>
-              <input name="password" class="span2" type="password" placeholder={{'Password'|localize}}>
-              <button type="submit" class="btn">{{'Login'|localize}}</button>
+            <form style="margin-right:20px;" class="navbar-form pull-right" 
+              method="POST" action="/login/">{% csrf_token %}
+              <input name="email" class="span2" type="text" placeholder={% trans 'Email' %}>
+              <input name="password" class="span2" type="password" placeholder={% trans 'Password' %}>
+              <button type="submit" class="btn">{% trans 'Login' %}</button>
             </form>
             {% endif %}
+            {% if user.is_authenticated %}
+              <p style="margin-right:20px;" class="navbar-text pull-right">
+                {% trans 'Logged in as' %} <a href="/edit_user/" class="navbar-link">{{user.email}}</a>
+              </p>
+            {% endif %}            
           </div>
         </div>        
       </div>      
@@ -89,15 +110,13 @@
               {% block head %}{% endblock %}
             </h1>
           </div>          
-        </div>
-        
+        </div>        
         {% block content %}{% endblock %}
       </div>
-      
       <div id="footer" class="muted credit">
         <div class="container" style="vertical-align: middle; margin-top:auto; margin-bottom:auto;">
           COPYRIGHT © 2012 Sutee Sudprasert All rights reserved.
-        </div>
+        </div>        
       </div>
       
     </div>

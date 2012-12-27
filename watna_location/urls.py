@@ -6,6 +6,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^i18n/', include('django.conf.urls.i18n')),        
     url(r'', include('gmapi.urls.media')), # Use for debugging only.
     url(r'^$', 'location.views.map_page'),
     url(r'^places/$', 'location.views.locations_page'),
@@ -19,5 +20,5 @@ urlpatterns = patterns('',
     url(r'^register/$', 'location.views.register_page'),
     url(r'^edit_user/$', 'location.views.edit_user_page'),
     url(r'^register/success/$', direct_to_template,
-        {'template': 'registration/register_success.html'}),    
+        {'template': 'registration/register_success.html'}),        
 )

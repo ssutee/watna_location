@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load l10n %}
+{% load i18n %}
 {% load crispy_forms_tags %}
-{% block title %}Edit user{% endblock %}
-{% block head %}Edit user{% endblock %}
+{% block title %}{% trans "Edit user" %}{% endblock %}
+{% block head %}{% trans "Edit user" %}{% endblock %}
 {% block content %}
   {% crispy form %}
 {% endblock %}

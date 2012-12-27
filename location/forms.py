@@ -25,7 +25,7 @@ class UserForm(forms.Form):
             Field('new_password1', css_class='input-xlarge'),
             Field('new_password2', css_class='input-xlarge'),
             FormActions(
-                Submit('save', 'Save', css_class="btn btn-primary"),
+                Submit('save', _('Save'), css_class="btn btn-primary"),
             )
         )        
         super(UserForm, self).__init__(*args, **kwargs) 
@@ -75,7 +75,7 @@ class RegistrationForm(forms.Form):
             Field('password1', css_class='input-xlarge'),
             Field('password2', css_class='input-xlarge'),
             FormActions(
-                Submit('register', 'Register', css_class="btn btn-primary"),
+                Submit('register', _('Register'), css_class="btn btn-primary"),
             )
         )
         super(RegistrationForm, self).__init__(*args, **kwargs)
@@ -128,7 +128,7 @@ class LocationForm(ModelForm):
             Field('activities', style="background: #FAFAFA; padding: 10px;"),
             Field('additional_info', rows="4", css_class='input-xlarge'),
             FormActions(
-                Submit('save', 'Save', css_class="btn btn-primary"),
+                Submit('save', _('Save'), css_class="btn btn-primary"),
             )
         )        
         super(LocationForm, self).__init__(*args, **kwargs)

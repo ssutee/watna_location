@@ -1,10 +1,11 @@
 {% load l10n %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
 <div id="alert_not_found" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>{{'Search Result'|localize}}</h3>
+    <h3>{% trans 'Search Result' %}</h3>
   </div>
   <div class="modal-body">
     <p id="alert_text"></p>

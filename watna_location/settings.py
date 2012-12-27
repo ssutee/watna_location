@@ -15,6 +15,13 @@ ADMINS = (
     ('Sutee Sudprasert', 'sutee.s@gmail.com'),
 )
 
+ugettext = lambda s: s
+
+LANGUAGES = (
+  ('th', ugettext('Thai')),
+  ('en', ugettext('English')),
+)
+
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -36,7 +43,7 @@ TIME_ZONE = 'Asia/Bangkok'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'th'
+LANGUAGE_CODE = 'en'
 
 SITE_ID = 1
 
@@ -98,12 +105,13 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',    
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'djangoflash.middleware.FlashMiddleware',    
+    'django.middleware.locale.LocaleMiddleware',    
 )
 
 ROOT_URLCONF = 'watna_location.urls'
@@ -140,6 +148,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
     'djangoflash.context_processors.flash',
+    'django.core.context_processors.i18n',
 )
 
 

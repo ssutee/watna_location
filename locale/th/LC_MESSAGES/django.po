@@ -1,0 +1,211 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-12-27 15:32+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: location/forms.py:28 location/forms.py:131
+msgid "Save"
+msgstr "บันทึก"
+
+#: location/forms.py:33 location/forms.py:85 templates/map_page.html:102
+msgid "E-mail"
+msgstr "อีเมล"
+
+#: location/forms.py:36 location/forms.py:83
+msgid "First name"
+msgstr "ชื่อ"
+
+#: location/forms.py:37 location/forms.py:84
+msgid "Last name"
+msgstr "นามสกุล"
+
+#: location/forms.py:40 location/forms.py:87 templates/base.html:79
+msgid "Password"
+msgstr "รหัสผ่าน"
+
+#: location/forms.py:44
+msgid "New password"
+msgstr "รหัสผ่านใหม่"
+
+#: location/forms.py:48
+msgid "New password (again)"
+msgstr "รหัสผ่านใหม่ (อีกครั้ง)"
+
+#: location/forms.py:56
+msgid "Wrong password"
+msgstr "ป้อนรหัสผ่านผิด"
+
+#: location/forms.py:64 location/forms.py:99
+msgid "Password do not match"
+msgstr "รหัสผ่านไม่ตรงกัน"
+
+#: location/forms.py:78 templates/base.html:62
+msgid "Register"
+msgstr "ลงทะเบียน"
+
+#: location/forms.py:90
+msgid "Password (again)"
+msgstr "รหัสผ่าน (อีกครั้ง)"
+
+#: location/forms.py:107
+msgid "E-mail is already taken."
+msgstr "อีเมลนี้มีคนใช้ไปแล้ว"
+
+#: location/models.py:9
+msgid "Place name"
+msgstr "ชื่อสถานที่"
+
+#: location/models.py:10 templates/locations_page.html:33
+msgid "Longitude"
+msgstr "ลองจิจูด"
+
+#: location/models.py:11 templates/locations_page.html:32
+msgid "Latitude"
+msgstr "ละติจูด"
+
+#: location/models.py:13 templates/map_page.html:108
+msgid "Address"
+msgstr "ที่อยู่"
+
+#: location/models.py:14 templates/map_page.html:112
+msgid "City"
+msgstr "จังหวัด"
+
+#: location/models.py:16 templates/map_page.html:98
+msgid "Phone number"
+msgstr "เบอร์โทรศัพท์"
+
+#: location/models.py:18 location/models.py:32 templates/map_page.html:118
+msgid "Activities"
+msgstr "กิจกรรม"
+
+#: location/models.py:20
+msgid "Additional information"
+msgstr "ข้อมูลเพิ่มเติม"
+
+#: location/models.py:25
+msgid "Location"
+msgstr "สถานที่"
+
+#: location/models.py:26
+msgid "Locations"
+msgstr "สถานที่"
+
+#: location/models.py:29 templates/locations_page.html:31
+msgid "Name"
+msgstr "ชื่อ"
+
+#: location/models.py:33
+msgid "Activity"
+msgstr "กิจกรรม"
+
+#: location/views.py:110
+msgid "User updated successfully"
+msgstr "ข้อมูลที่ใช้ถูกปรับปรุงแล้ว"
+
+#: location/views.py:132
+msgid "Place updated successfully"
+msgstr "ข้อมูลสถานที่ถูกปรับปรุงแล้ว"
+
+#: location/views.py:155
+msgid "New place added successfully"
+msgstr "สถานที่ใหม่ถูกเพิ่มแล้ว"
+
+#: location/views.py:195
+msgid "Logout successfully"
+msgstr "ออกจากระบบแล้ว"
+
+#: location/views.py:202
+msgid "Login successfully"
+msgstr "เข้าสู่ระบบสำเร็จแล้ว"
+
+#: location/views.py:204
+msgid "Invalid email or password"
+msgstr "อีเมล หรือ รหัสผ่านไม่ถูกต้อง"
+
+#: location/views.py:219
+msgid "Registration completed successfully"
+msgstr "ลงทะเบียนสำเร็จแล้ว"
+
+#: templates/add_location_page.html:3 templates/add_location_page.html.py:4
+#: templates/locations_page.html:24
+msgid "Add place"
+msgstr "เพิ่มสถานที่"
+
+#: templates/base.html:47
+msgid "Buddhawajana Institution"
+msgstr "พุทธวจนสถาบัน"
+
+#: templates/base.html:51 templates/map_page.html:4
+#: templates/map_page.html.py:5
+msgid "Map"
+msgstr "แผนที่"
+
+#: templates/base.html:55 templates/locations_page.html:4
+#: templates/locations_page.html.py:5
+msgid "My places"
+msgstr "สถานที่ของฉัน"
+
+#: templates/base.html:58
+msgid "Logout"
+msgstr "ออกจากระบบ"
+
+#: templates/base.html:78
+msgid "Email"
+msgstr "อีเมล"
+
+#: templates/base.html:80
+msgid "Login"
+msgstr "เข้าสู่ระบบ"
+
+#: templates/base.html:85
+msgid "Logged in as"
+msgstr "เข้าสู่ระบบโดย"
+
+#: templates/edit_location_page.html:3 templates/edit_location_page.html:4
+#, fuzzy
+msgid "Edit place"
+msgstr "เพิ่มสถานที่"
+
+#: templates/edit_user_page.html:5 templates/edit_user_page.html.py:6
+msgid "Edit user"
+msgstr "แก้ไขข้อมูลผู้ใช้"
+
+#: templates/location_content.html:8
+msgid "Search Result"
+msgstr "ผลลัพธ์การค้นหา"
+
+#: templates/locations_page.html:34
+msgid "Country"
+msgstr "ประเทศ"
+
+#: templates/locations_page.html:48
+msgid "Delete"
+msgstr "ลบ"
+
+#: templates/map_page.html:94
+msgid "Contact name"
+msgstr "ชื่อผู้ติดต่อ"
+
+#: watna_location/settings.py:21
+msgid "Thai"
+msgstr "ไทย"
+
+#: watna_location/settings.py:22
+msgid "English"
+msgstr "อังกฤษ"

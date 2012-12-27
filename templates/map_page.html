@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load l10n %}
-{% block title %}Map{% endblock %}
-{% block head %}Map{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Map" %}{% endblock %}
+{% block head %}{% trans "Map" %}{% endblock %}
 {% block content %}
   <script type="text/javascript">
       window.m_listener = {
@@ -90,31 +91,31 @@
         <tbody>
           <tr>
             <td>
-              <strong>{{'Contact name'|localize}}</strong>
+              <strong>{% trans 'Contact name' %}</strong>
               <p id="contact_name"> </p>  
             </td>
             <td>
-              <strong>{{'Phone number'|localize}}</strong>
+              <strong>{% trans 'Phone number' %}</strong>
               <p id="phone_number"> </p>            
             </td>
             <td>
-              <strong>{{'E-mail'|localize}}</strong>
+              <strong>{% trans 'E-mail' %}</strong>
               <p id="email"> </p>            
             </td>
           </tr>
           <tr>
             <td colspan="2">
-              <strong>{{'Address'|localize}}</strong>
+              <strong>{% trans 'Address' %}</strong>
               <p id="address"> </p>            
             </td>
             <td>
-              <strong>{{'City'|localize}}</strong>
+              <strong>{% trans 'City' %}</strong>
               <p id="city"> </p>            
             </td>            
           </tr>
           <tr>
             <td colspan="3">
-              <strong>{{'Activities'|localize}}</strong>
+              <strong>{% trans 'Activities' %}</strong>
               <p id="activities"> </p>            
             </td>            
           </tr>
