@@ -13,7 +13,7 @@ middleware here, or combine a Django application with an application of another
 framework.
 
 """
-import os
+import os, sys, site
 
 site.addsitedir('/home/sutee/watna_location_env/lib/python2.6/site-packages')
 
