@@ -88,6 +88,10 @@ STATICFILES_DIRS = (
     ('waypoints', '/home/sutee/watna_location/waypoints'),
 )
 
+LOCALE_PATHS = (
+    '/home/sutee/watna_location/locale',
+)
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
