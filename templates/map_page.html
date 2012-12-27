@@ -26,6 +26,30 @@
           },
       };      
 
+
+      function resize_containers() {
+        var gmap = $('div.gmap');            
+        var width = $('#nav_bar').is(':visible') ? $('#map_container').width() : $('.row-fluid').width();        
+        var height = $('#map_container').height();
+        var gap = $('#footer').position().top - ($('#map_container').position().top + height);
+
+        height += gap - 30;
+        
+        gmap.width(width);        
+        $('div.gmap>div').width(width);
+        $('div.gmap>img').width(width);        
+        
+        gmap.height(height);        
+        $('div.gmap>div').height(height);
+        $('div.gmap>img').height(height);                
+      }
+
+      function resize_map() {
+        resize_containers();
+        var gmap = $('div.gmap');
+        google.maps.event.trigger(gmap.getMap(), 'resize');
+      }
+
       $(document).ready(function() {
         $.waypoints.settings.scrollThrottle = 30;
         $('div.gmap').waypoint(function(e, direction) {
@@ -37,6 +61,13 @@
           event.preventDefault();
           move_to($(this).attr('lat'), $(this).attr('lng'));
         });        
+
+        resize_containers();
+
+        $(window).resize(function() {
+          resize_map();
+        });
+        
       });
       
       function move_to(lat, lng) {
@@ -96,7 +127,7 @@
   </div>
     
   <div class="row-fluid">
-    <div class="span3 hidden-phone hidden-tablet">
+    <div id="nav_bar" class="span3 hidden-phone hidden-tablet">
       <ul class="nav nav-list bs-sidenav">        
         {% for nav in nav_list %}
           {% if nav.type == 'header' %}
@@ -108,7 +139,7 @@
         {% endfor %}        
       </ul>      
     </div>    
-    <div class="span9 span12-tablet">
+    <div id="map_container" class="span9 span12-tablet">
       {{ form.gmap }}
       {{ form.media.js }}        
     </div>

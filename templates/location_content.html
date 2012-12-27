@@ -67,14 +67,16 @@
         },
         mapIdle: function() {
           var gmap = $('div.gmap:visible');
-          var marker = gmap.getMarkers()[0];
-          gmap.removeMarkers();
-          var center = gmap.getMap().getCenter();
-          marker.setPosition(center);
-          gmap.addMarkers([marker]);
-          console.log(center);
-          $('#id_latitude').val(center.lat().toFixed(5));
-          $('#id_longitude').val(center.lng().toFixed(5));
+          if (gmap.getMarkers()) {
+            var marker = gmap.getMarkers()[0];
+            gmap.removeMarkers();
+            var center = gmap.getMap().getCenter();
+            marker.setPosition(center);
+            gmap.addMarkers([marker]);
+            console.log(center);
+            $('#id_latitude').val(center.lat().toFixed(5));
+            $('#id_longitude').val(center.lng().toFixed(5));            
+          }
         },
     };
 </script>

@@ -32,24 +32,18 @@
         <th>{{'Longitude'|localize}}</th>
         <th>{{'Country'|localize}}</th>
         <th></th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
       {% for location in locations %}
         <tr>
           <td>{{forloop.counter}}</td>
-          <td>{{ location.place_name }}</td>
+          <td><a href="/places/{{location.pk}}">{{ location.place_name }}</a></td>
           <td>{{ location.latitude }}</td>
           <td>{{ location.longitude }}</td>
           <td><img src="{{ location.country.flag }}"/> {{ location.country.name}}</td>
           <td style="width: 1%;">
-            <form style="margin: 0px;" method="GET" action="/places/{{location.pk}}">
-              <input type="submit" style="width: 80px;" class="btn btn-warning" value="{{'Edit'|localize}}"/>
-            </form>
-          </td>          
-          <td style="width: 1%;">
-            <input type="button" class="btn btn-danger btn-delete" 
+            <input type="button" class="btn btn-mini btn-danger btn-delete" 
               value="{{'Delete'|localize}}" 
               onClick="confirm_delete('{{location.place_name}}', '{{location.pk}}');"/>
           </td>          

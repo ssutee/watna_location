@@ -1,7 +1,5 @@
 body {
   padding-top: 60px;
-  width: 100%; 
-  height: 100%;    
 }
 
 .sticky {
@@ -11,8 +9,12 @@ body {
 }
 
 div.gmap img {
-  height: 100%;
   max-width: none;
+}
+
+div.gmap label { 
+  width: auto; 
+  display:inline; 
 }
 
 td.activities ul li label {
