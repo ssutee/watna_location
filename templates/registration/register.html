@@ -1,7 +1,8 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load crispy_forms_tags %}
-{% block title %}User Registration{% endblock %}
-{% block head %}User Registration{% endblock %}
+{% block title %}{% trans "User Registration" %}{% endblock %}
+{% block head %}{% trans "User Registration" %}{% endblock %}
 {% block content %}
   {% crispy form %}
 {% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-27 15:32+0700\n"
+"POT-Creation-Date: 2012-12-27 17:39+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,31 +113,31 @@ msgstr ""
 msgid "Activity"
 msgstr ""
 
-#: location/views.py:110
+#: location/views.py:108
 msgid "User updated successfully"
 msgstr ""
 
-#: location/views.py:132
+#: location/views.py:130
 msgid "Place updated successfully"
 msgstr ""
 
-#: location/views.py:155
+#: location/views.py:153
 msgid "New place added successfully"
 msgstr ""
 
-#: location/views.py:195
+#: location/views.py:193
 msgid "Logout successfully"
 msgstr ""
 
-#: location/views.py:202
+#: location/views.py:200
 msgid "Login successfully"
 msgstr ""
 
-#: location/views.py:204
+#: location/views.py:202
 msgid "Invalid email or password"
 msgstr ""
 
-#: location/views.py:219
+#: location/views.py:217
 msgid "Registration completed successfully"
 msgstr ""
 
@@ -198,6 +198,11 @@ msgstr ""
 
 #: templates/map_page.html:94
 msgid "Contact name"
+msgstr ""
+
+#: templates/registration/register.html:4
+#: templates/registration/register.html:5
+msgid "User Registration"
 msgstr ""
 
 #: watna_location/settings.py:21
