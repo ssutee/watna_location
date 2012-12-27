@@ -33,7 +33,6 @@ def map_page(request):
         }
     )
     
-    marker_mapper = {}
     for index, location in enumerate(Location.objects.all()):
         marker = maps.Marker(opts = {
                 'map': gmap,
@@ -47,7 +46,6 @@ def map_page(request):
             'disableAutoPan': True
         })
         info.open(gmap, marker)
-        marker_mapper[str(index)] = {location}
         
     nav_list = []    
     for value in Location.objects.values('country').annotate(total=Count('country')):
