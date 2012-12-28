@@ -14,7 +14,14 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}waypoints/js/waypoints.min.js"></script> 
-    <script type="text/javascript">
+    <script type="text/javascript"> 
+    
+      function set_map_type(map_type) {
+        $.post("/set_map_type/", {"map_type":map_type}, function(data) {
+          location.reload();
+        });
+      }
+       
       $(document).ready(function() {
         var map_menu = $('#top_menu>li').first();
         var saved_class = map_menu.attr('class');
@@ -30,6 +37,30 @@
 
         $('#th_btn').click(function(e) {
           $('#language').val('th');
+        });
+        
+        $('#road_opt>a').click(function(e) {          
+          $('a>i').attr('class', '');
+          $('#road_opt>a>i').attr('class', 'icon-ok');
+          set_map_type('ROADMAP');
+        });
+
+        $('#terrain_opt>a').click(function(e) {
+          $('a>i').attr('class', '');
+          $('#terrain_opt>a>i').attr('class', 'icon-ok');
+          set_map_type('TERRAIN');          
+        });
+
+        $('#satellite_opt>a').click(function(e) {
+          $('a>i').attr('class', '');
+          $('#satellite_opt>a>i').attr('class', 'icon-ok');
+          set_map_type('SATELLITE');          
+        });
+
+        $('#hybrid_opt>a').click(function(e) {
+          $('a>i').attr('class', '');
+          $('#hybrid_opt>a>i').attr('class', 'icon-ok');
+          set_map_type('HYBRID');          
         });
         
       });
@@ -53,6 +84,17 @@
               {% if user.is_authenticated %}
                 <li class="{% if active_menu == 1 %}active{% else %}{% endif %}">
                   <a href="/places/">{% trans 'My places' %}</a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" 
+                    data-toggle="dropdown">{% trans "Options" %}<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li class="nav-header">{% trans "Map type" %}</li>                    
+                    <li id="road_opt"><a href="#">{% trans "Road" %} <i class="{% if map_type == 'ROADMAP' %}icon-ok{% else %}{% endif %}"></i></a></li>
+                    <li id="terrain_opt"><a href="#">{% trans "Terrain" %} <i class="{% if map_type == 'TERRAIN' %}icon-ok{% else %}{% endif %}"></i></a></li>
+                    <li id="satellite_opt"><a href="#">{% trans "Satellite" %} <i class="{% if map_type == 'SATELLITE' %}icon-ok{% else %}{% endif %}"></i></a></li>
+                    <li id="hybrid_opt"><a href="#">{% trans "Satellite & Labels" %} <i class="{% if map_type == 'HYBRID' %}icon-ok{% else %}{% endif %}"></i></a></li>
+                  </ul>
                 </li>              
                 <li>
                   <a href="/logout/">{% trans 'Logout' %}</a>

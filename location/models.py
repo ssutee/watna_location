@@ -4,6 +4,11 @@ from django.utils.translation import ugettext_lazy as _
 from django_countries import CountryField
 from django_countries.fields import Country
 
+class Profile(models.Model):
+    user = models.OneToOneField(User)
+
+    map_type = models.CharField(max_length=10, default='ROADMAP')
+
 class Status(models.Model):
     name = models.CharField(max_length=200, db_index=True, 
         verbose_name=_('Name'), unique=True)

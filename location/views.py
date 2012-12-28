@@ -8,7 +8,7 @@ from django.utils import simplejson
 from django.db.models import Count
 
 from location.forms import MapForm, SearchMapForm, LocationForm, RegistrationForm, UserForm
-from location.models import Location
+from location.models import Location, Profile
 
 from gmapi import maps
 from emailusernames.utils import create_user
@@ -20,12 +20,15 @@ def create_info_content(location):
         location.place_name, location.city,
         ', '.join(map(lambda x:x.name,location.activities.all())))
 
+def get_map_type(request):
+    return maps.MapTypeId.ROADMAP if not request.user.is_authenticated() else request.user.profile.map_type.lower()
+
 def map_page(request):
     request.session['next'] = '/'
     gmap = maps.Map(
         opts = {
             'center': maps.LatLng(14.01012, 100.82302),
-            'mapTypeId': maps.MapTypeId.ROADMAP,
+            'mapTypeId': get_map_type(request),
             'zoom': 8,
             'mapTypeControlOptions': {
                  'style': maps.MapTypeControlStyle.DROPDOWN_MENU
@@ -70,11 +73,11 @@ def map_page(request):
         
     return render(request, 'map_page.html', context)
 
-def create_search_map_form(lat, lng):
+def create_search_map_form(request, lat, lng):
     gmap = maps.Map(
         opts = {
             'center': maps.LatLng(lat, lng),
-            'mapTypeId': maps.MapTypeId.ROADMAP,
+            'mapTypeId': get_map_type(request),
             'zoom': 6,
             'mapTypeControlOptions': {
                 'style': maps.MapTypeControlStyle.DROPDOWN_MENU
@@ -148,7 +151,7 @@ def edit_location_page(request, pk):
     else:                
         form = LocationForm(instance=location)
     
-    context = {'form': form, 'map_form': create_search_map_form(lat, lng)}
+    context = {'form': form, 'map_form': create_search_map_form(request, lat, lng)}
     return render(request, 'edit_location_page.html', context)
     
 @login_required
@@ -171,13 +174,27 @@ def add_location_page(request):
     else:       
         form = LocationForm()
     
-    context = {'form': form, 'map_form': create_search_map_form(lat, lng)}
+    context = {'form': form, 'map_form': create_search_map_form(request, lat, lng)}
     return render(request, 'add_location_page.html', context)
 
 @csrf_exempt
 @login_required
 def delete_location_page(request):    
     Location.objects.filter(pk=int(request.POST.get('pk'))).delete()
+    return HttpResponse(simplejson.dumps(0), mimetype="application/json")
+
+@csrf_exempt
+@login_required
+def set_map_type_page(request):
+    try:
+        request.user.profile
+    except Profile.DoesNotExist, e:
+        profile = Profile(user=request.user)
+        profile.save()
+
+    request.user.profile.map_type = request.POST.get('map_type', 'ROADMAP')
+    request.user.profile.save()
+    
     return HttpResponse(simplejson.dumps(0), mimetype="application/json")
     
 @csrf_exempt
