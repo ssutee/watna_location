@@ -1,18 +1,11 @@
-@media (max-device-width: 480px;) {
-  h1
-  {
-    font-size: 12pt;
-  }
+html {
+  position: relative;
+  min-height: 100%;
 }
 
 body {
   padding-top: 60px;
-}
-
-.sticky {
-	position:fixed !important;
-	top: 0;
-  margin-top: 50px;	
+  margin: 0 0 60px;
 }
 
 div.gmap img {
@@ -39,24 +32,21 @@ td.activities ul li {
   padding-left: 10px;
 }
 
-#wrap {
-  min-height: 100%;
-}
-
 p.credit {
   margin-bottom: 0px;
 }
 
-#main {
-  padding-bottom: 40px;
+#space {  
+  min-height: 50px;
 }
 
 #footer {  
   position: absolute;
-  width: 100%;
+  left: 0;
   bottom: 0;
-  height: 40px;  
+  height: 40px;
   line-height: 40px;
+  width: 100%;
   text-align: center;
   background-color: #121212;    
 }

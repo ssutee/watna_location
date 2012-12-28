@@ -89,36 +89,39 @@
         </div>        
       </div>      
     </div>   
-    <div id="wrap">
-      <div id="main" class="container">      
-        
-        {% if alert_type %}
-          <div class="alert {{ alert_type }} fade in">
-            <a class="close" data-dismiss="alert">&#215;</a>
-            <h4> {{ alert_message }}</h4>
-          </div>
-        {% endif %}
-        
-        <div class="page-header row-fluid">
-          <div class="span4 pull-right hidden-phone hidden-tablet">
-            <a href="#">
-              <img class="media-object" src="http://watnapp.com/images/logo_header.png">              
-            </a>
-          </div>
-          <div class="span8 pull-left span12-tablet">
-            <h1 class="media-heading" style="height:80px; line-height: 80px;">
-              {% block head %}{% endblock %}
-            </h1>
-          </div>          
-        </div>        
-        {% block content %}{% endblock %}
-      </div>
-      <div id="footer" class="muted credit">
-        <div class="container" style="vertical-align: middle; margin-top:auto; margin-bottom:auto;">
-          COPYRIGHT © 2012 Sutee Sudprasert All rights reserved.
-        </div>        
-      </div>
+
       
+    <div class="container">
+      {% if alert_type %}
+        <div class="alert {{ alert_type }} fade in">
+          <a class="close" data-dismiss="alert">&#215;</a>
+          <h4> {{ alert_message }}</h4>
+        </div>
+      {% endif %}
+      
+      <div class="page-header row-fluid">
+        <div class="span4 pull-right hidden-phone hidden-tablet">
+          <a href="#">
+            <img class="media-object" src="http://watnapp.com/images/logo_header.png">              
+          </a>
+        </div>
+        <div class="span8 pull-left span12-tablet">
+          <h1 class="media-heading" style="height:80px; line-height: 80px;">
+            {% block head %}{% endblock %}
+          </h1>
+        </div>          
+      </div>        
+      {% block content %}{% endblock %}
     </div>
+
+    <div id="space">&nbsp;</div>
+    
+    <div id="footer" class="muted credit">
+      <div class="container" style="vertical-align: middle; margin-top:auto; margin-bottom:auto;">
+        COPYRIGHT © 2012 Sutee Sudprasert All rights reserved.
+      </div>        
+    </div>
+      
+
   </body>
 </html>
