@@ -13,15 +13,14 @@
             $.post("/find_location_by_id/", 
               { id: id, lat: e.latLng.lat(), lng: e.latLng.lng() }, 
               function(data) {
-                console.log(data.place_name);
-                console.log(data.activities)
-                $('#info_modal_label').text(data.place_name);
+                $('#info_modal_label').text(data.place_name + ' (' + data.info +'/'+ data.status + ')');
                 $('#contact_name').text(data.first_name + " " + data.last_name);
                 $('#email').text(data.email);
                 $('#phone_number').text(data.phone_number);
                 $('#address').text(data.address);
                 $('#city').text(data.city);
-                $('#activities').text(data.activities);                
+                $('#activities').text(data.activities);
+                $('#additional_info').text(data.additional_info);                
                 $('#info_modal').modal({backdrop:true, keyboard:true});
               });
           },
@@ -119,11 +118,17 @@
               <p id="activities"> </p>            
             </td>            
           </tr>
+          <tr>
+            <td colspan="3">
+              <strong>{% trans 'Additional information' %}</strong>
+              <p id="additional_info"> </p>            
+            </td>            
+          </tr>          
         </tbody>
       </table>
     </div>
     <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
     </div>
   </div>
     

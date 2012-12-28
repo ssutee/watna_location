@@ -11,7 +11,7 @@
     <p id="alert_text"></p>
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+    <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</a>
   </div>
 </div>
 
@@ -22,11 +22,13 @@
   <div class="span5 hidden-phone hidden-tablet">
     <form class="form-search">
       <input type="text" class="input-large search-query">
-      <button type="button" class="btn" onClick="search($('.search-query').val());">Search</button>
+      <button type="button" class="btn" onClick="search($('.search-query').val());">{% trans 'Search' %}</button>
     </form>
     {{ map_form.media.js }}
     {{ map_form.gmap }}
-    <p class="text-info">Drag and drop the marker to pinpoint the place.</p>
+    <p style="margin-top:5px;" class="text-info">
+        {% trans "Drag and drop the marker to pinpoint the place." %}
+    </p>
   </div>
 </div>
 

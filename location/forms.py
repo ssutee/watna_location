@@ -119,6 +119,8 @@ class LocationForm(ModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.layout = Layout(
             Field('place_name', css_class='input-xlarge'),
+            Field('status', css_class='input-xlarge'),            
+            Field('organization', css_class='input-xlarge'),
             Field('phone_number', css_class='input-xlarge'),
             Field('address', rows="4", css_class='input-xlarge'),
             Field('latitude', css_class='input-xlarge'),
@@ -136,6 +138,7 @@ class LocationForm(ModelForm):
     class Meta:
         model = Location
         fields = (
+            'status', 'organization',
             'place_name', 'longitude', 'latitude', 
             'address', 'phone_number',
             'activities', 'additional_info', 'city', 'country')

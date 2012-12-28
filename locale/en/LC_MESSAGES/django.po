@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-27 17:39+0700\n"
+"POT-Creation-Date: 2012-12-28 15:39+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: location/forms.py:28 location/forms.py:131
+#: location/forms.py:28 location/forms.py:133
 msgid "Save"
 msgstr ""
 
-#: location/forms.py:33 location/forms.py:85 templates/map_page.html:102
+#: location/forms.py:33 location/forms.py:85 templates/map_page.html:103
 msgid "E-mail"
 msgstr ""
 
@@ -65,79 +65,99 @@ msgstr ""
 msgid "E-mail is already taken."
 msgstr ""
 
-#: location/models.py:9
-msgid "Place name"
-msgstr ""
-
-#: location/models.py:10 templates/locations_page.html:33
-msgid "Longitude"
-msgstr ""
-
-#: location/models.py:11 templates/locations_page.html:32
-msgid "Latitude"
-msgstr ""
-
-#: location/models.py:13 templates/map_page.html:108
-msgid "Address"
-msgstr ""
-
-#: location/models.py:14 templates/map_page.html:112
-msgid "City"
-msgstr ""
-
-#: location/models.py:16 templates/map_page.html:98
-msgid "Phone number"
-msgstr ""
-
-#: location/models.py:18 location/models.py:32 templates/map_page.html:118
-msgid "Activities"
-msgstr ""
-
-#: location/models.py:20
-msgid "Additional information"
-msgstr ""
-
-#: location/models.py:25
-msgid "Location"
-msgstr ""
-
-#: location/models.py:26
-msgid "Locations"
-msgstr ""
-
-#: location/models.py:29 templates/locations_page.html:31
+#: location/models.py:9 location/models.py:56 templates/locations_page.html:31
 msgid "Name"
 msgstr ""
 
-#: location/models.py:33
+#: location/models.py:12 location/models.py:13 location/models.py:22
+msgid "Status"
+msgstr ""
+
+#: location/models.py:20
+msgid "Place name"
+msgstr ""
+
+#: location/models.py:21 location/views.py:191
+msgid "Organization"
+msgstr ""
+
+#: location/models.py:25 templates/locations_page.html:33
+msgid "Longitude"
+msgstr ""
+
+#: location/models.py:26 templates/locations_page.html:32
+msgid "Latitude"
+msgstr ""
+
+#: location/models.py:28 templates/map_page.html:109
+msgid "Address"
+msgstr ""
+
+#: location/models.py:29 templates/map_page.html:113
+msgid "City"
+msgstr ""
+
+#: location/models.py:31 templates/map_page.html:99
+msgid "Phone number"
+msgstr ""
+
+#: location/models.py:34 location/models.py:63 templates/map_page.html:119
+msgid "Activities"
+msgstr ""
+
+#: location/models.py:36 templates/map_page.html:125
+msgid "Additional information"
+msgstr ""
+
+#: location/models.py:42
+msgid "Location"
+msgstr ""
+
+#: location/models.py:43
+msgid "Locations"
+msgstr ""
+
+#: location/models.py:57
+msgid "Priority"
+msgstr ""
+
+#: location/models.py:59
+msgid "Color"
+msgstr ""
+
+#: location/models.py:64
 msgid "Activity"
 msgstr ""
 
-#: location/views.py:108
+#: location/views.py:115
 msgid "User updated successfully"
 msgstr ""
 
-#: location/views.py:130
+#: location/views.py:137
 msgid "Place updated successfully"
 msgstr ""
 
-#: location/views.py:153
+#: location/views.py:160
 msgid "New place added successfully"
 msgstr ""
 
-#: location/views.py:193
+#: location/views.py:191
+msgid "Person"
+msgstr ""
+
+#: location/views.py:203
 msgid "Logout successfully"
 msgstr ""
 
-#: location/views.py:200
+#: location/views.py:210
 msgid "Login successfully"
 msgstr ""
 
-#: location/views.py:202
+#: location/views.py:212
 msgid "Invalid email or password"
 msgstr ""
 
-#: location/views.py:217
+#: location/views.py:227
 msgid "Registration completed successfully"
 msgstr ""
 
@@ -188,6 +208,18 @@ msgstr ""
 msgid "Search Result"
 msgstr ""
 
+#: templates/location_content.html:14 templates/map_page.html:133
+msgid "Close"
+msgstr ""
+
+#: templates/location_content.html:25
+msgid "Search"
+msgstr ""
+
+#: templates/location_content.html:30
+msgid "Drag and drop the marker to pinpoint the place."
+msgstr ""
+
 #: templates/locations_page.html:34
 msgid "Country"
 msgstr ""
@@ -196,7 +228,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: templates/map_page.html:94
+#: templates/map_page.html:95
 msgid "Contact name"
 msgstr ""
 

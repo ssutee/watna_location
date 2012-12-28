@@ -43,7 +43,7 @@ TIME_ZONE = 'Asia/Bangkok'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'th'
 
 SITE_ID = 1
 
@@ -83,9 +83,12 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     ('css', '/home/sutee/watna_location/css'),
+    ('media', '/home/sutee/watna_location/media'),
     ('gmapi', '/home/sutee/watna_location/gmapi'),  
     ('bootstrap', '/home/sutee/watna_location/bootstrap'),
     ('waypoints', '/home/sutee/watna_location/waypoints'),
+    ('flexi', '/home/sutee/watna_location/flexi'),
+    ('jscolor', '/home/sutee/watna_location/jscolor'),    
 )
 
 LOCALE_PATHS = (

@@ -34,7 +34,14 @@ def map_page(request):
     )
     
     for index, location in enumerate(Location.objects.all()):
+        color = 'FF776B'
+        
+        if location.activities.count() > 0:            
+            activity = location.activities.order_by('priority').all()[0]
+            color = activity.color.strip('#')
+            
         marker = maps.Marker(opts = {
+                'color': color,
                 'map': gmap,
                 'position': maps.LatLng(location.latitude, location.longitude),
             })
@@ -172,7 +179,7 @@ def delete_location_page(request):
     
 @csrf_exempt
 def find_location_by_id_page(request):    
-    location = Location.objects.get(pk=int(request.POST.get('id')))    
+    location = Location.objects.get(pk=int(request.POST.get('id', 1)))    
 
     data = {
         'place_name': location.place_name,
@@ -181,6 +188,9 @@ def find_location_by_id_page(request):
         'last_name': location.user.last_name,
         'address': location.address,
         'city': location.city,
+        'info': unicode(_('Organization')) if location.organization else unicode(_('Person')),
+        'status': location.status.name,
+        'additional_info': location.additional_info if location.additional_info and len(location.additional_info.strip()) > 0 else '-',
         'country': unicode(location.country.name),
         'phone_number': location.phone_number,
         'activities': ', '.join(map(lambda x:x.name,location.activities.all())),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-27 17:39+0700\n"
+"POT-Creation-Date: 2012-12-28 15:39+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: location/forms.py:28 location/forms.py:131
+#: location/forms.py:28 location/forms.py:133
 msgid "Save"
 msgstr "บันทึก"
 
-#: location/forms.py:33 location/forms.py:85 templates/map_page.html:102
+#: location/forms.py:33 location/forms.py:85 templates/map_page.html:103
 msgid "E-mail"
 msgstr "อีเมล"
 
@@ -66,79 +66,99 @@ msgstr "รหัสผ่าน (อีกครั้ง)"
 msgid "E-mail is already taken."
 msgstr "อีเมลนี้มีคนใช้ไปแล้ว"
 
-#: location/models.py:9
-msgid "Place name"
-msgstr "ชื่อสถานที่"
-
-#: location/models.py:10 templates/locations_page.html:33
-msgid "Longitude"
-msgstr "ลองจิจูด"
-
-#: location/models.py:11 templates/locations_page.html:32
-msgid "Latitude"
-msgstr "ละติจูด"
-
-#: location/models.py:13 templates/map_page.html:108
-msgid "Address"
-msgstr "ที่อยู่"
-
-#: location/models.py:14 templates/map_page.html:112
-msgid "City"
-msgstr "จังหวัด"
-
-#: location/models.py:16 templates/map_page.html:98
-msgid "Phone number"
-msgstr "เบอร์โทรศัพท์"
-
-#: location/models.py:18 location/models.py:32 templates/map_page.html:118
-msgid "Activities"
-msgstr "กิจกรรม"
-
-#: location/models.py:20
-msgid "Additional information"
-msgstr "ข้อมูลเพิ่มเติม"
-
-#: location/models.py:25
-msgid "Location"
-msgstr "สถานที่"
-
-#: location/models.py:26
-msgid "Locations"
-msgstr "สถานที่"
-
-#: location/models.py:29 templates/locations_page.html:31
+#: location/models.py:9 location/models.py:56 templates/locations_page.html:31
 msgid "Name"
 msgstr "ชื่อ"
 
-#: location/models.py:33
+#: location/models.py:12 location/models.py:13 location/models.py:22
+msgid "Status"
+msgstr "สถานะ"
+
+#: location/models.py:20
+msgid "Place name"
+msgstr "ชื่อสถานที่"
+
+#: location/models.py:21 location/views.py:191
+msgid "Organization"
+msgstr "องค์กร"
+
+#: location/models.py:25 templates/locations_page.html:33
+msgid "Longitude"
+msgstr "ลองจิจูด"
+
+#: location/models.py:26 templates/locations_page.html:32
+msgid "Latitude"
+msgstr "ละติจูด"
+
+#: location/models.py:28 templates/map_page.html:109
+msgid "Address"
+msgstr "ที่อยู่"
+
+#: location/models.py:29 templates/map_page.html:113
+msgid "City"
+msgstr "จังหวัด"
+
+#: location/models.py:31 templates/map_page.html:99
+msgid "Phone number"
+msgstr "เบอร์โทรศัพท์"
+
+#: location/models.py:34 location/models.py:63 templates/map_page.html:119
+msgid "Activities"
+msgstr "กิจกรรม"
+
+#: location/models.py:36 templates/map_page.html:125
+msgid "Additional information"
+msgstr "ข้อมูลเพิ่มเติม"
+
+#: location/models.py:42
+msgid "Location"
+msgstr "สถานที่"
+
+#: location/models.py:43
+msgid "Locations"
+msgstr "สถานที่"
+
+#: location/models.py:57
+msgid "Priority"
+msgstr "ระดับ"
+
+#: location/models.py:59
+msgid "Color"
+msgstr "สี"
+
+#: location/models.py:64
 msgid "Activity"
 msgstr "กิจกรรม"
 
-#: location/views.py:108
+#: location/views.py:115
 msgid "User updated successfully"
 msgstr "ข้อมูลที่ใช้ถูกปรับปรุงแล้ว"
 
-#: location/views.py:130
+#: location/views.py:137
 msgid "Place updated successfully"
 msgstr "ข้อมูลสถานที่ถูกปรับปรุงแล้ว"
 
-#: location/views.py:153
+#: location/views.py:160
 msgid "New place added successfully"
 msgstr "สถานที่ใหม่ถูกเพิ่มแล้ว"
 
-#: location/views.py:193
+#: location/views.py:191
+msgid "Person"
+msgstr "บุคคล"
+
+#: location/views.py:203
 msgid "Logout successfully"
 msgstr "ออกจากระบบแล้ว"
 
-#: location/views.py:200
+#: location/views.py:210
 msgid "Login successfully"
 msgstr "เข้าสู่ระบบสำเร็จแล้ว"
 
-#: location/views.py:202
+#: location/views.py:212
 msgid "Invalid email or password"
 msgstr "อีเมล หรือ รหัสผ่านไม่ถูกต้อง"
 
-#: location/views.py:217
+#: location/views.py:227
 msgid "Registration completed successfully"
 msgstr "ลงทะเบียนสำเร็จแล้ว"
 
@@ -190,6 +210,18 @@ msgstr "แก้ไขข้อมูลผู้ใช้"
 msgid "Search Result"
 msgstr "ผลลัพธ์การค้นหา"
 
+#: templates/location_content.html:14 templates/map_page.html:133
+msgid "Close"
+msgstr "ปิด"
+
+#: templates/location_content.html:25
+msgid "Search"
+msgstr "ค้นหา"
+
+#: templates/location_content.html:30
+msgid "Drag and drop the marker to pinpoint the place."
+msgstr "ลากและวางเครื่องหมายเพื่อเลือกที่ตั้งของสถานที่"
+
 #: templates/locations_page.html:34
 msgid "Country"
 msgstr "ประเทศ"
@@ -198,7 +230,7 @@ msgstr "ประเทศ"
 msgid "Delete"
 msgstr "ลบ"
 
-#: templates/map_page.html:94
+#: templates/map_page.html:95
 msgid "Contact name"
 msgstr "ชื่อผู้ติดต่อ"
 
