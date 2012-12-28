@@ -30,6 +30,9 @@ def map_page(request):
             'mapTypeControlOptions': {
                  'style': maps.MapTypeControlStyle.DROPDOWN_MENU
             },
+            'navigationControlOptions': {
+                'style': maps.NavigationControlStyle.ANDROID
+            }            
         }
     )
     
@@ -131,7 +134,7 @@ def edit_location_page(request, pk):
     if request.method == 'POST':
         form = LocationForm(request.POST, instance=location)
         if form.is_valid():
-            location = form.save(commit=False)
+            location = form.save()
             location.user = request.user;
             location.save()
             request.flash['message'] = ('alert-success', _('Place updated successfully'))
