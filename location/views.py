@@ -21,6 +21,13 @@ def create_info_content(location):
         ', '.join(map(lambda x:x.name,location.activities.all())))
 
 def get_map_type(request):
+    if request.user.is_authenticated()
+        try:
+            request.user.profile
+        except Profile.DoesNotExist, e:
+            profile = Profile(user=request.user)
+            profile.save()
+        
     return maps.MapTypeId.ROADMAP if not request.user.is_authenticated() else request.user.profile.map_type.lower()
 
 def map_page(request):
