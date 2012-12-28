@@ -20,7 +20,8 @@
                 $('#address').text(data.address);
                 $('#city').text(data.city);
                 $('#activities').text(data.activities);
-                $('#additional_info').text(data.additional_info);                
+                $('#additional_info').text(data.additional_info);    
+                $('#approved').text(data.approved);            
                 $('#info_modal').modal({backdrop:true, keyboard:true});
               });
           },
@@ -119,9 +120,13 @@
             </td>            
           </tr>
           <tr>
-            <td colspan="3">
+            <td colspan="2">
               <strong>{% trans 'Additional information' %}</strong>
               <p id="additional_info"> </p>            
+            </td>            
+            <td>
+              <strong>{% trans 'Approval' %}</strong>
+              <p id="approved"> </p>            
             </td>            
           </tr>          
         </tbody>

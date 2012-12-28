@@ -41,7 +41,7 @@ class Location(models.Model):
     additional_info = models.TextField(verbose_name=_('Additional information'), 
         blank=True, null=True)
     
-    approved = models.BooleanField(default=False)
+    approved = models.BooleanField(verbose_name=_('Approval'), default=False)
         
     class Meta:
         verbose_name = _('Location')

@@ -9,6 +9,9 @@ class ActivityAdmin(admin.ModelAdmin):
         
     list_display = ('name', 'priority',)
     
-admin.site.register(Location)
+class LocationAdmin(admin.ModelAdmin):
+    list_display = ('place_name', 'approved',)
+    
+admin.site.register(Location, LocationAdmin)
 admin.site.register(Status)
 admin.site.register(Activity, ActivityAdmin)

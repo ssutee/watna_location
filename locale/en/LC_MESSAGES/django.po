@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-28 21:48+0700\n"
+"POT-Creation-Date: 2012-12-29 00:19+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: location/forms.py:33 location/forms.py:85 templates/map_page.html:101
+#: location/forms.py:33 location/forms.py:85 templates/map_page.html:102
 msgid "E-mail"
 msgstr ""
 
@@ -78,7 +78,7 @@ msgstr ""
 msgid "Place name"
 msgstr ""
 
-#: location/models.py:26 location/views.py:211
+#: location/models.py:26 location/views.py:218
 msgid "Organization"
 msgstr ""
 
@@ -90,24 +90,28 @@ msgstr ""
 msgid "Latitude"
 msgstr ""
 
-#: location/models.py:33 templates/map_page.html:107
+#: location/models.py:33 templates/map_page.html:108
 msgid "Address"
 msgstr ""
 
-#: location/models.py:34 templates/map_page.html:111
+#: location/models.py:34 templates/map_page.html:112
 msgid "City"
 msgstr ""
 
-#: location/models.py:36 templates/map_page.html:97
+#: location/models.py:36 templates/map_page.html:98
 msgid "Phone number"
 msgstr ""
 
-#: location/models.py:39 location/models.py:68 templates/map_page.html:117
+#: location/models.py:39 location/models.py:68 templates/map_page.html:118
 msgid "Activities"
 msgstr ""
 
-#: location/models.py:41 templates/map_page.html:123
+#: location/models.py:41 templates/map_page.html:124
 msgid "Additional information"
+msgstr ""
+
+#: location/models.py:44 location/views.py:224
+msgid "Approved"
 msgstr ""
 
 #: location/models.py:47
@@ -130,35 +134,39 @@ msgstr ""
 msgid "Activity"
 msgstr ""
 
-#: location/views.py:121
+#: location/views.py:128
 msgid "User updated successfully"
 msgstr ""
 
-#: location/views.py:143
+#: location/views.py:150
 msgid "Place updated successfully"
 msgstr ""
 
-#: location/views.py:166
+#: location/views.py:173
 msgid "New place added successfully"
 msgstr ""
 
-#: location/views.py:211
+#: location/views.py:218
 msgid "Person"
 msgstr ""
 
-#: location/views.py:223
+#: location/views.py:224
+msgid "Not approved"
+msgstr ""
+
+#: location/views.py:231
 msgid "Logout successfully"
 msgstr ""
 
-#: location/views.py:230
+#: location/views.py:238
 msgid "Login successfully"
 msgstr ""
 
-#: location/views.py:232
+#: location/views.py:240
 msgid "Invalid email or password"
 msgstr ""
 
-#: location/views.py:247
+#: location/views.py:255
 msgid "Registration completed successfully"
 msgstr ""
 
@@ -233,7 +241,7 @@ msgstr ""
 msgid "Search Result"
 msgstr ""
 
-#: templates/location_content.html:14 templates/map_page.html:131
+#: templates/location_content.html:14 templates/map_page.html:136
 msgid "Close"
 msgstr ""
 
@@ -253,8 +261,12 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: templates/map_page.html:93
+#: templates/map_page.html:94
 msgid "Contact name"
+msgstr ""
+
+#: templates/map_page.html:128
+msgid "Approval"
 msgstr ""
 
 #: templates/registration/register.html:4

@@ -15,7 +15,7 @@ from emailusernames.utils import create_user
 from django_countries.fields import Country
 
 def create_info_content(location):
-    return '<div id="%d" style="height:70px; width:300px;"><h4>%s, %s</h4>%s</div>' % (
+    return '<div id="%d" style="height:100px; width:300px;"><h4>%s, %s</h4>%s</div>' % (
         location.id,
         location.place_name, location.city,
         ', '.join(map(lambda x:x.name,location.activities.all())))
@@ -47,9 +47,9 @@ def map_page(request):
     )
     
     for index, location in enumerate(Location.objects.all()):
-        color = 'FF776B'
+        color = 'E3E3E3'
         
-        if location.activities.count() > 0:            
+        if location.activities.count() > 0 and location.approved:
             activity = location.activities.order_by('priority').all()[0]
             color = activity.color.strip('#')
             
@@ -221,6 +221,7 @@ def find_location_by_id_page(request):
         'country': unicode(location.country.name),
         'phone_number': location.phone_number,
         'activities': ', '.join(map(lambda x:x.name,location.activities.all())),
+        'approved': unicode(_('Approved')) if location.approved else unicode(_('Not approved'))
     }
         
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
