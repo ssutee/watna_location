@@ -189,7 +189,7 @@ def find_location_by_id_page(request):
         'address': location.address,
         'city': location.city,
         'info': unicode(_('Organization')) if location.organization else unicode(_('Person')),
-        'status': location.status.name if location.status.name else '-',
+        'status': location.status if location.status.name else '-',
         'additional_info': location.additional_info if location.additional_info and len(location.additional_info.strip()) > 0 else '-',
         'country': unicode(location.country.name),
         'phone_number': location.phone_number,
