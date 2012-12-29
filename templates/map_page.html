@@ -74,8 +74,8 @@
       function move_to(lat, lng) {
         var gmap = $('div.gmap:visible');        
         var point = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+        gmap.getMap().setZoom(21);
         gmap.getMap().panTo(point);
-        gmap.getMap().setZoom(10);
       }
 
   </script>
