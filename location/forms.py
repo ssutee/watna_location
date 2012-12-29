@@ -149,7 +149,7 @@ class LocationForm(ModelForm):
         
     latitude = forms.FloatField(max_value=90, min_value=-90)
     longitude = forms.FloatField(max_value=180, min_value=-180, 
-        help_text='<i>'+unicode(_('Please use the map on the left side to locate your place.'))+'</i>')
+        help_text='<i>'+unicode(_('Please use the map on the right side to locate your place.'))+'</i>')
         
     activities = forms.ModelMultipleChoiceField(
         required=False,
