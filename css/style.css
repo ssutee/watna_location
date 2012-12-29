@@ -36,6 +36,13 @@ p.credit {
   margin-bottom: 0px;
 }
 
+.sticky {
+	position:fixed !important;
+	top: 0;
+	margin-top: 60px;
+	width:100%;
+}
+
 #space {  
   min-height: 50px;
 }
