@@ -147,6 +147,10 @@ class LocationForm(ModelForm):
             'additional_info': forms.Textarea(attrs={'rows':4, 'cols':40}),            
         }
         
+    latitude = forms.FloatField(max_value=90, min_value=-90)
+    longitude = forms.FloatField(max_value=180, min_value=-180, 
+        help_text='<i>'+unicode(_('Please use the map on the left side to locate your place.'))+'</i>')
+        
     activities = forms.ModelMultipleChoiceField(
         required=False,
         queryset=Activity.objects.all(), 

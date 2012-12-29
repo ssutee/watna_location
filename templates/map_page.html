@@ -139,7 +139,8 @@
     
   <div class="row-fluid">
     <div id="nav_bar" class="span3 hidden-phone hidden-tablet">
-      <ul class="nav nav-list bs-sidenav">        
+      <ul class="nav nav-list bs-sidenav">   
+        <li class="nav-header">{% trans "Total" %} ({{total}})</li>
         {% for nav in nav_list %}
           {% if nav.type == 'header' %}
             <li class="nav-header">{{ nav.value }}</li>
