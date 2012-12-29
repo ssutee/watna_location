@@ -40,10 +40,11 @@
         $('div.gmap>div').width(width);
         $('div.gmap>img').width(width);        
         
-        // fix height
-        // gmap.height(height);        
-        // $('div.gmap>div').height(height);
-        // $('div.gmap>img').height(height);                
+        // set maximum height
+        height = height > 800 ? 800 : height;        
+        gmap.height(height);        
+        $('div.gmap>div').height(height);
+        $('div.gmap>img').height(height);                
       }
 
       function resize_map() {
