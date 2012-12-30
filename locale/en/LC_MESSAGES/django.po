@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-30 21:56+0700\n"
+"POT-Creation-Date: 2012-12-30 23:12+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
-#: location/forms.py:40 location/forms.py:87 templates/base.html:121
+#: location/forms.py:40 location/forms.py:87 templates/base.html:142
 msgid "Password"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Password do not match"
 msgstr ""
 
-#: location/forms.py:78 templates/base.html:104
+#: location/forms.py:78 templates/base.html:125
 msgid "Register"
 msgstr ""
 
@@ -65,17 +65,17 @@ msgstr ""
 msgid "E-mail is already taken."
 msgstr ""
 
-#: location/forms.py:138 location/models.py:40 location/models.py:77
+#: location/forms.py:138 location/models.py:41 location/models.py:78
 #: templates/map_page.html:125
 msgid "Activities"
 msgstr ""
 
-#: location/forms.py:139 location/models.py:33
+#: location/forms.py:139 location/models.py:34
 #: templates/locations_page.html:32
 msgid "Latitude"
 msgstr ""
 
-#: location/forms.py:140 location/models.py:32
+#: location/forms.py:140 location/models.py:33
 #: templates/locations_page.html:33
 msgid "Longitude"
 msgstr ""
@@ -86,104 +86,104 @@ msgid ""
 "your place.</p>"
 msgstr ""
 
-#: location/models.py:14 location/models.py:60 location/models.py:70
+#: location/models.py:15 location/models.py:61 location/models.py:71
 #: templates/locations_page.html:31
 msgid "Name"
 msgstr ""
 
-#: location/models.py:17 location/models.py:18 location/models.py:29
+#: location/models.py:18 location/models.py:19 location/models.py:30
 msgid "Status"
 msgstr ""
 
-#: location/models.py:25
+#: location/models.py:26
 msgid "Place name"
 msgstr ""
 
-#: location/models.py:26 location/views.py:219
+#: location/models.py:27 location/views.py:238
 msgid "Organization"
 msgstr ""
 
-#: location/models.py:27 templates/map_page.html:135
+#: location/models.py:28 templates/map_page.html:135
 msgid "Organization relationship"
 msgstr ""
 
-#: location/models.py:35 templates/map_page.html:115
+#: location/models.py:36 templates/map_page.html:115
 msgid "Address"
 msgstr ""
 
-#: location/models.py:36 templates/map_page.html:119
+#: location/models.py:37 templates/map_page.html:119
 msgid "City"
 msgstr ""
 
-#: location/models.py:37 templates/locations_page.html:34
+#: location/models.py:38 templates/locations_page.html:34
 msgid "Country"
 msgstr ""
 
-#: location/models.py:38 templates/map_page.html:105
+#: location/models.py:39 templates/map_page.html:105
 msgid "Phone number"
 msgstr ""
 
-#: location/models.py:43 templates/map_page.html:131
+#: location/models.py:44 templates/map_page.html:131
 msgid "Additional information"
 msgstr ""
 
-#: location/models.py:46
+#: location/models.py:47
 msgid "Approval"
 msgstr ""
 
-#: location/models.py:49
+#: location/models.py:50
 msgid "Location"
 msgstr ""
 
-#: location/models.py:50
+#: location/models.py:51
 msgid "Locations"
 msgstr ""
 
-#: location/models.py:71
+#: location/models.py:72
 msgid "Priority"
 msgstr ""
 
-#: location/models.py:73
+#: location/models.py:74
 msgid "Color"
 msgstr ""
 
-#: location/models.py:78
+#: location/models.py:79
 msgid "Activity"
 msgstr ""
 
-#: location/views.py:129
+#: location/views.py:134
 msgid "User updated successfully"
 msgstr ""
 
-#: location/views.py:151
+#: location/views.py:156
 msgid "Place updated successfully"
 msgstr ""
 
-#: location/views.py:174
+#: location/views.py:179
 msgid "New place added successfully"
 msgstr ""
 
-#: location/views.py:214 location/views.py:217 location/views.py:223
+#: location/views.py:233 location/views.py:236 location/views.py:242
 msgid "Only member"
 msgstr ""
 
-#: location/views.py:219
+#: location/views.py:238
 msgid "Person"
 msgstr ""
 
-#: location/views.py:232
+#: location/views.py:251
 msgid "Logout successfully"
 msgstr ""
 
-#: location/views.py:239
+#: location/views.py:258
 msgid "Login successfully"
 msgstr ""
 
-#: location/views.py:241
+#: location/views.py:260
 msgid "Invalid email or password"
 msgstr ""
 
-#: location/views.py:256
+#: location/views.py:275
 msgid "Registration completed successfully"
 msgstr ""
 
@@ -200,57 +200,69 @@ msgstr ""
 msgid "Please use the map on the right side to locate your place."
 msgstr ""
 
-#: templates/base.html:78
+#: templates/base.html:96
 msgid "Buddhawajana Institution"
 msgstr ""
 
-#: templates/base.html:82 templates/map_page.html:4
+#: templates/base.html:100 templates/map_page.html:4
 #: templates/map_page.html.py:5
 msgid "Map"
 msgstr ""
 
-#: templates/base.html:86 templates/locations_page.html:4
+#: templates/base.html:104 templates/locations_page.html:4
 #: templates/locations_page.html.py:5
 msgid "My places"
 msgstr ""
 
-#: templates/base.html:90
+#: templates/base.html:108
 msgid "Options"
 msgstr ""
 
-#: templates/base.html:92
+#: templates/base.html:110
 msgid "Map type"
 msgstr ""
 
-#: templates/base.html:93
+#: templates/base.html:111
 msgid "Road"
 msgstr ""
 
-#: templates/base.html:94
+#: templates/base.html:112
 msgid "Terrain"
 msgstr ""
 
-#: templates/base.html:95
+#: templates/base.html:113
 msgid "Satellite"
 msgstr ""
 
-#: templates/base.html:96
+#: templates/base.html:114
 msgid "Satellite & Labels"
 msgstr ""
 
-#: templates/base.html:100
+#: templates/base.html:115
+msgid "Sorting"
+msgstr ""
+
+#: templates/base.html:116
+msgid "Entry order"
+msgstr ""
+
+#: templates/base.html:117
+msgid "City/Place alphabet"
+msgstr ""
+
+#: templates/base.html:121
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:120
+#: templates/base.html:141
 msgid "Email"
 msgstr ""
 
-#: templates/base.html:122
+#: templates/base.html:143
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:127
+#: templates/base.html:148
 msgid "Logged in as"
 msgstr ""
 
@@ -288,10 +300,6 @@ msgstr ""
 
 #: templates/map_page.html:101
 msgid "Contact name"
-msgstr ""
-
-#: templates/map_page.html:150
-msgid "Total"
 msgstr ""
 
 #: templates/registration/register.html:4

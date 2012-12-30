@@ -159,7 +159,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'djangoflash.context_processors.flash',
     'django.core.context_processors.i18n',
-    'location.context_processors.map_type',
+    'location.context_processors.profile',
 )
 
 

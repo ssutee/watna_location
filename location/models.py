@@ -8,6 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User)
 
     map_type = models.CharField(max_length=10, default='ROADMAP')
+    sorting = models.CharField(max_length=10, default='entry')
 
 class Status(models.Model):
     name = models.CharField(max_length=200, db_index=True, 

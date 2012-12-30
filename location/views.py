@@ -1,4 +1,4 @@
-#-:- coding:utf8 -:-
+#-:- coding:utf-8 -:-
 
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, render
@@ -66,9 +66,15 @@ def map_page(request):
         })
         info.open(gmap, marker)
         
+    first_order = 'pk'
+    try:
+        first_order = 'city' if request.user.is_authenticated() and request.user.profile.sorting == 'city' else 'pk'
+    except Profile.DoesNotExist, e:
+        pass
+        
     nav_list = []    
     for value in Location.objects.values('country').annotate(total=Count('country')):
-        query = Location.objects.filter(country=value['country']).order_by('city', 'place_name')
+        query = Location.objects.filter(country=value['country']).order_by(first_order, 'place_name')
         nav_list.append({'type':'header', 'value': '%s (%d)' % (unicode(Country(code=value['country']).name), query.count())})        
         for location in query.all():
             nav_list.append({'type':'item', 'value': location})    
@@ -202,6 +208,20 @@ def set_map_type_page(request):
     request.user.profile.map_type = request.POST.get('map_type', 'ROADMAP')
     request.user.profile.save()
     
+    return HttpResponse(simplejson.dumps(0), mimetype="application/json")
+    
+@csrf_exempt
+@login_required
+def set_sorting_page(request):
+    try:
+        request.user.profile
+    except Profile.DoesNotExist, e:
+        profile = Profile(user=request.user)
+        profile.save()
+
+    request.user.profile.sorting = request.POST.get('sorting', 'entry')
+    request.user.profile.save()
+
     return HttpResponse(simplejson.dumps(0), mimetype="application/json")
     
 @csrf_exempt

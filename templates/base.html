@@ -21,6 +21,12 @@
           location.reload();
         });
       }
+      
+      function set_sorting(sorting) {
+        $.post("/set_sorting/", {"sorting":sorting}, function(data) {
+          location.reload();
+        });
+      }
        
       $(document).ready(function() {
         var map_menu = $('#top_menu>li').first();
@@ -62,6 +68,18 @@
           $('#hybrid_opt>a>i').attr('class', 'icon-ok');
           set_map_type('HYBRID');          
         });
+
+        $('#entry_sort>a').click(function(e) {
+          $('a>i').attr('class', '');
+          $('#entry_sort>a>i').attr('class', 'icon-ok');
+          set_sorting('entry');          
+        });
+
+        $('#alpha_sort>a').click(function(e) {
+          $('a>i').attr('class', '');
+          $('#alpha_sort>a>i').attr('class', 'icon-ok');
+          set_sorting('city');          
+        });
         
       });
     </script>  
@@ -94,6 +112,9 @@
                     <li id="terrain_opt"><a href="#">{% trans "Terrain" %} <i class="{% if map_type == 'TERRAIN' %}icon-ok{% else %}{% endif %}"></i></a></li>
                     <li id="satellite_opt"><a href="#">{% trans "Satellite" %} <i class="{% if map_type == 'SATELLITE' %}icon-ok{% else %}{% endif %}"></i></a></li>
                     <li id="hybrid_opt"><a href="#">{% trans "Satellite & Labels" %} <i class="{% if map_type == 'HYBRID' %}icon-ok{% else %}{% endif %}"></i></a></li>
+                    <li class="nav-header">{% trans "Sorting" %}</li>
+                    <li id="entry_sort"><a href="#">{% trans "Entry order" %} <i class="{% if sorting == 'entry' %}icon-ok{% else %}{% endif %}"></i></a></li>
+                    <li id="alpha_sort"><a href="#">{% trans "City/Place alphabet" %} <i class="{% if sorting == 'city' %}icon-ok{% else %}{% endif %}"></i></a></li>
                   </ul>
                 </li>              
                 <li>
