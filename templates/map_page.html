@@ -9,29 +9,32 @@
           markerOver: function() { this.openInfoWindow(); },
           markerOut: function() { this.closeInfoWindow(); },
           markerClick: function(e) {
-            var id = $(this.getInfoWindow().content).attr('id');
-            $.post("/find_location_by_id/", 
-              { id: id, lat: e.latLng.lat(), lng: e.latLng.lng() }, 
-              function(data) {
-                $('#info_modal_label').text(data.place_name + ' (' + data.info +'/'+ data.status + ')');
-                $('#contact_name').text(data.first_name + " " + data.last_name);
-                $('#email').text(data.email);
-                $('#phone_number').text(data.phone_number);
-                $('#address').text(data.address);
-                $('#city').text(data.city + ", " + data.country);
-                $('#activities').text(data.activities);
-                $('#additional_info').text(data.additional_info);    
-                $('#approved').text(data.approved);            
-                $('#info_modal').modal({backdrop:true, keyboard:true});
-                if (data.relation == '') {
-                  $('#td_id_relation').hide();
-                } else {
-                  $('#relation').text(data.relation);
-                }
-              });
+            var location_id = $(this.getInfoWindow().content).attr('id');
+            show_info_modal(location_id);
           },
       };      
 
+      function show_info_modal(location_id) {
+        $.post("/find_location_by_id/", 
+          { id: location_id }, 
+          function(data) {
+            $('#info_modal_label').text(data.place_name + ' (' + data.info +'/'+ data.status + ')');
+            $('#contact_name').text(data.first_name + " " + data.last_name);
+            $('#email').text(data.email);
+            $('#phone_number').text(data.phone_number);
+            $('#address').text(data.address);
+            $('#city').text(data.city + ", " + data.country);
+            $('#activities').text(data.activities);
+            $('#additional_info').text(data.additional_info);    
+            $('#approved').text(data.approved);            
+            $('#info_modal').modal({backdrop:true, keyboard:true});
+            if (data.relation == '') {
+              $('#td_id_relation').hide();
+            } else {
+              $('#relation').text(data.relation);
+            }
+          });
+      }
 
       function resize_containers() {
         var gmap = $('div.gmap');            
@@ -68,8 +71,12 @@
         $("a.location").click(function(event) {
           event.preventDefault();
           move_to($(this).attr('lat'), $(this).attr('lng'));
-          $('li.active').toggleClass('active');
-          $(this).parent().attr('class', 'active');
+          if ($(this).parent().attr('class') == 'active') {
+            show_info_modal($(this).attr('id'));
+          } else {
+            $('li.active').toggleClass('active');
+            $(this).parent().attr('class', 'active');
+          }
         });        
 
         resize_containers();
@@ -154,7 +161,7 @@
           {% if nav.type == 'header' %}
             <li class="nav-header">{{ nav.value }}</li>
           {% else %}
-            <li><a lat="{{nav.value.latitude}}" lng="{{nav.value.longitude}}" 
+            <li><a id="{{nav.value.id}}" lat="{{nav.value.latitude}}" lng="{{nav.value.longitude}}" 
               class="location" href="#">{{ nav.value.place_name }}, {{ nav.value.city }}</a></li>
           {% endif %}
         {% endfor %}        
