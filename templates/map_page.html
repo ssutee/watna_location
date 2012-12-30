@@ -23,6 +23,11 @@
                 $('#additional_info').text(data.additional_info);    
                 $('#approved').text(data.approved);            
                 $('#info_modal').modal({backdrop:true, keyboard:true});
+                if (data.relation == '') {
+                  $('#td_id_relation').hide();
+                } else {
+                  $('#relation').text(data.relation);
+                }
               });
           },
       };      
@@ -57,7 +62,6 @@
         $.waypoints.settings.scrollThrottle = 30;
         $('div.gmap').waypoint(function(e, direction) {
           $(this).toggleClass('sticky', direction == "down");
-          console.log('waypoints');
           e.stopPropagation();
         });
         
@@ -127,9 +131,9 @@
               <strong>{% trans 'Additional information' %}</strong>
               <p id="additional_info"> </p>            
             </td>            
-            <td>
-              <strong>{% trans 'Approval' %}</strong>
-              <p id="approved"> </p>            
+            <td id="td_id_relation">
+              <strong>{% trans 'Organization relationship' %}</strong>
+              <p id="relation"> </p>            
             </td>            
           </tr>          
         </tbody>

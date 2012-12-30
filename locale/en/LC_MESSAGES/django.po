@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-29 23:43+0700\n"
+"POT-Creation-Date: 2012-12-30 21:56+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: location/forms.py:28 location/forms.py:133
+#: location/forms.py:28 location/forms.py:134
 msgid "Save"
 msgstr ""
 
-#: location/forms.py:33 location/forms.py:85 templates/map_page.html:105
+#: location/forms.py:33 location/forms.py:85 templates/map_page.html:109
 msgid "E-mail"
 msgstr ""
 
@@ -65,16 +65,33 @@ msgstr ""
 msgid "E-mail is already taken."
 msgstr ""
 
-#: location/forms.py:152 templates/add_location_page.html:14
-msgid "Please use the map on the left side to locate your place."
+#: location/forms.py:138 location/models.py:40 location/models.py:77
+#: templates/map_page.html:125
+msgid "Activities"
 msgstr ""
 
-#: location/models.py:14 location/models.py:61
+#: location/forms.py:139 location/models.py:33
+#: templates/locations_page.html:32
+msgid "Latitude"
+msgstr ""
+
+#: location/forms.py:140 location/models.py:32
+#: templates/locations_page.html:33
+msgid "Longitude"
+msgstr ""
+
+#: location/forms.py:156
+msgid ""
+"<p class=\"text-warning\">Please use the map on the right side to locate "
+"your place.</p>"
+msgstr ""
+
+#: location/models.py:14 location/models.py:60 location/models.py:70
 #: templates/locations_page.html:31
 msgid "Name"
 msgstr ""
 
-#: location/models.py:17 location/models.py:18 location/models.py:27
+#: location/models.py:17 location/models.py:18 location/models.py:29
 msgid "Status"
 msgstr ""
 
@@ -86,55 +103,51 @@ msgstr ""
 msgid "Organization"
 msgstr ""
 
-#: location/models.py:30 templates/locations_page.html:33
-msgid "Longitude"
+#: location/models.py:27 templates/map_page.html:135
+msgid "Organization relationship"
 msgstr ""
 
-#: location/models.py:31 templates/locations_page.html:32
-msgid "Latitude"
-msgstr ""
-
-#: location/models.py:33 templates/map_page.html:111
+#: location/models.py:35 templates/map_page.html:115
 msgid "Address"
 msgstr ""
 
-#: location/models.py:34 templates/map_page.html:115
+#: location/models.py:36 templates/map_page.html:119
 msgid "City"
 msgstr ""
 
-#: location/models.py:36 templates/map_page.html:101
+#: location/models.py:37 templates/locations_page.html:34
+msgid "Country"
+msgstr ""
+
+#: location/models.py:38 templates/map_page.html:105
 msgid "Phone number"
 msgstr ""
 
-#: location/models.py:39 location/models.py:68 templates/map_page.html:121
-msgid "Activities"
-msgstr ""
-
-#: location/models.py:41 templates/map_page.html:127
+#: location/models.py:43 templates/map_page.html:131
 msgid "Additional information"
 msgstr ""
 
-#: location/models.py:44 templates/map_page.html:131
+#: location/models.py:46
 msgid "Approval"
 msgstr ""
 
-#: location/models.py:47
+#: location/models.py:49
 msgid "Location"
 msgstr ""
 
-#: location/models.py:48
+#: location/models.py:50
 msgid "Locations"
 msgstr ""
 
-#: location/models.py:62
+#: location/models.py:71
 msgid "Priority"
 msgstr ""
 
-#: location/models.py:64
+#: location/models.py:73
 msgid "Color"
 msgstr ""
 
-#: location/models.py:69
+#: location/models.py:78
 msgid "Activity"
 msgstr ""
 
@@ -150,16 +163,12 @@ msgstr ""
 msgid "New place added successfully"
 msgstr ""
 
+#: location/views.py:214 location/views.py:217 location/views.py:223
+msgid "Only member"
+msgstr ""
+
 #: location/views.py:219
 msgid "Person"
-msgstr ""
-
-#: location/views.py:225
-msgid "Approved"
-msgstr ""
-
-#: location/views.py:225
-msgid "Not approved"
 msgstr ""
 
 #: location/views.py:232
@@ -185,6 +194,10 @@ msgstr ""
 
 #: templates/add_location_page.html:11
 msgid "You don't specific your location yet."
+msgstr ""
+
+#: templates/add_location_page.html:14
+msgid "Please use the map on the right side to locate your place."
 msgstr ""
 
 #: templates/base.html:78
@@ -249,35 +262,35 @@ msgstr ""
 msgid "Edit user"
 msgstr ""
 
-#: templates/location_content.html:8
+#: templates/location_content.html:27
 msgid "Search Result"
 msgstr ""
 
-#: templates/location_content.html:14 templates/map_page.html:139
+#: templates/location_content.html:33 templates/map_page.html:143
 msgid "Close"
 msgstr ""
 
-#: templates/location_content.html:25
+#: templates/location_content.html:43
+msgid "Find your location"
+msgstr ""
+
+#: templates/location_content.html:44
 msgid "Search"
 msgstr ""
 
-#: templates/location_content.html:30
+#: templates/location_content.html:49
 msgid "Drag and drop the marker to pinpoint the place."
-msgstr ""
-
-#: templates/locations_page.html:34
-msgid "Country"
 msgstr ""
 
 #: templates/locations_page.html:48
 msgid "Delete"
 msgstr ""
 
-#: templates/map_page.html:97
+#: templates/map_page.html:101
 msgid "Contact name"
 msgstr ""
 
-#: templates/map_page.html:146
+#: templates/map_page.html:150
 msgid "Total"
 msgstr ""
 

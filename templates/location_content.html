@@ -2,6 +2,25 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 
+<script type="text/javascript">
+  $(document).ready(function() {
+    var is_organization = $('#id_organization').is(':checked');
+    if (!is_organization) {
+      $('#div_id_relation').hide()
+    }
+    
+    $('#id_organization').click(function() {
+      if($(this).is(':checked')) {
+        $('#div_id_relation').show();
+      } else {
+        $('#div_id_relation').hide();
+      }
+    });
+    
+  });
+</script>
+
+
 <div id="alert_not_found" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -21,7 +40,7 @@
   </div>
   <div class="span5 hidden-phone hidden-tablet">
     <form class="form-search">
-      <input type="text" class="input-large search-query">
+      <input type="text" class="input-large search-query" placeholder="{% trans 'Find your location' %}">
       <button type="button" class="btn" onClick="search($('.search-query').val());">{% trans 'Search' %}</button>
     </form>
     {{ map_form.media.js }}
@@ -76,7 +95,6 @@
             var center = gmap.getMap().getCenter();
             marker.setPosition(center);
             gmap.addMarkers([marker]);
-            console.log(center);
             $('#id_latitude').val(center.lat().toFixed(5));
             $('#id_longitude').val(center.lng().toFixed(5));            
           }

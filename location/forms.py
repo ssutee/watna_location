@@ -121,6 +121,7 @@ class LocationForm(ModelForm):
             Field('place_name', css_class='input-xlarge'),
             Field('status', css_class='input-xlarge'),            
             Field('organization', css_class='input-xlarge'),
+            Field('relation', css_class='input-xlarge'),
             Field('phone_number', css_class='input-xlarge'),
             Field('address', rows="4", css_class='input-xlarge'),
             Field('latitude', css_class='input-xlarge'),
@@ -134,11 +135,14 @@ class LocationForm(ModelForm):
             )
         )        
         super(LocationForm, self).__init__(*args, **kwargs)
+        self.fields['activities'].label = _('Activities')
+        self.fields['latitude'].label = _('Latitude')
+        self.fields['longitude'].label = _('Longitude')
     
     class Meta:
         model = Location
         fields = (
-            'status', 'organization',
+            'status', 'organization', 'relation',
             'place_name', 'longitude', 'latitude', 
             'address', 'phone_number',
             'activities', 'additional_info', 'city', 'country')
@@ -149,10 +153,9 @@ class LocationForm(ModelForm):
         
     latitude = forms.FloatField(max_value=90, min_value=-90)
     longitude = forms.FloatField(max_value=180, min_value=-180, 
-        help_text='<i>'+unicode(_('Please use the map on the right side to locate your place.'))+'</i>')
-        
+        help_text=_('<p class="text-warning">Please use the map on the right side to locate your place.</p>'))
     activities = forms.ModelMultipleChoiceField(
         required=False,
-        queryset=Activity.objects.all(), 
+        queryset=Activity.objects.order_by('-priority').all(), 
         widget=forms.widgets.CheckboxSelectMultiple()
     )

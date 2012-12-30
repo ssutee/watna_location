@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-29 23:43+0700\n"
+"POT-Creation-Date: 2012-12-30 21:56+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: location/forms.py:28 location/forms.py:133
+#: location/forms.py:28 location/forms.py:134
 msgid "Save"
 msgstr "บันทึก"
 
-#: location/forms.py:33 location/forms.py:85 templates/map_page.html:105
+#: location/forms.py:33 location/forms.py:85 templates/map_page.html:109
 msgid "E-mail"
 msgstr "อีเมล"
 
@@ -66,16 +66,34 @@ msgstr "รหัสผ่าน (อีกครั้ง)"
 msgid "E-mail is already taken."
 msgstr "อีเมลนี้มีคนใช้ไปแล้ว"
 
-#: location/forms.py:152 templates/add_location_page.html:14
-msgid "Please use the map on the right side to locate your place."
-msgstr "กรุณาใช้แผนที่ทางด้านขวาในการกำหนดตำแหน่งของสถานที่"
+#: location/forms.py:138 location/models.py:40 location/models.py:77
+#: templates/map_page.html:125
+msgid "Activities"
+msgstr "กิจกรรม"
 
-#: location/models.py:14 location/models.py:61
+#: location/forms.py:139 location/models.py:33
+#: templates/locations_page.html:32
+msgid "Latitude"
+msgstr "ละติจูด"
+
+#: location/forms.py:140 location/models.py:32
+#: templates/locations_page.html:33
+msgid "Longitude"
+msgstr "ลองจิจูด"
+
+#: location/forms.py:156
+msgid ""
+"<p class=\"text-warning\">Please use the map on the right side to locate "
+"your place.</p>"
+msgstr ""
+"<p class=\"text-warning\">กรุณาใช้แผนที่ด้านขวาเพื่อกำหนดพิกัดสถานที่ตนเองให้ถูกต้อง</p>"
+
+#: location/models.py:14 location/models.py:60 location/models.py:70
 #: templates/locations_page.html:31
 msgid "Name"
 msgstr "ชื่อ"
 
-#: location/models.py:17 location/models.py:18 location/models.py:27
+#: location/models.py:17 location/models.py:18 location/models.py:29
 msgid "Status"
 msgstr "สถานะ"
 
@@ -87,55 +105,51 @@ msgstr "ชื่อสถานที่"
 msgid "Organization"
 msgstr "องค์กร"
 
-#: location/models.py:30 templates/locations_page.html:33
-msgid "Longitude"
-msgstr "ลองจิจูด"
+#: location/models.py:27 templates/map_page.html:135
+msgid "Organization relationship"
+msgstr "ความเกี่ยวข้องกับองค์กร"
 
-#: location/models.py:31 templates/locations_page.html:32
-msgid "Latitude"
-msgstr "ละติจูด"
-
-#: location/models.py:33 templates/map_page.html:111
+#: location/models.py:35 templates/map_page.html:115
 msgid "Address"
 msgstr "ที่อยู่"
 
-#: location/models.py:34 templates/map_page.html:115
+#: location/models.py:36 templates/map_page.html:119
 msgid "City"
 msgstr "จังหวัด"
 
-#: location/models.py:36 templates/map_page.html:101
+#: location/models.py:37 templates/locations_page.html:34
+msgid "Country"
+msgstr "ประเทศ"
+
+#: location/models.py:38 templates/map_page.html:105
 msgid "Phone number"
 msgstr "เบอร์โทรศัพท์"
 
-#: location/models.py:39 location/models.py:68 templates/map_page.html:121
-msgid "Activities"
-msgstr "กิจกรรม"
-
-#: location/models.py:41 templates/map_page.html:127
+#: location/models.py:43 templates/map_page.html:131
 msgid "Additional information"
 msgstr "ข้อมูลเพิ่มเติม"
 
-#: location/models.py:44 templates/map_page.html:131
+#: location/models.py:46
 msgid "Approval"
 msgstr "การตรวจสอบ"
 
-#: location/models.py:47
+#: location/models.py:49
 msgid "Location"
 msgstr "สถานที่"
 
-#: location/models.py:48
+#: location/models.py:50
 msgid "Locations"
 msgstr "สถานที่"
 
-#: location/models.py:62
+#: location/models.py:71
 msgid "Priority"
 msgstr "ระดับ"
 
-#: location/models.py:64
+#: location/models.py:73
 msgid "Color"
 msgstr "สี"
 
-#: location/models.py:69
+#: location/models.py:78
 msgid "Activity"
 msgstr "กิจกรรม"
 
@@ -151,17 +165,13 @@ msgstr "ข้อมูลสถานที่ถูกปรับปรุง
 msgid "New place added successfully"
 msgstr "สถานที่ใหม่ถูกเพิ่มแล้ว"
 
+#: location/views.py:214 location/views.py:217 location/views.py:223
+msgid "Only member"
+msgstr "เฉพาะผู้ลงทะเบียน"
+
 #: location/views.py:219
 msgid "Person"
 msgstr "บุคคล"
-
-#: location/views.py:225
-msgid "Approved"
-msgstr "ได้รับการตรวจสอบแล้ว"
-
-#: location/views.py:225
-msgid "Not approved"
-msgstr "ยังไม่ได้รับการตรวจสอบ"
 
 #: location/views.py:232
 msgid "Logout successfully"
@@ -187,6 +197,10 @@ msgstr "เพิ่มสถานที่"
 #: templates/add_location_page.html:11
 msgid "You don't specific your location yet."
 msgstr "คุณยังไม่ได้กำหนดตำแหน่งของสถานที่"
+
+#: templates/add_location_page.html:14
+msgid "Please use the map on the right side to locate your place."
+msgstr "กรุณาใช้แผนที่ด้านขวาเพื่อกำหนดพิกัดสถานที่ตนเองให้ถูกต้อง"
 
 #: templates/base.html:78
 msgid "Buddhawajana Institution"
@@ -250,35 +264,35 @@ msgstr "แก้ไขสถานที่"
 msgid "Edit user"
 msgstr "แก้ไขข้อมูลผู้ใช้"
 
-#: templates/location_content.html:8
+#: templates/location_content.html:27
 msgid "Search Result"
 msgstr "ผลลัพธ์การค้นหา"
 
-#: templates/location_content.html:14 templates/map_page.html:139
+#: templates/location_content.html:33 templates/map_page.html:143
 msgid "Close"
 msgstr "ปิด"
 
-#: templates/location_content.html:25
+#: templates/location_content.html:43
+msgid "Find your location"
+msgstr "ค้นหาตำแหน่งของคุณ"
+
+#: templates/location_content.html:44
 msgid "Search"
 msgstr "ค้นหา"
 
-#: templates/location_content.html:30
+#: templates/location_content.html:49
 msgid "Drag and drop the marker to pinpoint the place."
 msgstr "ลากและวางเครื่องหมายเพื่อเลือกที่ตั้งของสถานที่"
-
-#: templates/locations_page.html:34
-msgid "Country"
-msgstr "ประเทศ"
 
 #: templates/locations_page.html:48
 msgid "Delete"
 msgstr "ลบ"
 
-#: templates/map_page.html:97
+#: templates/map_page.html:101
 msgid "Contact name"
 msgstr "ชื่อผู้ติดต่อ"
 
-#: templates/map_page.html:146
+#: templates/map_page.html:150
 msgid "Total"
 msgstr "รวมทั้งหมด"
 
@@ -294,3 +308,12 @@ msgstr "ไทย"
 #: watna_location/settings.py:22
 msgid "English"
 msgstr "อังกฤษ"
+
+#~ msgid "hidden"
+#~ msgstr "ถูกซ่อนไว้"
+
+#~ msgid "Approved"
+#~ msgstr "ได้รับการตรวจสอบแล้ว"
+
+#~ msgid "Not approved"
+#~ msgstr "ยังไม่ได้รับการตรวจสอบ"

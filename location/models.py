@@ -24,6 +24,8 @@ class Location(models.Model):
     user = models.ForeignKey(User, null=True)
     place_name = models.CharField(max_length=200, verbose_name=_('Place name'))
     organization = models.BooleanField(verbose_name=_('Organization'))
+    relation = models.ForeignKey('Relation', verbose_name=_('Organization relationship'),
+        null=True, blank=True)
     status = models.ForeignKey(Status, verbose_name=_('Status'),
         related_name="locations", null=True)
 
@@ -32,11 +34,11 @@ class Location(models.Model):
     
     address = models.TextField(verbose_name=_('Address'))
     city = models.CharField(max_length=200, verbose_name=_('City'))
-    country = CountryField(default='TH')
+    country = CountryField(default='TH', verbose_name=_('Country'))
     phone_number = models.CharField(max_length=30, verbose_name=_('Phone number'))
 
-    activities = models.ManyToManyField('Activity', related_name="locations", 
-        blank=True, null=True, verbose_name=_('Activities'))
+    activities = models.ManyToManyField('Activity', verbose_name=_('Activities'),
+        related_name="locations", blank=True, null=True)
     
     additional_info = models.TextField(verbose_name=_('Additional information'), 
         blank=True, null=True)
@@ -52,6 +54,13 @@ class Location(models.Model):
 
 from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^location\.models\.ColorModelField"])
+
+class Relation(models.Model):
+    name = models.CharField(max_length=200, db_index=True, 
+        verbose_name=_('Name'), unique=True)
+
+    def __unicode__(self):
+        return u'%s' % (self.name)
 
 class ColorModelField(models.CharField):
     pass

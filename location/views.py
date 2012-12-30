@@ -1,3 +1,5 @@
+#-:- coding:utf8 -:-
+
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, render
 from django.contrib.auth import authenticate, logout, login
@@ -47,12 +49,9 @@ def map_page(request):
     )
     
     for index, location in enumerate(Location.objects.all()):
-        color = 'E3E3E3'
         
-        if location.activities.count() > 0 and location.approved:
-            activity = location.activities.order_by('priority').all()[0]
-            color = activity.color.strip('#')
-            
+        color = '846744' if unicode(location.status) == u'ภิกษุ' or unicode(location.status) == u'ภิกษุณี' else 'F3F3F3'
+                    
         marker = maps.Marker(opts = {
                 'color': color,
                 'map': gmap,
@@ -208,21 +207,21 @@ def set_map_type_page(request):
 @csrf_exempt
 def find_location_by_id_page(request):    
     location = Location.objects.get(pk=int(request.POST.get('id', 1)))    
-
+    is_authenticated = request.user.is_authenticated()
     data = {
         'place_name': location.place_name,
-        'email': location.user.email,
+        'email': location.user.email if is_authenticated else unicode(_('Only member')),
         'first_name': location.user.first_name,
         'last_name': location.user.last_name,
-        'address': location.address,
+        'address': location.address if is_authenticated else unicode(_('Only member')),
         'city': location.city,
         'info': unicode(_('Organization')) if location.organization else unicode(_('Person')),
         'status': location.status.name if location.status else '-',
         'additional_info': location.additional_info if location.additional_info and len(location.additional_info.strip()) > 0 else '-',
         'country': unicode(location.country.name),
-        'phone_number': location.phone_number,
+        'phone_number': location.phone_number if is_authenticated else unicode(_('Only member')),
         'activities': ', '.join(map(lambda x:x.name,location.activities.all())),
-        'approved': unicode(_('Approved')) if location.approved else unicode(_('Not approved'))
+        'relation': location.relation.name if location.relation else ''
     }
         
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
