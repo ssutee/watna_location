@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-30 23:12+0700\n"
+"POT-Creation-Date: 2012-12-31 00:16+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,7 +111,7 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: location/models.py:37 templates/map_page.html:119
+#: location/models.py:37
 msgid "City"
 msgstr ""
 
@@ -300,6 +300,10 @@ msgstr ""
 
 #: templates/map_page.html:101
 msgid "Contact name"
+msgstr ""
+
+#: templates/map_page.html:119
+msgid "City/Country"
 msgstr ""
 
 #: templates/registration/register.html:4

@@ -18,7 +18,7 @@
                 $('#email').text(data.email);
                 $('#phone_number').text(data.phone_number);
                 $('#address').text(data.address);
-                $('#city').text(data.city);
+                $('#city').text(data.city + ", " + data.country);
                 $('#activities').text(data.activities);
                 $('#additional_info').text(data.additional_info);    
                 $('#approved').text(data.approved);            
@@ -68,6 +68,8 @@
         $("a.location").click(function(event) {
           event.preventDefault();
           move_to($(this).attr('lat'), $(this).attr('lng'));
+          $('li.active').toggleClass('active');
+          $(this).parent().attr('class', 'active');
         });        
 
         resize_containers();
@@ -116,7 +118,7 @@
               <p id="address"> </p>            
             </td>
             <td>
-              <strong>{% trans 'City' %}</strong>
+              <strong>{% trans 'City/Country' %}</strong>
               <p id="city"> </p>            
             </td>            
           </tr>
