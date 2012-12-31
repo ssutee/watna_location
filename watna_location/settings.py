@@ -8,7 +8,7 @@ GMAPI_MAPS_URL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAsPczcWkcD5o
 
 CRISPY_TEMPLATE_PACK = 'bootstrap'
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -60,12 +60,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/home/sutee/watna_location/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -88,7 +88,8 @@ STATICFILES_DIRS = (
     ('bootstrap', '/home/sutee/watna_location/bootstrap'),
     ('waypoints', '/home/sutee/watna_location/waypoints'),
     ('flexi', '/home/sutee/watna_location/flexi'),
-    ('jscolor', '/home/sutee/watna_location/jscolor'),    
+    ('jscolor', '/home/sutee/watna_location/jscolor'),
+    ('file_upload', '/home/sutee/watna_location/file_upload'),    
 )
 
 LOCALE_PATHS = (
@@ -148,6 +149,7 @@ INSTALLED_APPS = (
     'south',
     'jquery',
     'emailusernames',
+    'easy_thumbnails',
 )
 
 AUTHENTICATION_BACKENDS = (

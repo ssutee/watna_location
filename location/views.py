@@ -8,13 +8,69 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import simplejson
 from django.db.models import Count
+from django.views.generic import CreateView, DeleteView
+from django.core.urlresolvers import reverse
+from django.conf import settings
 
 from location.forms import MapForm, SearchMapForm, LocationForm, RegistrationForm, UserForm
-from location.models import Location, Profile
+from location.models import Location, Profile, Picture
 
 from gmapi import maps
 from emailusernames.utils import create_user
 from django_countries.fields import Country
+
+def response_mimetype(request):
+    if "application/json" in request.META['HTTP_ACCEPT']:
+        return "application/json"
+    else:
+        return "text/plain"
+
+class PictureCreateView(CreateView):
+    model = Picture
+    
+    def get(self, request, *args, **kwargs):
+        response = super(PictureCreateView, self).get(request, args, kwargs)
+        response.context_data = dict(response.context_data, **{'location': Location.objects.get(pk=int(kwargs['pk']))})
+        return response
+
+    def form_valid(self, form):
+        self.object = form.save()
+        f = self.request.FILES.get('file')
+        data = [{'name': f.name, 'url': settings.MEDIA_URL + "pictures/" + f.name.replace(" ", "_"), 'thumbnail_url': settings.MEDIA_URL + "pictures/" + f.name.replace(" ", "_"), 'delete_url': reverse('upload-delete', args=[self.object.id]), 'delete_type': "DELETE"}]
+        response = JSONResponse(data, {}, response_mimetype(self.request))
+        response['Content-Disposition'] = 'inline; filename=files.json'
+        return response
+
+class PictureDeleteView(DeleteView):
+    model = Picture
+
+    def delete(self, request, *args, **kwargs):
+        """
+        This does not actually delete the file, only the database record.  But
+        that is easy to implement.
+        """
+        self.object = self.get_object()
+        self.object.delete()
+        if request.is_ajax():
+            response = JSONResponse(True, {}, response_mimetype(self.request))
+            response['Content-Disposition'] = 'inline; filename=files.json'
+            return response
+        else:
+            return HttpResponseRedirect('/new_upload')
+
+class JSONResponse(HttpResponse):
+    """JSON response class."""
+    def __init__(self,obj='',json_opts={},mimetype="application/json",*args,**kwargs):
+        content = simplejson.dumps(obj,**json_opts)
+        super(JSONResponse,self).__init__(content,mimetype,*args,**kwargs)
+
+def upload_files_page(request, pk):
+    if request.method == 'POST':
+        print request
+        return HttpResponse(simplejson.dumps(0), mimetype="application/json")
+    
+    context = {'location': Location.objects.get(pk=pk)}
+    return render(request, 'upload_files_page.html', context)
 
 def create_info_content(location):
     return '<div id="%d" style="height:100px; width:300px;"><h4>%s, %s</h4>%s</div>' % (
@@ -73,14 +129,16 @@ def map_page(request):
         pass
         
     nav_list = []    
+    total_country = 0
     for value in Location.objects.values('country').annotate(total=Count('country')):
         query = Location.objects.filter(country=value['country']).order_by(first_order, 'place_name')
         nav_list.append({'type':'header', 'value': '%s (%d)' % (unicode(Country(code=value['country']).name), query.count())})        
         for location in query.all():
             nav_list.append({'type':'item', 'value': location})    
+        total_country += 1
             
     context = {'form': MapForm(initial={'gmap': gmap}), 
-        'active_menu':0, 'nav_list': nav_list, 'total': Location.objects.count() }
+        'active_menu':0, 'nav_list': nav_list, 'total': Location.objects.count(), 'total_country': total_country }
     if 'message' in request.flash and request.flash['message']:
         context['alert_type'], context['alert_message'] = request.flash['message']
         

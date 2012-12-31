@@ -73,7 +73,7 @@
           move_to($(this).attr('lat'), $(this).attr('lng'));
           if ($(this).parent().attr('class') == 'active') {
             show_info_modal($(this).attr('id'));
-          } else {
+          } else {            
             $('li.active').toggleClass('active');
             $(this).parent().attr('class', 'active');
           }
@@ -83,8 +83,7 @@
 
         $(window).resize(function() {
           resize_map();
-        });
-        
+        });        
       });
       
       function move_to(lat, lng) {
@@ -155,8 +154,8 @@
     
   <div class="row-fluid">
     <div id="nav_bar" class="span3 hidden-phone hidden-tablet">
-      <ul class="nav nav-list bs-sidenav">   
-        <li class="nav-header"><h4>Total ({{total}})</h4></li>             
+      <ul class="nav nav-list bs-sidenav">         
+        <li class="nav-header"><h4>Total ({{total}}) | Country ({{total_country}})</h4></li>             
         {% for nav in nav_list %}
           {% if nav.type == 'header' %}
             <li class="nav-header">{{ nav.value }}</li>

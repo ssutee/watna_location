@@ -1,6 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic.simple import direct_to_template
 from emailusernames.forms import EmailAuthenticationForm
+from django.conf import settings
+from location.views import PictureCreateView, PictureDeleteView
+from django.contrib.auth.decorators import login_required
 
 from django.contrib import admin
 admin.autodiscover()
@@ -22,5 +25,15 @@ urlpatterns = patterns('',
     url(r'^register/$', 'location.views.register_page'),
     url(r'^edit_user/$', 'location.views.edit_user_page'),
     url(r'^register/success/$', direct_to_template,
-        {'template': 'registration/register_success.html'}),        
+        {'template': 'registration/register_success.html'}),  
+    url(r'^new_upload/(?P<pk>\d+)$', login_required(PictureCreateView.as_view()), {}, 'upload-new'),
+    url(r'^delete_upload/(?P<pk>\d+)$', login_required(PictureDeleteView.as_view()), {}, 'upload-delete'),              
 )
+
+import os
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^media/(.*)$', 'django.views.static.serve', 
+            {'document_root': settings.MEDIA_ROOT}),
+    )
