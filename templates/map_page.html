@@ -83,7 +83,10 @@
 
         $(window).resize(function() {
           resize_map();
-        });        
+        });      
+        
+        $('h4>a').popover({html: true});
+          
       });
       
       function move_to(lat, lng) {
@@ -154,8 +157,8 @@
     
   <div class="row-fluid">
     <div id="nav_bar" class="span3 hidden-phone hidden-tablet">
-      <ul class="nav nav-list bs-sidenav">         
-        <li class="nav-header"><h4>Total ({{total}}) | Country ({{total_country}})</h4></li>             
+      <ul class="nav nav-list bs-sidenav">    
+        <li class="nav-header"><h4><a href="#" rel="popover" data-content="{{countries}}" data-placement="bottom" data-original-title="All countries">Total ({{total}}) | Country ({{total_country}})</a></h4></li>             
         {% for nav in nav_list %}
           {% if nav.type == 'header' %}
             <li class="nav-header">{{ nav.value }}</li>

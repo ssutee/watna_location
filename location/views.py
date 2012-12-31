@@ -130,15 +130,19 @@ def map_page(request):
         
     nav_list = []    
     total_country = 0
+    countries = ''
     for value in Location.objects.values('country').annotate(total=Count('country')):
         query = Location.objects.filter(country=value['country']).order_by(first_order, 'place_name')
-        nav_list.append({'type':'header', 'value': '%s (%d)' % (unicode(Country(code=value['country']).name), query.count())})        
+        country_name = unicode(Country(code=value['country']).name)
+        nav_list.append({'type':'header', 'value': '%s (%d)' % (country_name, query.count())})        
         for location in query.all():
             nav_list.append({'type':'item', 'value': location})    
         total_country += 1
+        countries += '<p>%s (%d)</p>' % (country_name, query.count())
             
     context = {'form': MapForm(initial={'gmap': gmap}), 
-        'active_menu':0, 'nav_list': nav_list, 'total': Location.objects.count(), 'total_country': total_country }
+        'active_menu':0, 'nav_list': nav_list, 'total': Location.objects.count(), 
+        'total_country': total_country, 'countries': countries }
     if 'message' in request.flash and request.flash['message']:
         context['alert_type'], context['alert_message'] = request.flash['message']
         
