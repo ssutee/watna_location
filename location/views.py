@@ -23,8 +23,6 @@ from django_countries.fields import Country
 ALL          = 0
 MONK         = 1
 LAYPERSON    = 2
-ORGANIZATION = 4
-PERSON       = 8
 
 def response_mimetype(request):
     if "application/json" in request.META['HTTP_ACCEPT']:
@@ -146,28 +144,26 @@ def map_page(request):
     display = get_display(request)
     q = Q()
     
-    sq = Q()
+    if display != ALL and display != MONK and display != LAYPERSON:
+        display = ALL
     
     if (display & MONK) == MONK:
-        sq |= Q(status__name = u'ภิกษุ')
-        sq |= Q(status__name = u'ภิกษุณี')
+        q |= Q(status__name = u'ภิกษุ')
+        q |= Q(status__name = u'ภิกษุณี')
     if (display & LAYPERSON) == LAYPERSON:
-        sq |= Q(status__name = u'อุบาสก')
-        sq |= Q(status__name = u'อุบาสิกา')
-    
-    oq = Q()
-    if (display & PERSON) == PERSON:
-        oq |= Q(organization=False)    
-    if (display & ORGANIZATION) == ORGANIZATION:
-        oq |= Q(organization=True)
-    
-    q = oq & sq
-    
-    print Location.objects.filter(q).count()
-    
-    for index, location in enumerate(Location.objects.filter(q)):
+        q |= Q(status__name = u'อุบาสก')
+        q |= Q(status__name = u'อุบาสิกา')
         
-        color = '846744' if unicode(location.status) == u'ภิกษุ' or unicode(location.status) == u'ภิกษุณี' else 'F3F3F3'
+    for index, location in enumerate(Location.objects.filter(q)):
+        is_monk = unicode(location.status) == u'ภิกษุ' or unicode(location.status) == u'ภิกษุณี'
+        if is_monk and location.organization:
+            color = '7D4E24'
+        elif is_monk and not location.organization:
+            color = 'CA9E67'
+        elif location.organization:
+            color = 'C6C6C6'
+        else:
+            color = 'FFFFFF'
                     
         marker = maps.Marker(opts = {
                 'color': color,
@@ -205,7 +201,7 @@ def map_page(request):
         country_list.append(country_name)
             
     context = {'form': MapForm(initial={'gmap': gmap}), 
-        'ALL': ALL, 'MONK': MONK, 'LAYPERSON': LAYPERSON, 'PERSON': PERSON, 'ORGANIZATION': ORGANIZATION,
+        'ALL': ALL, 'MONK': MONK, 'LAYPERSON': LAYPERSON, 
         'active_menu':0, 'nav_list': nav_list, 'total': Location.objects.filter(q).count(), 
         'total_country': total_country, 'countries': countries, 'country_list': country_list}
         
