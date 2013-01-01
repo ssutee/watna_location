@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import simplejson
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.views.generic import CreateView, DeleteView
 from django.core.urlresolvers import reverse
 from django.conf import settings
@@ -19,6 +19,12 @@ from location.models import Location, Profile, Picture
 from gmapi import maps
 from emailusernames.utils import create_user
 from django_countries.fields import Country
+
+ALL          = 0
+MONK         = 1
+LAYPERSON    = 2
+ORGANIZATION = 4
+PERSON       = 8
 
 def response_mimetype(request):
     if "application/json" in request.META['HTTP_ACCEPT']:
@@ -110,6 +116,17 @@ def get_map_type(request):
         
     return maps.MapTypeId.ROADMAP if not request.user.is_authenticated() else request.user.profile.map_type.lower()
 
+def get_display(request):
+    if request.user.is_authenticated():
+        try:
+            request.user.profile
+        except Profile.DoesNotExist, e:
+            profile = Profile(user=request.user)
+            profile.save()
+        
+    return 0 if not request.user.is_authenticated() else request.user.profile.display
+    
+
 def map_page(request):
     request.session['next'] = '/'
     gmap = maps.Map(
@@ -126,7 +143,29 @@ def map_page(request):
         }
     )
     
-    for index, location in enumerate(Location.objects.all()):
+    display = get_display(request)
+    q = Q()
+    
+    sq = Q()
+    
+    if (display & MONK) == MONK:
+        sq |= Q(status__name = u'ภิกษุ')
+        sq |= Q(status__name = u'ภิกษุณี')
+    if (display & LAYPERSON) == LAYPERSON:
+        sq |= Q(status__name = u'อุบาสก')
+        sq |= Q(status__name = u'อุบาสิกา')
+    
+    oq = Q()
+    if (display & PERSON) == PERSON:
+        oq |= Q(organization=False)    
+    if (display & ORGANIZATION) == ORGANIZATION:
+        oq |= Q(organization=True)
+    
+    q = oq & sq
+    
+    print Location.objects.filter(q).count()
+    
+    for index, location in enumerate(Location.objects.filter(q)):
         
         color = '846744' if unicode(location.status) == u'ภิกษุ' or unicode(location.status) == u'ภิกษุณี' else 'F3F3F3'
                     
@@ -153,8 +192,9 @@ def map_page(request):
     nav_list = []    
     total_country = 0
     countries = ''
-    for value in Location.objects.values('country').annotate(total=Count('country')):
-        query = Location.objects.filter(country=value['country']).order_by(first_order, 'place_name')
+    country_list = []
+    for value in Location.objects.filter(q).values('country').annotate(total=Count('country')):
+        query = Location.objects.filter(q).filter(country=value['country']).order_by(first_order, 'place_name')
         country_name = unicode(Country(code=value['country']).name)
         nav_list.append({'type':'header', 'value': '%s (%d)' % (country_name, query.count())})        
         for location in query.all():
@@ -162,10 +202,13 @@ def map_page(request):
                 'has_picture': 'ok'})    
         total_country += 1
         countries += '<p>%s (%d)</p>' % (country_name, query.count())
+        country_list.append(country_name)
             
     context = {'form': MapForm(initial={'gmap': gmap}), 
-        'active_menu':0, 'nav_list': nav_list, 'total': Location.objects.count(), 
-        'total_country': total_country, 'countries': countries }
+        'ALL': ALL, 'MONK': MONK, 'LAYPERSON': LAYPERSON, 'PERSON': PERSON, 'ORGANIZATION': ORGANIZATION,
+        'active_menu':0, 'nav_list': nav_list, 'total': Location.objects.filter(q).count(), 
+        'total_country': total_country, 'countries': countries, 'country_list': country_list}
+        
     if 'message' in request.flash and request.flash['message']:
         context['alert_type'], context['alert_message'] = request.flash['message']
         
@@ -309,6 +352,20 @@ def set_sorting_page(request):
         profile.save()
 
     request.user.profile.sorting = request.POST.get('sorting', 'entry')
+    request.user.profile.save()
+
+    return HttpResponse(simplejson.dumps(0), mimetype="application/json")
+
+@csrf_exempt
+@login_required
+def set_display_page(request):
+    try:
+        request.user.profile
+    except Profile.DoesNotExist, e:
+        profile = Profile(user=request.user)
+        profile.save()
+
+    request.user.profile.display = request.POST.get('display', 0)
     request.user.profile.save()
 
     return HttpResponse(simplejson.dumps(0), mimetype="application/json")

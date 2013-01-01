@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-01 12:58+0700\n"
+"POT-Creation-Date: 2013-01-01 13:42+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,7 +99,7 @@ msgstr ""
 msgid "Place name"
 msgstr ""
 
-#: location/models.py:84 location/views.py:327
+#: location/models.py:84 location/views.py:329 templates/map_page.html:250
 msgid "Organization"
 msgstr ""
 
@@ -163,43 +163,43 @@ msgstr ""
 msgid "Activity"
 msgstr ""
 
-#: location/views.py:219
+#: location/views.py:221
 msgid "User updated successfully"
 msgstr ""
 
-#: location/views.py:245
+#: location/views.py:247
 msgid "Place updated successfully"
 msgstr ""
 
-#: location/views.py:268
+#: location/views.py:270
 msgid "New place added successfully"
 msgstr ""
 
-#: location/views.py:322 location/views.py:325 location/views.py:331
+#: location/views.py:324 location/views.py:327 location/views.py:333
 msgid "Only member"
 msgstr ""
 
-#: location/views.py:327
+#: location/views.py:329
 msgid "Person"
 msgstr ""
 
-#: location/views.py:339 location/views.py:341 location/views.py:343
+#: location/views.py:341 location/views.py:343 location/views.py:345
 msgid "hidden"
 msgstr ""
 
-#: location/views.py:349
+#: location/views.py:351
 msgid "Logout successfully"
 msgstr ""
 
-#: location/views.py:356
+#: location/views.py:358
 msgid "Login successfully"
 msgstr ""
 
-#: location/views.py:358
+#: location/views.py:360
 msgid "Invalid email or password"
 msgstr ""
 
-#: location/views.py:373
+#: location/views.py:375
 msgid "Registration completed successfully"
 msgstr ""
 
@@ -326,6 +326,22 @@ msgstr ""
 
 #: templates/map_page.html:164
 msgid "City/Country"
+msgstr ""
+
+#: templates/map_page.html:236
+msgid "Display"
+msgstr ""
+
+#: templates/map_page.html:241
+msgid "All"
+msgstr ""
+
+#: templates/map_page.html:244
+msgid "Monk"
+msgstr ""
+
+#: templates/map_page.html:247
+msgid "Layperson"
 msgstr ""
 
 #: templates/location/picture_form.html:14

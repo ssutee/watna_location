@@ -5,6 +5,13 @@
 {% block head %}{% trans "Map" %}{% endblock %}
 {% block content %}
   <script type="text/javascript">
+
+    var ALL          = {{ ALL }};
+    var MONK         = {{ MONK }};
+    var LAYPERSON    = {{ LAYPERSON }};
+    var ORGANIZATION = {{ ORGANIZATION }};
+    var PERSON       = {{ PERSON }};
+  
       window.m_listener = {
           markerOver: function() { this.openInfoWindow(); },
           markerOut: function() { this.closeInfoWindow(); },
@@ -121,13 +128,127 @@
           modal.modal(options);
         });
         
+        $('#display_menu>li>a').click(function(event) {
+          var menu = $(this).parent();
+          var need_reload = false;
+          if (menu.attr('id') == 'show_all') {
+            if (menu.attr('class') == '') {
+              $('#display_menu>li').attr('class', '');
+              menu.attr('class', 'active');
+              need_reload = true;            
+            }
+          } else {
+            $('#show_all').attr('class', '');
+            
+            if (menu.attr('class') == '' 
+              || (menu.attr('class') == 'active' && another_checked(menu))) {
+              menu.toggleClass('active');
+              need_reload = true;
+            } 
+            else if (menu.attr('class') == 'active' && !another_checked(menu)) {
+              menu.toggleClass('active');
+              check_another(menu);
+              need_reload = true;
+            }
+          }          
+          if ($('#show_all').attr('class') == '' 
+            && $('#show_monk').attr('class') == 'active' 
+            && $('#show_layperson').attr('class') == 'active' 
+            && $('#show_organization').attr('class') == 'active'
+            && $('#show_person').attr('class') == 'active') {
+            $('#display_menu>li').attr('class', '');
+            $('#show_all').attr('class', 'active');
+            need_reload = true;
+          }
+          
+          if (need_reload) {
+            set_display();
+          }
+        });
+        
+        var display = parseInt({{ display }});
+
+        console.log(display);
+        
+        if (display == ALL) {
+          $('#show_all').attr('class', 'active');
+        } else {
+          if ((display & MONK) == MONK) {
+            console.log(display & MONK);
+            $('#show_monk').attr('class', 'active');
+          }
+          if ((display & LAYPERSON) == LAYPERSON) {
+            console.log(display & LAYPERSON);
+            $('#show_layperson').attr('class', 'active');
+          }
+          if ((display & ORGANIZATION) == ORGANIZATION) {
+            console.log(display & ORGANIZATION);
+            $('#show_organization').attr('class', 'active');
+          }
+          if ((display & PERSON) == PERSON) {
+            console.log(display & PERSON);
+            $('#show_person').attr('class', 'active');
+          }
+        }
+        
       });
+      
+      function another_checked(menu) {
+        if (menu.attr('id') == 'show_monk') {
+          return $('#show_layperson').attr('class') == 'active';
+        }
+        if (menu.attr('id') == 'show_layperson') {
+          return $('#show_monk').attr('class') == 'active';
+        }
+        if (menu.attr('id') == 'show_organization') {
+          return $('#show_person').attr('class') == 'active';
+        }
+        if (menu.attr('id') == 'show_person') {
+          return $('#show_organization').attr('class') == 'active';
+        }
+      }
+      
+      function check_another(menu) {
+        if (menu.attr('id') == 'show_monk') {
+          $('#show_layperson').attr('class', 'active');
+        }
+        if (menu.attr('id') == 'show_layperson') {
+          $('#show_monk').attr('class', 'active');
+        }
+        if (menu.attr('id') == 'show_organization') {
+          $('#show_person').attr('class', 'active');
+        }
+        if (menu.attr('id') == 'show_person') {
+          $('#show_organization').attr('class', 'active');
+        }
+      }
+      
       
       function move_to(lat, lng) {
         var gmap = $('div.gmap:visible');        
         var point = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
         gmap.getMap().setZoom(16);
         gmap.getMap().panTo(point);
+      }
+            
+      function set_display() {
+        var display = ALL;
+        if ($('#show_monk').attr('class') == 'active') {
+          display |= MONK;
+        }
+        if ($('#show_layperson').attr('class') == 'active') {
+          display |= LAYPERSON;
+        }
+        if ($('#show_organization').attr('class') == 'active') {
+          display |= ORGANIZATION;
+        }
+        if ($('#show_person').attr('class') == 'active') {
+          display |= PERSON;
+        }
+              
+        $.post("/set_display/", {"display": display}, function(data) {
+          location.reload();
+        });
       }
 
   </script>
@@ -222,6 +343,42 @@
       </ul>      
     </div>    
     <div id="map_container" class="span9 span12-tablet">
+      {% if user.is_authenticated %}
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+          
+            <a class="btn btn-navbar" data-toggle="collapse" data-target="#map_filter">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+          
+            <a class="brand" href="#">{% trans "Display" %}</a>
+
+            <div id="map_filter" class="nav-collapse collapse">
+              <ul id="display_menu" class="nav">
+                <li id="show_all" class="">
+                  <a href="#">{% trans "All" %}</a>
+                </li>
+                <li id="show_monk" class="">
+                  <a href="#">{% trans "Monk" %}</a>
+                </li>
+                <li id="show_layperson" class="">
+                  <a href="#">{% trans "Layperson" %}</a>
+                </li>
+                <li id="show_organization" class="">
+                  <a href="#">{% trans "Organization" %}</a>
+                </li>                
+                <li id="show_person" class="">
+                  <a href="#">{% trans "Person" %}</a>
+                </li>                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
       {{ form.gmap }}
       {{ form.media.js }}        
     </div>

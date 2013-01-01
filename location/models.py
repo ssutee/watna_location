@@ -66,6 +66,7 @@ class Profile(models.Model):
 
     map_type = models.CharField(max_length=10, default='ROADMAP')
     sorting = models.CharField(max_length=10, default='entry')
+    display = models.IntegerField(default=0)
 
 class Status(models.Model):
     name = models.CharField(max_length=200, db_index=True, 
