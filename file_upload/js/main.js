@@ -18,7 +18,7 @@ $(function () {
     $('#fileupload').fileupload();
 
     $('#fileupload').fileupload('option', {
-      maxFileSize: 5000000,
+      maxFileSize: 1048576,
       acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
       process: [
         {
