@@ -8,6 +8,10 @@ body {
   margin: 0 0 60px;
 }
 
+.modal {
+  color: #333;
+}
+
 div.gmap img {
   max-width: none;
 }

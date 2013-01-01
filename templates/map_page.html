@@ -27,12 +27,28 @@
             $('#activities').text(data.activities);
             $('#additional_info').text(data.additional_info);    
             $('#approved').text(data.approved);            
-            $('#info_modal').modal({backdrop:true, keyboard:true});
             if (data.relation == '') {
               $('#td_id_relation').hide();
             } else {
               $('#relation').text(data.relation);
             }
+            if (data.has_picture) {
+              $('#btn_pictures').show();
+            } else {
+              $('#btn_pictures').hide();
+            }
+            
+            var gallery = $('#gallery');
+            gallery.empty();
+            
+            $.each(data.pictures, function(index, picture) {
+              $('<a rel="gallery"/>')
+                .prop('href', picture)
+                .prop('title', data.place_name + ", " +data.city)
+                .appendTo(gallery);
+            });
+            
+            $('#info_modal').modal({backdrop:true, keyboard:true});
           });
       }
 
@@ -86,7 +102,19 @@
         });      
         
         $('li.nav-header>a').popover({html: true});
-          
+                  
+        $('#btn_pictures').button().click(function () {
+          var options = $(this).data(),
+              modal = $(options.target),
+              data = modal.data('modal');
+          if (data) {
+              $.extend(data.options, options);
+          } else {
+              options = $.extend(modal.data(), options);
+          }
+          modal.modal(options);
+        });
+        
       });
       
       function move_to(lat, lng) {
@@ -151,6 +179,10 @@
       </table>
     </div>
     <div class="modal-footer">
+      <button id="btn_pictures" class="btn btn-success" data-dismiss="modal"
+       data-target="#modal-gallery" data-selector="#gallery a[rel=gallery]">
+        {% trans "Pictures" %}
+      </button>
       <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
     </div>
   </div>
@@ -163,8 +195,15 @@
           {% if nav.type == 'header' %}
             <li class="nav-header">{{ nav.value }}</li>
           {% else %}
-            <li><a id="{{nav.value.id}}" lat="{{nav.value.latitude}}" lng="{{nav.value.longitude}}" 
-              class="location" href="#">{{ nav.value.place_name }}, {{ nav.value.city }}</a></li>
+            <li>
+              <a id="{{nav.value.id}}" lat="{{nav.value.latitude}}" lng="{{nav.value.longitude}}" 
+              class="location" href="#">
+                {% if nav.value.pictures.count > 0 %}
+                  <i class="icon-picture"></i>
+                {% endif %}
+                {{ nav.value.place_name }}, {{ nav.value.city }}
+              </a>
+            </li>
           {% endif %}
         {% endfor %}        
       </ul>      
@@ -175,6 +214,27 @@
     </div>
   </div>
   
+  <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery" style="display:none;">
+  </div>
+  
+  <div id="modal-gallery" class="modal modal-gallery hide fade modal-fullscreen" tabindex="-1" aria-hidden="true">
+      <div class="modal-header">
+          <a class="close" data-dismiss="modal">&times;</a>
+          <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body"><div class="modal-image"></div></div>
+      <div class="modal-footer">
+          <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
+          <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
+          <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
+          <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
+      </div>
+  </div>
+  
+<script src="{{ STATIC_URL }}file_upload/js/load-image.min.js"></script>
+<script src="{{ STATIC_URL }}bootstrap/js/bootstrap-image-gallery.js"></script>
+
 {% endblock %}
 
 {% block footer %}{% include "footer.html" %}{% endblock %}
+

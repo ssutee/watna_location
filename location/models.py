@@ -7,22 +7,58 @@ from django_countries.fields import Country
 class Picture(models.Model):
 
     file = models.ImageField(upload_to="pictures")
+    thumbnail = models.ImageField(upload_to="thumbnails", max_length=500, null=True, blank=True)
     slug = models.SlugField(max_length=50, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True, related_name="pictures")
 
+    def create_thumbnail(self):
+        if not self.file:
+            return
+            
+        from PIL import Image
+        from cStringIO import StringIO
+        from django.core.files.uploadedfile import SimpleUploadedFile
+        import os
+        
+        THUMBNAIL_SIZE = (100, 100)
+        DJANGO_TYPE = self.file.file.content_type
+        
+        if DJANGO_TYPE == 'image/jpeg':
+            PIL_TYPE = 'jpeg'
+            FILE_EXTENSION = 'jpg'
+        elif DJANGO_TYPE == 'image/png':
+            PIL_TYPE = 'png'
+            FILE_EXTENSION = 'png'
+            
+        image = Image.open(StringIO(self.file.read()))
+        image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
+        temp_handle = StringIO()
+        image.save(temp_handle, PIL_TYPE)
+        temp_handle.seek(0)
+        
+        suf = SimpleUploadedFile(os.path.split(self.file.name)[-1], 
+            temp_handle.read(), content_type=DJANGO_TYPE)
+            
+        self.thumbnail.save(
+            '%s_thumbnail.%s' % (os.path.splitext(suf.name)[0], FILE_EXTENSION),
+            suf, save=False)
+
     def __unicode__(self):
-        return self.file
+        return self.file.name
 
     @models.permalink
     def get_absolute_url(self):
         return ('upload-new', )
 
     def save(self, *args, **kwargs):
+        self.create_thumbnail()
         self.slug = self.file.name
         super(Picture, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
         self.file.delete(False)
+        if self.thumbnail:
+            self.thumbnail.delete(False)
         super(Picture, self).delete(*args, **kwargs)
 
 class Profile(models.Model):

@@ -32,7 +32,7 @@
         <th>{% trans 'Latitude' %}</th>
         <th>{% trans 'Longitude' %}</th>
         <th>{% trans 'Country' %}</th>
-        <!-- <th>{% trans 'Pictures' %}</th> -->
+        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -44,13 +44,11 @@
           <td>{{ location.latitude }}</td>
           <td>{{ location.longitude }}</td>
           <td><img src="{{ location.country.flag }}"/> {{ location.country.name}}</td>
-          <!--
           <td style="width:1%;">
-            <input id="{{ location.id }}" style="width:60px;margin: 0 10px 0 10px;" type="button" class="btn btn-mini btn-info" 
-              value="{% trans 'Add' %}" 
+            <input id="{{ location.id }}" style="width:72px;" type="button" class="btn btn-mini btn-info" 
+              value="{% trans 'Pictures' %}" 
               onClick="window.location = '/new_upload/' + $(this).attr('id');"/>
           </td>
-          -->
           <td style="width:1%;">
             <input style="width:60px;" type="button" class="btn btn-mini btn-danger btn-delete" 
               value="{% trans 'Delete' %}" 

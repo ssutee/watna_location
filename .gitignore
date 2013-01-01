@@ -7,3 +7,4 @@ local_settings.py
 static
 fabfile.py
 media/pictures
+media/thumbnails

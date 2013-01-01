@@ -39,15 +39,10 @@ $(function () {
     
     // Load existing files:
     $('#fileupload').each(function () {
-      console.log('load existing files');
-      var that = this;
-      $.getJSON(this.action, function (result) {
-          if (result && result.length) {
-              $(that).fileupload('option', 'done')
-                  .call(that, null, {result: result});
-          }
+      var that = $(this);
+      $.getJSON(this.action, function (result) {        
+        that.fileupload('option', 'done')
+          .call(that, null, {result: result});        
       });
     });
-    
-
 });

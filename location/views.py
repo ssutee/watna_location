@@ -11,6 +11,7 @@ from django.db.models import Count
 from django.views.generic import CreateView, DeleteView
 from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.core.files import File
 
 from location.forms import MapForm, SearchMapForm, LocationForm, RegistrationForm, UserForm
 from location.models import Location, Profile, Picture
@@ -29,17 +30,38 @@ class PictureCreateView(CreateView):
     model = Picture
     
     def get(self, request, *args, **kwargs):
-        response = super(PictureCreateView, self).get(request, args, kwargs)
-        response.context_data = dict(response.context_data, **{'location': Location.objects.get(pk=int(kwargs['pk']))})
-        return response
+        location = Location.objects.get(pk=int(kwargs['pk']))
+        
+        if request.user.id != location.user.id:
+            return HttpResponseRedirect('/places')
+            
+        if request.is_ajax():
+            files = {'files': map(lambda p:{'name':p.file.name, 
+                'size':p.file.size, 'url':p.file.url, 
+                'thumbnail_url':p.thumbnail.url, 'delete_type': 'DELETE',
+                'delete_url':reverse('upload-delete', args=[p.id])}, location.pictures.all())}
+            print simplejson.dumps(files)
+            return HttpResponse(simplejson.dumps(files), mimetype="application/json")
+        else:
+            response = super(PictureCreateView, self).get(request, args, kwargs)
+            response.context_data = dict(response.context_data, **{'location': location})
+            return response
 
     def form_valid(self, form):
         self.object = form.save()
-        f = self.request.FILES.get('file')
-        data = [{'name': f.name, 'url': settings.MEDIA_URL + "pictures/" + f.name.replace(" ", "_"), 'thumbnail_url': settings.MEDIA_URL + "pictures/" + f.name.replace(" ", "_"), 'delete_url': reverse('upload-delete', args=[self.object.id]), 'delete_type': "DELETE"}]
-        response = JSONResponse(data, {}, response_mimetype(self.request))
-        response['Content-Disposition'] = 'inline; filename=files.json'
-        return response
+        
+        f = self.request.FILES.get('file')    
+        
+        files = {'files': [{
+            'name': f.name,
+            'size': f.size,
+            'url': self.object.file.url,
+            'thumbnail_url': self.object.thumbnail.url,
+            'delete_url': reverse('upload-delete', args=[self.object.id]),
+            'delete_type': 'DELETE'
+        }]}
+        
+        return HttpResponse(simplejson.dumps(files), mimetype="application/json")
 
 class PictureDeleteView(DeleteView):
     model = Picture
@@ -73,7 +95,7 @@ def upload_files_page(request, pk):
     return render(request, 'upload_files_page.html', context)
 
 def create_info_content(location):
-    return '<div id="%d" style="height:100px; width:300px;"><h4>%s, %s</h4>%s</div>' % (
+    return '<div id="%d" style="height:100px; width:300px;"><h4>%s, %style/h4>%s</div>' % (
         location.id,
         location.place_name, location.city,
         ', '.join(map(lambda x:x.name,location.activities.all())))
@@ -136,7 +158,8 @@ def map_page(request):
         country_name = unicode(Country(code=value['country']).name)
         nav_list.append({'type':'header', 'value': '%s (%d)' % (country_name, query.count())})        
         for location in query.all():
-            nav_list.append({'type':'item', 'value': location})    
+            nav_list.append({'type':'item', 'value': location, 
+                'has_picture': 'ok'})    
         total_country += 1
         countries += '<p>%s (%d)</p>' % (country_name, query.count())
             
@@ -208,6 +231,10 @@ def edit_user_page(request):
 @login_required
 def edit_location_page(request, pk):
     location = Location.objects.get(pk=int(pk))   
+
+    if location.user.id != request.user.id:
+        return HttpResponseRedirect('/places')
+        
     lat, lng = location.latitude, location.longitude     
     if request.method == 'POST':
         form = LocationForm(request.POST, instance=location)
@@ -303,7 +330,9 @@ def find_location_by_id_page(request):
         'country': unicode(location.country.name),
         'phone_number': location.phone_number if is_authenticated else unicode(_('Only member')),
         'activities': ', '.join(map(lambda x:x.name,location.activities.all())),
-        'relation': location.relation.name if location.relation else ''
+        'relation': location.relation.name if location.relation else '',
+        'has_picture': location.pictures.count() > 0,
+        'pictures': map(lambda p:p.file.url, location.pictures.all())
     }
         
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")

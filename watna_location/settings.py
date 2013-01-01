@@ -149,7 +149,6 @@ INSTALLED_APPS = (
     'south',
     'jquery',
     'emailusernames',
-    'easy_thumbnails',
 )
 
 AUTHENTICATION_BACKENDS = (
