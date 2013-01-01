@@ -89,6 +89,7 @@
       }
 
       $(document).ready(function() {
+        $('#back-top').hide();
         $.waypoints.settings.scrollThrottle = 30;
         $('div.gmap').waypoint(function(e, direction) {
           $(this).toggleClass('sticky', direction == "down"); 
