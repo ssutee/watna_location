@@ -95,7 +95,7 @@ def upload_files_page(request, pk):
     return render(request, 'upload_files_page.html', context)
 
 def create_info_content(location):
-    return '<div id="%d" style="height:100px; width:300px;"><h4>%s, %style/h4>%s</div>' % (
+    return '<div id="%d" style="height:100px; width:300px;"><h4>%s, %s</h4>%s</div>' % (
         location.id,
         location.place_name, location.city,
         ', '.join(map(lambda x:x.name,location.activities.all())))
