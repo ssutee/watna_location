@@ -8,7 +8,7 @@ from gmapi.forms.widgets import GoogleMap
 from location.models import Activity, Location
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
+from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset, MultiField
 from crispy_forms.bootstrap import FormActions
 
 import re
@@ -124,6 +124,7 @@ class LocationForm(ModelForm):
             Field('relation', css_class='input-xlarge'),
             Field('phone_number', css_class='input-xlarge'),
             Field('address', rows="4", css_class='input-xlarge'),
+            Div('hide_email', 'hide_phone_number', 'hide_address', css_class="privacy_info"),
             Field('latitude', css_class='input-xlarge'),
             Field('longitude', css_class='input-xlarge'),
             Field('city', css_class='input-xlarge'),
@@ -145,6 +146,7 @@ class LocationForm(ModelForm):
             'status', 'organization', 'relation',
             'place_name', 'longitude', 'latitude', 
             'address', 'phone_number',
+            'hide_email', 'hide_phone_number', 'hide_address',
             'activities', 'additional_info', 'city', 'country')
         widgets = {
             'address': forms.Textarea(attrs={'rows':4, 'cols':40}),

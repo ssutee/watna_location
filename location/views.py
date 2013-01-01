@@ -334,6 +334,13 @@ def find_location_by_id_page(request):
         'has_picture': location.pictures.count() > 0,
         'pictures': map(lambda p:(p.file.url, p.thumbnail.url), location.pictures.all()),
     }
+    
+    if location.hide_email:
+        data['email'] = unicode(_('hidden'))
+    if location.hide_phone_number:
+        data['phone_number'] = unicode(_('hidden'))
+    if location.hide_address:
+        data['address'] = unicode(_('hidden'))
         
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     

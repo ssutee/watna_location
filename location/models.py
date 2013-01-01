@@ -102,6 +102,9 @@ class Location(models.Model):
         blank=True, null=True)
     
     approved = models.BooleanField(verbose_name=_('Approval'), default=False)
+    hide_email = models.BooleanField(verbose_name=_('Hide email'), default=False)
+    hide_phone_number = models.BooleanField(verbose_name=_('Hide phone number'), default=False)
+    hide_address = models.BooleanField(verbose_name=_('Hide address'), default=False)
         
     class Meta:
         verbose_name = _('Location')

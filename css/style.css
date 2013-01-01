@@ -12,6 +12,14 @@ body {
   color: #333;
 }
 
+div.privacy_info {
+  margin-bottom: 20px !important;
+}
+
+div.privacy_info div {
+  margin-bottom: 0px !important;
+}
+
 div.gmap img {
   max-width: none;
 }
