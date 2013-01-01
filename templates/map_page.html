@@ -91,10 +91,11 @@
       $(document).ready(function() {
         $.waypoints.settings.scrollThrottle = 30;
         $('div.gmap').waypoint(function(e, direction) {
-          $(this).toggleClass('sticky', direction == "down");
+          $(this).toggleClass('sticky', direction == "down"); 
+          $('#back-top').toggleClass('hidden', direction == "up");         
           e.stopPropagation();
         });
-        
+                
         $("a.location").click(function(event) {
           event.preventDefault();
           move_to($(this).attr('lat'), $(this).attr('lng'));
@@ -354,6 +355,10 @@
   
 <script src="{{ STATIC_URL }}file_upload/js/load-image.min.js"></script>
 <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-image-gallery.js"></script>
+
+<p id="back-top">
+  <a href="#top"><span></span>Back to Top</a>
+</p>
 
 {% endblock %}
 
