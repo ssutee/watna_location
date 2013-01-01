@@ -332,7 +332,7 @@ def find_location_by_id_page(request):
         'activities': ', '.join(map(lambda x:x.name,location.activities.all())),
         'relation': location.relation.name if location.relation else '',
         'has_picture': location.pictures.count() > 0,
-        'pictures': map(lambda p:p.file.url, location.pictures.all())
+        'pictures': map(lambda p:(p.file.url, p.thumbnail.url), location.pictures.all()),
     }
         
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")

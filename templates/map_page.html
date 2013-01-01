@@ -34,8 +34,10 @@
             }
             if (data.has_picture) {
               $('#btn_pictures').show();
+              $('#tr_id_gallery').show();
             } else {
               $('#btn_pictures').hide();
+              $('#tr_id_gallery').hide();
             }
             
             var gallery = $('#gallery');
@@ -43,7 +45,11 @@
             
             $.each(data.pictures, function(index, picture) {
               $('<a rel="gallery"/>')
-                .prop('href', picture)
+                .append($('<img>')
+                  .prop('src', picture[1])
+                  .prop('class', 'thumbnail')
+                  .css({'display':'inline', 'width':'auto', 'height': '50px'}))
+                .prop('href', picture[0])
                 .prop('title', data.place_name + ", " +data.city)
                 .appendTo(gallery);
             });
@@ -174,6 +180,13 @@
               <strong>{% trans 'Organization relationship' %}</strong>
               <p id="relation"> </p>            
             </td>            
+          </tr>
+          <tr id="tr_id_gallery">
+            <td colspan="3">
+              <strong>{% trans 'Pictures' %}</strong>
+              <div style="margin-top:5px" id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
+              </div>            
+            </td>
           </tr>          
         </tbody>
       </table>
@@ -213,10 +226,7 @@
       {{ form.media.js }}        
     </div>
   </div>
-  
-  <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery" style="display:none;">
-  </div>
-  
+    
   <div id="modal-gallery" class="modal modal-gallery hide fade modal-fullscreen" tabindex="-1" aria-hidden="true">
       <div class="modal-header">
           <a class="close" data-dismiss="modal">&times;</a>
