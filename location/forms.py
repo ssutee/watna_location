@@ -130,7 +130,7 @@ class LocationForm(ModelForm):
             Field('city', css_class='input-xlarge'),
             Field('country', css_class='input-xlarge'),
             Field('activities', style="background: #FAFAFA; padding: 10px;"),
-            Field('additional_info', rows="4", css_class='input-xlarge'),
+            Field('additional_info', rows="8", css_class='input-xlarge'),
             FormActions(
                 Submit('save', _('Save'), css_class="btn btn-primary"),
             )
