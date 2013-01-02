@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-01 13:42+0700\n"
+"POT-Creation-Date: 2013-01-02 13:59+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: location/forms.py:33 location/forms.py:85 templates/map_page.html:154
+#: location/forms.py:33 location/forms.py:85 templates/map_page.html:227
 msgid "E-mail"
 msgstr ""
 
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
-#: location/forms.py:40 location/forms.py:87 templates/base.html:144
+#: location/forms.py:40 location/forms.py:87 templates/base.html:145
 msgid "Password"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Password do not match"
 msgstr ""
 
-#: location/forms.py:78 templates/base.html:127
+#: location/forms.py:78 templates/base.html:128
 msgid "Register"
 msgstr ""
 
@@ -65,17 +65,17 @@ msgstr ""
 msgid "E-mail is already taken."
 msgstr ""
 
-#: location/forms.py:139 location/models.py:98 location/models.py:138
-#: templates/map_page.html:170
+#: location/forms.py:139 location/models.py:99 location/models.py:139
+#: templates/map_page.html:243
 msgid "Activities"
 msgstr ""
 
-#: location/forms.py:140 location/models.py:91
+#: location/forms.py:140 location/models.py:92
 #: templates/locations_page.html:32
 msgid "Latitude"
 msgstr ""
 
-#: location/forms.py:141 location/models.py:90
+#: location/forms.py:141 location/models.py:91
 #: templates/locations_page.html:33
 msgid "Longitude"
 msgstr ""
@@ -86,120 +86,120 @@ msgid ""
 "your place.</p>"
 msgstr ""
 
-#: location/models.py:72 location/models.py:121 location/models.py:131
+#: location/models.py:73 location/models.py:122 location/models.py:132
 #: templates/locations_page.html:31
 msgid "Name"
 msgstr ""
 
-#: location/models.py:75 location/models.py:76 location/models.py:87
+#: location/models.py:76 location/models.py:77 location/models.py:88
 msgid "Status"
 msgstr ""
 
-#: location/models.py:83
+#: location/models.py:84
 msgid "Place name"
 msgstr ""
 
-#: location/models.py:84 location/views.py:329 templates/map_page.html:250
+#: location/models.py:85 location/views.py:380 templates/map_page.html:326
 msgid "Organization"
 msgstr ""
 
-#: location/models.py:85 templates/map_page.html:180
+#: location/models.py:86 templates/map_page.html:253
 msgid "Organization relationship"
 msgstr ""
 
-#: location/models.py:93 templates/map_page.html:160
+#: location/models.py:94 templates/map_page.html:233
 msgid "Address"
 msgstr ""
 
-#: location/models.py:94
+#: location/models.py:95
 msgid "City"
 msgstr ""
 
-#: location/models.py:95 templates/locations_page.html:34
+#: location/models.py:96 templates/locations_page.html:34
 msgid "Country"
 msgstr ""
 
-#: location/models.py:96 templates/map_page.html:150
+#: location/models.py:97 templates/map_page.html:223
 msgid "Phone number"
 msgstr ""
 
-#: location/models.py:101 templates/map_page.html:176
+#: location/models.py:102 templates/map_page.html:249
 msgid "Additional information"
 msgstr ""
 
-#: location/models.py:104
+#: location/models.py:105
 msgid "Approval"
 msgstr ""
 
-#: location/models.py:105
+#: location/models.py:106
 msgid "Hide email"
 msgstr ""
 
-#: location/models.py:106
+#: location/models.py:107
 msgid "Hide phone number"
 msgstr ""
 
-#: location/models.py:107
+#: location/models.py:108
 msgid "Hide address"
 msgstr ""
 
-#: location/models.py:110
+#: location/models.py:111
 msgid "Location"
 msgstr ""
 
-#: location/models.py:111
+#: location/models.py:112
 msgid "Locations"
 msgstr ""
 
-#: location/models.py:132
+#: location/models.py:133
 msgid "Priority"
 msgstr ""
 
-#: location/models.py:134
+#: location/models.py:135
 msgid "Color"
 msgstr ""
 
-#: location/models.py:139
+#: location/models.py:140
 msgid "Activity"
 msgstr ""
 
-#: location/views.py:221
+#: location/views.py:258
 msgid "User updated successfully"
 msgstr ""
 
-#: location/views.py:247
+#: location/views.py:284
 msgid "Place updated successfully"
 msgstr ""
 
-#: location/views.py:270
+#: location/views.py:307
 msgid "New place added successfully"
 msgstr ""
 
-#: location/views.py:324 location/views.py:327 location/views.py:333
+#: location/views.py:375 location/views.py:378 location/views.py:384
 msgid "Only member"
 msgstr ""
 
-#: location/views.py:329
+#: location/views.py:380 templates/map_page.html:329
 msgid "Person"
 msgstr ""
 
-#: location/views.py:341 location/views.py:343 location/views.py:345
+#: location/views.py:392 location/views.py:394 location/views.py:396
 msgid "hidden"
 msgstr ""
 
-#: location/views.py:351
+#: location/views.py:402
 msgid "Logout successfully"
 msgstr ""
 
-#: location/views.py:358
+#: location/views.py:409
 msgid "Login successfully"
 msgstr ""
 
-#: location/views.py:360
+#: location/views.py:411
 msgid "Invalid email or password"
 msgstr ""
 
-#: location/views.py:375
+#: location/views.py:426
 msgid "Registration completed successfully"
 msgstr ""
 
@@ -216,69 +216,69 @@ msgstr ""
 msgid "Please use the map on the right side to locate your place."
 msgstr ""
 
-#: templates/base.html:98
-msgid "Buddhawajana Institution"
+#: templates/base.html:99
+msgid "Buddhawajana Network"
 msgstr ""
 
-#: templates/base.html:102 templates/map_page.html:4
+#: templates/base.html:103 templates/map_page.html:4
 #: templates/map_page.html.py:5
 msgid "Map"
 msgstr ""
 
-#: templates/base.html:106 templates/locations_page.html:4
+#: templates/base.html:107 templates/locations_page.html:4
 #: templates/locations_page.html.py:5
 msgid "My places"
 msgstr ""
 
-#: templates/base.html:110
+#: templates/base.html:111
 msgid "Options"
 msgstr ""
 
-#: templates/base.html:112
+#: templates/base.html:113
 msgid "Map type"
 msgstr ""
 
-#: templates/base.html:113
+#: templates/base.html:114
 msgid "Road"
 msgstr ""
 
-#: templates/base.html:114
+#: templates/base.html:115
 msgid "Terrain"
 msgstr ""
 
-#: templates/base.html:115
+#: templates/base.html:116
 msgid "Satellite"
 msgstr ""
 
-#: templates/base.html:116
+#: templates/base.html:117
 msgid "Satellite & Labels"
 msgstr ""
 
-#: templates/base.html:117
+#: templates/base.html:118
 msgid "Sorting"
 msgstr ""
 
-#: templates/base.html:118
+#: templates/base.html:119
 msgid "Entry order"
 msgstr ""
 
-#: templates/base.html:119
+#: templates/base.html:120
 msgid "City/Place alphabet"
 msgstr ""
 
-#: templates/base.html:123
+#: templates/base.html:124
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:143
+#: templates/base.html:144
 msgid "Email"
 msgstr ""
 
-#: templates/base.html:145
+#: templates/base.html:146
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:150
+#: templates/base.html:151
 msgid "Logged in as"
 msgstr ""
 
@@ -294,7 +294,7 @@ msgstr ""
 msgid "Search Result"
 msgstr ""
 
-#: templates/location_content.html:33 templates/map_page.html:199
+#: templates/location_content.html:33 templates/map_page.html:272
 msgid "Close"
 msgstr ""
 
@@ -310,8 +310,8 @@ msgstr ""
 msgid "Drag and drop the marker to pinpoint the place."
 msgstr ""
 
-#: templates/locations_page.html:49 templates/map_page.html:186
-#: templates/map_page.html.py:197 templates/location/picture_form.html:5
+#: templates/locations_page.html:49 templates/map_page.html:259
+#: templates/map_page.html.py:270 templates/location/picture_form.html:5
 #: templates/location/picture_form.html:6
 msgid "Pictures"
 msgstr ""
@@ -320,27 +320,27 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: templates/map_page.html:146
+#: templates/map_page.html:219
 msgid "Contact name"
 msgstr ""
 
-#: templates/map_page.html:164
+#: templates/map_page.html:237
 msgid "City/Country"
 msgstr ""
 
-#: templates/map_page.html:236
+#: templates/map_page.html:309
 msgid "Display"
 msgstr ""
 
-#: templates/map_page.html:241
+#: templates/map_page.html:315
 msgid "All"
 msgstr ""
 
-#: templates/map_page.html:244
+#: templates/map_page.html:319
 msgid "Monk"
 msgstr ""
 
-#: templates/map_page.html:247
+#: templates/map_page.html:322
 msgid "Layperson"
 msgstr ""
 
