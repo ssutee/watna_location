@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 
 from gmapi.forms.widgets import GoogleMap
-from location.models import Activity, Location
+from location.models import Activity, Location, Skill
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset, MultiField
@@ -13,7 +13,7 @@ from crispy_forms.bootstrap import FormActions
 
 import re
 
-class UserForm(forms.Form):
+class MyInfoForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_class = 'form-horizontal'
@@ -21,6 +21,32 @@ class UserForm(forms.Form):
             Field('email'),
             Field('first_name', css_class='input-xlarge'),
             Field('last_name', css_class='input-xlarge'),
+            Field('skills', style="background: #FAFAFA; padding: 10px;"),
+            Field('other_skills', css_class='input-xlarge'),
+            FormActions(
+                Submit('save', _('Save'), css_class="btn btn-primary"),
+            )
+        )        
+        super(MyInfoForm, self).__init__(*args, **kwargs)
+
+    email = forms.CharField(label=_('E-mail'), max_length=50, 
+        widget=forms.HiddenInput())
+    first_name = forms.CharField(label=_('First name'), max_length=50)
+    last_name = forms.CharField(label=_('Last name'), max_length=50)
+    skills = forms.ModelMultipleChoiceField(
+        label=_('Skill'),
+        required=False,
+        queryset=Skill.objects.all(), 
+        widget=forms.widgets.CheckboxSelectMultiple()
+    )
+    other_skills = forms.CharField(required=False, label=_('Other skills'), max_length=200)
+
+class UserForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.layout = Layout(
+            Field('email'),
             Field('old_password', css_class='input-xlarge'),
             Field('new_password1', css_class='input-xlarge'),
             Field('new_password2', css_class='input-xlarge'),
@@ -32,10 +58,7 @@ class UserForm(forms.Form):
 
     email = forms.CharField(label=_('E-mail'), max_length=50, 
         widget=forms.HiddenInput())
-            
-    first_name = forms.CharField(label=_('First name'), max_length=50)
-    last_name = forms.CharField(label=_('Last name'), max_length=50)
-    
+                
     old_password = forms.CharField(required=False,
         label=_('Password'), widget=forms.PasswordInput()
     )

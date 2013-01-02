@@ -61,12 +61,27 @@ class Picture(models.Model):
             self.thumbnail.delete(False)
         super(Picture, self).delete(*args, **kwargs)
 
+class Skill(models.Model):
+    name = models.CharField(max_length=200, db_index=True, 
+        verbose_name=_('Name'), unique=True)
+
+    class Meta:
+        verbose_name = _('Skill')
+        verbose_name_plural = _('Skill')
+
+    def __unicode__(self):
+        return u'%s' % (self.name)
+
 class Profile(models.Model):
     user = models.OneToOneField(User)
 
     map_type = models.CharField(max_length=10, default='ROADMAP')
     sorting = models.CharField(max_length=10, default='entry')
     display = models.IntegerField(default=0)
+
+    skills = models.ManyToManyField('Skill', verbose_name=_('Skills'),
+        related_name="profiles", blank=True, null=True)
+    other_skills = models.CharField(max_length=200, verbose_name=_('Other skills'), blank=True, null=True)
 
 class Status(models.Model):
     name = models.CharField(max_length=200, db_index=True, 

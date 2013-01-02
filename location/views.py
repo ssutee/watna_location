@@ -13,7 +13,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.core.files import File
 
-from location.forms import MapForm, SearchMapForm, LocationForm, RegistrationForm, UserForm
+from location.forms import MapForm, SearchMapForm, LocationForm, RegistrationForm, UserForm, MyInfoForm
 from location.models import Location, Profile, Picture
 
 from gmapi import maps
@@ -104,24 +104,20 @@ def create_info_content(location):
         location.place_name, location.city,
         ', '.join(map(lambda x:x.name,location.activities.all())))
 
-def get_map_type(request):
+def create_user_profile(request):
     if request.user.is_authenticated():
         try:
             request.user.profile
         except Profile.DoesNotExist, e:
             profile = Profile(user=request.user)
             profile.save()
-        
+    
+def get_map_type(request):
+    create_user_profile(request)
     return maps.MapTypeId.ROADMAP if not request.user.is_authenticated() else request.user.profile.map_type.lower()
 
 def get_display(request):
-    if request.user.is_authenticated():
-        try:
-            request.user.profile
-        except Profile.DoesNotExist, e:
-            profile = Profile(user=request.user)
-            profile.save()
-        
+    create_user_profile(request)        
     return 0 if not request.user.is_authenticated() else request.user.profile.display
     
 
@@ -246,7 +242,27 @@ def locations_page(request):
 
 @login_required
 def my_info_page(request):
-    context = {'active_menu':2}
+    create_user_profile(request)
+    if request.method == 'POST':
+        form = MyInfoForm(request.POST)
+        if form.is_valid():
+            request.user.first_name = form.cleaned_data['first_name']
+            request.user.last_name = form.cleaned_data['last_name']
+            request.user.profile.skills = form.cleaned_data['skills']
+            request.user.profile.other_skills = form.cleaned_data['other_skills']
+            request.user.profile.save()
+            request.user.save()
+            request.flash['message'] = ('alert-success', _('Your information updated successfully'))
+            return HttpResponseRedirect(request.session.get('next', '/'))
+    else:
+        form = MyInfoForm(initial={
+            'skills':request.user.profile.skills.all(),
+            'other_skills':request.user.profile.other_skills,
+            'email':request.user.email,
+            'first_name':request.user.first_name,
+            'last_name':request.user.last_name})
+    
+    context = {'active_menu':2, 'form': form}
     return render(request, 'my_info_page.html', context)
 
 @login_required
@@ -257,16 +273,11 @@ def edit_user_page(request):
             password = form.cleaned_data['new_password1']
             if len(password) > 0:
                 request.user.set_password(password)
-            request.user.first_name = form.cleaned_data['first_name'];
-            request.user.last_name = form.cleaned_data['last_name'];
             request.user.save()            
-            request.flash['message'] = ('alert-success', _('User updated successfully'))
-            return HttpResponseRedirect(request.session.get('next', '/'))                  
+            request.flash['message'] = ('alert-success', _('Password changed successfully'))
+            return HttpResponseRedirect(request.session.get('next', '/'))
     else:        
-        form = UserForm(initial={
-            'email':request.user.email,
-            'first_name':request.user.first_name,
-            'last_name':request.user.last_name})
+        form = UserForm(initial={'email':request.user.email})
 
     context = {'form': form}
     return render(request, 'edit_user_page.html', context)
@@ -332,12 +343,7 @@ def delete_location_page(request):
 @csrf_exempt
 @login_required
 def set_map_type_page(request):
-    try:
-        request.user.profile
-    except Profile.DoesNotExist, e:
-        profile = Profile(user=request.user)
-        profile.save()
-
+    create_user_profile(request)
     request.user.profile.map_type = request.POST.get('map_type', 'ROADMAP')
     request.user.profile.save()
     
@@ -346,12 +352,7 @@ def set_map_type_page(request):
 @csrf_exempt
 @login_required
 def set_sorting_page(request):
-    try:
-        request.user.profile
-    except Profile.DoesNotExist, e:
-        profile = Profile(user=request.user)
-        profile.save()
-
+    create_user_profile(request)
     request.user.profile.sorting = request.POST.get('sorting', 'entry')
     request.user.profile.save()
 
@@ -360,12 +361,7 @@ def set_sorting_page(request):
 @csrf_exempt
 @login_required
 def set_display_page(request):
-    try:
-        request.user.profile
-    except Profile.DoesNotExist, e:
-        profile = Profile(user=request.user)
-        profile.save()
-
+    create_user_profile(request)
     request.user.profile.display = request.POST.get('display', 0)
     request.user.profile.save()
 

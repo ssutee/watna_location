@@ -1,0 +1,49 @@
+- model: location.skill
+  pk: 1
+  fields:
+    name: วิทยาศาสตร์ / เทคโนโลโยี / วิศวกรรม
+
+- model: location.skill
+  pk: 2
+  fields:
+    name: คอมพิวเตอร์ / เวบ / แอป / โปรแกรมมิ่ง
+
+- model: location.skill
+  pk: 3
+  fields:
+    name: ศิลปะ / การออกแบบ
+
+- model: location.skill
+  pk: 4
+  fields:
+    name: กฎหมาย
+
+- model: location.skill
+  pk: 5
+  fields:
+    name: เศรษฐศาสตร์
+
+- model: location.skill
+  pk: 6
+  fields:
+    name: บัญชี / การเงิน
+
+- model: location.skill
+  pk: 7
+  fields:
+    name: สื่อสารมวลชน (ภาพยนตร์/โทรทัศน์/วิทยุ/สิ่งพิมพ์)
+
+- model: location.skill
+  pk: 8
+  fields:
+    name: แพทย์ / พยาบาล
+
+- model: location.skill
+  pk: 9
+  fields:
+    name: ข้าราชการ / รัฐวิสาหกิจ
+
+- model: location.skill
+  pk: 10
+  fields:
+    name: ภาษา / นักเขียน

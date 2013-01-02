@@ -1,5 +1,5 @@
 from django.contrib import admin
-from location.models import Location, Status, Activity, ColorModelField, Relation, Picture
+from location.models import Location, Status, Activity, ColorModelField, Relation, Picture, Skill
 from location.widgets import JSColorColorPicker
 
 class ActivityAdmin(admin.ModelAdmin):
@@ -17,3 +17,4 @@ admin.site.register(Status)
 admin.site.register(Relation)
 admin.site.register(Activity, ActivityAdmin)
 admin.site.register(Picture)
+admin.site.register(Skill)

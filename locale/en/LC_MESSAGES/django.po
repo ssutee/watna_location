@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-02 19:51+0700\n"
+"POT-Creation-Date: 2013-01-02 21:31+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,189 +17,206 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: location/forms.py:28 location/forms.py:135
+#: location/forms.py:26 location/forms.py:52 location/forms.py:156
 msgid "Save"
 msgstr ""
 
-#: location/forms.py:33 location/forms.py:85 templates/map_page.html:227
+#: location/forms.py:31 location/forms.py:57 location/forms.py:106
+#: templates/map_page.html:227
 msgid "E-mail"
 msgstr ""
 
-#: location/forms.py:36 location/forms.py:83
+#: location/forms.py:33 location/forms.py:104
 msgid "First name"
 msgstr ""
 
-#: location/forms.py:37 location/forms.py:84
+#: location/forms.py:34 location/forms.py:105
 msgid "Last name"
 msgstr ""
 
-#: location/forms.py:40 location/forms.py:87 templates/base.html:148
+#: location/forms.py:36 location/models.py:69 location/models.py:70
+msgid "Skill"
+msgstr ""
+
+#: location/forms.py:61 location/forms.py:108 templates/base.html:148
 msgid "Password"
 msgstr ""
 
-#: location/forms.py:44
+#: location/forms.py:65
 msgid "New password"
 msgstr ""
 
-#: location/forms.py:48
+#: location/forms.py:69
 msgid "New password (again)"
 msgstr ""
 
-#: location/forms.py:56
+#: location/forms.py:77
 msgid "Wrong password"
 msgstr ""
 
-#: location/forms.py:64 location/forms.py:99
+#: location/forms.py:85 location/forms.py:120
 msgid "Password do not match"
 msgstr ""
 
-#: location/forms.py:78 templates/base.html:131
+#: location/forms.py:99 templates/base.html:131
 msgid "Register"
 msgstr ""
 
-#: location/forms.py:90
+#: location/forms.py:111
 msgid "Password (again)"
 msgstr ""
 
-#: location/forms.py:107
+#: location/forms.py:128
 msgid "E-mail is already taken."
 msgstr ""
 
-#: location/forms.py:139 location/models.py:99 location/models.py:139
+#: location/forms.py:160 location/models.py:114 location/models.py:154
 #: templates/map_page.html:243
 msgid "Activities"
 msgstr ""
 
-#: location/forms.py:140 location/models.py:92
+#: location/forms.py:161 location/models.py:107
 #: templates/locations_page.html:32
 msgid "Latitude"
 msgstr ""
 
-#: location/forms.py:141 location/models.py:91
+#: location/forms.py:162 location/models.py:106
 #: templates/locations_page.html:33
 msgid "Longitude"
 msgstr ""
 
-#: location/forms.py:158
+#: location/forms.py:179
 msgid ""
 "<p class=\"text-warning\">Please use the map on the right side to locate "
 "your place.</p>"
 msgstr ""
 
-#: location/models.py:73 location/models.py:122 location/models.py:132
-#: templates/locations_page.html:31
+#: location/models.py:66 location/models.py:88 location/models.py:137
+#: location/models.py:147 templates/locations_page.html:31
 msgid "Name"
 msgstr ""
 
-#: location/models.py:76 location/models.py:77 location/models.py:88
-msgid "Status"
+#: location/models.py:82
+msgid "Skills"
 msgstr ""
 
 #: location/models.py:84
+msgid "Other skills"
+msgstr ""
+
+#: location/models.py:91 location/models.py:92 location/models.py:103
+msgid "Status"
+msgstr ""
+
+#: location/models.py:99
 msgid "Place name"
 msgstr ""
 
-#: location/models.py:85 location/views.py:385 templates/map_page.html:326
+#: location/models.py:100 location/views.py:394 templates/map_page.html:326
 msgid "Organization"
 msgstr ""
 
-#: location/models.py:86 templates/map_page.html:253
+#: location/models.py:101 templates/map_page.html:253
 msgid "Organization relationship"
 msgstr ""
 
-#: location/models.py:94 templates/map_page.html:233
+#: location/models.py:109 templates/map_page.html:233
 msgid "Address"
 msgstr ""
 
-#: location/models.py:95
+#: location/models.py:110
 msgid "City"
 msgstr ""
 
-#: location/models.py:96 templates/locations_page.html:34
+#: location/models.py:111 templates/locations_page.html:34
 msgid "Country"
 msgstr ""
 
-#: location/models.py:97 templates/map_page.html:223
+#: location/models.py:112 templates/map_page.html:223
 msgid "Phone number"
 msgstr ""
 
-#: location/models.py:102 templates/map_page.html:249
+#: location/models.py:117 templates/map_page.html:249
 msgid "Additional information"
 msgstr ""
 
-#: location/models.py:105
+#: location/models.py:120
 msgid "Approval"
 msgstr ""
 
-#: location/models.py:106
+#: location/models.py:121
 msgid "Hide email"
 msgstr ""
 
-#: location/models.py:107
+#: location/models.py:122
 msgid "Hide phone number"
 msgstr ""
 
-#: location/models.py:108
+#: location/models.py:123
 msgid "Hide address"
 msgstr ""
 
-#: location/models.py:111
+#: location/models.py:126
 msgid "Location"
 msgstr ""
 
-#: location/models.py:112
+#: location/models.py:127
 msgid "Locations"
 msgstr ""
 
-#: location/models.py:133
+#: location/models.py:148
 msgid "Priority"
 msgstr ""
 
-#: location/models.py:135
+#: location/models.py:150
 msgid "Color"
 msgstr ""
 
-#: location/models.py:140
+#: location/models.py:155
 msgid "Activity"
 msgstr ""
 
-#: location/views.py:263
-msgid "User updated successfully"
+#: location/views.py:255
+msgid "Your information updated successfully"
 msgstr ""
 
-#: location/views.py:289
+#: location/views.py:275
+msgid "Password changed successfully"
+msgstr ""
+
+#: location/views.py:298
 msgid "Place updated successfully"
 msgstr ""
 
-#: location/views.py:312
+#: location/views.py:321
 msgid "New place added successfully"
 msgstr ""
 
-#: location/views.py:380 location/views.py:383 location/views.py:389
+#: location/views.py:389 location/views.py:392 location/views.py:398
 msgid "Only member"
 msgstr ""
 
-#: location/views.py:385 templates/map_page.html:329
+#: location/views.py:394 templates/map_page.html:329
 msgid "Person"
 msgstr ""
 
-#: location/views.py:397 location/views.py:399 location/views.py:401
+#: location/views.py:406 location/views.py:408 location/views.py:410
 msgid "hidden"
 msgstr ""
 
-#: location/views.py:407
+#: location/views.py:416
 msgid "Logout successfully"
 msgstr ""
 
-#: location/views.py:414
+#: location/views.py:423
 msgid "Login successfully"
 msgstr ""
 
-#: location/views.py:416
+#: location/views.py:425
 msgid "Invalid email or password"
 msgstr ""
 
-#: location/views.py:431
+#: location/views.py:440
 msgid "Registration completed successfully"
 msgstr ""
 
@@ -292,7 +309,7 @@ msgid "Edit place"
 msgstr ""
 
 #: templates/edit_user_page.html:5 templates/edit_user_page.html.py:6
-msgid "Edit user"
+msgid "Change password"
 msgstr ""
 
 #: templates/location_content.html:27
