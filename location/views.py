@@ -245,6 +245,11 @@ def locations_page(request):
     return render(request, 'locations_page.html', context)
 
 @login_required
+def my_info_page(request):
+    context = {'active_menu':2}
+    return render(request, 'my_info_page.html', context)
+
+@login_required
 def edit_user_page(request):
     if request.method == 'POST':
         form = UserForm(request.POST);

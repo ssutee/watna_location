@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-02 13:59+0700\n"
+"POT-Creation-Date: 2013-01-02 19:51+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
-#: location/forms.py:40 location/forms.py:87 templates/base.html:145
+#: location/forms.py:40 location/forms.py:87 templates/base.html:148
 msgid "Password"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Password do not match"
 msgstr ""
 
-#: location/forms.py:78 templates/base.html:128
+#: location/forms.py:78 templates/base.html:131
 msgid "Register"
 msgstr ""
 
@@ -99,7 +99,7 @@ msgstr ""
 msgid "Place name"
 msgstr ""
 
-#: location/models.py:85 location/views.py:380 templates/map_page.html:326
+#: location/models.py:85 location/views.py:385 templates/map_page.html:326
 msgid "Organization"
 msgstr ""
 
@@ -163,43 +163,43 @@ msgstr ""
 msgid "Activity"
 msgstr ""
 
-#: location/views.py:258
+#: location/views.py:263
 msgid "User updated successfully"
 msgstr ""
 
-#: location/views.py:284
+#: location/views.py:289
 msgid "Place updated successfully"
 msgstr ""
 
-#: location/views.py:307
+#: location/views.py:312
 msgid "New place added successfully"
 msgstr ""
 
-#: location/views.py:375 location/views.py:378 location/views.py:384
+#: location/views.py:380 location/views.py:383 location/views.py:389
 msgid "Only member"
 msgstr ""
 
-#: location/views.py:380 templates/map_page.html:329
+#: location/views.py:385 templates/map_page.html:329
 msgid "Person"
 msgstr ""
 
-#: location/views.py:392 location/views.py:394 location/views.py:396
+#: location/views.py:397 location/views.py:399 location/views.py:401
 msgid "hidden"
 msgstr ""
 
-#: location/views.py:402
+#: location/views.py:407
 msgid "Logout successfully"
 msgstr ""
 
-#: location/views.py:409
+#: location/views.py:414
 msgid "Login successfully"
 msgstr ""
 
-#: location/views.py:411
+#: location/views.py:416
 msgid "Invalid email or password"
 msgstr ""
 
-#: location/views.py:426
+#: location/views.py:431
 msgid "Registration completed successfully"
 msgstr ""
 
@@ -230,55 +230,60 @@ msgstr ""
 msgid "My places"
 msgstr ""
 
-#: templates/base.html:111
-msgid "Options"
-msgstr ""
-
-#: templates/base.html:113
-msgid "Map type"
+#: templates/base.html:110 templates/my_info_page.html:5
+#: templates/my_info_page.html.py:6
+msgid "My info"
 msgstr ""
 
 #: templates/base.html:114
-msgid "Road"
-msgstr ""
-
-#: templates/base.html:115
-msgid "Terrain"
+msgid "Options"
 msgstr ""
 
 #: templates/base.html:116
-msgid "Satellite"
+msgid "Map type"
 msgstr ""
 
 #: templates/base.html:117
-msgid "Satellite & Labels"
+msgid "Road"
 msgstr ""
 
 #: templates/base.html:118
-msgid "Sorting"
+msgid "Terrain"
 msgstr ""
 
 #: templates/base.html:119
-msgid "Entry order"
+msgid "Satellite"
 msgstr ""
 
 #: templates/base.html:120
+msgid "Satellite & Labels"
+msgstr ""
+
+#: templates/base.html:121
+msgid "Sorting"
+msgstr ""
+
+#: templates/base.html:122
+msgid "Entry order"
+msgstr ""
+
+#: templates/base.html:123
 msgid "City/Place alphabet"
 msgstr ""
 
-#: templates/base.html:124
+#: templates/base.html:127
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:144
+#: templates/base.html:147
 msgid "Email"
 msgstr ""
 
-#: templates/base.html:146
+#: templates/base.html:149
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:151
+#: templates/base.html:154
 msgid "Logged in as"
 msgstr ""
 
