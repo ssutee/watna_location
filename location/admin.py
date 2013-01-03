@@ -12,9 +12,12 @@ class ActivityAdmin(admin.ModelAdmin):
 class LocationAdmin(admin.ModelAdmin):
     list_display = ('place_name', 'approved',)
     
+class PictureAdmin(admin.ModelAdmin):
+    list_display = ('slug', 'admin_image',)
+    
 admin.site.register(Location, LocationAdmin)
 admin.site.register(Status)
 admin.site.register(Relation)
 admin.site.register(Activity, ActivityAdmin)
-admin.site.register(Picture)
+admin.site.register(Picture, PictureAdmin)
 admin.site.register(Skill)

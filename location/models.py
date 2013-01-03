@@ -11,6 +11,10 @@ class Picture(models.Model):
     slug = models.SlugField(max_length=50, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True, related_name="pictures")
 
+    def admin_image(self):
+        return '<img src="%s"/>' % (self.thumbnail.url)
+    admin_image.allow_tags = True
+
     def create_thumbnail(self):
         if not self.file:
             return
