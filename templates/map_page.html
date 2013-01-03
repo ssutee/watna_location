@@ -100,11 +100,11 @@
         $("a.location").click(function(event) {
           event.preventDefault();
           move_to($(this).attr('lat'), $(this).attr('lng'));
-          if ($(this).parent().attr('class') == 'active') {
+          if ($(this).parent().hasClass('active')) {
             show_info_modal($(this).attr('id'));
           } else {            
             $('li.active').toggleClass('active');
-            $(this).parent().attr('class', 'active');
+            $(this).parent().toggleClass('active');
           }
         });        
 
@@ -281,7 +281,11 @@
           {% if nav.type == 'header' %}
             <li class="nav-header">{{ nav.value }}</li>
           {% else %}
-            <li>
+            {% if nav.value.approved %}
+              <li class="approved">
+            {% else %}
+              <li>
+            {% endif %}            
               <a id="{{nav.value.id}}" lat="{{nav.value.latitude}}" lng="{{nav.value.longitude}}" 
               class="location" href="#">
                 {% if nav.value.pictures.count > 0 %}
@@ -310,25 +314,12 @@
 
             <div id="map_filter" class="nav-collapse collapse">
               <ul id="display_menu" class="nav">
-                <!--
-                <li id="show_all" class="">
-                  <a href="#">{% trans "All" %}</a>
-                </li>
-                -->                
                 <li id="show_monk" class="">
                   <a href="#">{% trans "Monk" %}</a>
                 </li>
                 <li id="show_layperson" class="">
                   <a href="#">{% trans "Layperson" %}</a>
                 </li>
-                <!--
-                <li id="show_organization" class="">
-                  <a href="#">{% trans "Organization" %}</a>
-                </li>                
-                <li id="show_person" class="">
-                  <a href="#">{% trans "Person" %}</a>
-                </li>                
-                -->
               </ul>
             </div>
           </div>
