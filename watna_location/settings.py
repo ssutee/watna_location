@@ -149,6 +149,8 @@ INSTALLED_APPS = (
     'south',
     'jquery',
     'emailusernames',
+    'notification',
+    'messages',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -161,6 +163,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'djangoflash.context_processors.flash',
     'django.core.context_processors.i18n',
     'location.context_processors.profile',
+    'messages.context_processors.inbox',
 )
 
 # A sample logging configuration. The only tangible logging

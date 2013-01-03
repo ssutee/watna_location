@@ -30,6 +30,7 @@ urlpatterns = patterns('',
         {'template': 'registration/register_success.html'}),  
     url(r'^new_upload/(?P<pk>\d+)$', login_required(PictureCreateView.as_view()), {}, 'upload-new'),
     url(r'^delete_upload/(?P<pk>\d+)$', login_required(PictureDeleteView.as_view()), {}, 'upload-delete'),              
+    url(r'^messages/',include('messages.urls')),
 )
 
 import os

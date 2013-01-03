@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load l10n %}
 {% load i18n %}
-{% block title %}{% trans "Map" %}{% endblock %}
-{% block head %}{% trans "Map" %}{% endblock %}
+
+{% block title %}{% trans "Map" %} - {{ display_title }} {% endblock %}
+{% block head %}{% trans "Map" %} - {{ display_title }} {% endblock %}
 {% block content %}
   <script type="text/javascript">
 

@@ -195,11 +195,19 @@ def map_page(request):
         total_country += 1
         countries += '<p>%s (%d)</p>' % (country_name, query.count())
         country_list.append(country_name)
+
+    display_title = _('All')
+    if display == MONK:
+        display_title = _('Monk')
+    elif display == LAYPERSON:
+        display_title = _('Layperson')
             
     context = {'form': MapForm(initial={'gmap': gmap}), 
         'ALL': ALL, 'MONK': MONK, 'LAYPERSON': LAYPERSON, 
-        'active_menu':0, 'nav_list': nav_list, 'total': Location.objects.filter(q).count(), 
-        'total_country': total_country, 'countries': countries, 'country_list': country_list}
+        'active_menu':0, 'nav_list': nav_list, 
+        'total': Location.objects.filter(q).count(), 
+        'total_country': total_country, 'countries': countries, 
+        'country_list': country_list, 'display_title': display_title}
         
     if 'message' in request.flash and request.flash['message']:
         context['alert_type'], context['alert_message'] = request.flash['message']
