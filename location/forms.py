@@ -173,9 +173,18 @@ class LocationForm(ModelForm):
             'activities', 'additional_info', 'city', 'country')
         widgets = {
             'address': forms.Textarea(attrs={'rows':4, 'cols':40}),
-            'additional_info': forms.Textarea(attrs={'rows':4, 'cols':40}),            
         }
         
+    additional_info = forms.CharField(
+        label=_('Additional information'),
+        widget=forms.Textarea(attrs={'rows':8, 'cols':40}),
+        help_text=_('<p class="text-warning">Do not enter any request'
+        ' or suggestion into this field. If you have a suggustion use this'
+        ' <a href="http://www.watnapahpong.com/webboard/forum.php">webboard</a>.'
+        ' If you want books and CDs send a request to '
+        '<a href="mailto:info@buddhakos.org">Buddhakos foundation</a>.</p>')
+    )
+    
     latitude = forms.FloatField(max_value=90, min_value=-90)
     longitude = forms.FloatField(max_value=180, min_value=-180, 
         help_text=_('<p class="text-warning">Please use the map on the right side to locate your place.</p>'))
