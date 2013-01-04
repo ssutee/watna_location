@@ -384,8 +384,8 @@ msgid "CDs/books request"
 msgstr "ขอซีดีและหนังสือ"
 
 #: templates/location/picture_form.html:9
-msgid "Cannot upload picture files named in Thai"
-msgstr "ไม่สามารถอัพโหลดไฟล์รูปภาพที่ตั้งชื่อเป็นภาษาไทย"
+msgid "Cannot upload picture files named in Thai and support only PNG and JPEG files"
+msgstr "ไม่สามารถอัพโหลดไฟล์รูปภาพที่ตั้งชื่อเป็นภาษาไทย และ รองรับเฉพาะไฟล์ PNG และ JPEG เท่านั้น"
 
 #: templates/location/picture_form.html:15
 msgid "Add files..."

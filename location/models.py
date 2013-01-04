@@ -33,6 +33,8 @@ class Picture(models.Model):
         elif DJANGO_TYPE == 'image/png':
             PIL_TYPE = 'png'
             FILE_EXTENSION = 'png'
+        else:
+            raise TypeError('unsupported picture type')
             
         image = Image.open(StringIO(self.file.read()))
         image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)

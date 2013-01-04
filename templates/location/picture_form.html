@@ -6,7 +6,7 @@
 {% block head %}{% trans "Pictures" %} - {{ location.place_name }} {% endblock %}
 {% block content %}
 <div class="container">    
-    <p class="text-warning">{% trans "Cannot upload picture files named in Thai" %}</p>
+    <p class="text-warning">{% trans "Cannot upload picture files named in Thai and support only PNG and JPEG files" %}</p>
     <form id="fileupload" method="post" action="./{{ location.id }}" enctype="multipart/form-data">{% csrf_token %}
         <div class="row fileupload-buttonbar">
             <div class="span7">
