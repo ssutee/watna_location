@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-04 16:13+0700\n"
+"POT-Creation-Date: 2013-01-04 17:23+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,16 +89,18 @@ msgstr ""
 msgid "Longitude"
 msgstr ""
 
-#: location/forms.py:180
-msgid ""
-"<p class=\"text-warning\">Do not enter any request or suggestion into this "
-"field. If you have a suggustion use this <a href=\"http://www.watnapahpong."
-"com/webboard/forum.php\">webboard</a>. If you want books and CDs send a "
-"request to <a href=\"mailto:info@buddhakos.org\">Buddhakos foundation</a>.</"
-"p>"
+#: location/forms.py:179 location/models.py:121 templates/map_page.html:250
+msgid "Additional information"
 msgstr ""
 
-#: location/forms.py:185
+#: location/forms.py:181
+msgid ""
+"<p class=\"text-warning\">Do not enter any request or suggestion into this "
+"field. Please use this <a href=\"https://spreadsheets.google.com/viewform?"
+"formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">channel</a> instead.</p>"
+msgstr ""
+
+#: location/forms.py:188
 msgid ""
 "<p class=\"text-warning\">Please use the map on the right side to locate "
 "your place.</p>"
@@ -145,10 +147,6 @@ msgstr ""
 msgid "Phone number"
 msgstr ""
 
-#: location/models.py:121 templates/map_page.html:250
-msgid "Additional information"
-msgstr ""
-
 #: location/models.py:124
 msgid "Approval"
 msgstr ""
@@ -189,11 +187,11 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: location/views.py:201 templates/map_page.html:319
+#: location/views.py:201 templates/map_page.html:318
 msgid "Monk"
 msgstr ""
 
-#: location/views.py:203 templates/map_page.html:322
+#: location/views.py:203 templates/map_page.html:321
 msgid "Layperson"
 msgstr ""
 
@@ -371,8 +369,12 @@ msgstr ""
 msgid "City/Country"
 msgstr ""
 
-#: templates/map_page.html:314
+#: templates/map_page.html:313
 msgid "Display"
+msgstr ""
+
+#: templates/map_page.html:327
+msgid "CDs/books request"
 msgstr ""
 
 #: templates/location/picture_form.html:14

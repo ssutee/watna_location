@@ -169,16 +169,16 @@
       {% endif %}
       
       <div class="page-header row-fluid">
+        <div class="span8 pull-left span12-tablet">
+          <h1 class="media-heading" style="height:80px; line-height: 80px;">
+            {% block head %}{% endblock %}
+          </h1>
+        </div>
         <div class="span4 pull-right hidden-phone hidden-tablet">
           <a href="#">
             <img class="media-object" src="{{STATIC_URL}}media/logo_header.png">              
           </a>
         </div>
-        <div class="span8 pull-left span12-tablet">
-          <h1 class="media-heading" style="height:80px; line-height: 80px;">
-            {% block head %}{% endblock %}
-          </h1>
-        </div>          
       </div>        
       {% block content %}{% endblock %}
     </div>

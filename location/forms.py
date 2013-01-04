@@ -179,10 +179,8 @@ class LocationForm(ModelForm):
         label=_('Additional information'),
         widget=forms.Textarea(attrs={'rows':8, 'cols':40}),
         help_text=_('<p class="text-warning">Do not enter any request'
-        ' or suggestion into this field. If you have a suggustion use this'
-        ' <a href="http://www.watnapahpong.com/webboard/forum.php">webboard</a>.'
-        ' If you want books and CDs send a request to '
-        '<a href="mailto:info@buddhakos.org">Buddhakos foundation</a>.</p>')
+        ' or suggestion into this field. Please use this'
+        ' <a href="https://spreadsheets.google.com/viewform?formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ">channel</a> instead.</p>')
     )
     
     latitude = forms.FloatField(max_value=90, min_value=-90)

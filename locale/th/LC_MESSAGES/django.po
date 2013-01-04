@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-04 16:13+0700\n"
+"POT-Creation-Date: 2013-01-04 17:23+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,20 +90,22 @@ msgstr "ละติจูด"
 msgid "Longitude"
 msgstr "ลองจิจูด"
 
-#: location/forms.py:180
+#: location/forms.py:179 location/models.py:121 templates/map_page.html:250
+msgid "Additional information"
+msgstr "ข้อมูลเพิ่มเติม"
+
+#: location/forms.py:181
 msgid ""
 "<p class=\"text-warning\">Do not enter any request or suggestion into this "
-"field. If you have a suggustion use this <a href=\"http://www.watnapahpong."
-"com/webboard/forum.php\">webboard</a>. If you want books and CDs send a "
-"request to <a href=\"mailto:info@buddhakos.org\">Buddhakos foundation</a>.</"
-"p>"
+"field. Please use this <a href=\"https://spreadsheets.google.com/viewform?"
+"formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">channel</a> instead.</p>"
 msgstr ""
-"<p class=\"text-warning\">กรุณาอย่าใส่คำขอหรือคำแนะนำใดๆ ลงในช่องนี้ ถ้ามีคำถามหรือคำแนะนำให้ใช้ <a href=\"http://www.watnapahpong."
-"com/webboard/forum.php\">เว็บบอร์ด</a> ถ้าต้องการขอหนังสือและซีดีส่งอีเมลมาที่ "
-"<a href=\"mailto:info@buddhakos.org\">มูลนิธิพุทธโฆษณ์</a></"
-"p>"
+"<p class=\"text-warning\">อย่าใส่คำขอหนังสือ/ซีดี หรือ คำแนะนำใดๆ ลงในช่องนี้ กรุณาใช้ "
+"<a href=\"https://spreadsheets.google.com/viewform?"
+"formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">ช่องทางนี้</a> "
+"เพื่อความสะดวกในการจัดการข้อมูล</p>"
 
-#: location/forms.py:185
+#: location/forms.py:188
 msgid ""
 "<p class=\"text-warning\">Please use the map on the right side to locate "
 "your place.</p>"
@@ -151,10 +153,6 @@ msgstr "ประเทศ"
 msgid "Phone number"
 msgstr "เบอร์โทรศัพท์"
 
-#: location/models.py:121 templates/map_page.html:250
-msgid "Additional information"
-msgstr "ข้อมูลเพิ่มเติม"
-
 #: location/models.py:124
 msgid "Approval"
 msgstr "การตรวจสอบ"
@@ -195,11 +193,11 @@ msgstr "กิจกรรม"
 msgid "All"
 msgstr "ทั้งหมด"
 
-#: location/views.py:201 templates/map_page.html:319
+#: location/views.py:201 templates/map_page.html:318
 msgid "Monk"
 msgstr "นักบวช"
 
-#: location/views.py:203 templates/map_page.html:322
+#: location/views.py:203 templates/map_page.html:321
 msgid "Layperson"
 msgstr "ฆราวาส"
 
@@ -377,9 +375,13 @@ msgstr "ชื่อผู้ติดต่อ"
 msgid "City/Country"
 msgstr "จังหวัด/ประเทศ"
 
-#: templates/map_page.html:314
+#: templates/map_page.html:313
 msgid "Display"
 msgstr "แสดงผล"
+
+#: templates/map_page.html:327
+msgid "CDs/books request"
+msgstr "ขอซีดีและหนังสือ"
 
 #: templates/location/picture_form.html:14
 msgid "Add files..."
@@ -409,6 +411,18 @@ msgstr "ไทย"
 #: watna_location/settings.py:24
 msgid "English"
 msgstr "อังกฤษ"
+
+#~ msgid ""
+#~ "<p class=\"text-warning\">Do not enter any request or suggestion into "
+#~ "this field. If you have a suggustion use this <a href=\"http://www."
+#~ "watnapahpong.com/webboard/forum.php\">webboard</a>. If you want books and "
+#~ "CDs send a request to <a href=\"mailto:info@buddhakos.org\">Buddhakos "
+#~ "foundation</a>.</p>"
+#~ msgstr ""
+#~ "<p class=\"text-warning\">กรุณาอย่าใส่คำขอหรือคำแนะนำใดๆ ลงในช่องนี้ "
+#~ "ถ้ามีคำถามหรือคำแนะนำให้ใช้ <a href=\"http://www.watnapahpong.com/webboard/"
+#~ "forum.php\">เว็บบอร์ด</a> ถ้าต้องการขอหนังสือและซีดีส่งอีเมลมาที่ <a href=\"mailto:"
+#~ "info@buddhakos.org\">มูลนิธิพุทธโฆษณ์</a></p>"
 
 #, fuzzy
 #~ msgid "Add"
