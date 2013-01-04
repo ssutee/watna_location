@@ -5,7 +5,8 @@
 {% block title %}{% trans "Pictures" %} - {{ location.place_name }} {% endblock %}
 {% block head %}{% trans "Pictures" %} - {{ location.place_name }} {% endblock %}
 {% block content %}
-<div class="container">
+<div class="container">    
+    <p class="text-warning">{% trans "Cannot upload picture files named in Thai" %}</p>
     <form id="fileupload" method="post" action="./{{ location.id }}" enctype="multipart/form-data">{% csrf_token %}
         <div class="row fileupload-buttonbar">
             <div class="span7">
@@ -38,7 +39,7 @@
         </div>
         <div class="fileupload-loading"></div>
         <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
-    </form>
+    </form>    
     <div class="fileupload-content">
         <table class="files"></table>
         <div class="fileupload-progressbar"></div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-04 17:23+0700\n"
+"POT-Creation-Date: 2013-01-04 18:31+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -377,19 +377,23 @@ msgstr ""
 msgid "CDs/books request"
 msgstr ""
 
-#: templates/location/picture_form.html:14
+#: templates/location/picture_form.html:9
+msgid "Cannot upload picture files named in Thai"
+msgstr ""
+
+#: templates/location/picture_form.html:15
 msgid "Add files..."
 msgstr ""
 
-#: templates/location/picture_form.html:19
+#: templates/location/picture_form.html:20
 msgid "Start upload"
 msgstr ""
 
-#: templates/location/picture_form.html:23
+#: templates/location/picture_form.html:24
 msgid "Cancel upload"
 msgstr ""
 
-#: templates/location/picture_form.html:27
+#: templates/location/picture_form.html:28
 msgid "Delete files"
 msgstr ""
 
