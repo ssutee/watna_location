@@ -1,3 +1,5 @@
+#-:- coding:utf-8 -:-
+
 # Django settings for watna_location project.
 
 import os.path, os, sys
@@ -150,7 +152,7 @@ INSTALLED_APPS = (
     'jquery',
     'emailusernames',
     'notification',
-    'messages',
+    'django_messages',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -163,7 +165,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'djangoflash.context_processors.flash',
     'django.core.context_processors.i18n',
     'location.context_processors.profile',
-    'messages.context_processors.inbox',
+    'django_messages.context_processors.inbox',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -194,6 +196,14 @@ LOGGING = {
         },
     }
 }
+
+DEFAULT_FROM_EMAIL = 'Buddhawajana Network (เครือข่ายพุทธวจน)'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'buddhawajana.network@gmail.com'
+EMAIL_HOST_PASSWORD = 'xw23Id*2-+Dl'
+EMAIL_PORT = 587
 
 try:
     from local_settings import *
