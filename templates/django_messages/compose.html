@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load upload_tags %}
+{% load l10n %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block title %}{% trans "Compose message" %}{% endblock %}
+{% block head %}{% trans "Compose message" %}{% endblock %}
+{% block content %}
+  {% crispy form %}
+{% endblock %}
+
+{% block footer %}{% include "footer.html" %}{% endblock %}

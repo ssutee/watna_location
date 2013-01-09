@@ -128,6 +128,18 @@ class Location(models.Model):
     hide_phone_number = models.BooleanField(verbose_name=_('Hide phone number'), default=False)
     hide_address = models.BooleanField(verbose_name=_('Hide address'), default=False)
         
+    def user_name(self):
+        return u'%s %s' % (self.user.first_name, self.user.last_name)
+    user_name.allow_tags = True
+    
+    def user_skills(self):
+        result = ''
+        for skill in self.user.profile.skills.all():
+            result += skill.name + ", "
+        result += self.user.profile.other_skills if self.user.profile.other_skills else ''
+        return result
+    user_skills.allow_tags = True
+        
     class Meta:
         verbose_name = _('Location')
         verbose_name_plural = _('Locations')

@@ -10,7 +10,7 @@ class ActivityAdmin(admin.ModelAdmin):
     list_display = ('name', 'priority',)
     
 class LocationAdmin(admin.ModelAdmin):
-    list_display = ('place_name', 'approved',)
+    list_display = ('place_name', 'additional_info', 'user_name', 'user_skills',)
     
 class PictureAdmin(admin.ModelAdmin):
     list_display = ('slug', 'admin_image',)
