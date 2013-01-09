@@ -11,6 +11,7 @@ class ActivityAdmin(admin.ModelAdmin):
     
 class LocationAdmin(admin.ModelAdmin):
     list_display = ('place_name', 'additional_info', 'user_name', 'user_skills',)
+    search_fields = ('place_name', 'additional_info', 'city', 'country', 'address',)
     
 class PictureAdmin(admin.ModelAdmin):
     list_display = ('slug', 'admin_image',)
