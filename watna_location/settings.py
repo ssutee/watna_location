@@ -92,6 +92,7 @@ STATICFILES_DIRS = (
     ('flexi', '/home/sutee/watna_location/flexi'),
     ('jscolor', '/home/sutee/watna_location/jscolor'),
     ('file_upload', '/home/sutee/watna_location/file_upload'),    
+    ('angular', '/home/sutee/watna_location/angular'),    
 )
 
 LOCALE_PATHS = (

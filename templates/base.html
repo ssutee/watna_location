@@ -17,7 +17,13 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}waypoints/js/waypoints.min.js"></script> 
+    <script type="text/javascript" src="{{STATIC_URL}}angular/angular.js"></script>
     <script type="text/javascript"> 
+      angular.module('app', [])
+        .config(['$interpolateProvider', function ($interpolateProvider) {
+          $interpolateProvider.startSymbol('<[');
+          $interpolateProvider.endSymbol(']>');
+      }]);
     
       function set_map_type(map_type) {
         $.post("/set_map_type/", {"map_type":map_type}, function(data) {

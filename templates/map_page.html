@@ -100,13 +100,6 @@
                 
         $("a.location").click(function(event) {
           event.preventDefault();
-          move_to($(this).attr('lat'), $(this).attr('lng'));
-          if ($(this).parent().hasClass('active')) {
-            show_info_modal($(this).attr('id'));
-          } else {            
-            $('li.active').toggleClass('active');
-            $(this).parent().toggleClass('active');
-          }
         });        
 
         resize_containers();
@@ -203,7 +196,31 @@
           location.reload();
         });
       }
-
+      
+      function nav_click_event(nav_id) {        
+        if (nav_id > 0) {
+          var a = $('a#'+nav_id);
+          move_to(a.attr('lat'), a.attr('lng'));
+          if (a.parent().hasClass('active')) {
+            show_info_modal(a.attr('id'));
+          } else {            
+            $('li.active').toggleClass('active');
+            a.parent().toggleClass('active');
+          }
+        }   
+      }    
+      
+      function NavCtrl($scope) {
+        $scope.search = function (item){          
+          if (!$scope.query || item.id == 0 || 
+                item.country.toLowerCase().indexOf($scope.query.toLowerCase()) != -1 ||
+                item.name.toLowerCase().indexOf($scope.query.toLowerCase()) != -1) {
+            return true;
+          }
+          return false;
+        };
+      }
+          
   </script>
 
   <div id="info_modal" class="modal hide fade" tabindex="-1" role="dialog" 
@@ -274,28 +291,50 @@
     </div>
   </div>     
   <div class="row-fluid">       
-    <div id="nav_bar" class="span3 hidden-phone hidden-tablet">
-      <ul class="nav nav-list bs-sidenav">    
+    <div ng-app="app" id="nav_bar" class="span3 hidden-phone hidden-tablet">  
+        
+      <ul class="nav nav-list bs-sidenav" ng-controller="NavCtrl">   
+        <div style="margin-top:10px;">
+          <b>{% trans 'Search' %}</b>
+          <input class="input-medium search-query" ng-model="query">
+        </div>
+        <hr/>        
         <li class="nav-header"><a href="#" rel="popover" data-content="{{countries}}" data-placement="bottom" data-original-title="Countries ({{total_country}})">Total ({{total}}) | Countries ({{total_country}})</a></li>             
+        <div ng-init="nav_list = [
         {% for nav in nav_list %}
-          {% if nav.type == 'header' %}
-            <li class="nav-header">{{ nav.value }}</li>
+          {% if nav.type == 'header' %}          
+            {
+              name:'{{nav.value}}', 
+              id:0, 
+              lat:0, lng:0, 
+              class:'nav-header',
+              link_class:'nav-header',
+              country:'',
+              image_style: 'none'
+            }
+            {% if not forloop.last %},{% endif %}
           {% else %}
-            {% if nav.value.approved %}
-              <li class="approved">
-            {% else %}
-              <li>
-            {% endif %}            
-              <a id="{{nav.value.id}}" lat="{{nav.value.latitude}}" lng="{{nav.value.longitude}}" 
-              class="location" href="#">
-                {% if nav.value.pictures.count > 0 %}
-                  <i class="icon-picture"></i>
-                {% endif %}
-                {{ nav.value.place_name }}, {{ nav.value.city }}
-              </a>
-            </li>
+            {
+              name:'{{nav.value.place_name}}, {{nav.value.city}}', 
+              id:{{nav.value.id}}, 
+              lat:{{nav.value.latitude}}, lng:{{nav.value.longitude}}, 
+              class:{{nav.value.approved|yesno:"'approved',''"}}, 
+              link_class:'location',
+              country:'{{nav.country}}',
+              image_style:{{nav.value.pictures.count|yesno:"'inline-block','none'"}}
+            }
+            {% if not forloop.last %},{% endif %}
           {% endif %}
-        {% endfor %}        
+        {% endfor %}]"></div>
+
+        <li ng-repeat="nav in nav_list | filter: search" class="<[nav.class]>" onclick="nav_click_event(<[nav.id]>);">
+          <a href="#" id="<[nav.id]>" class="<[nav.link_class]>"
+            lat="<[nav.lat]>" lng="<[nav.lng]>">
+            <i class="icon-picture" style="display:<[nav.image_style]>;"></i>
+            <[nav.name]>
+          </a>
+        </li>
+          
       </ul>      
     </div>    
     <div id="map_container" class="span9 span12-tablet">      

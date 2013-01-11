@@ -190,8 +190,7 @@ def map_page(request):
         country_name = unicode(Country(code=value['country']).name)
         nav_list.append({'type':'header', 'value': '%s (%d)' % (country_name, query.count())})        
         for location in query.all():
-            nav_list.append({'type':'item', 'value': location, 
-                'has_picture': 'ok'})    
+            nav_list.append({'type':'item', 'value': location, 'country': country_name})    
         total_country += 1
         countries += '<p>%s (%d)</p>' % (country_name, query.count())
         country_list.append(country_name)
