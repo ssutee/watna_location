@@ -154,6 +154,7 @@ INSTALLED_APPS = (
     'emailusernames',
     'notification',
     'django_messages',
+    'templateaddons',
 )
 
 AUTHENTICATION_BACKENDS = (

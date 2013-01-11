@@ -188,9 +188,9 @@ def map_page(request):
     for value in Location.objects.filter(q).values('country').annotate(total=Count('country')):
         query = Location.objects.filter(q).filter(country=value['country']).order_by(first_order, 'place_name')
         country_name = unicode(Country(code=value['country']).name)
-        nav_list.append({'type':'header', 'value': '%s (%d)' % (country_name, query.count())})        
+        nav_list.append({'type':'header', 'value': '%s (%d)' % (country_name.replace("'", "\\'"), query.count())})        
         for location in query.all():
-            nav_list.append({'type':'item', 'value': location, 'country': country_name})    
+            nav_list.append({'type':'item', 'value': location, 'country': country_name.replace("'", "\\'")})    
         total_country += 1
         countries += '<p>%s (%d)</p>' % (country_name, query.count())
         country_list.append(country_name)

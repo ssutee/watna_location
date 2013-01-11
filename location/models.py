@@ -128,6 +128,12 @@ class Location(models.Model):
     hide_phone_number = models.BooleanField(verbose_name=_('Hide phone number'), default=False)
     hide_address = models.BooleanField(verbose_name=_('Hide address'), default=False)
         
+    def place_name_js(self):
+        return self.place_name.replace("'", "\\'")
+    
+    def city_js(self):
+        return self.city.replace("'", "\\'")
+        
     def user_name(self):
         return u'%s %s' % (self.user.first_name, self.user.last_name)
     user_name.allow_tags = True

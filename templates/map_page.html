@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load l10n %}
 {% load i18n %}
+{% load replace %}
 
 {% block title %}{% trans "Map" %} - {{ display_title }} {% endblock %}
 {% block head %}{% trans "Map" %} - {{ display_title }} {% endblock %}
@@ -197,7 +198,7 @@
         });
       }
       
-      function nav_click_event(nav_id) {        
+      function nav_click_event(nav_id) {    
         if (nav_id > 0) {
           var a = $('a#'+nav_id);
           move_to(a.attr('lat'), a.attr('lng'));
@@ -207,11 +208,11 @@
             $('li.active').toggleClass('active');
             a.parent().toggleClass('active');
           }
-        }   
+        }
       }    
       
-      function NavCtrl($scope) {
-        $scope.search = function (item){          
+      function NavCtrl($scope) {      
+        $scope.search = function (item){    
           if (!$scope.query || item.id == 0 || 
                 item.country.toLowerCase().indexOf($scope.query.toLowerCase()) != -1 ||
                 item.name.toLowerCase().indexOf($scope.query.toLowerCase()) != -1) {
@@ -304,7 +305,8 @@
         {% for nav in nav_list %}
           {% if nav.type == 'header' %}          
             {
-              name:'{{nav.value}}', 
+              position: {{forloop.counter0}},
+              name: '{{nav.value}}',
               id:0, 
               lat:0, lng:0, 
               class:'nav-header',
@@ -315,7 +317,8 @@
             {% if not forloop.last %},{% endif %}
           {% else %}
             {
-              name:'{{nav.value.place_name}}, {{nav.value.city}}', 
+              position: {{forloop.counter0}},
+              name:'{{nav.value.place_name_js}}, {{nav.value.city_js}}', 
               id:{{nav.value.id}}, 
               lat:{{nav.value.latitude}}, lng:{{nav.value.longitude}}, 
               class:{{nav.value.approved|yesno:"'approved',''"}}, 
@@ -327,7 +330,7 @@
           {% endif %}
         {% endfor %}]"></div>
 
-        <li ng-repeat="nav in nav_list | filter: search" class="<[nav.class]>" onclick="nav_click_event(<[nav.id]>);">
+        <li ng-repeat="nav in nav_list | filter:search | orderBy:'position'" onclick="nav_click_event(<[nav.id]>);" class="<[nav.class]>" my-repeat-directive>
           <a href="#" id="<[nav.id]>" class="<[nav.link_class]>"
             lat="<[nav.lat]>" lng="<[nav.lng]>">
             <i class="icon-picture" style="display:<[nav.image_style]>;"></i>

@@ -20,10 +20,20 @@
     <script type="text/javascript" src="{{STATIC_URL}}angular/angular.js"></script>
     <script type="text/javascript"> 
       angular.module('app', [])
-        .config(['$interpolateProvider', function ($interpolateProvider) {
+      .config(['$interpolateProvider', function ($interpolateProvider) {
           $interpolateProvider.startSymbol('<[');
           $interpolateProvider.endSymbol(']>');
-      }]);
+      }])    
+      .directive('myRepeatDirective', function() {
+        return function(scope, element, attrs) {
+          if (scope.$last){
+            jQuery("a.location").click(function(event) {
+              event.preventDefault();
+            });
+          }
+        };
+      });
+      
     
       function set_map_type(map_type) {
         $.post("/set_map_type/", {"map_type":map_type}, function(data) {
