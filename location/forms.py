@@ -177,6 +177,7 @@ class LocationForm(ModelForm):
         
     additional_info = forms.CharField(
         label=_('Additional information'),
+        required=False,
         widget=forms.Textarea(attrs={'rows':8, 'cols':40}),
         help_text=_('<p class="text-warning">Do not enter any request'
         ' or suggestion into this field. Please use this'
