@@ -180,3 +180,15 @@ class Activity(models.Model):
 
     def __unicode__(self):
         return u'%s' % (self.name)    
+        
+class Province(models.Model):
+    name = models.CharField(max_length=200, db_index=True, 
+        verbose_name=_('Name'), unique=True)
+
+    class Meta:
+        verbose_name_plural = _('Provinces')
+        verbose_name = _('Province')
+
+    def __unicode__(self):
+        return u'%s' % (self.name)    
+        

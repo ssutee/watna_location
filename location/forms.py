@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 
 from gmapi.forms.widgets import GoogleMap
-from location.models import Activity, Location, Skill
+from location.models import Activity, Location, Skill, Province
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset, MultiField
@@ -182,6 +182,12 @@ class LocationForm(ModelForm):
         help_text=_('<p class="text-warning">Do not enter any request'
         ' or suggestion into this field. Please use this'
         ' <a href="https://spreadsheets.google.com/viewform?formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ">channel</a> instead.</p>')
+    )
+    
+    city = forms.CharField(        
+        widget=forms.widgets.Select(
+            choices=map(lambda x: (x.name, x.name),Province.objects.all())
+        )
     )
     
     latitude = forms.FloatField(max_value=90, min_value=-90)
