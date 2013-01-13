@@ -53,12 +53,16 @@
 
 <script type="text/javascript">
 
+  function setup_foreign_city() {
+    var city = '{{ form.city.value }}' == 'None' ? '' : '{{ form.city.value }}';
+    $("#id_city").replaceWith('<input id="id_city" value="'+ city + '" type="text" class="input-xlarge textinput textInput" name="city" maxlength="200">');  
+  }
+
   var saved_select;
   $(document).ready(function() {
     saved_select = $("#id_city").parent().html();
     if ('TH' != '{{ form.country.value }}') {
-      var city = '{{ form.city.value }}' == 'None' ? '' : '{{ form.city.value }}';
-      $("#id_city").replaceWith('<input id="id_city" value="'+ city + '" type="text" class="input-xlarge textinput textInput" name="city" maxlength="200">');
+      setup_foreign_city();
     }
   });
 
@@ -70,11 +74,10 @@
   });
   
   $('#id_country').change(function () {
-    var id_city = $("#id_city");
     if ($("#id_country option:selected").text() == 'Thailand') {
-      id_city.replaceWith(saved_select);
+      $("#id_city").replaceWith(saved_select);
     } else {
-      id_city.replaceWith('<input id="id_city" type="text" class="input-xlarge textinput textInput" name="city" maxlength="200">');
+      setup_foreign_city();
     }
     search($("#id_country option:selected").text());
   });
