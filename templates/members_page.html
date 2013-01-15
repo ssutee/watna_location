@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load l10n %}
+{% load i18n %}
+{% block title %}{% trans "Members" %}{% endblock %}
+{% block head %}{% trans "Members" %}{% endblock %}
+{% block content %}
+
+<script type="text/javascript"> 
+  $(document).ready(function() {
+    $('tbody').tooltip({
+      selector: "a[rel=tooltip]"
+    });
+    
+    $('.pictures').button().click(function () {
+      var options = $(this).data(),
+          modal = $(options.target),
+          data = modal.data('modal');
+      if (data) {
+          $.extend(data.options, options);
+      } else {
+          options = $.extend(modal.data(), options);
+      }
+      modal.modal(options);
+    });
+    
+  });
+</script>
+
+<form method="GET" action="./">
+  <label class="checkbox inline">
+    <input {{info|yesno:"checked,"}} type="checkbox" name="info" value="true">
+    {% trans 'Info' %}
+  </label>
+  <label class="checkbox inline">
+    <input {{pictures|yesno:"checked,"}} type="checkbox" name="pictures" value="true">
+    {% trans 'Pictures' %}
+  </label>
+  <button style="margin-left:10px;" type="submit" class="btn btn-primary">{% trans 'Search'%}</button>
+</form>
+
+{% include "members_pagination.html" %}
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>{% trans 'Name' %}</th> 
+      <th>{% trans 'Phone' %}</th>
+      <th>{% trans 'Place name' %}</th>
+      <th>{% trans 'Address' %}</th>
+      <th>{% trans 'Organization' %}</th>
+      <th>{% trans 'City/Country' %}</th>
+      <th>{% trans 'Info' %}</th>
+      <th>{% trans 'Pictures' %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for location in locations %}
+      <tr>
+        <td>
+          <div>
+          {% if not location.hidden_email %}          
+            <a rel="tooltip" data-placement="bottom" 
+              data-original-title="{{location.user.email}}"
+              href="mailto:{{location.user.email}}">
+              {{ location.user.first_name }} {{ location.user.last_name }}
+            </a>
+          {% else %}
+            {{ location.user.first_name }} {{ location.user.last_name }}
+          {% endif %}
+          </div>
+          <br/>
+          <div>{{location.status}}{%if location.relation %}/{{location.relation}}{%endif%}</div>
+        </td>
+        <td>
+          {% if location.hidden_phone_number %}
+            -
+          {% else %}
+            {{ location.phone_number }}
+          {% endif %}
+        </td>
+        <td>
+          <div>{{ location.place_name }}</div>
+          {{location.activities_list|yesno:"<br/>,"|safe}}
+          <p id="additional_info">{{location.activities_list}}</p>
+        </td>
+        <td>
+         {% if location.hidden_address %}
+            -
+          {% else %}
+            {{ location.address }}
+          {% endif %}
+        </td>
+        <td>
+          {% if location.organization %}
+            <img src="{{STATIC_URL}}admin/img/icon-yes.gif" alt="True">
+          {% else %}
+            <img src="{{STATIC_URL}}admin/img/icon-no.gif" alt="False">
+          {% endif %}          
+        </td>
+        <td> {{ location.city }}, {% trans location.country.name %} </td>
+        <td>
+          <p id="additional_info">{{ location.additional_info.strip }}</p>
+          <div>{{location.user_skills}}</div>
+        </td>
+        <td style="vertical-align:middle;">
+          {% if location.pictures.all.count %}
+            <button class="btn pictures" data-target="#modal-gallery" 
+              data-selector="#gallery-{{forloop.counter}} a[rel=gallery]">
+              <i class="icon-picture"></i>
+            </button>
+            <div id="gallery-{{forloop.counter}}" data-dismiss="modal" 
+              data-toggle="modal-gallery" data-target="#modal-gallery">
+              {% for picture in location.pictures.all %}
+                <a rel="gallery" href="{{picture.file.url}}" title="{{location.place_name}}"></a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}      
+  </tbody>
+</table>
+{% include "members_pagination.html" %}
+
+<div id="modal-gallery" class="modal modal-gallery hide fade modal-fullscreen" tabindex="-1" aria-hidden="true">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3 class="modal-title"></h3>
+    </div>
+    <div class="modal-body"><div class="modal-image"></div></div>
+    <div class="modal-footer">
+        <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
+        <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
+        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
+        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
+    </div>
+</div>
+
+<script src="{{ STATIC_URL }}file_upload/js/load-image.min.js"></script>
+<script src="{{ STATIC_URL }}bootstrap/js/bootstrap-image-gallery.js"></script>
+
+{% endblock %}
+{% block footer %}{% include "footer.html" %}{% endblock %}

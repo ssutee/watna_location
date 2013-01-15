@@ -12,6 +12,7 @@ from django.views.generic import CreateView, DeleteView
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.core.files import File
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from location.forms import MapForm, SearchMapForm, LocationForm, RegistrationForm, UserForm, MyInfoForm
 from location.models import Location, Profile, Picture
@@ -246,6 +247,37 @@ def locations_page(request):
     if 'message' in request.flash and request.flash['message']:
         context['alert_type'], context['alert_message'] = request.flash['message']
     return render(request, 'locations_page.html', context)
+
+@login_required
+def members_page(request):
+    objects = Location.objects
+    if request.GET.get('info'):
+        objects = objects.filter(
+            Q(additional_info__isnull=False, additional_info__gt='') | Q(user__profile__skills__isnull=False) | Q(user__profile__other_skills__gt='')
+        )        
+    if request.GET.get('pictures'):
+        objects = objects.exclude(pictures__isnull=True)
+        
+    location_list = objects.distinct().all()
+    
+    paginator = Paginator(location_list, 20)
+        
+    page = request.GET.get('page')
+    try:
+        locations = paginator.page(page)
+    except PageNotAnInteger:
+        locations = paginator.page(1)
+    except EmptyPage:
+        locations = paginator.page(paginator.num_pages)    
+    
+    context = {
+        'info': True if request.GET.get('info') else False,
+        'pictures': True if request.GET.get('pictures') else False,
+        'locations': locations, 
+        'num_pages': xrange(1, paginator.num_pages+1)
+    }
+    
+    return render(request, 'members_page.html', context)
 
 @login_required
 def my_info_page(request):

@@ -143,8 +143,12 @@ class Location(models.Model):
         for skill in self.user.profile.skills.all():
             result += skill.name + ", "
         result += self.user.profile.other_skills if self.user.profile.other_skills else ''
-        return result
+        return result.strip().strip(',')
     user_skills.allow_tags = True
+    
+    def activities_list(self):
+        return '\n'.join(map(lambda x:'- ' + x.name, self.activities.all())) if self.activities else ''
+    activities_list.allow_tags = True
         
     class Meta:
         verbose_name = _('Location')

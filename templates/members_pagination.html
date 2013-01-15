@@ -1,0 +1,19 @@
+{% load l10n %}
+{% load i18n %}
+
+<div class="pagination pagination-right">  
+  <ul>
+    <li class="disabled"><a href="#">{%trans 'Total'%} {{locations|length}}</a></li>
+    <li {{locations.has_previous|yesno:",class=disabled"}}>
+      <a href="?page={{ locations.previous_page_number }}">«</a>
+    </li>
+    {% for i in num_pages %}
+      <li {% if i == locations.number %}class="active"{% endif %}>
+        <a href="?page={{i}}">{{i}}</a>
+      </li>  
+    {% endfor %}
+    <li {{locations.has_next|yesno:",class=disabled"}}>
+      <a href="?page={{ locations.next_page_number }}">»</a>
+    </li>
+  </ul>
+</div>
