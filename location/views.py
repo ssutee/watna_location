@@ -273,7 +273,7 @@ def members_page(request):
     context = {
         'info': True if request.GET.get('info') else False,
         'pictures': True if request.GET.get('pictures') else False,
-        'locations': locations, 
+        'locations': locations, 'total': location_list.count(),
         'num_pages': xrange(1, paginator.num_pages+1)
     }
     
