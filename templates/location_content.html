@@ -73,6 +73,10 @@
     }
   });
   
+  $('#id_city').change(function() {
+    search($("#id_city option:selected").text());
+  });
+  
   $('#id_country').change(function () {
     if ($("#id_country option:selected").text() == 'Thailand') {
       $("#id_city").replaceWith(saved_select);
