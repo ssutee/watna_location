@@ -271,6 +271,7 @@ def members_page(request):
         locations = paginator.page(paginator.num_pages)    
     
     context = {
+        'active_menu':3,
         'info': True if request.GET.get('info') else False,
         'pictures': True if request.GET.get('pictures') else False,
         'locations': locations, 'total': location_list.count(),
