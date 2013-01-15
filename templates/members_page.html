@@ -57,7 +57,7 @@
       <tr>
         <td>
           <div>
-          {% if not location.hidden_email %}          
+          {% if not location.hide_email %}          
             <a rel="tooltip" data-placement="bottom" 
               data-original-title="{{location.user.email}}"
               href="mailto:{{location.user.email}}">
@@ -71,7 +71,7 @@
           <div>{{location.status}}{%if location.relation %}/{{location.relation}}{%endif%}</div>
         </td>
         <td>
-          {% if location.hidden_phone_number %}
+          {% if location.hide_phone_number %}
             -
           {% else %}
             {{ location.phone_number }}
@@ -83,7 +83,7 @@
           <p id="additional_info">{{location.activities_list}}</p>
         </td>
         <td>
-         {% if location.hidden_address %}
+         {% if location.hide_address %}
             -
           {% else %}
             {{ location.address }}
