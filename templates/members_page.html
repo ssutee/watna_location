@@ -5,12 +5,19 @@
 {% block head %}{% trans "Members" %}{% endblock %}
 {% block content %}
 
+<style type="text/css" media="screen">
+  .slides div {
+    width:auto;
+    height:50px;
+    display:block;
+  }
+</style>
 <script type="text/javascript"> 
   $(document).ready(function() {
     $('tbody').tooltip({
       selector: "a[rel=tooltip]"
     });
-    
+          
     $('.pictures').button().click(function () {
       var options = $(this).data(),
           modal = $(options.target),
@@ -22,8 +29,12 @@
       }
       modal.modal(options);
     });
-    
+
+    $(function(){
+      $("#gallery-17").slides();
+    });    
   });
+  
 </script>
 
 <form method="GET" action="./">
@@ -103,15 +114,13 @@
         </td>
         <td style="vertical-align:middle;">
           {% if location.pictures.all.count %}
-            <button class="btn pictures" data-target="#modal-gallery" 
-              data-selector="#gallery-{{forloop.counter}} a[rel=gallery]">
-              <i class="icon-picture"></i>
-            </button>
             <div id="gallery-{{forloop.counter}}" data-dismiss="modal" 
               data-toggle="modal-gallery" data-target="#modal-gallery">
-              {% for picture in location.pictures.all %}
-                <a rel="gallery" href="{{picture.file.url}}" title="{{location.place_name}}"></a>
-              {% endfor %}
+            {% for picture in location.pictures.all %}
+              <a rel="gallery" href="{{picture.file.url}}" title="{{location.place_name}}">
+                <img class="img-rounded" src="{{picture.thumbnail.url}}" />
+              </a>
+            {% endfor %}
             </div>
           {% endif %}
         </td>
