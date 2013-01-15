@@ -5,6 +5,13 @@
 {% block head %}{% trans "Members" %}{% endblock %}
 {% block content %}
 
+<style type="text/css">
+  img.img-rounded {
+    width:50px;
+    height:auto;
+  }
+</style>
+
 <script type="text/javascript"> 
   $(document).ready(function() {
     $('tbody').tooltip({
@@ -107,7 +114,7 @@
               data-toggle="modal-gallery" data-target="#modal-gallery">
             {% for picture in location.pictures.all %}
               <a rel="gallery" href="{{picture.file.url}}" title="{{location.place_name}}">
-                <img class="img-rounded" src="{{picture.thumbnail.url}}" />
+                <img class="img-rounded" src="http://www.buddha-net.com/{{picture.thumbnail.url}}" />
               </a>
             {% endfor %}
             </div>
