@@ -113,9 +113,11 @@
             <div id="gallery-{{forloop.counter}}" data-dismiss="modal" 
               data-toggle="modal-gallery" data-target="#modal-gallery">
             {% for picture in location.pictures.all %}
-              <a rel="gallery" href="{{picture.file.url}}" title="{{location.place_name}}">
-                <img class="img-rounded" src="http://www.buddha-net.com/{{picture.thumbnail.url}}" />
-              </a>
+              <div>
+                <a rel="gallery" href="{{picture.file.url}}" title="{{location.place_name}}">
+                  <img class="img-rounded" src="http://www.buddha-net.com/{{picture.thumbnail.url}}" />
+                </a>
+              </div>
             {% endfor %}
             </div>
           {% endif %}
