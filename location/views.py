@@ -250,13 +250,19 @@ def locations_page(request):
 
 @login_required
 def members_page(request):
+    country = 'ALL' if not request.GET.get('country') else request.GET.get('country')
+    
     objects = Location.objects
+    
     if request.GET.get('info'):
         objects = objects.filter(
             Q(additional_info__isnull=False, additional_info__gt='') | Q(user__profile__skills__isnull=False) | Q(user__profile__other_skills__gt='')
         )        
     if request.GET.get('pictures'):
         objects = objects.exclude(pictures__isnull=True)
+        
+    if country != 'ALL':
+        objects = objects.filter(country=country)
         
     location_list = objects.distinct().all()
     
@@ -270,10 +276,14 @@ def members_page(request):
     except EmptyPage:
         locations = paginator.page(paginator.num_pages)    
     
+    countries = set(map(lambda x:(unicode(x.country), unicode(x.country.name)), Location.objects.all()))
+    print countries
+    
     context = {
-        'active_menu':3,
+        'active_menu':3, 'countries': countries,
         'info': True if request.GET.get('info') else False,
         'pictures': True if request.GET.get('pictures') else False,
+        'country': country,
         'locations': locations, 'total': location_list.count(),
         'num_pages': xrange(1, paginator.num_pages+1)
     }

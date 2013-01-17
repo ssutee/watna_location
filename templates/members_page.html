@@ -34,6 +34,17 @@
 </script>
 
 <form method="GET" action="./">
+
+  <span class="input-prepend" style="margin-right:15px;">
+    <span class="add-on">{% trans 'Country' %}</span>
+    <select class="span2" name="country">
+      <option value="ALL">{% trans 'All' %}</option>
+      {% for value, name in countries %}
+        <option {% if value == country %}selected{% endif %} value="{{value}}">{{name}}</option>
+      {% endfor %}
+    </select>
+  </span>
+
   <label class="checkbox inline">
     <input {{info|yesno:"checked,"}} type="checkbox" name="info" value="true">
     {% trans 'Info' %}
