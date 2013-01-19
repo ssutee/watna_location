@@ -15,7 +15,7 @@ from django.core.files import File
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from location.forms import MapForm, SearchMapForm, LocationForm, RegistrationForm, UserForm, MyInfoForm
-from location.models import Location, Profile, Picture
+from location.models import Location, Profile, Picture, Region
 
 from gmapi import maps
 from emailusernames.utils import create_user
@@ -251,7 +251,8 @@ def locations_page(request):
 @login_required
 def members_page(request):
     country = 'ALL' if not request.GET.get('country') else request.GET.get('country')
-    
+    region = 'ALL' if not request.GET.get('region') else request.GET.get('region')
+        
     objects = Location.objects
     
     if request.GET.get('info'):
@@ -263,6 +264,9 @@ def members_page(request):
         
     if country != 'ALL':
         objects = objects.filter(country=country)
+        
+    if region != 'ALL':
+        objects = objects.filter(city__in=map(lambda x:x.name, Region.objects.filter(name=region)[0].provinces.all())) 
         
     location_list = objects.distinct().all()
     
@@ -277,13 +281,13 @@ def members_page(request):
         locations = paginator.page(paginator.num_pages)    
     
     countries = set(map(lambda x:(unicode(x.country), unicode(x.country.name)), Location.objects.all()))
-    print countries
+    regions = map(lambda x:x.name, Region.objects.all())
     
     context = {
-        'active_menu':3, 'countries': countries,
+        'active_menu':3, 'countries': countries, 'regions': regions,
         'info': True if request.GET.get('info') else False,
         'pictures': True if request.GET.get('pictures') else False,
-        'country': country,
+        'country': country, 'region': region,
         'locations': locations, 'total': location_list.count(),
         'num_pages': xrange(1, paginator.num_pages+1)
     }

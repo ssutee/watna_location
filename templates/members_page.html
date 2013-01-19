@@ -29,21 +29,39 @@
       }
       modal.modal(options);
     });
+    
+    $('#id_country').change(function () {
+      if ($("#id_country option:selected").attr('value') == 'TH') {
+        $('#id_span_region').show();
+      } else {
+        $('#id_span_region').hide();
+        $('#id_region > option').removeAttr('selected');
+      }
+    });    
   });
   
 </script>
 
 <form method="GET" action="./">
-
   <span class="input-prepend" style="margin-right:15px;">
     <span class="add-on">{% trans 'Country' %}</span>
-    <select class="span2" name="country">
+    <select id="id_country" class="span2" name="country">
       <option value="ALL">{% trans 'All' %}</option>
       {% for value, name in countries %}
         <option {% if value == country %}selected{% endif %} value="{{value}}">{{name}}</option>
       {% endfor %}
     </select>
   </span>
+
+  <span id="id_span_region" class="input-prepend" style="margin-right:15px;{% if country != 'TH' %}display:none;{% endif %}">
+    <span class="add-on">{% trans 'Region' %}</span>
+    <select id="id_region" class="span2" name="region">
+      <option value="ALL">{% trans 'All' %}</option>
+      {% for name in regions %}
+        <option {% if name == region %}selected{% endif %} value="{{name}}">{{name}}</option>
+      {% endfor %}
+    </select>
+  </span>  
 
   <label class="checkbox inline">
     <input {{info|yesno:"checked,"}} type="checkbox" name="info" value="true">

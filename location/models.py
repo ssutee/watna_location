@@ -188,6 +188,8 @@ class Activity(models.Model):
 class Province(models.Model):
     name = models.CharField(max_length=200, db_index=True, 
         verbose_name=_('Name'), unique=True)
+    region = models.ForeignKey('Region', 
+        null=True, blank=True, related_name="provinces")
 
     class Meta:
         verbose_name_plural = _('Provinces')
@@ -196,3 +198,13 @@ class Province(models.Model):
     def __unicode__(self):
         return u'%s' % (self.name)    
         
+class Region(models.Model):
+    name = models.CharField(max_length=200, db_index=True, 
+        verbose_name=_('Name'), unique=True)        
+        
+    class Meta:
+        verbose_name_plural = _('Regions')
+        verbose_name = _('Region')
+        
+    def __unicode__(self):
+        return u'%s' % (self.name)
