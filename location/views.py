@@ -270,7 +270,7 @@ def members_page(request):
         
     location_list = objects.distinct().all()
     
-    paginator = Paginator(location_list, 50)
+    paginator = Paginator(location_list, 1)
         
     page = request.GET.get('page')
     try:
