@@ -250,8 +250,9 @@ def locations_page(request):
 
 @login_required
 def members_page(request):
-    country = 'ALL' if not request.GET.get('country') else request.GET.get('country')
-    region = 'ALL' if not request.GET.get('region') else request.GET.get('region')
+    country = request.GET.get('country', 'ALL')
+    region = request.GET.get('region', 'ALL')
+    query = request.GET.get('query', '')
         
     objects = Location.objects
     
@@ -267,6 +268,9 @@ def members_page(request):
         
     if region != 'ALL':
         objects = objects.filter(city__in=map(lambda x:x.name, Region.objects.filter(name=region)[0].provinces.all())) 
+        
+    if query != '':
+        objects = objects.filter(Q(place_name__contains=query)|Q(user__first_name__contains=query)|Q(user__last_name__contains=query)|Q(address__contains=query)|Q(city__contains=query))
         
     location_list = objects.distinct().all()
     
@@ -287,7 +291,7 @@ def members_page(request):
         'active_menu':3, 'countries': countries, 'regions': regions,
         'info': True if request.GET.get('info') else False,
         'pictures': True if request.GET.get('pictures') else False,
-        'country': country, 'region': region,
+        'country': country, 'region': region, 'query': query,
         'locations': locations, 'total': location_list.count(),
         'num_pages': xrange(1, paginator.num_pages+1)
     }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-20 15:17+0700\n"
+"POT-Creation-Date: 2013-01-20 23:24+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,7 @@ msgstr ""
 msgid "E-mail is already taken."
 msgstr ""
 
-#: location/forms.py:162 location/models.py:126 location/models.py:191
+#: location/forms.py:162 location/models.py:126 location/models.py:197
 #: templates/map_page.html:263
 msgid "Activities"
 msgstr ""
@@ -119,9 +119,9 @@ msgid ""
 "your place.</p>"
 msgstr ""
 
-#: location/models.py:72 location/models.py:98 location/models.py:174
-#: location/models.py:184 location/models.py:199 location/models.py:212
-#: templates/locations_page.html:31 templates/members_page.html:95
+#: location/models.py:72 location/models.py:98 location/models.py:180
+#: location/models.py:190 location/models.py:205 location/models.py:218
+#: templates/locations_page.html:31 templates/members_page.html:113
 msgid "Name"
 msgstr ""
 
@@ -137,11 +137,12 @@ msgstr ""
 msgid "Vistors"
 msgstr ""
 
-#: location/models.py:111 templates/members_page.html:97
+#: location/models.py:111 templates/members_page.html:115
 msgid "Place name"
 msgstr ""
 
-#: location/models.py:112 location/views.py:435 templates/members_page.html:99
+#: location/models.py:112 location/views.py:435
+#: templates/members_page.html:117
 msgid "Organization"
 msgstr ""
 
@@ -150,7 +151,7 @@ msgid "Organization relationship"
 msgstr ""
 
 #: location/models.py:121 templates/map_page.html:253
-#: templates/members_page.html:98
+#: templates/members_page.html:116
 msgid "Address"
 msgstr ""
 
@@ -159,7 +160,7 @@ msgid "City"
 msgstr ""
 
 #: location/models.py:123 templates/locations_page.html:34
-#: templates/members_page.html:61
+#: templates/members_page.html:78
 msgid "Country"
 msgstr ""
 
@@ -183,44 +184,44 @@ msgstr ""
 msgid "Hide address"
 msgstr ""
 
-#: location/models.py:163
+#: location/models.py:169
 msgid "Location"
 msgstr ""
 
-#: location/models.py:164
+#: location/models.py:170
 msgid "Locations"
 msgstr ""
 
-#: location/models.py:185
+#: location/models.py:191
 msgid "Priority"
 msgstr ""
 
-#: location/models.py:187
+#: location/models.py:193
 msgid "Color"
 msgstr ""
 
-#: location/models.py:192
+#: location/models.py:198
 msgid "Activity"
 msgstr ""
 
-#: location/models.py:204
+#: location/models.py:210
 msgid "Provinces"
 msgstr ""
 
-#: location/models.py:205
+#: location/models.py:211
 msgid "Province"
 msgstr ""
 
-#: location/models.py:215
+#: location/models.py:221
 msgid "Regions"
 msgstr ""
 
-#: location/models.py:216 templates/members_page.html:71
+#: location/models.py:222 templates/members_page.html:88
 msgid "Region"
 msgstr ""
 
-#: location/views.py:199 templates/members_page.html:63
-#: templates/members_page.html.py:73
+#: location/views.py:199 templates/members_page.html:80
+#: templates/members_page.html.py:90
 msgid "All"
 msgstr ""
 
@@ -260,19 +261,19 @@ msgstr ""
 msgid "hidden"
 msgstr ""
 
-#: location/views.py:472
+#: location/views.py:473
 msgid "Logout successfully"
 msgstr ""
 
-#: location/views.py:479
+#: location/views.py:480
 msgid "Login successfully"
 msgstr ""
 
-#: location/views.py:481
+#: location/views.py:482
 msgid "Invalid email or password"
 msgstr ""
 
-#: location/views.py:496
+#: location/views.py:497
 msgid "Registration completed successfully"
 msgstr ""
 
@@ -386,7 +387,7 @@ msgid "Find your location"
 msgstr ""
 
 #: templates/location_content.html:44 templates/map_page.html:300
-#: templates/members_page.html:88
+#: templates/members_page.html:106
 msgid "Search"
 msgstr ""
 
@@ -395,8 +396,8 @@ msgid "Drag and drop the marker to pinpoint the place."
 msgstr ""
 
 #: templates/locations_page.html:49 templates/map_page.html:279
-#: templates/map_page.html.py:290 templates/members_page.html:86
-#: templates/members_page.html.py:102 templates/location/picture_form.html:5
+#: templates/map_page.html.py:290 templates/members_page.html:103
+#: templates/members_page.html.py:120 templates/location/picture_form.html:5
 #: templates/location/picture_form.html:6
 msgid "Pictures"
 msgstr ""
@@ -409,7 +410,7 @@ msgstr ""
 msgid "Contact name"
 msgstr ""
 
-#: templates/map_page.html:257 templates/members_page.html:100
+#: templates/map_page.html:257 templates/members_page.html:118
 msgid "City/Country"
 msgstr ""
 
@@ -421,31 +422,35 @@ msgstr ""
 msgid "CDs/books request"
 msgstr ""
 
-#: templates/members_page.html:82 templates/members_page.html.py:101
+#: templates/members_page.html:99 templates/members_page.html.py:119
 msgid "Info"
 msgstr ""
 
-#: templates/members_page.html:96
+#: templates/members_page.html:105
+msgid "Enter a keyword"
+msgstr ""
+
+#: templates/members_page.html:114
 msgid "Phone"
 msgstr ""
 
-#: templates/members_page.html:103
-msgid "Visitors"
-msgstr ""
-
-#: templates/members_page.html:155
+#: templates/members_page.html:172
 msgid "visited"
 msgstr ""
 
-#: templates/members_page.html:156
+#: templates/members_page.html:173
 msgid "visit"
 msgstr ""
 
-#: templates/members_page.html:178
+#: templates/members_page.html:176 templates/members_page.html.py:179
+msgid "Visitors"
+msgstr ""
+
+#: templates/members_page.html:180
 msgid "persons"
 msgstr ""
 
-#: templates/members_page.html:178
+#: templates/members_page.html:180
 msgid "person"
 msgstr ""
 

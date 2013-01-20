@@ -95,14 +95,15 @@
   </span>  
 
   <label class="checkbox inline">
-    <input {{info|yesno:"checked,"}} type="checkbox" name="info" value="true">
+    <input {{info|yesno:"checked,"}} type="checkbox" name="info" value="true"/>
     {% trans 'Info' %}
   </label>
   <label class="checkbox inline">
-    <input {{pictures|yesno:"checked,"}} type="checkbox" name="pictures" value="true">
+    <input {{pictures|yesno:"checked,"}} type="checkbox" name="pictures" value="true"/>
     {% trans 'Pictures' %}
   </label>
-  <button style="margin-left:10px;" type="submit" class="btn btn-primary">{% trans 'Search'%}</button>
+   <input style="margin-left:10px;" value="{{query}}" name="query" placeholder="{% trans 'Enter a keyword' %}" type="text" class="input-medium search-query"/>
+  <button style="margin-left:5px;" type="submit" class="btn btn-primary">{% trans 'Search'%}</button>
 </form>
 
 {% include "members_pagination.html" %}
