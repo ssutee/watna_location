@@ -1,5 +1,5 @@
 from django.contrib import admin
-from location.models import Location, Status, Activity, ColorModelField, Relation, Picture, Skill, Province, Region
+from location.models import Location, Status, Activity, ColorModelField, Relation, Picture, Skill, Province, Region, Profile
 from location.widgets import JSColorColorPicker
 from django.contrib.admin import SimpleListFilter
 from django.db.models import Q
@@ -45,3 +45,4 @@ admin.site.register(Picture, PictureAdmin)
 admin.site.register(Skill)
 admin.site.register(Province)
 admin.site.register(Region)
+admin.site.register(Profile)

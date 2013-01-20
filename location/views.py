@@ -452,6 +452,22 @@ def find_location_by_id_page(request):
         
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     
+@csrf_exempt
+@login_required
+def visit_location_page(request):
+    data = {'success':1}
+    location = Location.objects.get(pk=request.POST.get('location_id'))
+    if location.visitors.filter(id=request.user.id).count() == 0:
+        location.visitors.add(request.user)
+        location.save()
+        data['success'] = 0
+    elif request.POST.get('toggle') == 'true':
+        location.visitors.remove(request.user)
+        location.save()
+        data['success'] = 0
+    data['visitors'] = location.visitor_html_name_list()
+    return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+    
 def logout_page(request):
     logout(request)
     request.flash['message'] = ('alert-success', _('Logout successfully'))

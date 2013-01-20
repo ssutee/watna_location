@@ -18,6 +18,12 @@
       selector: "a[rel=tooltip]"
     });
           
+    $("a[rel=popover]")
+      .popover({html:true})
+      .click(function(e) {
+        e.preventDefault()
+      });          
+          
     $('.pictures').button().click(function () {
       var options = $(this).data(),
           modal = $(options.target),
@@ -39,6 +45,31 @@
       }
     });    
   });
+  
+  function visit(location_id) {
+    $.post("/visit_location/", 
+      { location_id: location_id, toggle:true },
+      function(data) {
+        if(data.success==0) {
+          var btn = $('button#'+location_id);      
+          btn.toggleClass('btn-info');
+          btn.toggleClass('btn-success');
+          btn.children().toggleClass('hidden');
+          var span = $('span#visitors_'+location_id);
+          if (btn.hasClass('btn-success')) {
+            span.text(span.text()-(-1));
+          } else {
+            span.text(span.text()-1);
+          }
+          $('a#location_'+location_id).attr('data-content', data.visitors);
+          var div_content = $('a#location_'+location_id).next().find('.popover-content');
+          if (div_content.length) {
+            div_content.html(data.visitors);
+          }
+        }        
+      }
+    );
+  }
   
 </script>
 
@@ -134,8 +165,23 @@
         </td>
         <td> {{ location.city }}, {% trans location.country.name %} </td>
         <td>
+          <div class="pull-right">
+            <button id="{{location.id}}" style="margin:2px;" onClick="visit({{location.id}});"
+              class="btn btn-mini {% if user.id in location.visitor_id_list %}btn-success{% else %}btn-info{% endif %}">
+              <span {% if not user.id in location.visitor_id_list %}class="hidden"{% endif %}>{% trans 'visited' %}</span>
+              <span {% if user.id in location.visitor_id_list %}class="hidden"{% endif %}>{% trans 'visit' %}</span>
+            </button>
+          </div>
+          <div><span class="text-info">{%trans 'Visitors' %}</span> : 
+            <a id="location_{{location.id}}" href="#" rel="popover" data-placement="bottom" 
+              data-content="{{location.visitor_html_name_list}}" 
+              data-original-title="{% trans 'Visitors' %}">
+              <span id="visitors_{{location.id}}">{{location.visitors.count}}</span> {% if location.visitors.count > 1 %}{% trans 'persons' %}{% else %}{% trans 'person' %}{% endif %}
+            </a>
+          </div>
+          <br/>          
           <p id="additional_info">{{ location.additional_info.strip }}</p>
-          <div>{{location.user_skills}}</div>
+          <div>{{location.user_skills}}</div>          
         </td>
         <td style="vertical-align:middle;">
           {% if location.pictures.all.count %}

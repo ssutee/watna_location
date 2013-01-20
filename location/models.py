@@ -87,7 +87,11 @@ class Profile(models.Model):
 
     skills = models.ManyToManyField('Skill', verbose_name=_('Skills'),
         related_name="profiles", blank=True, null=True)
-    other_skills = models.CharField(max_length=200, verbose_name=_('Other skills'), blank=True, null=True)
+    other_skills = models.CharField(max_length=200, 
+        verbose_name=_('Other skills'), blank=True, null=True)
+        
+    def __unicode__(self):
+        return u'%s %s (%s)' % (self.user.first_name, self.user.last_name, self.user.email)
 
 class Status(models.Model):
     name = models.CharField(max_length=200, db_index=True, 
@@ -102,6 +106,8 @@ class Status(models.Model):
         
 class Location(models.Model):
     user = models.ForeignKey(User, null=True)
+    visitors = models.ManyToManyField(User, null=True, blank=True,
+        verbose_name=_('Vistors'), related_name='users')    
     place_name = models.CharField(max_length=200, verbose_name=_('Place name'))
     organization = models.BooleanField(verbose_name=_('Organization'))
     relation = models.ForeignKey('Relation', verbose_name=_('Organization relationship'),
@@ -149,6 +155,15 @@ class Location(models.Model):
     def activities_list(self):
         return '\n'.join(map(lambda x:'- ' + x.name, self.activities.all())) if self.activities else ''
     activities_list.allow_tags = True
+    
+    def visitor_id_list(self):
+        return map(lambda x:x.id, self.visitors.all()) if self.visitors else []
+        
+    def visitor_html_name_list(self):
+        result = ''
+        for visitor in self.visitors.all():
+            result += '<span><small>%s %s</small></span>, '%(visitor.first_name, visitor.last_name)
+        return result.strip(', ')
         
     class Meta:
         verbose_name = _('Location')
