@@ -59,7 +59,10 @@
                   .css({'display':'inline', 'width':'auto', 'height': '50px'}))
                 .prop('href', picture[0])
                 .prop('title', data.place_name + ", " +data.city)
-                .appendTo(gallery);
+                .appendTo(gallery)
+                .click(function(e) {
+                  $.post("/view_count/", { location_id: location_id });
+                });
             });
             
             $('#info_modal').modal({backdrop:true, keyboard:true});

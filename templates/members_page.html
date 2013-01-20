@@ -23,6 +23,15 @@
       .click(function(e) {
         e.preventDefault()
       });          
+
+    $("a[rel=gallery]").click(function(e) {
+      var location_id = $(this).attr('location_id');
+      $.post("/view_count/", { location_id: location_id }, 
+        function(data) {
+          var view_count = $('#view_count_'+location_id);
+          view_count.text(view_count.text()-(-1));
+        });      
+    });
           
     $('.pictures').button().click(function () {
       var options = $(this).data(),
@@ -181,15 +190,18 @@
             </a>
           </div>          
           <p style="margin-top:10px;" id="additional_info">{{ location.additional_info.strip }}</p>
-          <div>{{location.user_skills}}</div>          
+          <div>{{location.user_skills}}</div>
+          {% if location.pictures.all.count %}
+            <div style="margin-top:15px;"><span class="text-info">{%trans 'View count' %}</span> : <strong class="text-success" id="view_count_{{location.id}}">{{location.view_count}}</strong> <span class="text-info">{%trans 'times' %}</span></div>
+          {% endif %}
         </td>
         <td style="vertical-align:middle;">
           {% if location.pictures.all.count %}
             <div id="gallery-{{forloop.counter}}" data-dismiss="modal" 
-              data-toggle="modal-gallery" data-target="#modal-gallery">
+              data-toggle="modal-gallery" data-target="#modal-gallery">              
             {% for picture in location.pictures.all %}
               <div>
-                <a rel="gallery" href="{{picture.file.url}}" title="{{location.place_name}}">
+                <a location_id={{location.id}} rel="gallery" href="{{picture.file.url}}" title="{{location.place_name}}">
                   <img class="img-rounded" src="http://www.buddha-net.com/{{picture.thumbnail.url}}" />
                 </a>
               </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-20 23:24+0700\n"
+"POT-Creation-Date: 2013-01-21 00:43+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,7 +127,7 @@ msgstr ""
 
 #: location/models.py:72 location/models.py:98 location/models.py:180
 #: location/models.py:190 location/models.py:205 location/models.py:218
-#: templates/locations_page.html:31 templates/members_page.html:113
+#: templates/locations_page.html:31 templates/members_page.html:117
 msgid "Name"
 msgstr "ชื่อ"
 
@@ -143,12 +143,12 @@ msgstr "สถานะ"
 msgid "Vistors"
 msgstr ""
 
-#: location/models.py:111 templates/members_page.html:115
+#: location/models.py:111 templates/members_page.html:119
 msgid "Place name"
 msgstr "ชื่อสถานที่"
 
-#: location/models.py:112 location/views.py:435
-#: templates/members_page.html:117
+#: location/models.py:112 location/views.py:439
+#: templates/members_page.html:121
 msgid "Organization"
 msgstr "องค์กร"
 
@@ -157,7 +157,7 @@ msgid "Organization relationship"
 msgstr "ความเกี่ยวข้องกับองค์กร"
 
 #: location/models.py:121 templates/map_page.html:253
-#: templates/members_page.html:116
+#: templates/members_page.html:120
 msgid "Address"
 msgstr "ที่อยู่"
 
@@ -166,7 +166,7 @@ msgid "City"
 msgstr "จังหวัด"
 
 #: location/models.py:123 templates/locations_page.html:34
-#: templates/members_page.html:78
+#: templates/members_page.html:82
 msgid "Country"
 msgstr "ประเทศ"
 
@@ -222,12 +222,12 @@ msgstr ""
 msgid "Regions"
 msgstr "ภาค"
 
-#: location/models.py:222 templates/members_page.html:88
+#: location/models.py:222 templates/members_page.html:92
 msgid "Region"
 msgstr "ภาค"
 
-#: location/views.py:199 templates/members_page.html:80
-#: templates/members_page.html.py:90
+#: location/views.py:199 templates/members_page.html:84
+#: templates/members_page.html.py:94
 msgid "All"
 msgstr "ทั้งหมด"
 
@@ -239,47 +239,47 @@ msgstr "นักบวช"
 msgid "Layperson"
 msgstr "ฆราวาส"
 
-#: location/views.py:309
+#: location/views.py:313
 msgid "Your information updated successfully"
 msgstr "ข้อมูลของคุณถูกปรับปรุงแล้ว"
 
-#: location/views.py:331
+#: location/views.py:335
 msgid "Password changed successfully"
 msgstr "รหัสผ่านถูกเปลี่ยนแปลงแล้ว"
 
-#: location/views.py:354
+#: location/views.py:358
 msgid "Place updated successfully"
 msgstr "ข้อมูลสถานที่ถูกปรับปรุงแล้ว"
 
-#: location/views.py:377
+#: location/views.py:381
 msgid "New place added successfully"
 msgstr "สถานที่ใหม่ถูกเพิ่มแล้ว"
 
-#: location/views.py:430 location/views.py:433 location/views.py:439
+#: location/views.py:434 location/views.py:437 location/views.py:443
 msgid "Only member"
 msgstr "เฉพาะผู้ลงทะเบียน"
 
-#: location/views.py:435
+#: location/views.py:439
 msgid "Person"
 msgstr "บุคคล"
 
-#: location/views.py:447 location/views.py:449 location/views.py:451
+#: location/views.py:451 location/views.py:453 location/views.py:455
 msgid "hidden"
 msgstr "ไม่เปิดเผย"
 
-#: location/views.py:473
+#: location/views.py:477
 msgid "Logout successfully"
 msgstr "ออกจากระบบแล้ว"
 
-#: location/views.py:480
+#: location/views.py:484
 msgid "Login successfully"
 msgstr "เข้าสู่ระบบสำเร็จแล้ว"
 
-#: location/views.py:482
+#: location/views.py:486
 msgid "Invalid email or password"
 msgstr "อีเมล หรือ รหัสผ่านไม่ถูกต้อง"
 
-#: location/views.py:497
+#: location/views.py:501
 msgid "Registration completed successfully"
 msgstr "ลงทะเบียนสำเร็จแล้ว"
 
@@ -393,7 +393,7 @@ msgid "Find your location"
 msgstr "ค้นหาตำแหน่งของคุณ"
 
 #: templates/location_content.html:44 templates/map_page.html:300
-#: templates/members_page.html:106
+#: templates/members_page.html:110
 msgid "Search"
 msgstr "ค้นหา"
 
@@ -402,8 +402,8 @@ msgid "Drag and drop the marker to pinpoint the place."
 msgstr "ลากและวางเครื่องหมายเพื่อเลือกที่ตั้งของสถานที่"
 
 #: templates/locations_page.html:49 templates/map_page.html:279
-#: templates/map_page.html.py:290 templates/members_page.html:103
-#: templates/members_page.html.py:120 templates/location/picture_form.html:5
+#: templates/map_page.html.py:290 templates/members_page.html:107
+#: templates/members_page.html.py:124 templates/location/picture_form.html:5
 #: templates/location/picture_form.html:6
 msgid "Pictures"
 msgstr "รูปภาพ"
@@ -416,7 +416,7 @@ msgstr "ลบ"
 msgid "Contact name"
 msgstr "ชื่อผู้ติดต่อ"
 
-#: templates/map_page.html:257 templates/members_page.html:118
+#: templates/map_page.html:257 templates/members_page.html:122
 msgid "City/Country"
 msgstr "จังหวัด/ประเทศ"
 
@@ -428,37 +428,45 @@ msgstr "แสดงผล"
 msgid "CDs/books request"
 msgstr "ขอซีดีและหนังสือ"
 
-#: templates/members_page.html:99 templates/members_page.html.py:119
+#: templates/members_page.html:103 templates/members_page.html.py:123
 msgid "Info"
 msgstr "ข้อมูล"
 
-#: templates/members_page.html:105
+#: templates/members_page.html:109
 msgid "Enter a keyword"
 msgstr "ป้อนคำค้นหา"
 
-#: templates/members_page.html:114
+#: templates/members_page.html:118
 msgid "Phone"
 msgstr "โทรศัพท์"
 
-#: templates/members_page.html:172
+#: templates/members_page.html:176
 msgid "visited"
 msgstr "ชมแล้ว"
 
-#: templates/members_page.html:173
+#: templates/members_page.html:177
 msgid "visit"
 msgstr "เยี่ยมชม"
 
-#: templates/members_page.html:176 templates/members_page.html.py:179
+#: templates/members_page.html:180 templates/members_page.html.py:183
 msgid "Visitors"
 msgstr "ผู้เยี่ยมชม"
 
-#: templates/members_page.html:180
+#: templates/members_page.html:184
 msgid "persons"
 msgstr "คน"
 
-#: templates/members_page.html:180
+#: templates/members_page.html:184
 msgid "person"
 msgstr "คน"
+
+#: templates/members_page.html:190
+msgid "View count"
+msgstr "รูปภาพถูกเรียกดู"
+
+#: templates/members_page.html:190
+msgid "times"
+msgstr "ครั้ง"
 
 #: templates/members_pagination.html:6
 msgid "Total"

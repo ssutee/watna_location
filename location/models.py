@@ -133,6 +133,7 @@ class Location(models.Model):
     hide_email = models.BooleanField(verbose_name=_('Hide email'), default=False)
     hide_phone_number = models.BooleanField(verbose_name=_('Hide phone number'), default=False)
     hide_address = models.BooleanField(verbose_name=_('Hide address'), default=False)
+    view_count = models.IntegerField(verbose_name=_('View count'), default=0)
         
     def place_name_js(self):
         return self.place_name.replace("'", "\\'")

@@ -472,6 +472,13 @@ def visit_location_page(request):
     data['visitors'] = location.visitor_html_name_list()
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     
+@csrf_exempt
+def view_count_page(request):
+    location = Location.objects.get(pk=int(request.POST.get('location_id')))
+    location.view_count += 1
+    location.save()
+    return HttpResponse(simplejson.dumps(location.view_count), mimetype="application/json")
+
 def logout_page(request):
     logout(request)
     request.flash['message'] = ('alert-success', _('Logout successfully'))
