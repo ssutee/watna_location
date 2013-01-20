@@ -499,8 +499,8 @@ msgstr "ไทย"
 msgid "English"
 msgstr "อังกฤษ"
 
-#~ msgid "Thailand"
-#~ msgstr "ประเทศไทย"
+msgid "Thailand"
+msgstr "ประเทศไทย"
 
 #~ msgid ""
 #~ "<p class=\"text-warning\">Do not enter any request or suggestion into "
