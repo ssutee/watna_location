@@ -165,21 +165,21 @@
         </td>
         <td> {{ location.city }}, {% trans location.country.name %} </td>
         <td>          
-          <div><span class="text-info">{%trans 'Visitors' %}</span> : 
-            <a id="location_{{location.id}}" href="#" rel="popover" data-placement="bottom" 
-              data-content="{{location.visitor_html_name_list}}" 
-              data-original-title="{% trans 'Visitors' %}">
-              <span id="visitors_{{location.id}}">{{location.visitors.count}}</span> {% if location.visitors.count > 1 %}{% trans 'persons' %}{% else %}{% trans 'person' %}{% endif %}
-            </a>
-          </div>
-          <div style="margin-top:5px;margin-bottom:5px;">
+          <div class="pull-right">
             <button id="{{location.id}}" style="margin:2px;" onClick="visit({{location.id}});"
               class="btn btn-mini {% if user.id in location.visitor_id_list %}btn-success{% else %}btn-info{% endif %}">
               <span {% if not user.id in location.visitor_id_list %}class="hidden"{% endif %}>{% trans 'visited' %}</span>
               <span {% if user.id in location.visitor_id_list %}class="hidden"{% endif %}>{% trans 'visit' %}</span>
             </button>
           </div>          
-          <p id="additional_info">{{ location.additional_info.strip }}</p>
+          <div><span class="text-info">{%trans 'Visitors' %}</span> : 
+            <a id="location_{{location.id}}" href="#" rel="popover" data-placement="bottom" 
+              data-content="{{location.visitor_html_name_list}}" 
+              data-original-title="{% trans 'Visitors' %}">
+              <span id="visitors_{{location.id}}">{{location.visitors.count}}</span> {% if location.visitors.count > 1 %}{% trans 'persons' %}{% else %}{% trans 'person' %}{% endif %}
+            </a>
+          </div>          
+          <p style="margin-top:10px;" id="additional_info">{{ location.additional_info.strip }}</p>
           <div>{{location.user_skills}}</div>          
         </td>
         <td style="vertical-align:middle;">
