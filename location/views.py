@@ -45,7 +45,6 @@ class PictureCreateView(CreateView):
                 'size':p.file.size, 'url':p.file.url, 
                 'thumbnail_url':p.thumbnail.url, 'delete_type': 'DELETE',
                 'delete_url':reverse('upload-delete', args=[p.id])}, location.pictures.all())}
-            print simplejson.dumps(files)
             return HttpResponse(simplejson.dumps(files), mimetype="application/json")
         else:
             response = super(PictureCreateView, self).get(request, args, kwargs)
@@ -53,7 +52,10 @@ class PictureCreateView(CreateView):
             return response
 
     def form_valid(self, form):
-        self.object = form.save()
+        try:
+            self.object = form.save()
+        except Exception, e:
+            return HttpResponse(simplejson.dumps({'files':[]}), mimetype="application/json")
         
         f = self.request.FILES.get('file')    
         
@@ -474,10 +476,15 @@ def visit_location_page(request):
     
 @csrf_exempt
 def view_count_page(request):
-    location = Location.objects.get(pk=int(request.POST.get('location_id')))
-    location.view_count += 1
-    location.save()
-    return HttpResponse(simplejson.dumps(location.view_count), mimetype="application/json")
+    result = 0
+    try:
+        location = Location.objects.get(pk=int(request.POST.get('location_id')))
+        location.view_count += 1
+        location.save()
+        result = location.view_count
+    except TypeError,e:
+        pass
+    return HttpResponse(simplejson.dumps(result), mimetype="application/json")
 
 def logout_page(request):
     logout(request)
