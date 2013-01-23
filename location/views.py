@@ -492,6 +492,9 @@ def logout_page(request):
     return HttpResponseRedirect('/')
 
 def login_page(request):
+    if not request.POST.get('email'):
+        return HttpResponseRedirect('/')
+        
     user = authenticate(email=request.POST.get('email'), password=request.POST.get('password'))
     if user:
         login(request, user)
