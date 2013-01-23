@@ -100,6 +100,8 @@ LOCALE_PATHS = (
     '/home/sutee/watna_location/locale',
 )
 
+LOGIN_URL = '/login/'
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (

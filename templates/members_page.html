@@ -111,6 +111,11 @@
     <input {{pictures|yesno:"checked,"}} type="checkbox" name="pictures" value="true"/>
     {% trans 'Pictures' %}
   </label>
+  <label class="checkbox inline" style="white-space:nowrap;">
+    <input {{org|yesno:"checked,"}} type="checkbox" name="org" value="true"/>
+    {% trans 'Only organization' %}
+  </label>
+
    <input style="margin-left:10px;" value="{{query}}" name="query" placeholder="{% trans 'Enter a keyword' %}" type="text" class="input-medium search-query"/>
   <button style="margin-left:5px;" type="submit" class="btn btn-primary">{% trans 'Search'%}</button>
 </form>

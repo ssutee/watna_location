@@ -5,15 +5,15 @@
   <ul>
     <li class="disabled"><a href="#">{%trans 'Total'%} {{total}}</a></li>
     <li {{locations.has_previous|yesno:",class=disabled"}}>
-      <a href="?country={{country}}&query={{query}}&region={{region}}&page={{ locations.previous_page_number }}{{info|yesno:'&info=true,'}}{{pictures|yesno:'&pictures=true,'}}">«</a>
+      <a href="country={{country}}&query={{query}}&region={{region}}&page={{ locations.previous_page_number }}{{info|yesno:'&info=true,'}}{{pictures|yesno:'&pictures=true,'}}{{org|yesno:'&org=true,'}}">«</a>
     </li>
     {% for i in num_pages %}
       <li {% if i == locations.number %}class="active"{% endif %}>
-        <a href="?country={{country}}&query={{query}}&region={{region}}&page={{i}}{{info|yesno:'&info=true,'}}{{pictures|yesno:'&pictures=true,'}}">{{i}}</a>
+        <a href="country={{country}}&query={{query}}&region={{region}}&page={{i}}{{info|yesno:'&info=true,'}}{{pictures|yesno:'&pictures=true,'}}{{org|yesno:'&org=true,'}}">{{i}}</a>
       </li>  
     {% endfor %}
     <li {{locations.has_next|yesno:",class=disabled"}}>
-      <a href="?country={{country}}&query={{query}}&region={{region}}&page={{ locations.next_page_number }}{{info|yesno:'&info=true,'}}{{pictures|yesno:'&pictures=true,'}}">»</a>
+      <a href="country={{country}}&query={{query}}&region={{region}}&page={{ locations.next_page_number }}{{info|yesno:'&info=true,'}}{{pictures|yesno:'&pictures=true,'}}{{org|yesno:'&org=true,'}}">»</a>
     </li>
   </ul>
 </div>

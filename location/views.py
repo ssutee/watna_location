@@ -264,6 +264,9 @@ def members_page(request):
         )        
     if request.GET.get('pictures'):
         objects = objects.exclude(pictures__isnull=True)
+
+    if request.GET.get('org'):
+        objects = objects.filter(organization=True)
         
     if country != 'ALL':
         objects = objects.filter(country=country)
@@ -293,6 +296,7 @@ def members_page(request):
         'active_menu':3, 'countries': countries, 'regions': regions,
         'info': True if request.GET.get('info') else False,
         'pictures': True if request.GET.get('pictures') else False,
+        'org': True if request.GET.get('org') else False,
         'country': country, 'region': region, 'query': query,
         'locations': locations, 'total': location_list.count(),
         'num_pages': xrange(1, paginator.num_pages+1)
