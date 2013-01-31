@@ -277,7 +277,7 @@ def members_page(request):
     if query != '':
         objects = objects.filter(Q(pk=query)|Q(place_name__contains=query)|Q(user__first_name__contains=query)|Q(user__last_name__contains=query)|Q(address__contains=query)|Q(city__contains=query))
         
-    location_list = objects.distinct().all()
+    location_list = objects.distinct().order_by('id').all()
     
     paginator = Paginator(location_list, 50)
         
