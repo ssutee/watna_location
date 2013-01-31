@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-23 21:40+0700\n"
+"POT-Creation-Date: 2013-01-31 21:52+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,22 +87,22 @@ msgstr ""
 msgid "E-mail is already taken."
 msgstr ""
 
-#: location/forms.py:162 location/models.py:126 location/models.py:198
+#: location/forms.py:162 location/models.py:129 location/models.py:201
 #: templates/map_page.html:266
 msgid "Activities"
 msgstr ""
 
-#: location/forms.py:163 location/models.py:119
+#: location/forms.py:163 location/models.py:122
 #: templates/locations_page.html:32
 msgid "Latitude"
 msgstr ""
 
-#: location/forms.py:164 location/models.py:118
+#: location/forms.py:164 location/models.py:121
 #: templates/locations_page.html:33
 msgid "Longitude"
 msgstr ""
 
-#: location/forms.py:179 location/models.py:129 templates/map_page.html:272
+#: location/forms.py:179 location/models.py:132 templates/map_page.html:272
 msgid "Additional information"
 msgstr ""
 
@@ -119,9 +119,9 @@ msgid ""
 "your place.</p>"
 msgstr ""
 
-#: location/models.py:72 location/models.py:98 location/models.py:181
-#: location/models.py:191 location/models.py:206 location/models.py:219
-#: templates/locations_page.html:31 templates/members_page.html:127
+#: location/models.py:72 location/models.py:100 location/models.py:184
+#: location/models.py:194 location/models.py:209 location/models.py:222
+#: templates/locations_page.html:31 templates/members_page.html:128
 msgid "Name"
 msgstr ""
 
@@ -129,98 +129,98 @@ msgstr ""
 msgid "Skills"
 msgstr ""
 
-#: location/models.py:101 location/models.py:102 location/models.py:115
+#: location/models.py:103 location/models.py:104 location/models.py:118
 msgid "Status"
 msgstr ""
 
-#: location/models.py:110
+#: location/models.py:112
 msgid "Vistors"
 msgstr ""
 
-#: location/models.py:111 templates/members_page.html:129
+#: location/models.py:114 templates/members_page.html:130
 msgid "Place name"
 msgstr ""
 
-#: location/models.py:112 location/views.py:441
-#: templates/members_page.html:131
+#: location/models.py:115 location/views.py:445
+#: templates/members_page.html:132
 msgid "Organization"
 msgstr ""
 
-#: location/models.py:113 templates/map_page.html:276
+#: location/models.py:116 templates/map_page.html:276
 msgid "Organization relationship"
 msgstr ""
 
-#: location/models.py:121 templates/map_page.html:256
-#: templates/members_page.html:130
+#: location/models.py:124 templates/map_page.html:256
+#: templates/members_page.html:131
 msgid "Address"
 msgstr ""
 
-#: location/models.py:122
+#: location/models.py:125
 msgid "City"
 msgstr ""
 
-#: location/models.py:123 templates/locations_page.html:34
+#: location/models.py:126 templates/locations_page.html:34
 #: templates/members_page.html:87
 msgid "Country"
 msgstr ""
 
-#: location/models.py:124 templates/map_page.html:246
+#: location/models.py:127 templates/map_page.html:246
 msgid "Phone number"
 msgstr ""
 
-#: location/models.py:132
+#: location/models.py:135
 msgid "Approval"
 msgstr ""
 
-#: location/models.py:133
+#: location/models.py:136
 msgid "Hide email"
 msgstr ""
 
-#: location/models.py:134
+#: location/models.py:137
 msgid "Hide phone number"
 msgstr ""
 
-#: location/models.py:135
+#: location/models.py:138
 msgid "Hide address"
 msgstr ""
 
-#: location/models.py:136 templates/members_page.html:200
+#: location/models.py:139 templates/members_page.html:204
 msgid "View count"
 msgstr ""
 
-#: location/models.py:170
+#: location/models.py:173
 msgid "Location"
 msgstr ""
 
-#: location/models.py:171
+#: location/models.py:174
 msgid "Locations"
 msgstr ""
 
-#: location/models.py:192
+#: location/models.py:195
 msgid "Priority"
 msgstr ""
 
-#: location/models.py:194
+#: location/models.py:197
 msgid "Color"
 msgstr ""
 
-#: location/models.py:199
+#: location/models.py:202
 msgid "Activity"
 msgstr ""
 
-#: location/models.py:211
+#: location/models.py:214
 msgid "Provinces"
 msgstr ""
 
-#: location/models.py:212
+#: location/models.py:215
 msgid "Province"
 msgstr ""
 
-#: location/models.py:222
+#: location/models.py:225
 msgid "Regions"
 msgstr ""
 
-#: location/models.py:223 templates/members_page.html:97
+#: location/models.py:226 templates/members_page.html:97
 msgid "Region"
 msgstr ""
 
@@ -237,47 +237,47 @@ msgstr ""
 msgid "Layperson"
 msgstr ""
 
-#: location/views.py:315
+#: location/views.py:319
 msgid "Your information updated successfully"
 msgstr ""
 
-#: location/views.py:337
+#: location/views.py:341
 msgid "Password changed successfully"
 msgstr ""
 
-#: location/views.py:360
+#: location/views.py:364
 msgid "Place updated successfully"
 msgstr ""
 
-#: location/views.py:383
+#: location/views.py:387
 msgid "New place added successfully"
 msgstr ""
 
-#: location/views.py:436 location/views.py:439 location/views.py:445
+#: location/views.py:440 location/views.py:443 location/views.py:449
 msgid "Only member"
 msgstr ""
 
-#: location/views.py:441
+#: location/views.py:445
 msgid "Person"
 msgstr ""
 
-#: location/views.py:453 location/views.py:455 location/views.py:457
+#: location/views.py:457 location/views.py:459 location/views.py:461
 msgid "hidden"
 msgstr ""
 
-#: location/views.py:491
+#: location/views.py:495
 msgid "Logout successfully"
 msgstr ""
 
-#: location/views.py:501
+#: location/views.py:505
 msgid "Login successfully"
 msgstr ""
 
-#: location/views.py:503
+#: location/views.py:507
 msgid "Invalid email or password"
 msgstr ""
 
-#: location/views.py:518
+#: location/views.py:522
 msgid "Registration completed successfully"
 msgstr ""
 
@@ -378,30 +378,30 @@ msgstr ""
 msgid "Change password"
 msgstr ""
 
-#: templates/location_content.html:27
+#: templates/location_content.html:41
 msgid "Search Result"
 msgstr ""
 
-#: templates/location_content.html:33 templates/map_page.html:295
+#: templates/location_content.html:47 templates/map_page.html:295
 msgid "Close"
 msgstr ""
 
-#: templates/location_content.html:43
+#: templates/location_content.html:57
 msgid "Find your location"
 msgstr ""
 
-#: templates/location_content.html:44 templates/map_page.html:303
+#: templates/location_content.html:58 templates/map_page.html:303
 #: templates/members_page.html:120
 msgid "Search"
 msgstr ""
 
-#: templates/location_content.html:49
+#: templates/location_content.html:63
 msgid "Drag and drop the marker to pinpoint the place."
 msgstr ""
 
 #: templates/locations_page.html:49 templates/map_page.html:282
 #: templates/map_page.html.py:293 templates/members_page.html:112
-#: templates/members_page.html.py:134 templates/location/picture_form.html:5
+#: templates/members_page.html.py:135 templates/location/picture_form.html:5
 #: templates/location/picture_form.html:6
 msgid "Pictures"
 msgstr ""
@@ -414,7 +414,7 @@ msgstr ""
 msgid "Contact name"
 msgstr ""
 
-#: templates/map_page.html:260 templates/members_page.html:132
+#: templates/map_page.html:260 templates/members_page.html:133
 msgid "City/Country"
 msgstr ""
 
@@ -426,7 +426,7 @@ msgstr ""
 msgid "CDs/books request"
 msgstr ""
 
-#: templates/members_page.html:108 templates/members_page.html.py:133
+#: templates/members_page.html:108 templates/members_page.html.py:134
 msgid "Info"
 msgstr ""
 
@@ -438,31 +438,35 @@ msgstr ""
 msgid "Enter a keyword"
 msgstr ""
 
-#: templates/members_page.html:128
+#: templates/members_page.html:127
+msgid "ID"
+msgstr ""
+
+#: templates/members_page.html:129
 msgid "Phone"
 msgstr ""
 
-#: templates/members_page.html:186
+#: templates/members_page.html:190
 msgid "visited"
 msgstr ""
 
-#: templates/members_page.html:187
+#: templates/members_page.html:191
 msgid "visit"
 msgstr ""
 
-#: templates/members_page.html:190 templates/members_page.html.py:193
+#: templates/members_page.html:194 templates/members_page.html.py:197
 msgid "Visitors"
 msgstr ""
 
-#: templates/members_page.html:194
+#: templates/members_page.html:198
 msgid "persons"
 msgstr ""
 
-#: templates/members_page.html:194
+#: templates/members_page.html:198
 msgid "person"
 msgstr ""
 
-#: templates/members_page.html:200
+#: templates/members_page.html:204
 msgid "times"
 msgstr ""
 

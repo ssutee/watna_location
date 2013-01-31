@@ -90,6 +90,8 @@ class Profile(models.Model):
     other_skills = models.CharField(max_length=200, 
         verbose_name=_('Other skills'), blank=True, null=True)
         
+    editor = models.BooleanField(default=False)
+
     def __unicode__(self):
         return u'%s %s (%s)' % (self.user.first_name, self.user.last_name, self.user.email)
 
@@ -108,6 +110,7 @@ class Location(models.Model):
     user = models.ForeignKey(User, null=True)
     visitors = models.ManyToManyField(User, null=True, blank=True,
         verbose_name=_('Vistors'), related_name='users')    
+    send_media = models.BooleanField(default=False)
     place_name = models.CharField(max_length=200, verbose_name=_('Place name'))
     organization = models.BooleanField(verbose_name=_('Organization'))
     relation = models.ForeignKey('Relation', verbose_name=_('Organization relationship'),

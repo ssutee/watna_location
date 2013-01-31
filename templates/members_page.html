@@ -124,6 +124,7 @@
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
+      <th>{% trans 'ID' %}</th> 
       <th>{% trans 'Name' %}</th> 
       <th>{% trans 'Phone' %}</th>
       <th>{% trans 'Place name' %}</th>
@@ -137,6 +138,11 @@
   <tbody>
     {% for location in locations %}
       <tr>
+        <td>
+          <div style="text-align:center;">
+          {{location.id}}
+          </div>
+        </td>
         <td>
           <div>
           {% if not location.hide_email %}          

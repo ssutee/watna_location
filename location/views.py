@@ -275,7 +275,7 @@ def members_page(request):
         objects = objects.filter(city__in=map(lambda x:x.name, Region.objects.filter(name=region)[0].provinces.all())) 
         
     if query != '':
-        objects = objects.filter(Q(place_name__contains=query)|Q(user__first_name__contains=query)|Q(user__last_name__contains=query)|Q(address__contains=query)|Q(city__contains=query))
+        objects = objects.filter(Q(pk=query)|Q(place_name__contains=query)|Q(user__first_name__contains=query)|Q(user__last_name__contains=query)|Q(address__contains=query)|Q(city__contains=query))
         
     location_list = objects.distinct().all()
     
@@ -526,4 +526,3 @@ def register_page(request):
 
     context = {'form': form, 'active_menu':1}
     return render(request, 'registration/register.html', context)    
-    

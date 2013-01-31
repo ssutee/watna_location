@@ -3,6 +3,20 @@
 {% load crispy_forms_tags %}
 
 <script type="text/javascript">
+  $(".alert").hide();
+  $(document).ready(function() {
+    $('#submit-id-save').click(function(event) {      
+      var lat = $('#id_latitude').val();
+      var lng = $('#id_longitude').val();
+      if (lat == '15.87003' && lng == '100.99254') {
+        event.preventDefault();
+        $('#lat_lng_modal').modal();
+      }
+    });
+  });
+</script>
+
+<script type="text/javascript">
   $(document).ready(function() {
     var is_organization = $('#id_organization').is(':checked');
     if (!is_organization) {
