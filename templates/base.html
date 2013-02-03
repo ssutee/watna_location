@@ -166,12 +166,14 @@
               <input id="language" name="language" value="en" type="hidden" />
               <input name="next" type="hidden" value="{{ redirect_to }}" />
             </form>
-            {% if not user.is_authenticated %}
+            {% if not user.is_authenticated %}                        
             <form style="margin-right:20px;" class="navbar-form pull-right" 
               method="POST" action="/login/">{% csrf_token %}
-              <input name="email" class="span2" type="text" placeholder={% trans 'Email' %}>
-              <input name="password" class="span2" type="password" placeholder={% trans 'Password' %}>
+              <input name="email" class="span2" type="text" placeholder={% trans 'Email' %} />
+              <input type="hidden" name="this_is_the_login_form" value="1" />
+              <input name="password" class="span2" type="password" placeholder={% trans 'Password' %} />
               <button type="submit" class="btn">{% trans 'Login' %}</button>
+              <span><a class="btn btn-danger" href="{% url admin_password_reset %}">{%trans 'Forgot password?' %}</a></span>
             </form>
             {% endif %}
             {% if user.is_authenticated %}

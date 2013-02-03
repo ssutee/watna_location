@@ -5,6 +5,23 @@ from django.contrib.admin import SimpleListFilter
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
+class IsEditor(SimpleListFilter):
+    title = _('Editor')
+    parameter_name = 'editor'
+    
+    def lookups(self, request, model_admin):
+        return (
+            ('yes', _('Yes')),
+            ('no', _('No')),
+        )
+        
+    def queryset(self, request, queryset):
+        if self.value() == 'yes':
+            return queryset.filter(editor=True)
+            
+        if self.value() == 'no':
+            return queryset.filter(editor=False)
+
 class InvalidCity(SimpleListFilter):
     title = _('invalid city')
     parameter_name = 'invalid_city'
@@ -34,6 +51,10 @@ class LocationAdmin(admin.ModelAdmin):
     list_filter = (InvalidCity,)
     search_fields = ('place_name', 'additional_info', 'city', 'country', 'address',)
     
+class ProfileAdmin(admin.ModelAdmin):
+    list_filter = (IsEditor,)
+    search_fields = ('user__email', 'user__first_name', 'user__last_name',)
+    
 class PictureAdmin(admin.ModelAdmin):
     list_display = ('slug', 'admin_image',)
     
@@ -45,4 +66,4 @@ admin.site.register(Picture, PictureAdmin)
 admin.site.register(Skill)
 admin.site.register(Province)
 admin.site.register(Region)
-admin.site.register(Profile)
+admin.site.register(Profile, ProfileAdmin)

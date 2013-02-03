@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 21:52+0700\n"
+"POT-Creation-Date: 2013-02-03 18:14+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,15 +19,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0\n"
 
 #: location/admin.py:9
-msgid "invalid city"
+msgid "Editor"
 msgstr ""
 
-#: location/admin.py:14
+#: location/admin.py:14 location/admin.py:31
 msgid "Yes"
 msgstr ""
 
-#: location/admin.py:15
+#: location/admin.py:15 location/admin.py:32
 msgid "No"
+msgstr ""
+
+#: location/admin.py:26
+msgid "invalid city"
 msgstr ""
 
 #: location/forms.py:27 location/forms.py:54 location/forms.py:158
@@ -56,7 +60,7 @@ msgstr "สายงานอาชีพและความสามารถ
 msgid "Other skills"
 msgstr "ความสามารถอื่นๆ"
 
-#: location/forms.py:63 location/forms.py:110 templates/base.html:173
+#: location/forms.py:63 location/forms.py:110 templates/base.html:174
 msgid "Password"
 msgstr "รหัสผ่าน"
 
@@ -147,7 +151,7 @@ msgstr ""
 msgid "Place name"
 msgstr "ชื่อสถานที่"
 
-#: location/models.py:115 location/views.py:445
+#: location/models.py:115 location/views.py:450
 #: templates/members_page.html:132
 msgid "Organization"
 msgstr "องค์กร"
@@ -190,7 +194,7 @@ msgstr "ซ่อนเบอร์โทรศัพท์"
 msgid "Hide address"
 msgstr "ซ่อนที่อยู่"
 
-#: location/models.py:139 templates/members_page.html:204
+#: location/models.py:139 templates/members_page.html:206
 msgid "View count"
 msgstr "รูปภาพถูกเรียกดู"
 
@@ -243,47 +247,47 @@ msgstr "นักบวช"
 msgid "Layperson"
 msgstr "ฆราวาส"
 
-#: location/views.py:319
+#: location/views.py:322
 msgid "Your information updated successfully"
 msgstr "ข้อมูลของคุณถูกปรับปรุงแล้ว"
 
-#: location/views.py:341
+#: location/views.py:344
 msgid "Password changed successfully"
 msgstr "รหัสผ่านถูกเปลี่ยนแปลงแล้ว"
 
-#: location/views.py:364
+#: location/views.py:367
 msgid "Place updated successfully"
 msgstr "ข้อมูลสถานที่ถูกปรับปรุงแล้ว"
 
-#: location/views.py:387
+#: location/views.py:392
 msgid "New place added successfully"
 msgstr "สถานที่ใหม่ถูกเพิ่มแล้ว"
 
-#: location/views.py:440 location/views.py:443 location/views.py:449
+#: location/views.py:445 location/views.py:448 location/views.py:454
 msgid "Only member"
 msgstr "เฉพาะผู้ลงทะเบียน"
 
-#: location/views.py:445
+#: location/views.py:450
 msgid "Person"
 msgstr "บุคคล"
 
-#: location/views.py:457 location/views.py:459 location/views.py:461
+#: location/views.py:462 location/views.py:464 location/views.py:466
 msgid "hidden"
 msgstr "ไม่เปิดเผย"
 
-#: location/views.py:495
+#: location/views.py:500
 msgid "Logout successfully"
 msgstr "ออกจากระบบแล้ว"
 
-#: location/views.py:505
+#: location/views.py:510
 msgid "Login successfully"
 msgstr "เข้าสู่ระบบสำเร็จแล้ว"
 
-#: location/views.py:507
+#: location/views.py:512
 msgid "Invalid email or password"
 msgstr "อีเมล หรือ รหัสผ่านไม่ถูกต้อง"
 
-#: location/views.py:522
+#: location/views.py:527
 msgid "Registration completed successfully"
 msgstr "ลงทะเบียนสำเร็จแล้ว"
 
@@ -368,11 +372,15 @@ msgstr "ออกจากระบบ"
 msgid "Email"
 msgstr "อีเมล"
 
-#: templates/base.html:174
+#: templates/base.html:175
 msgid "Login"
 msgstr "เข้าสู่ระบบ"
 
-#: templates/base.html:179
+#: templates/base.html:176
+msgid "Forgot password?"
+msgstr "ลืมรหัสผ่าน?"
+
+#: templates/base.html:181
 msgid "Logged in as"
 msgstr "เข้าสู่ระบบโดย"
 
@@ -452,27 +460,27 @@ msgstr "รหัส"
 msgid "Phone"
 msgstr "โทรศัพท์"
 
-#: templates/members_page.html:190
+#: templates/members_page.html:192
 msgid "visited"
 msgstr "ชมแล้ว"
 
-#: templates/members_page.html:191
+#: templates/members_page.html:193
 msgid "visit"
 msgstr "เยี่ยมชม"
 
-#: templates/members_page.html:194 templates/members_page.html.py:197
+#: templates/members_page.html:196 templates/members_page.html.py:199
 msgid "Visitors"
 msgstr "ผู้เยี่ยมชม"
 
-#: templates/members_page.html:198
+#: templates/members_page.html:200
 msgid "persons"
 msgstr "คน"
 
-#: templates/members_page.html:198
+#: templates/members_page.html:200
 msgid "person"
 msgstr "คน"
 
-#: templates/members_page.html:204
+#: templates/members_page.html:206
 msgid "times"
 msgstr "ครั้ง"
 

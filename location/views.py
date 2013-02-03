@@ -386,6 +386,8 @@ def add_location_page(request):
         if form.is_valid():
             location = form.save(commit=False)
             location.user = request.user;
+            if request.user.profile.editor:
+                location.send_media = True
             location.save()
             request.flash['message'] = ('alert-success', _('New place added successfully'))
             return HttpResponseRedirect('/places')
