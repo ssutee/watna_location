@@ -114,7 +114,7 @@ msgstr "ข้อมูลเพิ่มเติม"
 #: location/forms.py:182
 msgid ""
 "If you want to request the Dhamma media, please use the another channel."
-msgstr "ถ้าต้องการขอหนังสือและซีดี กรุณาใช้ช่องทางอื่นที่จัดเตรียมไว้ให้ เพื่อความสะดวกในการจัดการข้อมูล"
+msgstr "ถ้าต้องการขอหนังสือ/ซีดี กรุณาใช้ช่องทางอื่นที่จัดเตรียมไว้ให้ เพื่อความสะดวกในการจัดการข้อมูล"
 
 #: location/forms.py:183
 msgid ""
@@ -123,10 +123,9 @@ msgid ""
 "com/viewform?formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">this button</a>.</"
 "p>"
 msgstr ""
-"<p class=\"text-warning\">คำขอหนังสือ/ซีดี หรือ มีคำแนะนำใดๆ กรุณากดที่ <a class="
+"<p class=\"text-warning\">กรุณากดที่ <a class="
 "\"btn btn-success\" href=\"https://spreadsheets.google.com/viewform?"
-"formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">ปุ่มนี้</a> "
-"เพื่อความสะดวกในการจัดการข้อมูล</p>"
+"formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">ปุ่มนี้</a> ถ้าต้องการขอหนังสือ/ซีดี หรือ มีคำแนะนำใดๆ</p>"
 
 #: location/forms.py:196
 msgid ""
