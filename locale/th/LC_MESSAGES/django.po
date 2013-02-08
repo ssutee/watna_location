@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-03 18:14+0700\n"
+"POT-Creation-Date: 2013-02-08 15:00+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,16 +113,22 @@ msgstr "ข้อมูลเพิ่มเติม"
 
 #: location/forms.py:182
 msgid ""
-"<p class=\"text-warning\">Do not enter any request or suggestion into this "
-"field. Please use this <a href=\"https://spreadsheets.google.com/viewform?"
-"formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">channel</a> instead.</p>"
+"If you want to request the Dhamma media, please use the another channel."
+msgstr "ถ้าต้องการขอหนังสือและซีดี กรุณาใช้ช่องทางอื่นที่จัดเตรียมไว้ให้ เพื่อความสะดวกในการจัดการข้อมูล"
+
+#: location/forms.py:183
+msgid ""
+"<p class=\"text-warning\">If you want Dhamma media or have suggestion, "
+"Please click <a class=\"btn btn-success\" href=\"https://spreadsheets.google."
+"com/viewform?formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">this button</a>.</"
+"p>"
 msgstr ""
-"<p class=\"text-warning\">คำขอหนังสือ/ซีดี หรือ คำแนะนำใดๆ กรุณาใช้ <a href="
-"\"https://spreadsheets.google.com/viewform?"
-"formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">ช่องทางนี้</a> "
+"<p class=\"text-warning\">คำขอหนังสือ/ซีดี หรือ มีคำแนะนำใดๆ กรุณากดที่ <a class="
+"\"btn btn-success\" href=\"https://spreadsheets.google.com/viewform?"
+"formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">ปุ่มนี้</a> "
 "เพื่อความสะดวกในการจัดการข้อมูล</p>"
 
-#: location/forms.py:195
+#: location/forms.py:196
 msgid ""
 "<p class=\"text-warning\">Please use the map on the right side to locate "
 "your place.</p>"
@@ -536,18 +542,6 @@ msgstr "ประเทศไทย"
 
 #~ msgid "Send books places"
 #~ msgstr "สถานที่ส่งหนังสือ"
-
-#~ msgid ""
-#~ "<p class=\"text-warning\">Do not enter any request or suggestion into "
-#~ "this field. If you have a suggustion use this <a href=\"http://www."
-#~ "watnapahpong.com/webboard/forum.php\">webboard</a>. If you want books and "
-#~ "CDs send a request to <a href=\"mailto:info@buddhakos.org\">Buddhakos "
-#~ "foundation</a>.</p>"
-#~ msgstr ""
-#~ "<p class=\"text-warning\">กรุณาอย่าใส่คำขอหรือคำแนะนำใดๆ ลงในช่องนี้ "
-#~ "ถ้ามีคำถามหรือคำแนะนำให้ใช้ <a href=\"http://www.watnapahpong.com/webboard/"
-#~ "forum.php\">เว็บบอร์ด</a> ถ้าต้องการขอหนังสือและซีดีส่งอีเมลมาที่ <a href=\"mailto:"
-#~ "info@buddhakos.org\">มูลนิธิพุทธโฆษณ์</a></p>"
 
 #, fuzzy
 #~ msgid "Add"

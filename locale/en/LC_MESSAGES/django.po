@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-03 18:14+0700\n"
+"POT-Creation-Date: 2013-02-08 15:00+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,12 +112,18 @@ msgstr ""
 
 #: location/forms.py:182
 msgid ""
-"<p class=\"text-warning\">Do not enter any request or suggestion into this "
-"field. Please use this <a href=\"https://spreadsheets.google.com/viewform?"
-"formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">channel</a> instead.</p>"
+"If you want to request the Dhamma media, please use the another channel."
 msgstr ""
 
-#: location/forms.py:195
+#: location/forms.py:183
+msgid ""
+"<p class=\"text-warning\">If you want Dhamma media or have suggestion, "
+"Please click <a class=\"btn btn-success\" href=\"https://spreadsheets.google."
+"com/viewform?formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">this button</a>.</"
+"p>"
+msgstr ""
+
+#: location/forms.py:196
 msgid ""
 "<p class=\"text-warning\">Please use the map on the right side to locate "
 "your place.</p>"

@@ -178,10 +178,11 @@ class LocationForm(ModelForm):
     additional_info = forms.CharField(
         label=_('Additional information'),
         required=False,
-        widget=forms.Textarea(attrs={'rows':8, 'cols':40}),
-        help_text=_('<p class="text-warning">Do not enter any request'
-        ' or suggestion into this field. Please use this'
-        ' <a href="https://spreadsheets.google.com/viewform?formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ">channel</a> instead.</p>')
+        widget=forms.Textarea(attrs={'rows':8, 'cols':40, 
+            'placeholder':_('If you want to request the Dhamma media, please use the another channel.')}),
+        help_text=_('<p class="text-warning">If you want Dhamma media or have suggestion,'
+        ' Please click'
+        ' <a class="btn btn-success" href="https://spreadsheets.google.com/viewform?formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ">this button</a>.</p>')
     )
     
     city = forms.CharField(        
