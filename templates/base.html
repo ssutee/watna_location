@@ -105,11 +105,26 @@
           $('#alpha_sort>a>i').attr('class', 'icon-ok');
           set_sorting('city');          
         });
-        
+
       });
     </script>  
   </head>
   <body>    
+    
+    <div id="logout_alert" class="modal hide fade">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>{% trans 'Logout confirmation' %}</h3>
+      </div>
+      <div class="modal-body">
+        <p>{% trans 'Do you want to logout?' %}</p>
+      </div>
+      <div class="modal-footer">
+        <a data-dismiss="modal" aria-hidden="true" class="btn">{% trans 'Cancel' %}</a>
+        <a href="/logout/" class="btn btn-primary">{% trans 'Logout' %}</a>
+      </div>
+    </div>
+    
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -148,8 +163,8 @@
                     <li id="alpha_sort"><a href="#">{% trans "City/Place alphabet" %} <i class="{% if sorting == 'city' %}icon-ok{% else %}{% endif %}"></i></a></li>
                   </ul>
                 </li>              
-                <li>
-                  <a href="/logout/">{% trans 'Logout' %}</a>
+                <li>                  
+                  <a data-toggle="modal" data-target="#logout_alert">{% trans 'Logout' %}</a>
                 </li>
               {% else %}
                 <li class="{% if active_menu == 1 %}active{% else %}{% endif %}">

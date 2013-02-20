@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-08 15:00+0700\n"
+"POT-Creation-Date: 2013-02-20 12:20+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgstr ""
 msgid "Other skills"
 msgstr ""
 
-#: location/forms.py:63 location/forms.py:110 templates/base.html:174
+#: location/forms.py:63 location/forms.py:110 templates/base.html:189
 msgid "Password"
 msgstr ""
 
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Password do not match"
 msgstr ""
 
-#: location/forms.py:101 templates/base.html:156
+#: location/forms.py:101 templates/base.html:171
 msgid "Register"
 msgstr ""
 
@@ -304,83 +304,95 @@ msgstr ""
 msgid "Please use the map on the right side to locate your place."
 msgstr ""
 
-#: templates/base.html:121
+#: templates/base.html:117
+msgid "Logout comfirmation"
+msgstr ""
+
+#: templates/base.html:120
+msgid "Do you want to logout?"
+msgstr ""
+
+#: templates/base.html:123
+msgid "Cancel"
+msgstr ""
+
+#: templates/base.html:124 templates/base.html.py:167
+msgid "Logout"
+msgstr ""
+
+#: templates/base.html:136
 msgid "Buddhawajana Network"
 msgstr ""
 
-#: templates/base.html:125 templates/map_page.html:6
+#: templates/base.html:140 templates/map_page.html:6
 #: templates/map_page.html.py:7
 msgid "Map"
 msgstr ""
 
-#: templates/base.html:129 templates/locations_page.html:4
+#: templates/base.html:144 templates/locations_page.html:4
 #: templates/locations_page.html.py:5
 msgid "My places"
 msgstr ""
 
-#: templates/base.html:132 templates/my_info_page.html:5
+#: templates/base.html:147 templates/my_info_page.html:5
 #: templates/my_info_page.html.py:6
 msgid "My info"
 msgstr ""
 
-#: templates/base.html:135 templates/members_page.html:4
+#: templates/base.html:150 templates/members_page.html:4
 #: templates/members_page.html.py:5
 msgid "Members"
 msgstr ""
 
-#: templates/base.html:139
+#: templates/base.html:154
 msgid "Options"
 msgstr ""
 
-#: templates/base.html:141
+#: templates/base.html:156
 msgid "Map type"
 msgstr ""
 
-#: templates/base.html:142
+#: templates/base.html:157
 msgid "Road"
 msgstr ""
 
-#: templates/base.html:143
+#: templates/base.html:158
 msgid "Terrain"
 msgstr ""
 
-#: templates/base.html:144
+#: templates/base.html:159
 msgid "Satellite"
 msgstr ""
 
-#: templates/base.html:145
+#: templates/base.html:160
 msgid "Satellite & Labels"
 msgstr ""
 
-#: templates/base.html:146
+#: templates/base.html:161
 msgid "Sorting"
 msgstr ""
 
-#: templates/base.html:147
+#: templates/base.html:162
 msgid "Entry order"
 msgstr ""
 
-#: templates/base.html:148
+#: templates/base.html:163
 msgid "City/Place alphabet"
 msgstr ""
 
-#: templates/base.html:152
-msgid "Logout"
-msgstr ""
-
-#: templates/base.html:172
+#: templates/base.html:187
 msgid "Email"
 msgstr ""
 
-#: templates/base.html:175
+#: templates/base.html:190
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:176
+#: templates/base.html:191
 msgid "Forgot password?"
 msgstr ""
 
-#: templates/base.html:181
+#: templates/base.html:196
 msgid "Logged in as"
 msgstr ""
 
