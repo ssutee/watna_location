@@ -214,6 +214,30 @@ def map_page(request):
     if 'message' in request.flash and request.flash['message']:
         context['alert_type'], context['alert_message'] = request.flash['message']
         
+    data = []
+    for i,nav in enumerate(nav_list):
+        value = nav.get('value')
+        item = {'position': i}
+        if nav.get('type') == 'header':
+            item['name'] = value
+            item['id'], item['lat'], item['lng'] = 0,0,0
+            item['class'] = 'nav-header'
+            item['link_class'] = 'nav-header'
+            item['country'] = ''
+            item['image_style'] = 'none'
+        else:
+            item['name'] = '%d. %s, %s' % (value.id, value.place_name, value.city)
+            item['id'] = value.id
+            item['lat'] = value.latitude
+            item['lng'] = value.longitude
+            item['class'] = 'approved' if value.approved else ''
+            item['link_class'] = 'location'
+            item['country'] = nav.get('country')
+            item['image_style'] = 'inline-block' if value.pictures.count() else 'none'
+        data.append(item)
+
+    context['data'] = simplejson.dumps(data)
+
     return render(request, 'map_page.html', context)
 
 def create_search_map_form(request, lat, lng):
