@@ -497,19 +497,18 @@ def visit_location_page(request):
     data = {'success':1}
     try:
         location = Location.objects.get(pk=request.POST.get('location_id'))
+        if location.visitors.filter(id=request.user.id).count() == 0:
+            location.visitors.add(request.user)
+            location.save()
+            data['success'] = 0
+        elif request.POST.get('toggle') == 'true':
+            location.visitors.remove(request.user)
+            location.save()
+            data['success'] = 0
+        data['visitors'] = location.visitor_html_name_list()
     except Location.DoesNotExist, e:
         data['visitors'] = 0
-        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
 
-    if location.visitors.filter(id=request.user.id).count() == 0:
-        location.visitors.add(request.user)
-        location.save()
-        data['success'] = 0
-    elif request.POST.get('toggle') == 'true':
-        location.visitors.remove(request.user)
-        location.save()
-        data['success'] = 0
-    data['visitors'] = location.visitor_html_name_list()
     return HttpResponse(simplejson.dumps(data), mimetype="application/json")
     
 @csrf_exempt
