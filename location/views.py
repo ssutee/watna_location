@@ -495,7 +495,12 @@ def find_location_by_id_page(request):
 @login_required
 def visit_location_page(request):
     data = {'success':1}
-    location = Location.objects.get(pk=request.POST.get('location_id'))
+    try:
+        location = Location.objects.get(pk=request.POST.get('location_id'))
+    except Location.DoesNotExist, e:
+        data['visitors'] = 0
+        return HttpResponse(simplejson.dumps(data), mimetype="application/json")
+
     if location.visitors.filter(id=request.user.id).count() == 0:
         location.visitors.add(request.user)
         location.save()
