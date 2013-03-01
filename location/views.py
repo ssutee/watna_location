@@ -205,6 +205,7 @@ def map_page(request):
         display_title = _('Layperson')
             
     context = {'form': MapForm(initial={'gmap': gmap}), 
+        'map_type' : get_map_type(request),
         'ALL': ALL, 'MONK': MONK, 'LAYPERSON': LAYPERSON, 
         'active_menu':0, 'nav_list': nav_list, 
         'total': Location.objects.filter(q).count(), 
