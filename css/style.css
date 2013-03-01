@@ -100,3 +100,12 @@ p#additional_info {
   height: 600px;
   width: 800px;
 }
+
+#nav_bar {
+  height: 700px;
+  overflow: hidden;
+}
+
+#nav_bar:hover {
+  overflow: auto;
+}

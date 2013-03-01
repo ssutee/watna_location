@@ -70,28 +70,29 @@
       }
 
       function resize_containers() {
-        var gmap = $('div.gmap');            
+        var gmap = $('div.map');            
         var width = $('#nav_bar').is(':visible') ? $('#map_container').width() : $('.row-fluid').width();        
         var height = $('#map_container').height();
         var gap = $('#footer').position().top - ($('#map_container').position().top + height);
-
         height += gap - 30;
         
         gmap.width(width);        
-        $('div.gmap>div').width(width);
-        $('div.gmap>img').width(width);        
+        $('div.map>div').width(width);        
         
         // set maximum height
         height = height > 600 ? 600 : height;        
+
         gmap.height(height);        
-        $('div.gmap>div').height(height);
-        $('div.gmap>img').height(height);                
+        $('div.map>div').height(height);
       }
 
       function resize_map() {
         resize_containers();
-        var gmap = $('div.gmap');
-        google.maps.event.trigger(gmap.getMap(), 'resize');
+        if ($('#map_canvas')) {
+          angular.element($('#map_canvas').scope().$apply(function(scope) {
+            google.maps.event.trigger(scope.myMap, 'resize');
+          }));
+        }        
       }
 
       $(document).ready(function() {
