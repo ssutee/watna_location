@@ -22,10 +22,13 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}waypoints/js/waypoints.min.js"></script> 
-    <script type="text/javascript" src="{{STATIC_URL}}angular/angular.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}angular/angular.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}angular/angular-ui-ieshiv.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}angular/angular-ui.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}angular/angular-resource.min.js"></script>
     <script type="text/javascript"> 
         
-      angular.module('app', [])
+      angular.module('app', ['ui', 'ngResource'])
       .config(['$interpolateProvider', function ($interpolateProvider) {
           $interpolateProvider.startSymbol('<[');
           $interpolateProvider.endSymbol(']>');
