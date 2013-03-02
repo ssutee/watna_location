@@ -6,313 +6,52 @@
 {% block title %}{% trans "Map" %} - {{ display_title }} {% endblock %}
 {% block head %}{% trans "Map" %} - {{ display_title }} {% endblock %}
 {% block content %}
-  <script type="text/javascript">
 
-    var ALL          = {{ ALL }};
-    var MONK         = {{ MONK }};
-    var LAYPERSON    = {{ LAYPERSON }};
+  {% include "map_page_script.html" %}
+
+  {% include "map_page_modal_info.html" %}   
   
-      window.m_listener = {
-          markerOver: function() { this.openInfoWindow(); },
-          markerOut: function() { this.closeInfoWindow(); },
-          markerClick: function(e) {
-            var location_id = $(this.getInfoWindow().content).attr('id');
-            show_info_modal(location_id);
-          },
-      };      
-
-      function show_info_modal(location_id) {
-        $.post("/visit_location/", { location_id: location_id, toggle:false });      
-        $.post("/find_location_by_id/", 
-          { id: location_id }, 
-          function(data) {
-            $('#info_modal_label').text(location_id + '. ' + data.place_name + ' (' + data.info +'/'+ data.status + ')');
-            $('#contact_name').text(data.first_name + " " + data.last_name);
-            $('#email').text(data.email);
-            $('#phone_number').text(data.phone_number);
-            $('#address').text(data.address);
-            $('#city').text(data.city + ", " + data.country);
-            $('#activities').text(data.activities);
-            $('#additional_info').text(data.additional_info);    
-            $('#approved').text(data.approved);            
-            if (data.relation == '') {
-              $('#td_id_relation').hide();
-            } else {
-              $('#relation').text(data.relation);
-            }
-            if (data.has_picture) {
-              $('#btn_pictures').show();
-              $('#tr_id_gallery').show();
-            } else {
-              $('#btn_pictures').hide();
-              $('#tr_id_gallery').hide();
-            }
-            
-            var gallery = $('#gallery');
-            gallery.empty();
-            
-            $.each(data.pictures, function(index, picture) {
-              $('<a rel="gallery"/>')
-                .append($('<img>')
-                  .prop('src', picture[1])
-                  .prop('class', 'thumbnail')
-                  .css({'display':'inline', 'width':'auto', 'height': '50px'}))
-                .prop('href', picture[0])
-                .prop('title', data.place_name + ", " +data.city)
-                .appendTo(gallery)
-                .click(function(e) {
-                  $.post("/view_count/", { location_id: location_id });
-                });
-            });
-            
-            $('#info_modal').modal({backdrop:true, keyboard:true});
-          });
-      }
-
-      function resize_containers() {
-        var gmap = $('div.gmap');            
-        var width = $('#nav_bar').is(':visible') ? $('#map_container').width() : $('.row-fluid').width();        
-        var height = $('#map_container').height();
-        var gap = $('#footer').position().top - ($('#map_container').position().top + height);
-
-        height += gap - 30;
-        
-        gmap.width(width);        
-        $('div.gmap>div').width(width);
-        $('div.gmap>img').width(width);        
-        
-        // set maximum height
-        height = height > 600 ? 600 : height;        
-        gmap.height(height);        
-        $('div.gmap>div').height(height);
-        $('div.gmap>img').height(height);                
-      }
-
-      function resize_map() {
-        resize_containers();
-        var gmap = $('div.gmap');
-        google.maps.event.trigger(gmap.getMap(), 'resize');
-      }
-
-      $(document).ready(function() {
-        $('#back-top').attr('class', 'hidden');
-        $.waypoints.settings.scrollThrottle = 30;
-        $('div.gmap').waypoint(function(e, direction) {
-          $(this).toggleClass('sticky', direction == "down"); 
-          $('#back-top').toggleClass('hidden', direction == "up");         
-          e.stopPropagation();
-        });
-                
-        $("a.location").click(function(event) {
-          event.preventDefault();
-        });        
-
-        resize_containers();
-
-        $(window).resize(function() {
-          resize_map();
-        });      
-        
-        $('li.nav-header>a').popover({html: true});
-                  
-        $('#btn_pictures').button().click(function () {
-          var options = $(this).data(),
-              modal = $(options.target),
-              data = modal.data('modal');
-          if (data) {
-              $.extend(data.options, options);
-          } else {
-              options = $.extend(modal.data(), options);
-          }
-          modal.modal(options);
-        });
-        
-        $('#display_menu>li>a').click(function(event) {
-          var menu = $(this).parent();
-          
-          if (menu.attr('class') == '' 
-            || (menu.attr('class') == 'active' && another_checked(menu))) {
-            menu.toggleClass('active');
-            set_display();
-          } 
-          else if (menu.attr('class') == 'active' && !another_checked(menu)) {
-            menu.toggleClass('active');
-            check_another(menu);
-            set_display();
-          }
-                    
-        });
-        
-        var display = parseInt({{ display }});
-        if (display != ALL && display != MONK && display != LAYPERSON) {
-          display = ALL;
-        }
-        
-        if (display == ALL) {
-          $('#show_monk').attr('class', 'active');
-          $('#show_layperson').attr('class', 'active');
-        } else {
-          if ((display & MONK) == MONK) {
-            console.log(display & MONK);
-            $('#show_monk').attr('class', 'active');
-          }
-          if ((display & LAYPERSON) == LAYPERSON) {
-            console.log(display & LAYPERSON);
-            $('#show_layperson').attr('class', 'active');
-          }
-        }        
-      });
-      
-      function another_checked(menu) {
-        if (menu.attr('id') == 'show_monk') {
-          return $('#show_layperson').attr('class') == 'active';
-        }
-        if (menu.attr('id') == 'show_layperson') {
-          return $('#show_monk').attr('class') == 'active';
-        }        
-      }
-      
-      function check_another(menu) {
-        if (menu.attr('id') == 'show_monk') {
-          $('#show_layperson').attr('class', 'active');
-        }
-        if (menu.attr('id') == 'show_layperson') {
-          $('#show_monk').attr('class', 'active');
-        }       
-      }
-      
-      function move_to(lat, lng) {
-        var gmap = $('div.gmap:visible');        
-        var point = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
-        gmap.getMap().setZoom(16);
-        gmap.getMap().panTo(point);
-      }
-            
-      function set_display() {
-        var display = ALL;
-        if ($('#show_monk').attr('class') == 'active') {
-          display |= MONK;
-        }
-        if ($('#show_layperson').attr('class') == 'active') {
-          display |= LAYPERSON;
-        }        
-              
-        $.post("/set_display/", {"display": display}, function(data) {
-          location.reload();
-        });
-      }
-      
-      function nav_click_event(nav_id) {    
-        if (nav_id > 0) {
-          var a = $('a#'+nav_id);
-          move_to(a.attr('lat'), a.attr('lng'));
-          if (a.parent().hasClass('active')) {
-            show_info_modal(a.attr('id'));
-          } else {            
-            $('li.active').toggleClass('active');
-            a.parent().toggleClass('active');
-          }
-        }
-      }    
-      
-      function NavCtrl($scope) {      
-        $scope.search = function (item){    
-          if (!$scope.query || item.id == 0 || 
-                item.country.toLowerCase().indexOf($scope.query.toLowerCase()) != -1 ||
-                item.name.toLowerCase().indexOf($scope.query.toLowerCase()) != -1) {
-            return true;
-          }
-          return false;
-        };
-      }
-          
-  </script>
-
-  <div id="info_modal" class="modal hide fade" tabindex="-1" role="dialog" 
-    aria-labelledby="info_modal_label" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h3 id="info_modal_label"></h3>
-    </div>    
-    <div class="modal-body">
-      <table class="table" style="border-color: blue !important;">
-        <tbody>
-          <tr>
-            <td>
-              <strong>{% trans 'Contact name' %}</strong>
-              <p id="contact_name"> </p>  
-            </td>
-            <td>
-              <strong>{% trans 'Phone number' %}</strong>
-              <p id="phone_number"> </p>            
-            </td>
-            <td>
-              <strong>{% trans 'E-mail' %}</strong>
-              <p id="email"> </p>            
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <strong>{% trans 'Address' %}</strong>
-              <p id="address"> </p>            
-            </td>
-            <td>
-              <strong>{% trans 'City/Country' %}</strong>
-              <p id="city"> </p>            
-            </td>            
-          </tr>
-          <tr>
-            <td colspan="3">
-              <strong>{% trans 'Activities' %}</strong>
-              <p id="activities"> </p>            
-            </td>            
-          </tr>
-          <tr>
-            <td colspan="2">
-              <strong>{% trans 'Additional information' %}</strong>
-              <p id="additional_info"> </p>            
-            </td>            
-            <td id="td_id_relation">
-              <strong>{% trans 'Organization relationship' %}</strong>
-              <p id="relation"> </p>            
-            </td>            
-          </tr>
-          <tr id="tr_id_gallery">
-            <td colspan="3">
-              <strong>{% trans 'Pictures' %}</strong>
-              <div style="margin-top:5px" id="gallery" data-dismiss="modal" data-toggle="modal-gallery" data-target="#modal-gallery">
-              </div>            
-            </td>
-          </tr>          
-        </tbody>
-      </table>
-    </div>
-    <div class="modal-footer">
-      <button id="btn_pictures" class="btn btn-success" data-dismiss="modal"
-       data-target="#modal-gallery" data-selector="#gallery a[rel=gallery]">
-        {% trans "Pictures" %}
-      </button>
-      <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
-    </div>
-  </div>     
-  <div class="row-fluid">       
-    <div ng-app="app" id="nav_bar" class="span3 hidden-phone hidden-tablet">  
-      <ul class="nav nav-list bs-sidenav" ng-controller="NavCtrl">   
-        <div style="margin-top:10px;">
-          <b>{% trans 'Search' %}</b>
-          <input class="input-medium search-query" ng-model="query">
-        </div>
-        <hr/>        
-        <li class="nav-header"><a href="#" rel="popover" data-content="{{countries}}" data-placement="bottom" data-original-title="Countries ({{total_country}})">Total ({{total}}) | Countries ({{total_country}})</a></li>             
-        <div ng-init="nav_list = {{data}}"></div>
-        <li ng-repeat="nav in nav_list | filter:search | orderBy:'position'" onclick="nav_click_event(<[nav.id]>);" class="<[nav.class]>" my-repeat-directive>
-          <a href="#" id="<[nav.id]>" class="<[nav.link_class]>"
-            lat="<[nav.lat]>" lng="<[nav.lng]>">
-            <i class="icon-picture" style="display:<[nav.image_style]>;"></i>
-            <[nav.name]>
+  <div class="row-fluid" ng-controller="MapCtrl">       
+    <div id="nav_bar" class="span3 hidden-phone hidden-tablet">  
+    
+      <div style="margin-top:10px;">
+        <b>{% trans 'Search' %}</b>
+        <input class="input-medium search-query" ng-model="query">
+      </div>
+      <hr/>                      
+      <div id="nav_content">
+        <div class="nav-header">
+          <a href="#" rel="popover" data-content="{{countries}}" 
+            data-placement="bottom" data-original-title="<[total_country]> {% trans 'countries' %}">
+            <[total_location]> {% trans 'places' %} | <[total_country]> {% trans 'countries' %}
           </a>
-        </li>
-      </ul>  
+        </div>
+        <br/>
+        <div class="accordion" id="my_accordion">      
+          <div ng-repeat="nav in navs" class="accordion-group">
+            <div class="accordion-heading nav-header">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#my_accordion" href="#collapse<[nav.index]>">
+                <[nav.country]> (<[nav.count]>)
+              </a>
+            </div>
+            <div id="collapse<[nav.index]>" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <ul class="nav nav-list nav-content">
+                  <li ng-repeat="loc in nav.locations | filter:search | orderBy:'position'"
+                    onclick="nav_click_event(<[loc.id]>);" class="<[loc.class]>" my-repeat-directive>
+                    <a href="#" id="<[loc.id]>" class="location"
+                      lat="<[loc.lat]>" lng="<[loc.lng]>">
+                      <i class="icon-picture" style="display:<[loc.image_style]>;"></i>
+                      <[loc.name]>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
+      
     </div>    
     <div id="map_container" class="span9 span12-tablet">      
       {% if user.is_authenticated %}
@@ -330,11 +69,11 @@
 
             <div id="map_filter" class="nav-collapse collapse">
               <ul id="display_menu" class="nav">
-                <li id="show_monk" class="">
-                  <a href="#">{% trans "Monk" %}</a>
+                <li id="show_monk" class="<[show_monk_pressed]>">
+                  <a href="#" ng-click="reload_data({{MONK}})">{% trans "Monk" %}</a>
                 </li>
-                <li id="show_layperson" class="">
-                  <a href="#">{% trans "Layperson" %}</a>
+                <li id="show_layperson" class="<[show_layperson_pressed]>">
+                  <a href="#" ng-click="reload_data({{LAYPERSON}})">{% trans "Layperson" %}</a>
                 </li>
               </ul>
               <ul class="nav pull-right">
@@ -348,8 +87,19 @@
         </div>
       </div>
       {% endif %}
-      {{ form.gmap }}
-      {{ form.media.js }}        
+      
+      <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]" 
+        ui-event="{'map-click': 'show_dialog_info(marker)', 'map-mouseover': 'show_window_info(marker)', 'map-mouseout': 'dismiss_window_info(marker)'}">
+      </div>
+
+      <div ui-map-info-window="myInfoWindow" ng-bind-html="currentContent">
+        <[ currentContent ]>
+      </div>
+      
+      <div id="map_canvas" ui-map="myMap" class="map"
+        ui-event="{'map-idle': 'init()'}" ui-options="mapOptions">
+      </div>
+      
     </div>
   </div>
     
