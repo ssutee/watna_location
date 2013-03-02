@@ -102,10 +102,10 @@ p#additional_info {
 }
 
 #nav_bar {
-  height: 700px;
-  overflow: hidden;
+  height: 100%;
 }
 
-#nav_bar:hover {
+#nav_content {
+  height: 590px;
   overflow: auto;
 }

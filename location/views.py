@@ -122,12 +122,15 @@ def get_display(request):
     create_user_profile(request)        
     return 0 if not request.user.is_authenticated() else request.user.profile.display
     
-def marker_list(request):
-    display = get_display(request)
-    q = Q()
+def create_q_display(request):
+    q = Q()    
+    try:
+        display = int(request.GET.get('display'))
+    except ValueError,e:
+        display = MONK | LAYPERSON
     
-    if display != ALL and display != MONK and display != LAYPERSON:
-        display = ALL
+    if (display & MONK) != MONK and (display & LAYPERSON) != LAYPERSON:
+        display = MONK | LAYPERSON
     
     if (display & MONK) == MONK:
         q |= Q(status__name = u'ภิกษุ')
@@ -135,7 +138,46 @@ def marker_list(request):
     if (display & LAYPERSON) == LAYPERSON:
         q |= Q(status__name = u'อุบาสก')
         q |= Q(status__name = u'อุบาสิกา')
-        
+    return q
+
+def nav_list(request):
+    q = create_q_display(request) 
+
+    first_order = 'pk'
+    try:
+        first_order = 'city' if request.user.is_authenticated() and request.user.profile.sorting == 'city' else 'pk'
+    except Profile.DoesNotExist, e:
+        pass
+    
+    navs = []
+    position = 0
+    if request.method == 'GET':
+        for index, value in enumerate(Location.objects.filter(q).values('country').annotate(total=Count('country'))):
+            country = unicode(Country(code=value['country']).name)
+            nav = {
+                'index': index, 
+                'country': country,
+                'count': value['total'],
+            }
+            nav['locations'] = []
+            for location in Location.objects.filter(q).filter(country=value['country']).order_by(first_order, 'place_name'):
+                nav['locations'].append({
+                    'id':location.pk, 
+                    'country': country,
+                    'position': position,
+                    'class': 'approved' if location.approved else '',
+                    'lat': location.latitude,
+                    'lng': location.longitude,
+                    'name': '%d. %s, %s' % (location.id, location.place_name, location.city),
+                    'image_style': 'inline-block' if location.pictures.count() else 'none'
+                })
+                position += 1
+            navs.append(nav)
+        return JSONResponse(navs)
+    raise Http404
+    
+def marker_list(request):    
+    q = create_q_display(request)        
     if request.method == 'GET':
         locations = Location.objects.filter(q)
         serializer = MarkerSerializer(locations, many=True)
@@ -148,16 +190,6 @@ def map_page(request):
     
     display = get_display(request)
     q = Q()
-    
-    if display != ALL and display != MONK and display != LAYPERSON:
-        display = ALL
-    
-    if (display & MONK) == MONK:
-        q |= Q(status__name = u'ภิกษุ')
-        q |= Q(status__name = u'ภิกษุณี')
-    if (display & LAYPERSON) == LAYPERSON:
-        q |= Q(status__name = u'อุบาสก')
-        q |= Q(status__name = u'อุบาสิกา')    
         
     first_order = 'pk'
     try:
@@ -165,16 +197,12 @@ def map_page(request):
     except Profile.DoesNotExist, e:
         pass
         
-    nav_list = []    
     total_country = 0
     countries = ''
     country_list = []
     for value in Location.objects.filter(q).values('country').annotate(total=Count('country')):
         query = Location.objects.filter(q).filter(country=value['country']).order_by(first_order, 'place_name')
         country_name = unicode(Country(code=value['country']).name)
-        nav_list.append({'type':'header', 'value': '%s (%d)' % (country_name.replace("'", "\\'"), query.count())})        
-        for location in query.all():
-            nav_list.append({'type':'item', 'value': location, 'country': country_name.replace("'", "\\'")})    
         total_country += 1
         countries += '<p>%s (%d)</p>' % (country_name, query.count())
         country_list.append(country_name)
@@ -188,38 +216,12 @@ def map_page(request):
     context = {
         'map_type' : get_map_type(request),
         'ALL': ALL, 'MONK': MONK, 'LAYPERSON': LAYPERSON, 
-        'active_menu':0, 'nav_list': nav_list, 
-        'total': Location.objects.filter(q).count(), 
-        'total_country': total_country, 'countries': countries, 
+        'active_menu':0, 'countries': countries, 
         'country_list': country_list, 'display_title': display_title
     }
         
     if 'message' in request.flash and request.flash['message']:
         context['alert_type'], context['alert_message'] = request.flash['message']
-        
-    data = []
-    for i,nav in enumerate(nav_list):
-        value = nav.get('value')
-        item = {'position': i}
-        if nav.get('type') == 'header':
-            item['name'] = value
-            item['id'], item['lat'], item['lng'] = 0,0,0
-            item['class'] = 'nav-header'
-            item['link_class'] = 'nav-header'
-            item['country'] = ''
-            item['image_style'] = 'none'
-        else:
-            item['name'] = '%d. %s, %s' % (value.id, value.place_name, value.city)
-            item['id'] = value.id
-            item['lat'] = value.latitude
-            item['lng'] = value.longitude
-            item['class'] = 'approved' if value.approved else ''
-            item['link_class'] = 'location'
-            item['country'] = nav.get('country')
-            item['image_style'] = 'inline-block' if value.pictures.count() else 'none'
-        data.append(item)
-
-    context['data'] = simplejson.dumps(data)
 
     return render(request, 'map_page.html', context)
 

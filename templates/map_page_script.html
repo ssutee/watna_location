@@ -98,7 +98,7 @@
       resize_map();
     });      
     
-    $('li.nav-header>a').popover({html: true});
+    $('div.nav-header>a').popover({html: true});
               
     $('#btn_pictures').button().click(function () {
       var options = $(this).data(),
@@ -110,62 +110,9 @@
           options = $.extend(modal.data(), options);
       }
       modal.modal(options);
-    });
-    
-    $('#display_menu>li>a').click(function(event) {
-      var menu = $(this).parent();
-      
-      if (menu.attr('class') == '' 
-        || (menu.attr('class') == 'active' && another_checked(menu))) {
-        menu.toggleClass('active');
-        set_display();
-      } 
-      else if (menu.attr('class') == 'active' && !another_checked(menu)) {
-        menu.toggleClass('active');
-        check_another(menu);
-        set_display();
-      }
-                
-    });
-    
-    var display = parseInt({{ display }});
-    if (display != ALL && display != MONK && display != LAYPERSON) {
-      display = ALL;
-    }
-    
-    if (display == ALL) {
-      $('#show_monk').attr('class', 'active');
-      $('#show_layperson').attr('class', 'active');
-    } else {
-      if ((display & MONK) == MONK) {
-        console.log(display & MONK);
-        $('#show_monk').attr('class', 'active');
-      }
-      if ((display & LAYPERSON) == LAYPERSON) {
-        console.log(display & LAYPERSON);
-        $('#show_layperson').attr('class', 'active');
-      }
-    }        
+    });        
   });
-  
-  function another_checked(menu) {
-    if (menu.attr('id') == 'show_monk') {
-      return $('#show_layperson').attr('class') == 'active';
-    }
-    if (menu.attr('id') == 'show_layperson') {
-      return $('#show_monk').attr('class') == 'active';
-    }        
-  }
-  
-  function check_another(menu) {
-    if (menu.attr('id') == 'show_monk') {
-      $('#show_layperson').attr('class', 'active');
-    }
-    if (menu.attr('id') == 'show_layperson') {
-      $('#show_monk').attr('class', 'active');
-    }       
-  }
-  
+    
   function move_to(lat, lng) {
     if ($('#map_container')) {
       angular.element($('#map_container').scope().$apply(function(scope) {
@@ -175,48 +122,27 @@
       }));
     }    
   }
-        
-  function set_display() {
-    var display = ALL;
-    if ($('#show_monk').attr('class') == 'active') {
-      display |= MONK;
-    }
-    if ($('#show_layperson').attr('class') == 'active') {
-      display |= LAYPERSON;
-    }        
           
-    $.post("/set_display/", {"display": display}, function(data) {
-      location.reload();
-    });
-  }
-  
   function nav_click_event(nav_id) {    
     if (nav_id > 0) {
       var a = $('a#'+nav_id);
       move_to(a.attr('lat'), a.attr('lng'));
       if (a.parent().hasClass('active')) {
         show_info_modal(a.attr('id'));
-      } else {            
-        $('li.active').toggleClass('active');
+      } else {
+        $('ul.nav-content>li.active').toggleClass('active');
         a.parent().toggleClass('active');
       }
     }
   }    
   
-  function NavCtrl($scope) {      
-    $scope.search = function (item){    
-      if (!$scope.query || item.id == 0 || 
-            item.country.toLowerCase().indexOf($scope.query.toLowerCase()) != -1 ||
-            item.name.toLowerCase().indexOf($scope.query.toLowerCase()) != -1) {
-        return true;
-      }
-      return false;
-    };
-  }
-  
-  function MapCtrl($scope, Marker) {
+  function MapCtrl($scope, Marker, Nav) {
     $scope.myMarkers = [];
+    $scope.navs = [];
     $scope.loaded = false;
+    $scope.show_monk_pressed = 'active';
+    $scope.show_layperson_pressed = 'active';
+    $scope.display = 0;
     
     $scope.mapOptions = {
       center: new google.maps.LatLng(14.01012, 100.82302),
@@ -224,19 +150,67 @@
       mapTypeId: google.maps.MapTypeId.{{map_type|upper}}
     };
     
+    $scope.search = function (item){
+      if (!$scope.query || item.id == 0 || 
+            item.country.toLowerCase().indexOf($scope.query.toLowerCase()) != -1 ||
+            item.name.toLowerCase().indexOf($scope.query.toLowerCase()) != -1) {
+        return true;
+      }
+      return false;
+    };    
+    
+    $scope.reload_data = function(display) {
+      for (var i=0; i<$scope.myMarkers.length; ++i) {
+        $scope.myMarkers[i].setMap(null);
+      }
+      $scope.myMarkers = [];      
+      if (display == (LAYPERSON|MONK)) {
+        $scope.display = display;
+      } else if (display == MONK || display == LAYPERSON) {
+        $scope.display ^= display;
+      }
+      
+      if ($scope.display == 0) {
+        $scope.display = (display == MONK) ? LAYPERSON : MONK;
+      }
+
+      $scope.show_monk_pressed = (($scope.display & MONK) == MONK) ? 'active': '';
+      $scope.show_layperson_pressed = (($scope.display & LAYPERSON) == LAYPERSON) ? 'active': '';
+      
+      Marker.query({display:$scope.display}, function(markers) {
+        for (var i=0; i < markers.length; ++i) {
+          var icon = new google.maps.MarkerImage(
+            "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + markers[i].color,
+            new google.maps.Size(21, 34), new google.maps.Point(0,0), new google.maps.Point(10, 34));
+          var shadow = new google.maps.MarkerImage(
+            "http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+            new google.maps.Size(40, 37), new google.maps.Point(0, 0), new google.maps.Point(12, 35));
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(markers[i].latitude, markers[i].longitude), 
+            map: $scope.myMap,
+            icon: icon,
+            shadow: shadow
+          });                    
+          marker.location_id = markers[i].id;
+          marker.content = markers[i].content;
+          $scope.myMarkers.push(marker);
+        }
+      });    
+      
+      Nav.query({display:$scope.display}, function(navs) {
+        $scope.total_location = 0;
+        $scope.total_country = 0;
+        for (var i=0; i<navs.length; ++i) {
+          $scope.total_country += navs[i].locations.length ? 1 : 0;
+          $scope.total_location += navs[i].locations.length;
+        }
+        $scope.navs = navs;
+      });      
+    };
+    
     $scope.init = function() {          
       if (!$scope.loaded) {
-        Marker.query({}, function(markers) {
-          for (var i=0; i < markers.length; ++i) {
-            var marker = new google.maps.Marker({
-              map: $scope.myMap,
-              position: new google.maps.LatLng(markers[i]['latitude'], markers[i]['longitude'])
-            });
-            marker.location_id = markers[i]['id'];
-            marker.content = markers[i]['content'];
-            $scope.myMarkers.push(marker);
-          }
-        });            
+        $scope.reload_data(LAYPERSON|MONK);
         $scope.loaded = true;
       }      		
     };

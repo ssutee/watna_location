@@ -47,9 +47,12 @@
       .factory('Marker', function($resource) {
         var Marker = $resource('/markers/');
         return Marker;
+      })
+      .factory('Nav', function($resource) {
+        var Nav = $resource('/navs/');
+        return Nav;
       });
       
-    
       function set_map_type(map_type) {
         $.post("/set_map_type/", {"map_type":map_type}, function(data) {
           location.reload();
