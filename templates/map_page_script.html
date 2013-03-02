@@ -147,7 +147,13 @@
     $scope.mapOptions = {
       center: new google.maps.LatLng(14.01012, 100.82302),
       zoom: 8,
-      mapTypeId: google.maps.MapTypeId.{{map_type|upper}}
+      mapTypeId: google.maps.MapTypeId.{{map_type|upper}},      
+      mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+      },
+      navigationControlOptions: {
+        style: google.maps.NavigationControlStyle.ANDROID
+      }
     };
     
     $scope.search = function (item){
