@@ -6,236 +6,8 @@
 {% block title %}{% trans "Map" %} - {{ display_title }} {% endblock %}
 {% block head %}{% trans "Map" %} - {{ display_title }} {% endblock %}
 {% block content %}
-  <script type="text/javascript">
 
-    var ALL          = {{ ALL }};
-    var MONK         = {{ MONK }};
-    var LAYPERSON    = {{ LAYPERSON }};
-  
-      window.m_listener = {
-          markerOver: function() { this.openInfoWindow(); },
-          markerOut: function() { this.closeInfoWindow(); },
-          markerClick: function(e) {
-            var location_id = $(this.getInfoWindow().content).attr('id');
-            show_info_modal(location_id);
-          },
-      };      
-
-      function show_info_modal(location_id) {
-        $.post("/visit_location/", { location_id: location_id, toggle:false });      
-        $.post("/find_location_by_id/", 
-          { id: location_id }, 
-          function(data) {
-            $('#info_modal_label').text(location_id + '. ' + data.place_name + ' (' + data.info +'/'+ data.status + ')');
-            $('#contact_name').text(data.first_name + " " + data.last_name);
-            $('#email').text(data.email);
-            $('#phone_number').text(data.phone_number);
-            $('#address').text(data.address);
-            $('#city').text(data.city + ", " + data.country);
-            $('#activities').text(data.activities);
-            $('#additional_info').text(data.additional_info);    
-            $('#approved').text(data.approved);            
-            if (data.relation == '') {
-              $('#td_id_relation').hide();
-            } else {
-              $('#relation').text(data.relation);
-            }
-            if (data.has_picture) {
-              $('#btn_pictures').show();
-              $('#tr_id_gallery').show();
-            } else {
-              $('#btn_pictures').hide();
-              $('#tr_id_gallery').hide();
-            }
-            
-            var gallery = $('#gallery');
-            gallery.empty();
-            
-            $.each(data.pictures, function(index, picture) {
-              $('<a rel="gallery"/>')
-                .append($('<img>')
-                  .prop('src', picture[1])
-                  .prop('class', 'thumbnail')
-                  .css({'display':'inline', 'width':'auto', 'height': '50px'}))
-                .prop('href', picture[0])
-                .prop('title', data.place_name + ", " +data.city)
-                .appendTo(gallery)
-                .click(function(e) {
-                  $.post("/view_count/", { location_id: location_id });
-                });
-            });
-            
-            $('#info_modal').modal({backdrop:true, keyboard:true});
-          });
-      }
-
-      function resize_containers() {
-        var gmap = $('div.map');            
-        var width = $('#nav_bar').is(':visible') ? $('#map_container').width() : $('.row-fluid').width();        
-        var height = $('#map_container').height();
-        var gap = $('#footer').position().top - ($('#map_container').position().top + height);
-        height += gap - 30;
-        
-        gmap.width(width);        
-        $('div.map>div').width(width);        
-        
-        // set maximum height
-        height = height > 600 ? 600 : height;        
-
-        gmap.height(height);        
-        $('div.map>div').height(height);
-      }
-
-      function resize_map() {
-        resize_containers();
-        if ($('#map_canvas')) {
-          angular.element($('#map_canvas').scope().$apply(function(scope) {
-            google.maps.event.trigger(scope.myMap, 'resize');
-          }));
-        }        
-      }
-
-      $(document).ready(function() {
-        $('#back-top').attr('class', 'hidden');
-        $.waypoints.settings.scrollThrottle = 30;
-        $('div.gmap').waypoint(function(e, direction) {
-          $(this).toggleClass('sticky', direction == "down"); 
-          $('#back-top').toggleClass('hidden', direction == "up");         
-          e.stopPropagation();
-        });
-                
-        $("a.location").click(function(event) {
-          event.preventDefault();
-        });        
-
-        resize_containers();
-
-        $(window).resize(function() {
-          resize_map();
-        });      
-        
-        $('li.nav-header>a').popover({html: true});
-                  
-        $('#btn_pictures').button().click(function () {
-          var options = $(this).data(),
-              modal = $(options.target),
-              data = modal.data('modal');
-          if (data) {
-              $.extend(data.options, options);
-          } else {
-              options = $.extend(modal.data(), options);
-          }
-          modal.modal(options);
-        });
-        
-        $('#display_menu>li>a').click(function(event) {
-          var menu = $(this).parent();
-          
-          if (menu.attr('class') == '' 
-            || (menu.attr('class') == 'active' && another_checked(menu))) {
-            menu.toggleClass('active');
-            set_display();
-          } 
-          else if (menu.attr('class') == 'active' && !another_checked(menu)) {
-            menu.toggleClass('active');
-            check_another(menu);
-            set_display();
-          }
-                    
-        });
-        
-        var display = parseInt({{ display }});
-        if (display != ALL && display != MONK && display != LAYPERSON) {
-          display = ALL;
-        }
-        
-        if (display == ALL) {
-          $('#show_monk').attr('class', 'active');
-          $('#show_layperson').attr('class', 'active');
-        } else {
-          if ((display & MONK) == MONK) {
-            console.log(display & MONK);
-            $('#show_monk').attr('class', 'active');
-          }
-          if ((display & LAYPERSON) == LAYPERSON) {
-            console.log(display & LAYPERSON);
-            $('#show_layperson').attr('class', 'active');
-          }
-        }        
-      });
-      
-      function another_checked(menu) {
-        if (menu.attr('id') == 'show_monk') {
-          return $('#show_layperson').attr('class') == 'active';
-        }
-        if (menu.attr('id') == 'show_layperson') {
-          return $('#show_monk').attr('class') == 'active';
-        }        
-      }
-      
-      function check_another(menu) {
-        if (menu.attr('id') == 'show_monk') {
-          $('#show_layperson').attr('class', 'active');
-        }
-        if (menu.attr('id') == 'show_layperson') {
-          $('#show_monk').attr('class', 'active');
-        }       
-      }
-      
-      function move_to(lat, lng) {
-        var gmap = $('div.gmap:visible');        
-        var point = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
-        gmap.getMap().setZoom(16);
-        gmap.getMap().panTo(point);
-      }
-            
-      function set_display() {
-        var display = ALL;
-        if ($('#show_monk').attr('class') == 'active') {
-          display |= MONK;
-        }
-        if ($('#show_layperson').attr('class') == 'active') {
-          display |= LAYPERSON;
-        }        
-              
-        $.post("/set_display/", {"display": display}, function(data) {
-          location.reload();
-        });
-      }
-      
-      function nav_click_event(nav_id) {    
-        if (nav_id > 0) {
-          var a = $('a#'+nav_id);
-          move_to(a.attr('lat'), a.attr('lng'));
-          if (a.parent().hasClass('active')) {
-            show_info_modal(a.attr('id'));
-          } else {            
-            $('li.active').toggleClass('active');
-            a.parent().toggleClass('active');
-          }
-        }
-      }    
-      
-      function NavCtrl($scope) {      
-        $scope.search = function (item){    
-          if (!$scope.query || item.id == 0 || 
-                item.country.toLowerCase().indexOf($scope.query.toLowerCase()) != -1 ||
-                item.name.toLowerCase().indexOf($scope.query.toLowerCase()) != -1) {
-            return true;
-          }
-          return false;
-        };
-      }
-      
-      function MapCtrl($scope) {
-        $scope.mapOptions = {
-          center: new google.maps.LatLng(14.01012, 100.82302),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.{{map_type|upper}}
-        };
-      }
-          
-  </script>
+  {% include "map_page_script.html" %}
 
   <div id="info_modal" class="modal hide fade" tabindex="-1" role="dialog" 
     aria-labelledby="info_modal_label" aria-hidden="true">
@@ -304,7 +76,7 @@
       <button class="btn" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
     </div>
   </div>     
-  <div ng-app="app" class="row-fluid">       
+  <div class="row-fluid">       
     <div id="nav_bar" class="span3 hidden-phone hidden-tablet">  
       <ul class="nav nav-list bs-sidenav" ng-controller="NavCtrl">   
         <div style="margin-top:10px;">
@@ -323,7 +95,7 @@
         </li>
       </ul>  
     </div>    
-    <div id="map_container" class="span9 span12-tablet">      
+    <div ng-controller="MapCtrl" id="map_container" class="span9 span12-tablet">      
       {% if user.is_authenticated %}
       <div class="navbar">
         <div class="navbar-inner">
@@ -358,7 +130,16 @@
       </div>
       {% endif %}
       
-      <div ng-controller="MapCtrl" id="map_canvas" ui-map="myMap" class="map" ui-options="mapOptions">
+      <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]" 
+        ui-event="{'map-click': 'show_dialog_info(marker)', 'map-mouseover': 'show_window_info(marker)', 'map-mouseout': 'dismiss_window_info(marker)'}">
+      </div>
+
+      <div ui-map-info-window="myInfoWindow" ng-bind-html="currentContent">
+        <[ currentContent ]>
+      </div>
+      
+      <div id="map_canvas" ui-map="myMap" class="map"
+        ui-event="{'map-idle': 'init()'}" ui-options="mapOptions">
       </div>
       
     </div>
@@ -380,7 +161,6 @@
   
 <script src="{{ STATIC_URL }}file_upload/js/load-image.min.js"></script>
 <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-image-gallery.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsPczcWkcD5o1TLY22ViG_QvMPkWYMsPk&sensor=true"></script>
 
 <p id="back-top">
   <a href="#top"><span></span>Back to Top</a>

@@ -2,7 +2,7 @@
 {% load i18n %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html ng-app="app">
   <head>
     <title>
       Buddhawajana Institution | {% block title %}{% endblock %}
@@ -19,16 +19,18 @@
         font-size: 19px;
       }
     </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsPczcWkcD5o1TLY22ViG_QvMPkWYMsPk&sensor=true"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}waypoints/js/waypoints.min.js"></script> 
     <script type="text/javascript" src="{{STATIC_URL}}angular/angular.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}angular/angular-resource.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}angular/angular-sanitize.min.js"></script>        
     <script type="text/javascript" src="{{STATIC_URL}}angular/angular-ui-ieshiv.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}angular/angular-ui.min.js"></script>
-    <script type="text/javascript" src="{{STATIC_URL}}angular/angular-resource.min.js"></script>
     <script type="text/javascript"> 
         
-      angular.module('app', ['ui', 'ngResource'])
+      angular.module('app', ['ui', 'ngSanitize', 'ngResource'])
       .config(['$interpolateProvider', function ($interpolateProvider) {
           $interpolateProvider.startSymbol('<[');
           $interpolateProvider.endSymbol(']>');
@@ -41,6 +43,10 @@
             });
           }
         };
+      })
+      .factory('Marker', function($resource) {
+        var Marker = $resource('/markers/');
+        return Marker;
       });
       
     
@@ -167,7 +173,7 @@
                   </ul>
                 </li>              
                 <li>                  
-                  <a data-toggle="modal" data-target="#logout_alert">{% trans 'Logout' %}</a>
+                  <a href="#" data-toggle="modal" data-target="#logout_alert">{% trans 'Logout' %}</a>
                 </li>
               {% else %}
                 <li class="{% if active_menu == 1 %}active{% else %}{% endif %}">
@@ -187,16 +193,16 @@
             {% if not user.is_authenticated %}                        
             <form style="margin-right:20px;" class="navbar-form pull-right" 
               method="POST" action="/login/">{% csrf_token %}
-              <input name="email" class="span2" type="text" placeholder={% trans 'Email' %} />
+              <input name="email" class="input-small" type="text" placeholder={% trans 'Email' %} />
               <input type="hidden" name="this_is_the_login_form" value="1" />
-              <input name="password" class="span2" type="password" placeholder={% trans 'Password' %} />
-              <button type="submit" class="btn">{% trans 'Login' %}</button>
+              <input name="password" class="input-small" type="password" placeholder={% trans 'Password' %} />
+              <button type="submit" class="btn btn-primary">{% trans 'Login' %}</button>
               <span><a class="btn btn-danger" href="{% url admin_password_reset %}">{%trans 'Forgot password?' %}</a></span>
             </form>
             {% endif %}
             {% if user.is_authenticated %}
               <p style="margin-right:20px;" class="navbar-text pull-right">
-                {% trans 'Logged in as' %} <a href="/edit_user/" class="navbar-link">{{user.email}}</a>
+                <a href="/edit_user/" class="navbar-link">{{user.email}}</a>
               </p>
             {% endif %}            
           </div>
