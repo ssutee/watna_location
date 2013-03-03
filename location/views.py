@@ -125,7 +125,7 @@ def get_display(request):
 def create_q_display(request):
     q = Q()    
     try:
-        display = int(request.GET.get('display'))
+        display = int(request.GET.get('display', (MONK|LAYPERSON)))
     except ValueError,e:
         display = MONK | LAYPERSON
     
