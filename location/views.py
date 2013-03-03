@@ -28,13 +28,10 @@ MONK         = 1
 LAYPERSON    = 2
 
 class JSONResponse(HttpResponse):
-    """
-    An HttpResponse that renders it's content into JSON.
-    """
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
+    """JSON response class."""
+    def __init__(self,obj='',json_opts={},mimetype="application/json",*args,**kwargs):
+        content = simplejson.dumps(obj,**json_opts)
+        super(JSONResponse,self).__init__(content,mimetype,*args,**kwargs)
 
 def response_mimetype(request):
     if "application/json" in request.META['HTTP_ACCEPT']:
