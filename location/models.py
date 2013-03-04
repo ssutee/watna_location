@@ -1,5 +1,3 @@
-#-:- coding:utf-8 -:-
-
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -161,24 +159,6 @@ class Location(models.Model):
     def activities_list(self):
         return '\n'.join(map(lambda x:'- ' + x.name, self.activities.all())) if self.activities else ''
     activities_list.allow_tags = True
-    
-    
-    def info_window_content(self):
-        return '<div id="%d" style="height:100px; width:300px;"><h4>%s, %s</h4>%s</div>' % (
-            self.id,
-            self.place_name, self.city,
-            ', '.join(map(lambda x:x.name,self.activities.all())))
-            
-    def color(self):
-        is_monk = unicode(self.status) == u'ภิกษุ' or unicode(self.status) == u'ภิกษุณี'
-        if is_monk and self.organization:
-            return '7D4E24'
-        elif is_monk and not self.organization:
-            return 'CA9E67'
-        elif self.organization:
-            return 'C6C6C6'
-        else:
-            return 'FFFFFF'        
     
     def visitor_id_list(self):
         return map(lambda x:x.id, self.visitors.all()) if self.visitors else []

@@ -150,7 +150,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django_countries',
     'crispy_forms',
-    'rest_framework',
     'location',
     'gmapi',
     'south',

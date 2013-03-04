@@ -41,8 +41,6 @@ urlpatterns += patterns('',
     url(r'^new_upload/(?P<pk>\d+)$', login_required(PictureCreateView.as_view()), {}, 'upload-new'),
     url(r'^delete_upload/(?P<pk>\d+)$', login_required(PictureDeleteView.as_view()), {}, 'upload-delete'),              
     url(r'^messages/',include('messages.urls')),
-    url(r'^markers/$', 'location.views.marker_list'),
-    url(r'^navs/$', 'location.views.nav_list'),
 )
 
 import os

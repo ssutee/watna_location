@@ -13,4 +13,4 @@ def profile(request):
         except Profile.DoesNotExist, e:
             profile = Profile(user=request.user)
             profile.save()
-    return {'map_type': map_type, 'sorting': sorting}
+    return {'map_type': map_type, 'sorting': sorting, 'display': display}
