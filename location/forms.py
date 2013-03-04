@@ -130,7 +130,7 @@ class RegistrationForm(forms.Form):
         raise forms.ValidationError(_('E-mail is already taken.'))
         
 class MapForm(forms.Form):
-    gmap = forms.Field(widget=GoogleMap(attrs={'width':800, 'height':600, 'nojquery':True}))
+    gmap = forms.Field(widget=GoogleMap(attrs={'width':800, 'height':580, 'nojquery':True}))
     
 class SearchMapForm(forms.Form):
     gmap = forms.Field(widget=GoogleMap(attrs={'width':380, 'height':400, 'nojquery':True}))

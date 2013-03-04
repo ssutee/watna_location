@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-20 12:20+0700\n"
+"POT-Creation-Date: 2013-03-04 16:46+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -158,7 +158,7 @@ msgstr ""
 msgid "Place name"
 msgstr "ชื่อสถานที่"
 
-#: location/models.py:115 location/views.py:450
+#: location/models.py:115 location/views.py:474
 #: templates/members_page.html:132
 msgid "Organization"
 msgstr "องค์กร"
@@ -246,55 +246,55 @@ msgstr "ภาค"
 msgid "All"
 msgstr "ทั้งหมด"
 
-#: location/views.py:203 templates/map_page.html:364
+#: location/views.py:203 templates/map_page.html:339
 msgid "Monk"
 msgstr "นักบวช"
 
-#: location/views.py:205 templates/map_page.html:367
+#: location/views.py:205 templates/map_page.html:342
 msgid "Layperson"
 msgstr "ฆราวาส"
 
-#: location/views.py:322
+#: location/views.py:346
 msgid "Your information updated successfully"
 msgstr "ข้อมูลของคุณถูกปรับปรุงแล้ว"
 
-#: location/views.py:344
+#: location/views.py:368
 msgid "Password changed successfully"
 msgstr "รหัสผ่านถูกเปลี่ยนแปลงแล้ว"
 
-#: location/views.py:367
+#: location/views.py:391
 msgid "Place updated successfully"
 msgstr "ข้อมูลสถานที่ถูกปรับปรุงแล้ว"
 
-#: location/views.py:392
+#: location/views.py:416
 msgid "New place added successfully"
 msgstr "สถานที่ใหม่ถูกเพิ่มแล้ว"
 
-#: location/views.py:445 location/views.py:448 location/views.py:454
+#: location/views.py:469 location/views.py:472 location/views.py:478
 msgid "Only member"
 msgstr "เฉพาะผู้ลงทะเบียน"
 
-#: location/views.py:450
+#: location/views.py:474
 msgid "Person"
 msgstr "บุคคล"
 
-#: location/views.py:462 location/views.py:464 location/views.py:466
+#: location/views.py:486 location/views.py:488 location/views.py:490
 msgid "hidden"
 msgstr "ไม่เปิดเผย"
 
-#: location/views.py:500
+#: location/views.py:528
 msgid "Logout successfully"
 msgstr "ออกจากระบบแล้ว"
 
-#: location/views.py:510
+#: location/views.py:538
 msgid "Login successfully"
 msgstr "เข้าสู่ระบบสำเร็จแล้ว"
 
-#: location/views.py:512
+#: location/views.py:540
 msgid "Invalid email or password"
 msgstr "อีเมล หรือ รหัสผ่านไม่ถูกต้อง"
 
-#: location/views.py:527
+#: location/views.py:555
 msgid "Registration completed successfully"
 msgstr "ลงทะเบียนสำเร็จแล้ว"
 
@@ -399,10 +399,6 @@ msgstr "เข้าสู่ระบบ"
 msgid "Forgot password?"
 msgstr "ลืมรหัสผ่าน?"
 
-#: templates/base.html:196
-msgid "Logged in as"
-msgstr "เข้าสู่ระบบโดย"
-
 #: templates/edit_location_page.html:3 templates/edit_location_page.html:4
 msgid "Edit place"
 msgstr "แก้ไขสถานที่"
@@ -423,7 +419,7 @@ msgstr "ปิด"
 msgid "Find your location"
 msgstr "ค้นหาตำแหน่งของคุณ"
 
-#: templates/location_content.html:58 templates/map_page.html:303
+#: templates/location_content.html:58 templates/map_page.html:302
 #: templates/members_page.html:120
 msgid "Search"
 msgstr "ค้นหา"
@@ -451,11 +447,19 @@ msgstr "ชื่อผู้ติดต่อ"
 msgid "City/Country"
 msgstr "จังหวัด/ประเทศ"
 
-#: templates/map_page.html:359
+#: templates/map_page.html:309
+msgid "Places"
+msgstr "สถานที่"
+
+#: templates/map_page.html:309
+msgid "Countries"
+msgstr "ประเทศ"
+
+#: templates/map_page.html:334
 msgid "Display"
 msgstr "แสดงผล"
 
-#: templates/map_page.html:373
+#: templates/map_page.html:348
 msgid "CDs/books request"
 msgstr "ขอซีดีและหนังสือ"
 
@@ -549,6 +553,9 @@ msgstr "อังกฤษ"
 
 msgid "Thailand"
 msgstr "ประเทศไทย"
+
+#~ msgid "Logged in as"
+#~ msgstr "เข้าสู่ระบบโดย"
 
 #~ msgid "Add send books place"
 #~ msgstr "เพิ่มสถานที่ส่งหนังสือ"

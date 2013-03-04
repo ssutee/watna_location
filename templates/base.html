@@ -164,7 +164,7 @@
                   </ul>
                 </li>              
                 <li>                  
-                  <a data-toggle="modal" data-target="#logout_alert">{% trans 'Logout' %}</a>
+                  <a href="#" data-toggle="modal" data-target="#logout_alert">{% trans 'Logout' %}</a>
                 </li>
               {% else %}
                 <li class="{% if active_menu == 1 %}active{% else %}{% endif %}">
@@ -193,7 +193,7 @@
             {% endif %}
             {% if user.is_authenticated %}
               <p style="margin-right:20px;" class="navbar-text pull-right">
-                {% trans 'Logged in as' %} <a href="/edit_user/" class="navbar-link">{{user.email}}</a>
+                <a href="/edit_user/" class="navbar-link">{{user.email}}</a>
               </p>
             {% endif %}            
           </div>
