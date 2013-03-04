@@ -124,6 +124,60 @@ def get_display(request):
     return 0 if not request.user.is_authenticated() else request.user.profile.display
     
 
+def create_q_display(request):
+    q = Q()    
+    try:
+        display = int(request.GET.get('display', (MONK|LAYPERSON)))
+    except ValueError,e:
+        display = MONK | LAYPERSON
+    
+    if (display & MONK) != MONK and (display & LAYPERSON) != LAYPERSON:
+        display = MONK | LAYPERSON
+    
+    if (display & MONK) == MONK:
+        q |= Q(status__name = u'ภิกษุ')
+        q |= Q(status__name = u'ภิกษุณี')
+    if (display & LAYPERSON) == LAYPERSON:
+        q |= Q(status__name = u'อุบาสก')
+        q |= Q(status__name = u'อุบาสิกา')
+    return q
+
+def nav_list(request):
+    q = create_q_display(request) 
+
+    first_order = 'pk'
+    try:
+        first_order = 'city' if request.user.is_authenticated() and request.user.profile.sorting == 'city' else 'pk'
+    except Profile.DoesNotExist, e:
+        pass
+    
+    navs = []
+    position = 0
+    if request.method == 'GET':
+        for index, value in enumerate(Location.objects.filter(q).values('country').annotate(total=Count('country'))):
+            country = unicode(Country(code=value['country']).name)
+            nav = {
+                'index': index, 
+                'country': country,
+                'count': value['total'],
+            }
+            nav['locations'] = []
+            for location in Location.objects.filter(q).filter(country=value['country']).order_by(first_order, 'place_name'):
+                nav['locations'].append({
+                    'id':location.pk, 
+                    'country': country,
+                    'position': position,
+                    'class': 'approved' if location.approved else '',
+                    'lat': location.latitude,
+                    'lng': location.longitude,
+                    'name': '%d. %s, %s' % (location.id, location.place_name, location.city),
+                    'image_style': 'inline-block' if location.pictures.count() else 'none'
+                })
+                position += 1
+            navs.append(nav)
+        return JSONResponse(navs)
+    raise Http404
+
 def map_page(request):
     request.session['next'] = '/'
     gmap = maps.Map(
@@ -141,17 +195,8 @@ def map_page(request):
     )
     
     display = get_display(request)
-    q = Q()
-    
-    if display != ALL and display != MONK and display != LAYPERSON:
-        display = ALL
-    
-    if (display & MONK) == MONK:
-        q |= Q(status__name = u'ภิกษุ')
-        q |= Q(status__name = u'ภิกษุณี')
-    if (display & LAYPERSON) == LAYPERSON:
-        q |= Q(status__name = u'อุบาสก')
-        q |= Q(status__name = u'อุบาสิกา')
+
+    q = create_q_display(request) 
         
     for index, location in enumerate(Location.objects.filter(q)):
         is_monk = unicode(location.status) == u'ภิกษุ' or unicode(location.status) == u'ภิกษุณี'

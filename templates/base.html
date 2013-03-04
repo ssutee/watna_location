@@ -22,13 +22,14 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}waypoints/js/waypoints.min.js"></script> 
-    <script type="text/javascript" src="{{STATIC_URL}}angular/angular.js"></script>
-    <script type="text/javascript"> 
+    <script type="text/javascript" src="{{STATIC_URL}}angular/angular.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}angular/angular-resource.min.js"></script>
+    <script type="text/javascript">
         
-      angular.module('app', [])
+      angular.module('app', ['ngResource'])
       .config(['$interpolateProvider', function ($interpolateProvider) {
-          $interpolateProvider.startSymbol('<[');
-          $interpolateProvider.endSymbol(']>');
+        $interpolateProvider.startSymbol('<[');
+        $interpolateProvider.endSymbol(']>');
       }])    
       .directive('myRepeatDirective', function() {
         return function(scope, element, attrs) {
@@ -38,9 +39,12 @@
             });
           }
         };
+      })
+      .factory('Nav', function($resource) {
+        var Nav = $resource('/navs/');
+        return Nav;
       });
-      
-    
+          
       function set_map_type(map_type) {
         $.post("/set_map_type/", {"map_type":map_type}, function(data) {
           location.reload();
