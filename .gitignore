@@ -1,8 +1,10 @@
 *.pyc
 *.pyo
+*.p12
 *.db
 *~
 local_settings.py
+client_secrets.json
 .DS_Store
 static
 fabfile.py

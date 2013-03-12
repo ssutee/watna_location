@@ -1,5 +1,6 @@
 from django.contrib import admin
-from location.models import Location, Status, Activity, ColorModelField, Relation, Picture, Skill, Province, Region, Profile
+from location.models import Location, Status, Activity, ColorModelField, Relation, Picture, Skill, Province, Region, Profile, CredentialsModel
+from location.tasks import sync_table_task
 from location.widgets import JSColorColorPicker
 from django.contrib.admin import SimpleListFilter
 from django.db.models import Q
@@ -50,6 +51,21 @@ class LocationAdmin(admin.ModelAdmin):
     list_display = ('place_name', 'city', 'additional_info', 'user_name', 'user_skills',)
     list_filter = (InvalidCity,)
     search_fields = ('place_name', 'additional_info', 'city', 'country', 'address',)
+    actions = ('sync_table',)
+    
+    def sync_table(self, request, queryset):
+        import tempfile
+        content = ''
+        for location in queryset:
+            content += "%d\t%.6f,%.6f\t%d\t%d\n" % (location.id, location.latitude, 
+                location.longitude, location.status.id, location.organization)
+
+        with tempfile.NamedTemporaryFile(suffix='.bin', delete=False) as temp:
+            temp.write(content)
+            temp.close()
+            sync_table_task.apply_async((temp.name,), countdown=0)
+        
+    sync_table.short_description = "Sync table"
     
 class ProfileAdmin(admin.ModelAdmin):
     list_filter = (IsEditor,)
@@ -58,6 +74,10 @@ class ProfileAdmin(admin.ModelAdmin):
 class PictureAdmin(admin.ModelAdmin):
     list_display = ('slug', 'admin_image',)
     
+class CredentialsAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(CredentialsModel, CredentialsAdmin)    
 admin.site.register(Location, LocationAdmin)
 admin.site.register(Status)
 admin.site.register(Relation)

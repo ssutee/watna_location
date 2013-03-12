@@ -3,6 +3,13 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django_countries import CountryField
 from django_countries.fields import Country
+from oauth2client.django_orm import CredentialsField
+from django.db.models.signals import post_save, post_delete
+from location.tasks import insert_location_task, delete_location_task
+
+class CredentialsModel(models.Model):
+    id = models.ForeignKey(User, primary_key=True)
+    credential = CredentialsField()
 
 class Picture(models.Model):
 
@@ -177,7 +184,7 @@ class Location(models.Model):
         return u'%s' % (self.place_name)
 
 from south.modelsinspector import add_introspection_rules
-add_introspection_rules([], ["^location\.models\.ColorModelField"])
+add_introspection_rules([], ["^location\.models\.ColorModelField", "^oauth2client\.django_orm\.CredentialsField"])
 
 class Relation(models.Model):
     name = models.CharField(max_length=200, db_index=True, 
@@ -227,3 +234,13 @@ class Region(models.Model):
         
     def __unicode__(self):
         return u'%s' % (self.name)
+
+def insert_location(sender, instance, signal, *args, **kwargs):
+    if 'created' in kwargs and kwargs['created']:
+        insert_location_task.apply_async((instance,), countdown=0)
+
+def delete_location(sender, instance, signal, *args, **kwargs):
+    delete_location_task.apply_async((instance,), countdown=0)
+
+post_save.connect(insert_location, sender=Location)
+post_delete.connect(delete_location, sender=Location)

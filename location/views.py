@@ -15,11 +15,28 @@ from django.core.files import File
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from location.forms import MapForm, SearchMapForm, LocationForm, RegistrationForm, UserForm, MyInfoForm
-from location.models import Location, Profile, Picture, Region
+from location.models import Location, Profile, Picture, Region, CredentialsModel
+from location.tasks import update_location_task
 
 from gmapi import maps
 from emailusernames.utils import create_user
 from django_countries.fields import Country
+
+import os.path, httplib2
+from apiclient.discovery import build
+from oauth2client.client import SignedJwtAssertionCredentials
+
+
+
+KEY = ''
+with open('ddd6cbbb3fa5f618dafbb45d893aae97609eb4b3-privatekey.p12', 'rb') as f:
+    KEY = f.read()
+
+credentials = SignedJwtAssertionCredentials(
+    '905290935225@developer.gserviceaccount.com', 
+    KEY, scope='https://www.googleapis.com/auth/fusiontables')
+
+ft_service = build('fusiontables', 'v1', http=credentials.authorize(httplib2.Http()))
 
 ALL          = 0
 MONK         = 1
@@ -433,6 +450,7 @@ def edit_location_page(request, pk):
             location = form.save()
             location.user = request.user;
             location.save()
+            update_location_task.apply_async((location,), countdown=0)
             request.flash['message'] = ('alert-success', _('Place updated successfully'))
             return HttpResponseRedirect('/places')
         else:
@@ -459,6 +477,7 @@ def add_location_page(request):
                 location.send_media = True
             location.save()
             request.flash['message'] = ('alert-success', _('New place added successfully'))
+                        
             return HttpResponseRedirect('/places')
         else:
             try:

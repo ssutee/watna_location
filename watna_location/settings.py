@@ -4,11 +4,18 @@
 
 import os.path, os, sys
 
+import djcelery
+djcelery.setup_loader()
+
 sys.path.append(os.path.abspath(sys.path[0]+'/..'))
 
-GMAPI_MAPS_URL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAsPczcWkcD5o1TLY22ViG_QvMPkWYMsPk&sensor=false"
+GMAPI_MAPS_URL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAkdY8xM9SQ5U9Wqq-qotk11Abzf7n5hKM&sensor=false"
+
+TABLE_ID = "1VG6U5eP4W4Y0ludGKRnl2cGQsbiiPIdcMSrNIJY"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap'
+
+BROKER_URL = 'mongodb://localhost:27017/celery'
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -150,7 +157,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django_countries',
     'crispy_forms',
-    'location',
+    'djcelery',
     'gmapi',
     'south',
     'jquery',
@@ -158,6 +165,7 @@ INSTALLED_APPS = (
     'notification',
     'django_messages',
     'templateaddons',
+    'location',    
 )
 
 AUTHENTICATION_BACKENDS = (
