@@ -29,7 +29,7 @@ from oauth2client.client import SignedJwtAssertionCredentials
 
 
 KEY = ''
-with open('ddd6cbbb3fa5f618dafbb45d893aae97609eb4b3-privatekey.p12', 'rb') as f:
+with open(os.path.join(os.path.dirname(__file__), '..', 'ddd6cbbb3fa5f618dafbb45d893aae97609eb4b3-privatekey.p12'), 'rb') as f:
     KEY = f.read()
 
 credentials = SignedJwtAssertionCredentials(
