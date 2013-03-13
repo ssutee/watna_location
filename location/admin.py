@@ -6,6 +6,8 @@ from django.contrib.admin import SimpleListFilter
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
+import os.path
+
 class IsEditor(SimpleListFilter):
     title = _('Editor')
     parameter_name = 'editor'
@@ -60,8 +62,9 @@ class LocationAdmin(admin.ModelAdmin):
             content += "%d\t%.6f,%.6f\t%d\t%d\n" % (location.id, location.latitude, 
                 location.longitude, location.status.id, location.organization)
 
-        with tempfile.NamedTemporaryFile(suffix='.bin', delete=False) as temp:
+        with tempfile.NamedTemporaryFile(suffix='.bin', delete=False, dir=os.path.join(os.path.dirname(__file__), '..', 'tmp')) as temp:
             temp.write(content)
+            temp.flush()
             temp.close()
             sync_table_task.apply_async((temp.name,), countdown=0)
         
