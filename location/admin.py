@@ -6,7 +6,7 @@ from django.contrib.admin import SimpleListFilter
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
-import os.path
+import os.path, os
 
 class IsEditor(SimpleListFilter):
     title = _('Editor')
@@ -66,6 +66,7 @@ class LocationAdmin(admin.ModelAdmin):
             temp.write(content)
             temp.flush()
             temp.close()
+            os.chmod(temp.name, 0644)
             sync_table_task.apply_async((temp.name,), countdown=0)
         
     sync_table.short_description = "Sync table"
