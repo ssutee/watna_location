@@ -35,13 +35,14 @@ urlpatterns += patterns('',
     url(r'^login/$', 'location.views.login_page'), 
     url(r'^logout/$', 'location.views.logout_page'),
     url(r'^register/$', 'location.views.register_page'),
-    url(r'^edit_user/$', 'location.views.edit_user_page'),
+    url(r'^edit_user/$', 'location.views.edit_user_page'),    
     url(r'^register/success/$', direct_to_template,
         {'template': 'registration/register_success.html'}),  
     url(r'^new_upload/(?P<pk>\d+)$', login_required(PictureCreateView.as_view()), {}, 'upload-new'),
     url(r'^delete_upload/(?P<pk>\d+)$', login_required(PictureDeleteView.as_view()), {}, 'upload-delete'),              
     url(r'^messages/',include('messages.urls')),
     url(r'^navs/$', 'location.views.nav_list'),
+    url(r'^export/$', 'location.views.export_page'),
 )
 
 import os

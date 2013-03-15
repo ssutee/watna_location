@@ -623,3 +623,39 @@ def register_page(request):
 
     context = {'form': form, 'active_menu':1}
     return render(request, 'registration/register.html', context)    
+
+def export_page(request):
+    import csv
+    
+    if not request.user or not request.user.is_superuser:
+        return HttpResponseRedirect('/')
+    
+    if request.method == 'GET':
+        return render(request, 'export_page.html')
+    elif request.method == 'POST':        
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="output.csv"'
+        writer = csv.writer(response)
+        
+        for location in Location.objects.all():
+            row = []
+            row += [location.user.first_name+' '+location.user.last_name] if request.POST.get('name') else []
+            row += [location.user.email] if request.POST.get('email') else []
+            row += [location.phone_number] if request.POST.get('phone') else []
+            row += [location.address] if request.POST.get('address') else []
+            row += [location.country.name] if request.POST.get('country') else []            
+            row += [location.user_skills()] if request.POST.get('skills') else []            
+
+            if row:
+                writer.writerow(map(lambda x: x.encode('utf8'), row))
+        
+        return response
+    
+
+
+
+
+
+
+
+

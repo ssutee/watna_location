@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load l10n %}
+{% load i18n %}
+{% block title %}{% trans "Export" %}{% endblock %}
+{% block head %}{% trans "Export" %}{% endblock %}
+{% block content %}
+<form method="post">{% csrf_token %}
+  <fieldset>
+    <label class="checkbox">
+      <input type="checkbox" value="1" name="name"> Name
+    </label>
+
+    <label class="checkbox">
+      <input type="checkbox" value="1" name="email"> Email
+    </label>
+
+    <label class="checkbox">
+      <input type="checkbox" value="1" name="phone"> Phone number
+    </label>
+
+    <label class="checkbox">
+      <input type="checkbox" value="1" name="address"> Address
+    </label>
+
+    <label class="checkbox">
+      <input type="checkbox" value="1" name="country"> Country
+    </label>
+    
+    <label class="checkbox">
+      <input type="checkbox" value="1" name="skills"> Skills
+    </label>
+
+    <br/>
+    <button type="submit" class="btn">Download</button>
+  </fieldset>
+</form>
+{% endblock %}
+{% block footer %}{% include "footer.html" %}{% endblock %}
