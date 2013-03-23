@@ -113,17 +113,29 @@
           suppressInfoWindows: true,
           styles: [
           {
-            where: 'Organization = 0',
+            where: 'Organization = 0 AND Status > 2',
             markerOptions: {
               iconName: "man"
+            }
+          },
+          {
+            where: 'Organization = 1 AND Status > 2',
+            markerOptions: {
+              iconName: "triangle"
+            }
+          },
+          {
+            where: 'Organization = 0 AND Status < 3',
+            markerOptions: {
+              iconName: "orange_blank"
             },
           },
           {
-            where: 'Organization = 1',
+            where: 'Organization = 1 AND Status < 3',
             markerOptions: {
-              iconName: "buildings"
-            },
-          }
+              iconName: "schools"
+            }
+          }        
           ]
         });
         
