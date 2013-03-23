@@ -198,7 +198,7 @@ def nav_list(request):
 def map_page(request):
     import re
 
-    match_obj = re.search(r'MSIE ([0-9]+[\.0-9]*)', request.META['HTTP_USER_AGENT'])
+    match_obj = re.search(r'MSIE ([0-9]+[\.0-9]*)', request.META['HTTP_USER_AGENT']) if hasattr(request.META, 'HTTP_USER_AGENT') else None
     if match_obj and float(match_obj.groups()[0]) <= 7:
         return HttpResponseRedirect('/unsupport/')
         
