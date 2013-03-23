@@ -226,8 +226,10 @@
         };
         
         Nav.query({display:{{display}}}, function(navs) {
-          $scope.navs = navs;
-        });                
+          function() {
+            $scope.navs = navs;
+          };
+        });               
       }
           
   </script>
