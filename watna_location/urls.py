@@ -45,6 +45,10 @@ urlpatterns += patterns('',
     url(r'^export/$', 'location.views.export_page'),
 )
 
+urlpatterns += patterns('django.views.generic.simple',
+    (r'^unsupport/$', 'direct_to_template', {'template': 'unsupport_page.html'}),
+)
+
 import os
 
 if settings.DEBUG:
