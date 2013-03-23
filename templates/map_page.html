@@ -5,6 +5,9 @@
 
 {% block title %}{% trans "Map" %} - {{ display_title }} {% endblock %}
 {% block head %}{% trans "Map" %} - {{ display_title }} {% endblock %}
+{% block script %}
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyAkdY8xM9SQ5U9Wqq-qotk11Abzf7n5hKM"></script>
+{% endblock %}
 {% block content %}
   <script type="text/javascript">
 
@@ -90,11 +93,50 @@
 
       function resize_map() {
         resize_containers();
-        var gmap = $('div.gmap');
-        google.maps.event.trigger(gmap.getMap(), 'resize');
+        google.maps.event.trigger(gmap, 'resize');
+      }
+      
+      function init_map() {
+        var thailand = new google.maps.LatLng(14.01012, 100.82302);        
+        
+        gmap = new google.maps.Map(document.getElementById('id_gmap'), {
+          center: thailand,
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.{{map_type|upper}}
+        });        
+        
+        layer = new google.maps.FusionTablesLayer({
+          query: {
+            select: 'Location',
+            from: '{{TABLE_ID}}'
+          },
+          suppressInfoWindows: true,
+          styles: [
+          {
+            where: 'Organization = 0',
+            markerOptions: {
+              iconName: "man"
+            },
+          },
+          {
+            where: 'Organization = 1',
+            markerOptions: {
+              iconName: "buildings"
+            },
+          }
+          ]
+        });
+        
+        layer.setMap(gmap);
+        google.maps.event.addListener(layer, 'click', function(event) {
+          show_info_modal(event.row.Number.value);
+        });
       }
 
       $(document).ready(function() {
+      
+        init_map();
+      
         $('#back-top').attr('class', 'hidden');
         $.waypoints.settings.scrollThrottle = 30;
         $('div.gmap').waypoint(function(e, direction) {
@@ -182,10 +224,9 @@
       }
       
       function move_to(lat, lng) {
-        var gmap = $('div.gmap:visible');        
         var point = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
-        gmap.getMap().setZoom(16);
-        gmap.getMap().panTo(point);
+        gmap.setZoom(16);
+        gmap.panTo(point);
       }
             
       function set_display() {
@@ -374,8 +415,11 @@
         </div>
       </div>
       {% endif %}
-      {{ form.gmap }}
-      {{ form.media.js }}        
+      
+      <div class="gmap" id="id_gmap">
+      
+      </div>
+            
     </div>
   </div>
     
