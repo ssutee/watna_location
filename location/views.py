@@ -305,6 +305,7 @@ def map_page(request):
         data.append(item)
 
     context['data'] = simplejson.dumps(data)
+    context['TABLE_ID'] = settings.TABLE_ID
 
     return render(request, 'map_page.html', context)
 
