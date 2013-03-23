@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load l10n %}
+{% load i18n %}
+{% block title %}{% trans "Unsupported web browser" %}{% endblock %}
+{% block head %}{% trans "Unsupported web browser" %}{% endblock %}
+{% block content %}
+
+<div></div>
+
+<span>
+  <a href="https://www.google.com/chrome">
+    <img src="{{STATIC_URL}}media/chrome_logo.png">              
+  </a>
+</span>
+<span style="margin-right:20px;margin-left:20px;"></span>
+<span>
+  <a href="http://firefox.com">
+    <img src="{{STATIC_URL}}media/firefox_logo.png">              
+  </a>
+</span>
+
+<h3 class="lead text-info">
+{% trans "Please use Google Chrome or Mozilla Firefox for using this website." %}
+</h3>
+
+{% endblock %}

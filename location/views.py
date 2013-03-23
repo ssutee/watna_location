@@ -196,6 +196,12 @@ def nav_list(request):
     raise Http404
 
 def map_page(request):
+    import re
+
+    match_obj = re.search(r'MSIE ([0-9]+[\.0-9]*)', request.META['HTTP_USER_AGENT'])
+    if match_obj and float(match_obj.groups()[0]) <= 7:
+        return HttpResponseRedirect('/unsupport/')
+        
     request.session['next'] = '/'
     gmap = maps.Map(
         opts = {
