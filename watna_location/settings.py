@@ -166,6 +166,7 @@ INSTALLED_APPS = (
     'django_messages',
     'templateaddons',
     'location',    
+    'django_extensions'
 )
 
 AUTHENTICATION_BACKENDS = (
