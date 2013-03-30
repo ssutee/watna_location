@@ -213,7 +213,7 @@
             {% for picture in location.pictures.all %}
               <div>
                 <a location_id={{location.id}} rel="gallery" href="{{picture.file.url}}" title="{{location.place_name}}">
-                  <img class="img-rounded" src="http://www.buddha-net.com/{{picture.thumbnail.url}}" />
+                  <img class="img-rounded" src="{{picture.thumbnail.url}}" />
                 </a>
               </div>
             {% endfor %}

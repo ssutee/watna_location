@@ -82,17 +82,12 @@ MEDIA_URL = '/media/'
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = '/home/sutee/watna_location/static/'
 
-# URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
-
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     ('css', '/home/sutee/watna_location/css'),
-    ('media', '/home/sutee/watna_location/media'),
     ('gmapi', '/home/sutee/watna_location/gmapi'),  
     ('bootstrap', '/home/sutee/watna_location/bootstrap'),
     ('waypoints', '/home/sutee/watna_location/waypoints'),
@@ -101,6 +96,7 @@ STATICFILES_DIRS = (
     ('file_upload', '/home/sutee/watna_location/file_upload'),    
     ('angular', '/home/sutee/watna_location/angular'),
     ('slides', '/home/sutee/watna_location/slides'),    
+    ('images', '/home/sutee/watna_location/images'),    
 )
 
 LOCALE_PATHS = (
@@ -114,17 +110,28 @@ LOGIN_URL = '/login/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '5%52*rb2n8w#s^r5vml-b()@%kf49u-1f67r7s3lp#2_gyq-=l'
 
+CUMULUS = {
+    'USERNAME': 'suteesudprasert',
+    'API_KEY': 'e35a7b3b3d8e5b230780e0e94a1eafc6',
+    'CONTAINER': 'watna_location',
+    'STATIC_CONTAINER': 'watna_location_static',
+    'SERVICENET': False,
+    'TIMEOUT': 15,
+    'FILTER_LIST': []
+}
+
+DEFAULT_FILE_STORAGE = 'cumulus.storage.CloudFilesStorage'
+STATICFILES_STORAGE = 'cumulus.storage.CloudFilesStaticStorage'
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -166,7 +173,8 @@ INSTALLED_APPS = (
     'django_messages',
     'templateaddons',
     'location',    
-    'django_extensions'
+    'django_extensions',
+    'cumulus',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -180,6 +188,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'location.context_processors.profile',
     'django_messages.context_processors.inbox',
+    'cumulus.context_processors.cdn_url',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -218,6 +227,15 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'buddhawajana.network@gmail.com'
 EMAIL_HOST_PASSWORD = 'xw23Id*2-+Dl'
 EMAIL_PORT = 587
+
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+
+from cumulus.storage import CloudFilesStaticStorage
+try:
+    STATIC_URL = CloudFilesStaticStorage()._get_container_url() + '/'
+except TypeError, e:
+    pass
 
 try:
     from local_settings import *
