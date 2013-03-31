@@ -126,7 +126,7 @@ CUMULUS = {
 }
 
 DEFAULT_FILE_STORAGE = 'cumulus.storage.CloudFilesStorage'
-STATICFILES_STORAGE = 'cumulus.storage.CloudFilesStaticStorage'
+# STATICFILES_STORAGE = 'cumulus.storage.CloudFilesStaticStorage'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -231,11 +231,12 @@ EMAIL_PORT = 587
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 
-from cumulus.storage import CloudFilesStaticStorage
-try:
-    STATIC_URL = CloudFilesStaticStorage()._get_container_url() + '/'
-except TypeError, e:
-    pass
+STATIC_URL = '/static/'
+# from cumulus.storage import CloudFilesStaticStorage
+# try:
+#     STATIC_URL = CloudFilesStaticStorage()._get_container_url() + '/'
+# except TypeError, e:
+#     pass
 
 try:
     from local_settings import *
