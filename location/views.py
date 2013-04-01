@@ -203,49 +203,9 @@ def map_page(request):
         return HttpResponseRedirect('/unsupport/')
         
     request.session['next'] = '/'
-    gmap = maps.Map(
-        opts = {
-            'center': maps.LatLng(14.01012, 100.82302),
-            'mapTypeId': get_map_type(request),
-            'zoom': 8,
-            'mapTypeControlOptions': {
-                 'style': maps.MapTypeControlStyle.DROPDOWN_MENU
-            },
-            'navigationControlOptions': {
-                'style': maps.NavigationControlStyle.ANDROID
-            }            
-        }
-    )
     
     display = get_display(request)
-
-    q = create_q_display(request) 
-        
-    for index, location in enumerate(Location.objects.filter(q)):
-        is_monk = unicode(location.status) == u'ภิกษุ' or unicode(location.status) == u'ภิกษุณี'
-        if is_monk and location.organization:
-            color = '7D4E24'
-        elif is_monk and not location.organization:
-            color = 'CA9E67'
-        elif location.organization:
-            color = 'C6C6C6'
-        else:
-            color = 'FFFFFF'
-                    
-        marker = maps.Marker(opts = {
-                'color': color,
-                'map': gmap,
-                'position': maps.LatLng(location.latitude, location.longitude),
-            })
-        maps.event.addListener(marker, 'mouseover', 'm_listener.markerOver')
-        maps.event.addListener(marker, 'mouseout', 'm_listener.markerOut')
-        maps.event.addListener(marker, 'click', 'm_listener.markerClick')
-        info = maps.InfoWindow({
-            'content': create_info_content(location),
-            'disableAutoPan': True
-        })
-        info.open(gmap, marker)
-        
+    
     first_order = 'pk'
     try:
         first_order = 'city' if request.user.is_authenticated() and request.user.profile.sorting == 'city' else 'pk'
@@ -272,7 +232,7 @@ def map_page(request):
     elif display == LAYPERSON:
         display_title = _('Layperson')
             
-    context = {'form': MapForm(initial={'gmap': gmap}), 
+    context = {
         'ALL': ALL, 'MONK': MONK, 'LAYPERSON': LAYPERSON, 
         'active_menu':0, 'nav_list': nav_list, 
         'total': Location.objects.filter(q).count(), 
