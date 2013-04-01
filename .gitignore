@@ -11,3 +11,4 @@ fabfile.py
 media/pictures
 media/thumbnails
 tmp
+watna_location/settings.py
