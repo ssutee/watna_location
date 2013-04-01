@@ -203,9 +203,24 @@ def map_page(request):
         return HttpResponseRedirect('/unsupport/')
         
     request.session['next'] = '/'
+    gmap = maps.Map(
+        opts = {
+            'center': maps.LatLng(14.01012, 100.82302),
+            'mapTypeId': get_map_type(request),
+            'zoom': 8,
+            'mapTypeControlOptions': {
+                 'style': maps.MapTypeControlStyle.DROPDOWN_MENU
+            },
+            'navigationControlOptions': {
+                'style': maps.NavigationControlStyle.ANDROID
+            }            
+        }
+    )
     
     display = get_display(request)
-    
+
+    q = create_q_display(request) 
+        
     first_order = 'pk'
     try:
         first_order = 'city' if request.user.is_authenticated() and request.user.profile.sorting == 'city' else 'pk'
