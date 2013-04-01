@@ -1,0 +1,36 @@
+Django==1.4.5
+mysql-python
+uwsgi
+South
+pyopenssl
+python-cloudfiles
+PIL
+django-celery
+django-celery-with-mongodb
+celery-with-mongodb
+pycrypto
+-e git+git://github.com/richleland/django-cumulus.git#egg=django-cumulus
+django-countries
+django-crispy-forms
+django-email-as-username
+django-extensions
+django-flash
+django-jquery
+-e git+git://github.com/arneb/django-messages.git#egg=django-messages
+django-notification==0.2
+django-storages
+django-templateaddons
+djangorestframework
+markdown
+pyyaml
+django-filter
+redis
+simplejson
+pymongo
+oauth2
+httplib2
+easy-thumbnails
+python-gflags
+oauth2client
+django-gmapi
+google-api-python-client
