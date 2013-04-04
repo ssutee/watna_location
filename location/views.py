@@ -74,7 +74,7 @@ class PictureCreateView(CreateView):
         try:
             self.object = form.save()
         except Exception, e:
-            logger.error(str(e))
+            logger.debug(str(e))
             return HttpResponse(simplejson.dumps({'files':[]}), mimetype="application/json")
         
         f = self.request.FILES.get('file')    
