@@ -11,4 +11,5 @@ fabfile.py
 media/pictures
 media/thumbnails
 tmp
+logs
 watna_location/settings.py
