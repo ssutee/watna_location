@@ -26,7 +26,9 @@ import os.path, httplib2
 from apiclient.discovery import build
 from oauth2client.client import SignedJwtAssertionCredentials
 
+import logging
 
+logger = logging.getLogger(__name__)
 
 KEY = ''
 with open(os.path.join(os.path.dirname(__file__), '..', 'ddd6cbbb3fa5f618dafbb45d893aae97609eb4b3-privatekey.p12'), 'rb') as f:
@@ -72,6 +74,7 @@ class PictureCreateView(CreateView):
         try:
             self.object = form.save()
         except Exception, e:
+            logger.error(str(e))
             return HttpResponse(simplejson.dumps({'files':[]}), mimetype="application/json")
         
         f = self.request.FILES.get('file')    
