@@ -7,14 +7,22 @@ from oauth2client.django_orm import CredentialsField
 from django.db.models.signals import post_save, post_delete
 from location.tasks import insert_location_task, delete_location_task
 
+import os.path
+
 class CredentialsModel(models.Model):
     id = models.ForeignKey(User, primary_key=True)
     credential = CredentialsField()
 
+def lower_pictures(instance, filename):
+    return os.path.join('pictures', filename.lower())
+
+def lower_thumbnails(instance, filename):
+    return os.path.join('thumbnails', filename.lower())
+
 class Picture(models.Model):
 
-    file = models.ImageField(upload_to="pictures")
-    thumbnail = models.ImageField(upload_to="thumbnails", max_length=500, null=True, blank=True)
+    file = models.ImageField(upload_to=lower_pictures)
+    thumbnail = models.ImageField(upload_to=lower_thumbnails, max_length=500, null=True, blank=True)
     slug = models.SlugField(max_length=50, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True, related_name="pictures")
 
