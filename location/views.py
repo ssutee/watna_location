@@ -60,11 +60,18 @@ class PictureCreateView(CreateView):
             return HttpResponseRedirect('/places')
             
         if request.is_ajax():
-            files = {'files': map(lambda p:{'name':p.file.name, 
-                'size':p.file.size, 'url':p.file.url, 
-                'thumbnail_url':p.thumbnail.url, 'delete_type': 'DELETE',
-                'delete_url':reverse('upload-delete', args=[p.id])}, location.pictures.all())}
-            return HttpResponse(simplejson.dumps(files), mimetype="application/json")
+            files = []
+            for p in location.pictures.all():
+                try:
+                    filesize = p.file.size
+                except OSError, e:
+                    filesize = 0                    
+                files.append({
+                    'name':p.file.name, 'size':filesize, 
+                    'url':p.file.url, 'thumbnail_url':p.thumbnail.url, 
+                    'delete_type': 'DELETE','delete_url':reverse('upload-delete', args=[p.id])
+                })            
+            return HttpResponse(simplejson.dumps({'files':files}), mimetype="application/json")
         else:
             response = super(PictureCreateView, self).get(request, args, kwargs)
             response.context_data = dict(response.context_data, **{'location': location})
