@@ -7,7 +7,7 @@ from oauth2client.django_orm import CredentialsField
 from django.db.models.signals import post_save, post_delete
 from location.tasks import insert_location_task, delete_location_task
 
-import os.path
+import os.path, sys
 
 class CredentialsModel(models.Model):
     id = models.ForeignKey(User, primary_key=True)
@@ -25,6 +25,10 @@ class Picture(models.Model):
     thumbnail = models.ImageField(upload_to=lower_thumbnails, max_length=500, null=True, blank=True)
     slug = models.SlugField(max_length=50, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True, related_name="pictures")
+    position = models.IntegerField(null=True, blank=True)
+
+    class Meta:
+        ordering = ('position', 'pk',)
 
     def admin_image(self):
         return '<img src="%s"/>' % (self.thumbnail.url)
@@ -74,6 +78,7 @@ class Picture(models.Model):
     def save(self, *args, **kwargs):
         self.create_thumbnail()
         self.slug = self.file.name
+        self.position = sys.maxint
         super(Picture, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):

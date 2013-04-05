@@ -43,6 +43,8 @@ urlpatterns += patterns('',
     url(r'^messages/',include('messages.urls')),
     url(r'^navs/$', 'location.views.nav_list'),
     url(r'^export/$', 'location.views.export_page'),
+    url(r'^rearrange_pictures/(?P<pk>\d+)$', 'location.views.rearrange_pictures_page'),
+    url(r'^reorder_pictures/(?P<pk>\d+)$', 'location.views.reorder_pictures_page'),    
 )
 
 urlpatterns += patterns('django.views.generic.simple',

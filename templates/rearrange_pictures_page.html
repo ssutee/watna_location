@@ -10,14 +10,14 @@
     #sortable { 
       list-style-type: none; 
       margin: 0; padding: 0; 
-      width: 800px; 
+      width: 1024px; 
     }
     #sortable li { 
       margin: 3px 3px 3px 0; 
       padding: 1px; 
       float: left; 
-      width: 180px; 
-      height: 180px; 
+      width: 140px; 
+      height: 140px; 
       font-size: 4em; 
       text-align: center; 
     }    
@@ -49,7 +49,7 @@
     <ul id="sortable">
     {% for picture in location.pictures.all %}
       <li id="picture_{{picture.id}}" class="ui-state-default">
-        <img class="img-rounded inline" src="{{picture.thumbnail.url}}" />
+        <img class="img-polaroid inline" src="{{picture.thumbnail.url}}" />
       </li>
     {% endfor %}
     </ul>
