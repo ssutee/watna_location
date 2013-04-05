@@ -29,12 +29,6 @@
                 </button>
                 <input type="checkbox" class="toggle">
                 <input type="hidden" value={{ location.id }} name="location">
-                <span style="margin-left:20px; margin-right:20px;" />
-                <a href="{% url location.views.rearrange_pictures_page pk=location.id %}" 
-                  class="btn btn-success">
-                    <i class="icon-list icon-white"></i>
-                    <span>{% trans "Rearrange files" %}</span>
-                </a>
             </div>
             <div class="span5 fileupload-progress fade">
                 <div class="progress progress-success progres-striped active">

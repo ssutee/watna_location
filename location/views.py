@@ -606,7 +606,6 @@ def register_page(request):
     context = {'form': form, 'active_menu':1}
     return render(request, 'registration/register.html', context)    
 
-@login_required
 def export_page(request):
     import csv
     
@@ -634,23 +633,11 @@ def export_page(request):
         
         return response
     
-@login_required
-def rearrange_pictures_page(request, pk):
-    location = Location.objects.get(pk=pk)
-    if location.user.pk != request.user.pk:
-        return HttpResponseRedirect('/')
 
-    context = {'location': location}
-    return render(request, 'rearrange_pictures_page.html', context)
 
-@csrf_exempt
-@login_required
-def reorder_pictures_page(request, pk):
-    location = Location.objects.get(pk=pk)
-    if location.user.pk == request.user.pk and request.raw_post_data:
-        for i, pk  in enumerate(map(lambda x: int(x.split('=')[1]), request.raw_post_data.split('&'))):
-            picture = Picture.objects.get(pk=pk)
-            if picture.position != i:
-                picture.position = i
-                super(Picture, picture).save()
-    return HttpResponse(simplejson.dumps({'result': 0}), mimetype="application/json")
+
+
+
+
+
+
