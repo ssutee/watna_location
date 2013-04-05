@@ -121,7 +121,7 @@
 </form>
 
 {% include "members_pagination.html" %}
-<table class="table table-striped table-bordered">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>{% trans 'ID' %}</th> 
@@ -132,13 +132,13 @@
       <th>{% trans 'Organization' %}</th>
       <th>{% trans 'City/Country' %}</th>
       <th>{% trans 'Info' %}</th>
-      <th>{% trans 'Pictures' %}</th>
     </tr>
   </thead>
   <tbody>
     {% for location in locations %}
-      <tr>
-        <td>
+      {% cycle 'even' 'odd' as rowcolors silent %}
+      <tr class="{{ rowcolors }}">
+        <td {% if location.pictures.all.count %}rowspan=2{% endif %}>
           <div style="text-align:center;">
           {{location.id}}
           </div>
@@ -206,21 +206,24 @@
             <div style="margin-top:15px;"><span class="text-info">{%trans 'View count' %}</span> : <strong class="text-success" id="view_count_{{location.id}}">{{location.view_count}}</strong> <span class="text-info">{%trans 'times' %}</span></div>
           {% endif %}
         </td>
-        <td style="vertical-align:middle;">
-          {% if location.pictures.all.count %}
+      </tr>
+      {% if location.pictures.all.count %}
+      <tr class="{{ rowcolors }}">
+        <td colspan=7 style="vertical-align:middle;">
+
             <div id="gallery-{{forloop.counter}}" data-dismiss="modal" 
               data-toggle="modal-gallery" data-target="#modal-gallery">              
             {% for picture in location.pictures.all %}
-              <div>
+              <span>
                 <a location_id={{location.id}} rel="gallery" href="{{picture.file.url}}" title="{{location.place_name}}">
-                  <img class="img-rounded" src="{{picture.thumbnail.url}}" />
+                  <img class="img-rounded inline" src="{{picture.thumbnail.url}}" />
                 </a>
-              </div>
+              </span>
             {% endfor %}
             </div>
-          {% endif %}
         </td>
       </tr>
+      {% endif %}
     {% endfor %}      
   </tbody>
 </table>

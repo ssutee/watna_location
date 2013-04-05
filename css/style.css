@@ -100,3 +100,11 @@ p#additional_info {
   height: 645px;
   overflow: auto;
 }
+
+tr.odd {
+  background-color: #f9f9f9;
+}
+
+tr.even {
+  background-color: white;
+}

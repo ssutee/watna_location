@@ -30,16 +30,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-KEY = ''
-with open(os.path.join(os.path.dirname(__file__), '..', 'ddd6cbbb3fa5f618dafbb45d893aae97609eb4b3-privatekey.p12'), 'rb') as f:
-    KEY = f.read()
-
-credentials = SignedJwtAssertionCredentials(
-    '905290935225@developer.gserviceaccount.com', 
-    KEY, scope='https://www.googleapis.com/auth/fusiontables')
-
-ft_service = build('fusiontables', 'v1', http=credentials.authorize(httplib2.Http()))
-
 ALL          = 0
 MONK         = 1
 LAYPERSON    = 2
