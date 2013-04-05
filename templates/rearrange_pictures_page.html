@@ -4,8 +4,9 @@
 {% block title %}{% trans "Rearrange Pictures" %} - {{ location.place_name }} {% endblock %}
 {% block head %}{% trans "Rearrange Pictures" %} - {{ location.place_name }} {% endblock %}
 {% block script %}
-  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/jquery.ui.touch-punch.min.js"></script>
   <style>
     #sortable { 
       list-style-type: none; 
@@ -16,8 +17,8 @@
       margin: 3px 3px 3px 0; 
       padding: 1px; 
       float: left; 
-      width: 140px; 
-      height: 140px; 
+      width: 130px; 
+      height: 130px; 
       font-size: 4em; 
       text-align: center; 
     }    
