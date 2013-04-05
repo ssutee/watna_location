@@ -25,6 +25,10 @@ class Picture(models.Model):
     thumbnail = models.ImageField(upload_to=lower_thumbnails, max_length=500, null=True, blank=True)
     slug = models.SlugField(max_length=50, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True, related_name="pictures")
+    position = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['position', 'id']
 
     def admin_image(self):
         return '<img src="%s"/>' % (self.thumbnail.url)

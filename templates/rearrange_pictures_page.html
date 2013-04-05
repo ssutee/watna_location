@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load l10n %}
+{% load i18n %}
+{% block title %}{% trans "Rearrange Pictures" %} - {{ location.place_name }} {% endblock %}
+{% block head %}{% trans "Rearrange Pictures" %} - {{ location.place_name }} {% endblock %}
+{% block script %}
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <style>
+    #sortable { 
+      list-style-type: none; 
+      margin: 0; padding: 0; 
+      width: 800px; 
+    }
+    #sortable li { 
+      margin: 3px 3px 3px 0; 
+      padding: 1px; 
+      float: left; 
+      width: 180px; 
+      height: 180px; 
+      font-size: 4em; 
+      text-align: center; 
+    }    
+  </style>  
+  <script>
+    $(function() {
+      $( "#sortable" ).sortable({
+        stop:function(event, ui) {
+          $.ajax({
+            type: "POST",
+            url: "{% url location.views.reorder_pictures_page pk=location.id %}",
+            data: $("#sortable").sortable("serialize")
+          });
+        }
+      });
+      $( "#sortable" ).disableSelection();
+    });
+  </script>  
+{% endblock %}
+{% block content %}
+<div class="content">
+  <div>
+    <a class="btn btn-primary" href="{% url upload-new pk=location.id %}">{% trans "Back" %}</a>
+    <span class="text-info">{% trans "Drag and drop the picture to reorder its position"%}</span>
+  </div>
+  <br/>
+  <br/>
+  <div>
+    <ul id="sortable">
+    {% for picture in location.pictures.all %}
+      <li id="picture_{{picture.id}}" class="ui-state-default">
+        <img class="img-rounded inline" src="{{picture.thumbnail.url}}" />
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endblock %}
+{% block footer %}{% include "footer.html" %}{% endblock %}
