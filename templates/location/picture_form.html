@@ -27,9 +27,8 @@
                     <i class="icon-trash icon-white"></i>
                     <span>{% trans "Delete files" %}</span>
                 </button>
-                <input type="checkbox" class="toggle">
+                <input type="checkbox" class="toggle" style="margin-right:10px;">
                 <input type="hidden" value={{ location.id }} name="location">
-                <span style="margin-left:20px; margin-right:20px;" />
                 <a href="{% url location.views.rearrange_pictures_page pk=location.id %}" 
                   class="btn btn-success">
                     <i class="icon-list icon-white"></i>
