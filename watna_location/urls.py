@@ -45,6 +45,8 @@ urlpatterns += patterns('',
     url(r'^export/$', 'location.views.export_page'),
     url(r'^rearrange_pictures/(?P<pk>\d+)$', 'location.views.rearrange_pictures_page'),
     url(r'^reorder_pictures/(?P<pk>\d+)$', 'location.views.reorder_pictures_page'),    
+    url(r'^get_info_content/(?P<pk>\d+)$', 'location.views.get_info_content'),
+    url(r'^get_stat$', 'location.views.get_stat'),
 )
 
 urlpatterns += patterns('django.views.generic.simple',

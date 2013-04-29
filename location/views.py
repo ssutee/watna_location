@@ -124,6 +124,15 @@ def create_info_content(location):
         location.place_name, location.city,
         ', '.join(map(lambda x:x.name,location.activities.all())))
 
+def get_info_content(request, pk):
+    location = Location.objects.get(pk=pk)
+    return HttpResponse(simplejson.dumps({'result': create_info_content(location)}), mimetype="application/json")
+    
+def get_stat(request):
+    places = Location.objects.all().count()
+    countries = Location.objects.all().values('country').annotate(total=Count('country')).count()
+    return HttpResponse(simplejson.dumps({'places': places, 'countries': countries}), mimetype="application/json")
+
 def create_user_profile(request):
     if request.user.is_authenticated():
         try:
