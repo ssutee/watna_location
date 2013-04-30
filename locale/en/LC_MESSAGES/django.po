@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-05 23:37+0700\n"
+"POT-Creation-Date: 2013-04-30 06:33+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgstr ""
 msgid "Other skills"
 msgstr ""
 
-#: location/forms.py:63 location/forms.py:110 templates/base.html:194
+#: location/forms.py:63 location/forms.py:110 templates/base.html:197
 msgid "Password"
 msgstr ""
 
@@ -151,7 +151,7 @@ msgstr ""
 msgid "Place name"
 msgstr ""
 
-#: location/models.py:135 location/views.py:520
+#: location/models.py:135 location/views.py:529
 #: templates/members_page.html:132
 msgid "Organization"
 msgstr ""
@@ -234,60 +234,60 @@ msgstr ""
 msgid "Region"
 msgstr ""
 
-#: location/views.py:244 templates/members_page.html:89
+#: location/views.py:253 templates/members_page.html:89
 #: templates/members_page.html.py:99
 msgid "All"
 msgstr ""
 
-#: location/views.py:246 templates/map_page.html:413
+#: location/views.py:255 templates/map_page.html:413
 msgid "Monk"
 msgstr ""
 
-#: location/views.py:248 templates/map_page.html:416
+#: location/views.py:257 templates/map_page.html:416
 msgid "Layperson"
 msgstr ""
 
-#: location/views.py:390
+#: location/views.py:399
 msgid "Your information updated successfully"
 msgstr ""
 
-#: location/views.py:412
+#: location/views.py:421
 msgid "Password changed successfully"
 msgstr ""
 
-#: location/views.py:436
+#: location/views.py:445
 msgid "Place updated successfully"
 msgstr ""
 
-#: location/views.py:461
+#: location/views.py:470
 msgid "New place added successfully"
 msgstr ""
 
-#: location/views.py:515 location/views.py:518 location/views.py:524
+#: location/views.py:524 location/views.py:527 location/views.py:533
 msgid "Only member"
 msgstr ""
 
-#: location/views.py:520
+#: location/views.py:529
 msgid "Person"
 msgstr ""
 
-#: location/views.py:532 location/views.py:534 location/views.py:536
+#: location/views.py:541 location/views.py:543 location/views.py:545
 msgid "hidden"
 msgstr ""
 
-#: location/views.py:574
+#: location/views.py:583
 msgid "Logout successfully"
 msgstr ""
 
-#: location/views.py:584
+#: location/views.py:593
 msgid "Login successfully"
 msgstr ""
 
-#: location/views.py:586
+#: location/views.py:595
 msgid "Invalid email or password"
 msgstr ""
 
-#: location/views.py:601
+#: location/views.py:610
 msgid "Registration completed successfully"
 msgstr ""
 
@@ -380,15 +380,19 @@ msgstr ""
 msgid "City/Place alphabet"
 msgstr ""
 
-#: templates/base.html:192
-msgid "Email"
+#: templates/base.html:179
+msgid "User manual"
 msgstr ""
 
 #: templates/base.html:195
+msgid "Email"
+msgstr ""
+
+#: templates/base.html:198
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:196
+#: templates/base.html:199
 msgid "Forgot password?"
 msgstr ""
 
@@ -513,11 +517,11 @@ msgstr ""
 msgid "Rearrange Pictures"
 msgstr ""
 
-#: templates/rearrange_pictures_page.html:43
+#: templates/rearrange_pictures_page.html:44
 msgid "Back"
 msgstr ""
 
-#: templates/rearrange_pictures_page.html:44
+#: templates/rearrange_pictures_page.html:45
 msgid "Drag and drop the picture to reorder its position"
 msgstr ""
 
@@ -555,7 +559,7 @@ msgstr ""
 msgid "Delete files"
 msgstr ""
 
-#: templates/location/picture_form.html:36
+#: templates/location/picture_form.html:35
 msgid "Rearrange files"
 msgstr ""
 

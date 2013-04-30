@@ -47,6 +47,7 @@ urlpatterns += patterns('',
     url(r'^reorder_pictures/(?P<pk>\d+)$', 'location.views.reorder_pictures_page'),    
     url(r'^get_info_content/(?P<pk>\d+)$', 'location.views.get_info_content'),
     url(r'^get_stat$', 'location.views.get_stat'),
+    url(r'^user_manual', 'location.views.user_manual_page'),
 )
 
 urlpatterns += patterns('django.views.generic.simple',

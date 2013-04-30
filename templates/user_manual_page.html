@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load l10n %}
+{% load i18n %}
+{% block title %}{% trans "User manual" %}{% endblock %}
+{% block head %}{% trans "User manual" %}{% endblock %}
+{% block script %}
+  <script src="http://jwpsrv.com/library/Iqs6HJQ2EeKd7yIACpYGxA.js"></script>
+{% endblock %}
+{% block content %}
+
+<div style="margin-left:auto;margin-right:auto;width:800px;height:600px;">
+  <div id='my-video'></div>
+</div>
+
+<script type='text/javascript'>
+    jwplayer('my-video').setup({
+        playlist: [
+          { file: 'http://b21cfc21b95ccae6347c-69ad46562f2664c45c8818e634bd3b7e.r58.cf1.rackcdn.com/1daregis.mp4', type: 'mp4', provider: 'video'},
+          { file: 'http://b21cfc21b95ccae6347c-69ad46562f2664c45c8818e634bd3b7e.r58.cf1.rackcdn.com/2da_place00.mp4', type: 'mp4', provider: 'video'},
+          { file: 'http://b21cfc21b95ccae6347c-69ad46562f2664c45c8818e634bd3b7e.r58.cf1.rackcdn.com/2da_place01.mp4', type: 'mp4', provider: 'video' },
+          { file: 'http://b21cfc21b95ccae6347c-69ad46562f2664c45c8818e634bd3b7e.r58.cf1.rackcdn.com/3da_specialist.mp4', type: 'mp4', provider: 'video'},
+        ],
+        width: '800',
+        height: '600',
+        skin: 'roundster',
+    });
+</script>
+{% endblock %}
+
+{% block footer %}{% include "footer.html" %}{% endblock %}

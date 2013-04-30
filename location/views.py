@@ -615,6 +615,10 @@ def register_page(request):
     context = {'form': form, 'active_menu':1}
     return render(request, 'registration/register.html', context)    
 
+def user_manual_page(request):
+    context = {'active_menu': 4 if request.user.is_authenticated() else 2}
+    return render(request, 'user_manual_page.html', context)
+
 def export_page(request):
     import csv
     

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-05 23:37+0700\n"
+"POT-Creation-Date: 2013-04-30 06:33+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr "สายงานอาชีพและความสามารถ
 msgid "Other skills"
 msgstr "ความสามารถอื่นๆ"
 
-#: location/forms.py:63 location/forms.py:110 templates/base.html:194
+#: location/forms.py:63 location/forms.py:110 templates/base.html:197
 msgid "Password"
 msgstr "รหัสผ่าน"
 
@@ -158,7 +158,7 @@ msgstr "ผู้เยี่ยมชม"
 msgid "Place name"
 msgstr "ชื่อสถานที่"
 
-#: location/models.py:135 location/views.py:520
+#: location/models.py:135 location/views.py:529
 #: templates/members_page.html:132
 msgid "Organization"
 msgstr "องค์กร"
@@ -241,60 +241,60 @@ msgstr "ภาค"
 msgid "Region"
 msgstr "ภาค"
 
-#: location/views.py:244 templates/members_page.html:89
+#: location/views.py:253 templates/members_page.html:89
 #: templates/members_page.html.py:99
 msgid "All"
 msgstr "ทั้งหมด"
 
-#: location/views.py:246 templates/map_page.html:413
+#: location/views.py:255 templates/map_page.html:413
 msgid "Monk"
 msgstr "นักบวช"
 
-#: location/views.py:248 templates/map_page.html:416
+#: location/views.py:257 templates/map_page.html:416
 msgid "Layperson"
 msgstr "ฆราวาส"
 
-#: location/views.py:390
+#: location/views.py:399
 msgid "Your information updated successfully"
 msgstr "ข้อมูลของคุณถูกปรับปรุงแล้ว"
 
-#: location/views.py:412
+#: location/views.py:421
 msgid "Password changed successfully"
 msgstr "รหัสผ่านถูกเปลี่ยนแปลงแล้ว"
 
-#: location/views.py:436
+#: location/views.py:445
 msgid "Place updated successfully"
 msgstr "ข้อมูลสถานที่ถูกปรับปรุงแล้ว"
 
-#: location/views.py:461
+#: location/views.py:470
 msgid "New place added successfully"
 msgstr "สถานที่ใหม่ถูกเพิ่มแล้ว"
 
-#: location/views.py:515 location/views.py:518 location/views.py:524
+#: location/views.py:524 location/views.py:527 location/views.py:533
 msgid "Only member"
 msgstr "เฉพาะผู้ลงทะเบียน"
 
-#: location/views.py:520
+#: location/views.py:529
 msgid "Person"
 msgstr "บุคคล"
 
-#: location/views.py:532 location/views.py:534 location/views.py:536
+#: location/views.py:541 location/views.py:543 location/views.py:545
 msgid "hidden"
 msgstr "ไม่เปิดเผย"
 
-#: location/views.py:574
+#: location/views.py:583
 msgid "Logout successfully"
 msgstr "ออกจากระบบแล้ว"
 
-#: location/views.py:584
+#: location/views.py:593
 msgid "Login successfully"
 msgstr "เข้าสู่ระบบสำเร็จแล้ว"
 
-#: location/views.py:586
+#: location/views.py:595
 msgid "Invalid email or password"
 msgstr "อีเมล หรือ รหัสผ่านไม่ถูกต้อง"
 
-#: location/views.py:601
+#: location/views.py:610
 msgid "Registration completed successfully"
 msgstr "ลงทะเบียนสำเร็จแล้ว"
 
@@ -387,15 +387,19 @@ msgstr "การใส่ข้อมูลก่อนหลัง"
 msgid "City/Place alphabet"
 msgstr "ชื่อจังหวัด ชื่อสถานที่"
 
-#: templates/base.html:192
+#: templates/base.html:179
+msgid "User manual"
+msgstr "วิธีการใช้งาน"
+
+#: templates/base.html:195
 msgid "Email"
 msgstr "อีเมล"
 
-#: templates/base.html:195
+#: templates/base.html:198
 msgid "Login"
 msgstr "เข้าสู่ระบบ"
 
-#: templates/base.html:196
+#: templates/base.html:199
 msgid "Forgot password?"
 msgstr "ลืมรหัสผ่าน?"
 
@@ -520,11 +524,11 @@ msgstr "ทั้งหมด"
 msgid "Rearrange Pictures"
 msgstr "จัดเรียงรูปภาพ"
 
-#: templates/rearrange_pictures_page.html:43
+#: templates/rearrange_pictures_page.html:44
 msgid "Back"
 msgstr "กลับ"
 
-#: templates/rearrange_pictures_page.html:44
+#: templates/rearrange_pictures_page.html:45
 msgid "Drag and drop the picture to reorder its position"
 msgstr "ลากและวางรูปภาพเพื่อจัดเรียงลำดับใหม่"
 
@@ -563,7 +567,7 @@ msgstr "ยกเลิกอัพโหลด"
 msgid "Delete files"
 msgstr "ลบไฟล์"
 
-#: templates/location/picture_form.html:36
+#: templates/location/picture_form.html:35
 msgid "Rearrange files"
 msgstr "จัดเรียงไฟล์"
 
