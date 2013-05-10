@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-30 06:33+0700\n"
+"POT-Creation-Date: 2013-05-10 09:04+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr "สายงานอาชีพและความสามารถ
 msgid "Other skills"
 msgstr "ความสามารถอื่นๆ"
 
-#: location/forms.py:63 location/forms.py:110 templates/base.html:197
+#: location/forms.py:63 location/forms.py:110 templates/base.html:200
 msgid "Password"
 msgstr "รหัสผ่าน"
 
@@ -80,7 +80,7 @@ msgstr "ป้อนรหัสผ่านผิด"
 msgid "Password do not match"
 msgstr "รหัสผ่านไม่ตรงกัน"
 
-#: location/forms.py:101 templates/base.html:176
+#: location/forms.py:101 templates/base.html:179
 msgid "Register"
 msgstr "ลงทะเบียน"
 
@@ -138,7 +138,7 @@ msgstr ""
 
 #: location/models.py:92 location/models.py:120 location/models.py:204
 #: location/models.py:214 location/models.py:229 location/models.py:242
-#: templates/locations_page.html:31 templates/members_page.html:128
+#: templates/locations_page.html:31 templates/members_page.html:132
 msgid "Name"
 msgstr "ชื่อ"
 
@@ -154,12 +154,12 @@ msgstr "สถานะ"
 msgid "Vistors"
 msgstr "ผู้เยี่ยมชม"
 
-#: location/models.py:134 templates/members_page.html:130
+#: location/models.py:134 templates/members_page.html:134
 msgid "Place name"
 msgstr "ชื่อสถานที่"
 
 #: location/models.py:135 location/views.py:529
-#: templates/members_page.html:132
+#: templates/members_page.html:136
 msgid "Organization"
 msgstr "องค์กร"
 
@@ -168,7 +168,7 @@ msgid "Organization relationship"
 msgstr "ความเกี่ยวข้องกับองค์กร"
 
 #: location/models.py:144 templates/map_page.html:313
-#: templates/members_page.html:131
+#: templates/members_page.html:135
 msgid "Address"
 msgstr "ที่อยู่"
 
@@ -201,7 +201,7 @@ msgstr "ซ่อนเบอร์โทรศัพท์"
 msgid "Hide address"
 msgstr "ซ่อนที่อยู่"
 
-#: location/models.py:159 templates/members_page.html:206
+#: location/models.py:159 templates/members_page.html:210
 msgid "View count"
 msgstr "รูปภาพถูกเรียกดู"
 
@@ -323,7 +323,7 @@ msgstr "คุณต้องการออกจากระบบหรือ
 msgid "Cancel"
 msgstr "ยกเลิก"
 
-#: templates/base.html:129 templates/base.html.py:172
+#: templates/base.html:129 templates/base.html.py:175
 msgid "Logout"
 msgstr "ออกจากระบบ"
 
@@ -351,55 +351,56 @@ msgstr "ข้อมูลส่วนตัว"
 msgid "Members"
 msgstr "สมาชิก"
 
-#: templates/base.html:159
-msgid "Options"
-msgstr "ตัวเลือก"
-
-#: templates/base.html:161
-msgid "Map type"
-msgstr "ประเภทแผนที่"
-
-#: templates/base.html:162
-msgid "Road"
-msgstr "ถนน"
-
-#: templates/base.html:163
-msgid "Terrain"
-msgstr "ภูมิประเทศ"
-
-#: templates/base.html:164
-msgid "Satellite"
-msgstr "ดาวเทียม"
-
-#: templates/base.html:165
-msgid "Satellite & Labels"
-msgstr "ดาวเทียม และ ป้ายกำกับ"
-
-#: templates/base.html:166
-msgid "Sorting"
-msgstr "การจัดเรียง"
-
-#: templates/base.html:167
-msgid "Entry order"
-msgstr "การใส่ข้อมูลก่อนหลัง"
-
-#: templates/base.html:168
-msgid "City/Place alphabet"
-msgstr "ชื่อจังหวัด ชื่อสถานที่"
-
-#: templates/base.html:179
+#: templates/base.html:158 templates/base.html.py:182
+#: templates/user_manual_page.html:4 templates/user_manual_page.html.py:5
 msgid "User manual"
 msgstr "วิธีการใช้งาน"
 
-#: templates/base.html:195
+#: templates/base.html:162
+msgid "Options"
+msgstr "ตัวเลือก"
+
+#: templates/base.html:164
+msgid "Map type"
+msgstr "ประเภทแผนที่"
+
+#: templates/base.html:165
+msgid "Road"
+msgstr "ถนน"
+
+#: templates/base.html:166
+msgid "Terrain"
+msgstr "ภูมิประเทศ"
+
+#: templates/base.html:167
+msgid "Satellite"
+msgstr "ดาวเทียม"
+
+#: templates/base.html:168
+msgid "Satellite & Labels"
+msgstr "ดาวเทียม และ ป้ายกำกับ"
+
+#: templates/base.html:169
+msgid "Sorting"
+msgstr "การจัดเรียง"
+
+#: templates/base.html:170
+msgid "Entry order"
+msgstr "การใส่ข้อมูลก่อนหลัง"
+
+#: templates/base.html:171
+msgid "City/Place alphabet"
+msgstr "ชื่อจังหวัด ชื่อสถานที่"
+
+#: templates/base.html:198
 msgid "Email"
 msgstr "อีเมล"
 
-#: templates/base.html:198
+#: templates/base.html:201
 msgid "Login"
 msgstr "เข้าสู่ระบบ"
 
-#: templates/base.html:199
+#: templates/base.html:202
 msgid "Forgot password?"
 msgstr "ลืมรหัสผ่าน?"
 
@@ -428,7 +429,7 @@ msgid "Find your location"
 msgstr "ค้นหาตำแหน่งของคุณ"
 
 #: templates/location_content.html:58 templates/map_page.html:358
-#: templates/members_page.html:120
+#: templates/members_page.html:124
 msgid "Search"
 msgstr "ค้นหา"
 
@@ -451,7 +452,7 @@ msgstr "ลบ"
 msgid "Contact name"
 msgstr "ชื่อผู้ติดต่อ"
 
-#: templates/map_page.html:317 templates/members_page.html:133
+#: templates/map_page.html:317 templates/members_page.html:137
 msgid "City/Country"
 msgstr "จังหวัด/ประเทศ"
 
@@ -471,7 +472,7 @@ msgstr "แสดงผล"
 msgid "CDs/books request"
 msgstr "ขอซีดีและหนังสือ"
 
-#: templates/members_page.html:108 templates/members_page.html.py:134
+#: templates/members_page.html:108 templates/members_page.html.py:138
 msgid "Info"
 msgstr "ข้อมูล"
 
@@ -479,39 +480,43 @@ msgstr "ข้อมูล"
 msgid "Only organization"
 msgstr "เฉพาะองค์กร"
 
-#: templates/members_page.html:119
+#: templates/members_page.html:120
+msgid "Only monks"
+msgstr "เฉพาะนักบวช"
+
+#: templates/members_page.html:123
 msgid "Enter a keyword"
 msgstr "ป้อนคำค้นหา"
 
-#: templates/members_page.html:127
+#: templates/members_page.html:131
 msgid "ID"
 msgstr "รหัส"
 
-#: templates/members_page.html:129
+#: templates/members_page.html:133
 msgid "Phone"
 msgstr "โทรศัพท์"
 
-#: templates/members_page.html:192
+#: templates/members_page.html:196
 msgid "visited"
 msgstr "ชมแล้ว"
 
-#: templates/members_page.html:193
+#: templates/members_page.html:197
 msgid "visit"
 msgstr "เยี่ยมชม"
 
-#: templates/members_page.html:196 templates/members_page.html.py:199
+#: templates/members_page.html:200 templates/members_page.html.py:203
 msgid "Visitors"
 msgstr "ผู้เยี่ยมชม"
 
-#: templates/members_page.html:200
+#: templates/members_page.html:204
 msgid "persons"
 msgstr "คน"
 
-#: templates/members_page.html:200
+#: templates/members_page.html:204
 msgid "person"
 msgstr "คน"
 
-#: templates/members_page.html:206
+#: templates/members_page.html:210
 msgid "times"
 msgstr "ครั้ง"
 
@@ -584,6 +589,7 @@ msgstr "ไทย"
 msgid "English"
 msgstr "อังกฤษ"
 
+#: watna_location/settings.py:36
 msgid "Thailand"
 msgstr "ประเทศไทย"
 

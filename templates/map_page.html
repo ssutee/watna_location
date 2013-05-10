@@ -98,6 +98,7 @@
       
       function init_map() {
         var thailand = new google.maps.LatLng(14.01012, 100.82302);        
+        var display = parseInt({{ display }});
         
         gmap = new google.maps.Map(document.getElementById('id_gmap'), {
           center: thailand,
@@ -108,7 +109,12 @@
         layer = new google.maps.FusionTablesLayer({
           query: {
             select: 'Location',
-            from: '{{TABLE_ID}}'
+            from: '{{TABLE_ID}}',
+            {% if display == MONK %}
+              where: 'Status < 3',
+            {% elif display == LAYPERSON %}
+              where: 'Status > 2',
+            {% endif %}
           },
           suppressInfoWindows: true,
           styles: [

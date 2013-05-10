@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-30 06:33+0700\n"
+"POT-Creation-Date: 2013-05-10 09:04+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgstr ""
 msgid "Other skills"
 msgstr ""
 
-#: location/forms.py:63 location/forms.py:110 templates/base.html:197
+#: location/forms.py:63 location/forms.py:110 templates/base.html:200
 msgid "Password"
 msgstr ""
 
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Password do not match"
 msgstr ""
 
-#: location/forms.py:101 templates/base.html:176
+#: location/forms.py:101 templates/base.html:179
 msgid "Register"
 msgstr ""
 
@@ -131,7 +131,7 @@ msgstr ""
 
 #: location/models.py:92 location/models.py:120 location/models.py:204
 #: location/models.py:214 location/models.py:229 location/models.py:242
-#: templates/locations_page.html:31 templates/members_page.html:128
+#: templates/locations_page.html:31 templates/members_page.html:132
 msgid "Name"
 msgstr ""
 
@@ -147,12 +147,12 @@ msgstr ""
 msgid "Vistors"
 msgstr ""
 
-#: location/models.py:134 templates/members_page.html:130
+#: location/models.py:134 templates/members_page.html:134
 msgid "Place name"
 msgstr ""
 
 #: location/models.py:135 location/views.py:529
-#: templates/members_page.html:132
+#: templates/members_page.html:136
 msgid "Organization"
 msgstr ""
 
@@ -161,7 +161,7 @@ msgid "Organization relationship"
 msgstr ""
 
 #: location/models.py:144 templates/map_page.html:313
-#: templates/members_page.html:131
+#: templates/members_page.html:135
 msgid "Address"
 msgstr ""
 
@@ -194,7 +194,7 @@ msgstr ""
 msgid "Hide address"
 msgstr ""
 
-#: location/models.py:159 templates/members_page.html:206
+#: location/models.py:159 templates/members_page.html:210
 msgid "View count"
 msgstr ""
 
@@ -316,7 +316,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: templates/base.html:129 templates/base.html.py:172
+#: templates/base.html:129 templates/base.html.py:175
 msgid "Logout"
 msgstr ""
 
@@ -344,55 +344,56 @@ msgstr ""
 msgid "Members"
 msgstr ""
 
-#: templates/base.html:159
-msgid "Options"
-msgstr ""
-
-#: templates/base.html:161
-msgid "Map type"
-msgstr ""
-
-#: templates/base.html:162
-msgid "Road"
-msgstr ""
-
-#: templates/base.html:163
-msgid "Terrain"
-msgstr ""
-
-#: templates/base.html:164
-msgid "Satellite"
-msgstr ""
-
-#: templates/base.html:165
-msgid "Satellite & Labels"
-msgstr ""
-
-#: templates/base.html:166
-msgid "Sorting"
-msgstr ""
-
-#: templates/base.html:167
-msgid "Entry order"
-msgstr ""
-
-#: templates/base.html:168
-msgid "City/Place alphabet"
-msgstr ""
-
-#: templates/base.html:179
+#: templates/base.html:158 templates/base.html.py:182
+#: templates/user_manual_page.html:4 templates/user_manual_page.html.py:5
 msgid "User manual"
 msgstr ""
 
-#: templates/base.html:195
-msgid "Email"
+#: templates/base.html:162
+msgid "Options"
+msgstr ""
+
+#: templates/base.html:164
+msgid "Map type"
+msgstr ""
+
+#: templates/base.html:165
+msgid "Road"
+msgstr ""
+
+#: templates/base.html:166
+msgid "Terrain"
+msgstr ""
+
+#: templates/base.html:167
+msgid "Satellite"
+msgstr ""
+
+#: templates/base.html:168
+msgid "Satellite & Labels"
+msgstr ""
+
+#: templates/base.html:169
+msgid "Sorting"
+msgstr ""
+
+#: templates/base.html:170
+msgid "Entry order"
+msgstr ""
+
+#: templates/base.html:171
+msgid "City/Place alphabet"
 msgstr ""
 
 #: templates/base.html:198
+msgid "Email"
+msgstr ""
+
+#: templates/base.html:201
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:199
+#: templates/base.html:202
 msgid "Forgot password?"
 msgstr ""
 
@@ -421,7 +422,7 @@ msgid "Find your location"
 msgstr ""
 
 #: templates/location_content.html:58 templates/map_page.html:358
-#: templates/members_page.html:120
+#: templates/members_page.html:124
 msgid "Search"
 msgstr ""
 
@@ -444,7 +445,7 @@ msgstr ""
 msgid "Contact name"
 msgstr ""
 
-#: templates/map_page.html:317 templates/members_page.html:133
+#: templates/map_page.html:317 templates/members_page.html:137
 msgid "City/Country"
 msgstr ""
 
@@ -464,7 +465,7 @@ msgstr ""
 msgid "CDs/books request"
 msgstr ""
 
-#: templates/members_page.html:108 templates/members_page.html.py:134
+#: templates/members_page.html:108 templates/members_page.html.py:138
 msgid "Info"
 msgstr ""
 
@@ -472,39 +473,43 @@ msgstr ""
 msgid "Only organization"
 msgstr ""
 
-#: templates/members_page.html:119
+#: templates/members_page.html:120
+msgid "Only monks"
+msgstr ""
+
+#: templates/members_page.html:123
 msgid "Enter a keyword"
 msgstr ""
 
-#: templates/members_page.html:127
+#: templates/members_page.html:131
 msgid "ID"
 msgstr ""
 
-#: templates/members_page.html:129
+#: templates/members_page.html:133
 msgid "Phone"
 msgstr ""
 
-#: templates/members_page.html:192
+#: templates/members_page.html:196
 msgid "visited"
 msgstr ""
 
-#: templates/members_page.html:193
+#: templates/members_page.html:197
 msgid "visit"
 msgstr ""
 
-#: templates/members_page.html:196 templates/members_page.html.py:199
+#: templates/members_page.html:200 templates/members_page.html.py:203
 msgid "Visitors"
 msgstr ""
 
-#: templates/members_page.html:200
+#: templates/members_page.html:204
 msgid "persons"
 msgstr ""
 
-#: templates/members_page.html:200
+#: templates/members_page.html:204
 msgid "person"
 msgstr ""
 
-#: templates/members_page.html:206
+#: templates/members_page.html:210
 msgid "times"
 msgstr ""
 
@@ -574,4 +579,8 @@ msgstr ""
 
 #: watna_location/settings.py:33
 msgid "English"
+msgstr ""
+
+#: watna_location/settings.py:36
+msgid "Thailand"
 msgstr ""

@@ -345,6 +345,9 @@ def members_page(request):
     if request.GET.get('org'):
         objects = objects.filter(organization=True)
         
+    if request.GET.get('monks'):
+        objects = objects.filter(Q(status=0) | Q(status=1))
+        
     if country != 'ALL':
         objects = objects.filter(country=country)
         
@@ -377,6 +380,7 @@ def members_page(request):
         'info': True if request.GET.get('info') else False,
         'pictures': True if request.GET.get('pictures') else False,
         'org': True if request.GET.get('org') else False,
+        'monks': True if request.GET.get('monks') else False,
         'country': country, 'region': region, 'query': query,
         'locations': locations, 'total': location_list.count(),
         'num_pages': xrange(1, paginator.num_pages+1)
