@@ -435,7 +435,7 @@ def edit_user_page(request):
 def edit_location_page(request, pk):
     location = Location.objects.get(pk=int(pk))   
 
-    if location.user.id != request.user.id:
+    if location.user.id != request.user.id and not request.user.is_superuser:
         return HttpResponseRedirect('/places')
         
     lat, lng = location.latitude, location.longitude     

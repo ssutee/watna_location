@@ -50,6 +50,7 @@
               $('#btn_pictures').hide();
               $('#tr_id_gallery').hide();
             }
+            $('#btn_edit_location').attr('href', '/places/' + location_id);
             
             var gallery = $('#gallery');
             gallery.empty();
@@ -351,6 +352,9 @@
       </table>
     </div>
     <div class="modal-footer">
+      {% if user.is_superuser %}
+      <a id="btn_edit_location" href="#" class="btn btn-danger">{% trans "Edit" %}</a>
+      {% endif %}
       <button id="btn_pictures" class="btn btn-success" data-dismiss="modal"
        data-target="#modal-gallery" data-selector="#gallery a[rel=gallery]">
         {% trans "Pictures" %}

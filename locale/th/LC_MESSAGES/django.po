@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-10 09:04+0700\n"
+"POT-Creation-Date: 2013-05-20 22:09+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,7 @@ msgid "Save"
 msgstr "บันทึก"
 
 #: location/forms.py:32 location/forms.py:59 location/forms.py:108
-#: templates/map_page.html:307
+#: templates/map_page.html:313
 msgid "E-mail"
 msgstr "อีเมล"
 
@@ -93,7 +93,7 @@ msgid "E-mail is already taken."
 msgstr "อีเมลนี้มีคนใช้ไปแล้ว"
 
 #: location/forms.py:162 location/models.py:149 location/models.py:221
-#: templates/map_page.html:323
+#: templates/map_page.html:329
 msgid "Activities"
 msgstr "กิจกรรม"
 
@@ -107,7 +107,7 @@ msgstr "ละติจูด"
 msgid "Longitude"
 msgstr "ลองจิจูด"
 
-#: location/forms.py:179 location/models.py:152 templates/map_page.html:329
+#: location/forms.py:179 location/models.py:152 templates/map_page.html:335
 msgid "Additional information"
 msgstr "ข้อมูลเพิ่มเติม"
 
@@ -158,16 +158,16 @@ msgstr "ผู้เยี่ยมชม"
 msgid "Place name"
 msgstr "ชื่อสถานที่"
 
-#: location/models.py:135 location/views.py:529
+#: location/models.py:135 location/views.py:533
 #: templates/members_page.html:136
 msgid "Organization"
 msgstr "องค์กร"
 
-#: location/models.py:136 templates/map_page.html:333
+#: location/models.py:136 templates/map_page.html:339
 msgid "Organization relationship"
 msgstr "ความเกี่ยวข้องกับองค์กร"
 
-#: location/models.py:144 templates/map_page.html:313
+#: location/models.py:144 templates/map_page.html:319
 #: templates/members_page.html:135
 msgid "Address"
 msgstr "ที่อยู่"
@@ -181,7 +181,7 @@ msgstr "จังหวัด"
 msgid "Country"
 msgstr "ประเทศ"
 
-#: location/models.py:147 templates/map_page.html:303
+#: location/models.py:147 templates/map_page.html:309
 msgid "Phone number"
 msgstr "เบอร์โทรศัพท์"
 
@@ -246,55 +246,55 @@ msgstr "ภาค"
 msgid "All"
 msgstr "ทั้งหมด"
 
-#: location/views.py:255 templates/map_page.html:413
+#: location/views.py:255 templates/map_page.html:422
 msgid "Monk"
 msgstr "นักบวช"
 
-#: location/views.py:257 templates/map_page.html:416
+#: location/views.py:257 templates/map_page.html:425
 msgid "Layperson"
 msgstr "ฆราวาส"
 
-#: location/views.py:399
+#: location/views.py:403
 msgid "Your information updated successfully"
 msgstr "ข้อมูลของคุณถูกปรับปรุงแล้ว"
 
-#: location/views.py:421
+#: location/views.py:425
 msgid "Password changed successfully"
 msgstr "รหัสผ่านถูกเปลี่ยนแปลงแล้ว"
 
-#: location/views.py:445
+#: location/views.py:449
 msgid "Place updated successfully"
 msgstr "ข้อมูลสถานที่ถูกปรับปรุงแล้ว"
 
-#: location/views.py:470
+#: location/views.py:474
 msgid "New place added successfully"
 msgstr "สถานที่ใหม่ถูกเพิ่มแล้ว"
 
-#: location/views.py:524 location/views.py:527 location/views.py:533
+#: location/views.py:528 location/views.py:531 location/views.py:537
 msgid "Only member"
 msgstr "เฉพาะผู้ลงทะเบียน"
 
-#: location/views.py:529
+#: location/views.py:533
 msgid "Person"
 msgstr "บุคคล"
 
-#: location/views.py:541 location/views.py:543 location/views.py:545
+#: location/views.py:545 location/views.py:547 location/views.py:549
 msgid "hidden"
 msgstr "ไม่เปิดเผย"
 
-#: location/views.py:583
+#: location/views.py:587
 msgid "Logout successfully"
 msgstr "ออกจากระบบแล้ว"
 
-#: location/views.py:593
+#: location/views.py:597
 msgid "Login successfully"
 msgstr "เข้าสู่ระบบสำเร็จแล้ว"
 
-#: location/views.py:595
+#: location/views.py:599
 msgid "Invalid email or password"
 msgstr "อีเมล หรือ รหัสผ่านไม่ถูกต้อง"
 
-#: location/views.py:610
+#: location/views.py:614
 msgid "Registration completed successfully"
 msgstr "ลงทะเบียนสำเร็จแล้ว"
 
@@ -420,7 +420,7 @@ msgstr "นำออก"
 msgid "Search Result"
 msgstr "ผลลัพธ์การค้นหา"
 
-#: templates/location_content.html:47 templates/map_page.html:352
+#: templates/location_content.html:47 templates/map_page.html:361
 msgid "Close"
 msgstr "ปิด"
 
@@ -428,7 +428,7 @@ msgstr "ปิด"
 msgid "Find your location"
 msgstr "ค้นหาตำแหน่งของคุณ"
 
-#: templates/location_content.html:58 templates/map_page.html:358
+#: templates/location_content.html:58 templates/map_page.html:367
 #: templates/members_page.html:124
 msgid "Search"
 msgstr "ค้นหา"
@@ -437,8 +437,8 @@ msgstr "ค้นหา"
 msgid "Drag and drop the marker to pinpoint the place."
 msgstr "ลากและวางเครื่องหมายเพื่อเลือกที่ตั้งของสถานที่"
 
-#: templates/locations_page.html:49 templates/map_page.html:339
-#: templates/map_page.html.py:350 templates/members_page.html:112
+#: templates/locations_page.html:49 templates/map_page.html:345
+#: templates/map_page.html.py:359 templates/members_page.html:112
 #: templates/location/picture_form.html:5
 #: templates/location/picture_form.html:6
 msgid "Pictures"
@@ -448,27 +448,31 @@ msgstr "รูปภาพ"
 msgid "Delete"
 msgstr "ลบ"
 
-#: templates/map_page.html:299
+#: templates/map_page.html:305
 msgid "Contact name"
 msgstr "ชื่อผู้ติดต่อ"
 
-#: templates/map_page.html:317 templates/members_page.html:137
+#: templates/map_page.html:323 templates/members_page.html:137
 msgid "City/Country"
 msgstr "จังหวัด/ประเทศ"
 
-#: templates/map_page.html:365 templates/map_page.html.py:366
+#: templates/map_page.html:355
+msgid "Edit"
+msgstr "แก้ไข"
+
+#: templates/map_page.html:374 templates/map_page.html.py:375
 msgid "Countries"
 msgstr "ประเทศ"
 
-#: templates/map_page.html:366
+#: templates/map_page.html:375
 msgid "Places"
 msgstr "สถานที่"
 
-#: templates/map_page.html:408
+#: templates/map_page.html:417
 msgid "Display"
 msgstr "แสดงผล"
 
-#: templates/map_page.html:422
+#: templates/map_page.html:431
 msgid "CDs/books request"
 msgstr "ขอซีดีและหนังสือ"
 
