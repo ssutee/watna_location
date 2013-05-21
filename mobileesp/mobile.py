@@ -23,3 +23,9 @@ class MobileDetectionMiddleware(object):
         request.is_mobile = is_mobile
         request.is_tablet = is_tablet
         request.is_phone = is_phone
+        
+        if hasattr(request, 'user'):
+            request.user.is_mobile = is_mobile
+            request.user.is_tablet = is_tablet
+            request.user.is_phone = is_phone
+            
