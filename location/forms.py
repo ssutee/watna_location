@@ -8,7 +8,7 @@ from gmapi.forms.widgets import GoogleMap
 from location.models import Activity, Location, Skill, Province
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset, MultiField
+from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset, MultiField, HTML
 from crispy_forms.bootstrap import FormActions
 
 import re
@@ -133,7 +133,10 @@ class MapForm(forms.Form):
     gmap = forms.Field(widget=GoogleMap(attrs={'width':800, 'height':580, 'nojquery':True}))
     
 class SearchMapForm(forms.Form):
-    gmap = forms.Field(widget=GoogleMap(attrs={'width':380, 'height':400, 'nojquery':True}))
+    gmap = forms.Field(widget=GoogleMap(attrs={'width':400, 'height':400, 'nojquery':True}))
+
+class SearchMapPhoneForm(forms.Form):
+    gmap = forms.Field(widget=GoogleMap(attrs={'width':280, 'height':280, 'nojquery':True}))
     
 class LocationForm(ModelForm):
 
@@ -148,10 +151,28 @@ class LocationForm(ModelForm):
             Field('phone_number', css_class='input-xlarge'),
             Field('address', rows="4", css_class='input-xlarge'),
             Div('hide_email', 'hide_phone_number', 'hide_address', css_class="privacy_info"),
-            Field('latitude', css_class='input-xlarge'),
-            Field('longitude', css_class='input-xlarge'),
             Field('city', css_class='input-xlarge'),
             Field('country', css_class='input-xlarge'),
+            Field('latitude', css_class='input-xlarge'),
+            Field('longitude', css_class='input-xlarge'),   
+            HTML(""" 
+            <div id="div_id_map" class="control-group">
+                {% load i18n %}
+                <label for="div_id_map" class="control-label">
+                    {% trans 'Map' %}
+                </label>
+                <div class="controls">
+                    <input type="text" class="input-medium search-query" placeholder="{% trans 'Find your location' %}">
+                    <button type="button" class="btn" onClick="search($('.search-query').val());">{% trans 'Search' %}</button>
+                    {{ map_form.media.js }}    
+                    <p>{{ map_form.gmap }}</p>
+                    <p id="hint_id_map" class="help-block"></p>
+                    <p class="text-warning">
+                        {% trans 'Drag and drop the marker to pinpoint the place.' %}
+                    </p>                    
+                </div>
+            </div>
+            """),
             Field('activities', style="background: #FAFAFA; padding: 10px;"),
             Field('additional_info', rows="8", css_class='input-xlarge'),
             FormActions(
@@ -189,11 +210,11 @@ class LocationForm(ModelForm):
         widget=forms.widgets.Select(
             choices=map(lambda x: (x.name, x.name),Province.objects.all())
         )
-    )
-    
+    )    
     latitude = forms.FloatField(max_value=90, min_value=-90)
     longitude = forms.FloatField(max_value=180, min_value=-180, 
-        help_text=_('<p class="text-warning">Please use the map on the right side to locate your place.</p>'))
+        help_text=_('<p class="text-warning">Please use the map to locate your place.</p>')
+    )
     activities = forms.ModelMultipleChoiceField(
         required=False,
         queryset=Activity.objects.order_by('-priority').all(), 

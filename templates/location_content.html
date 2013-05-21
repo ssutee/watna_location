@@ -49,19 +49,8 @@
 </div>
 
 <div class="row">
-  <div class="span7 span12-tablet">
+  <div class="span12">
     {% crispy form %}
-  </div>
-  <div class="span5 hidden-phone hidden-tablet">
-    <form class="form-search">
-      <input type="text" class="input-large search-query" placeholder="{% trans 'Find your location' %}">
-      <button type="button" class="btn" onClick="search($('.search-query').val());">{% trans 'Search' %}</button>
-    </form>
-    {{ map_form.media.js }}
-    {{ map_form.gmap }}
-    <p style="margin-top:5px;" class="text-info">
-        {% trans "Drag and drop the marker to pinpoint the place." %}
-    </p>
   </div>
 </div>
 

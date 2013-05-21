@@ -14,7 +14,7 @@ from django.conf import settings
 from django.core.files import File
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from location.forms import MapForm, SearchMapForm, LocationForm, RegistrationForm, UserForm, MyInfoForm
+from location.forms import MapForm, SearchMapForm, SearchMapPhoneForm, LocationForm, RegistrationForm, UserForm, MyInfoForm
 from location.models import Location, Profile, Picture, Region, CredentialsModel
 from location.tasks import update_location_task
 
@@ -317,7 +317,7 @@ def create_search_map_form(request, lat, lng):
     maps.event.addListener(marker, 'dragend', 'm_listener.markerDragEnd')
     maps.event.addListener(gmap, 'idle', 'm_listener.mapIdle')
         
-    return SearchMapForm(initial={'gmap': gmap})
+    return SearchMapPhoneForm(initial={'gmap': gmap}) if request.is_phone else SearchMapForm(initial={'gmap': gmap})
     
 @login_required
 def locations_page(request):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-20 22:09+0700\n"
+"POT-Creation-Date: 2013-05-21 10:41+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,13 +34,13 @@ msgstr ""
 msgid "invalid city"
 msgstr ""
 
-#: location/forms.py:27 location/forms.py:54 location/forms.py:158
+#: location/forms.py:27 location/forms.py:54 location/forms.py:168
 #: messages/forms.py:22
 msgid "Save"
 msgstr "บันทึก"
 
 #: location/forms.py:32 location/forms.py:59 location/forms.py:108
-#: templates/map_page.html:313
+#: templates/map_page.html:314
 msgid "E-mail"
 msgstr "อีเมล"
 
@@ -92,32 +92,32 @@ msgstr "รหัสผ่าน (อีกครั้ง)"
 msgid "E-mail is already taken."
 msgstr "อีเมลนี้มีคนใช้ไปแล้ว"
 
-#: location/forms.py:162 location/models.py:149 location/models.py:221
-#: templates/map_page.html:329
+#: location/forms.py:172 location/models.py:149 location/models.py:221
+#: templates/map_page.html:330
 msgid "Activities"
 msgstr "กิจกรรม"
 
-#: location/forms.py:163 location/models.py:142
+#: location/forms.py:173 location/models.py:142
 #: templates/locations_page.html:32
 msgid "Latitude"
 msgstr "ละติจูด"
 
-#: location/forms.py:164 location/models.py:141
+#: location/forms.py:174 location/models.py:141
 #: templates/locations_page.html:33
 msgid "Longitude"
 msgstr "ลองจิจูด"
 
-#: location/forms.py:179 location/models.py:152 templates/map_page.html:335
+#: location/forms.py:189 location/models.py:152 templates/map_page.html:336
 msgid "Additional information"
 msgstr "ข้อมูลเพิ่มเติม"
 
-#: location/forms.py:182
+#: location/forms.py:192
 msgid ""
 "If you want to request the Dhamma media, please use the another channel."
 msgstr ""
 "ถ้าต้องการขอหนังสือ/ซีดี กรุณาใช้ช่องทางอื่นที่จัดเตรียมไว้ให้ เพื่อความสะดวกในการจัดการข้อมูล"
 
-#: location/forms.py:183
+#: location/forms.py:193
 msgid ""
 "<p class=\"text-warning\">If you want Dhamma media or have suggestion, "
 "Please click <a class=\"btn btn-success\" href=\"https://spreadsheets.google."
@@ -129,12 +129,10 @@ msgstr ""
 "formkey=dFRRZ3djOVVVX3IxYTExUEZDamI3enc6MQ\">ปุ่มนี้</a> ถ้าต้องการขอหนังสือ/ซีดี หรือ "
 "มีคำแนะนำใดๆ</p>"
 
-#: location/forms.py:196
-msgid ""
-"<p class=\"text-warning\">Please use the map on the right side to locate "
-"your place.</p>"
+#: location/forms.py:205
+msgid "<p class=\"text-warning\">Please use the map to locate your place.</p>"
 msgstr ""
-"<p class=\"text-warning\">กรุณาใช้แผนที่ด้านขวาเพื่อกำหนดพิกัดสถานที่ตนเองให้ถูกต้อง</p>"
+"<p class=\"text-warning\">กรุณาใช้แผนที่เพื่อกำหนดพิกัดสถานที่ตนเองให้ถูกต้อง</p>"
 
 #: location/models.py:92 location/models.py:120 location/models.py:204
 #: location/models.py:214 location/models.py:229 location/models.py:242
@@ -163,11 +161,11 @@ msgstr "ชื่อสถานที่"
 msgid "Organization"
 msgstr "องค์กร"
 
-#: location/models.py:136 templates/map_page.html:339
+#: location/models.py:136 templates/map_page.html:340
 msgid "Organization relationship"
 msgstr "ความเกี่ยวข้องกับองค์กร"
 
-#: location/models.py:144 templates/map_page.html:319
+#: location/models.py:144 templates/map_page.html:320
 #: templates/members_page.html:135
 msgid "Address"
 msgstr "ที่อยู่"
@@ -181,7 +179,7 @@ msgstr "จังหวัด"
 msgid "Country"
 msgstr "ประเทศ"
 
-#: location/models.py:147 templates/map_page.html:309
+#: location/models.py:147 templates/map_page.html:310
 msgid "Phone number"
 msgstr "เบอร์โทรศัพท์"
 
@@ -246,11 +244,11 @@ msgstr "ภาค"
 msgid "All"
 msgstr "ทั้งหมด"
 
-#: location/views.py:255 templates/map_page.html:422
+#: location/views.py:255 templates/map_page.html:423
 msgid "Monk"
 msgstr "นักบวช"
 
-#: location/views.py:257 templates/map_page.html:425
+#: location/views.py:257 templates/map_page.html:426
 msgid "Layperson"
 msgstr "ฆราวาส"
 
@@ -308,8 +306,9 @@ msgid "You don't specific your location yet."
 msgstr "คุณยังไม่ได้กำหนดตำแหน่งของสถานที่"
 
 #: templates/add_location_page.html:14
-msgid "Please use the map on the right side to locate your place."
-msgstr "กรุณาใช้แผนที่ด้านขวาเพื่อกำหนดพิกัดสถานที่ตนเองให้ถูกต้อง"
+#, fuzzy
+msgid "Please use the map to locate your place."
+msgstr "กรุณาใช้แผนที่เพื่อกำหนดพิกัดสถานที่ตนเองให้ถูกต้อง"
 
 #: templates/base.html:122
 msgid "Logout confirmation"
@@ -420,25 +419,25 @@ msgstr "นำออก"
 msgid "Search Result"
 msgstr "ผลลัพธ์การค้นหา"
 
-#: templates/location_content.html:47 templates/map_page.html:361
+#: templates/location_content.html:47 templates/map_page.html:362
 msgid "Close"
 msgstr "ปิด"
 
-#: templates/location_content.html:57
+#: templates/location_content.html:55 templates/location_content.html.py:65
+msgid "Drag and drop the marker to pinpoint the place."
+msgstr "ลากและวางเครื่องหมายเพื่อเลือกที่ตั้งของสถานที่"
+
+#: templates/location_content.html:59
 msgid "Find your location"
 msgstr "ค้นหาตำแหน่งของคุณ"
 
-#: templates/location_content.html:58 templates/map_page.html:367
+#: templates/location_content.html:60 templates/map_page.html:368
 #: templates/members_page.html:124
 msgid "Search"
 msgstr "ค้นหา"
 
-#: templates/location_content.html:63
-msgid "Drag and drop the marker to pinpoint the place."
-msgstr "ลากและวางเครื่องหมายเพื่อเลือกที่ตั้งของสถานที่"
-
-#: templates/locations_page.html:49 templates/map_page.html:345
-#: templates/map_page.html.py:359 templates/members_page.html:112
+#: templates/locations_page.html:49 templates/map_page.html:346
+#: templates/map_page.html.py:360 templates/members_page.html:112
 #: templates/location/picture_form.html:5
 #: templates/location/picture_form.html:6
 msgid "Pictures"
@@ -448,31 +447,31 @@ msgstr "รูปภาพ"
 msgid "Delete"
 msgstr "ลบ"
 
-#: templates/map_page.html:305
+#: templates/map_page.html:306
 msgid "Contact name"
 msgstr "ชื่อผู้ติดต่อ"
 
-#: templates/map_page.html:323 templates/members_page.html:137
+#: templates/map_page.html:324 templates/members_page.html:137
 msgid "City/Country"
 msgstr "จังหวัด/ประเทศ"
 
-#: templates/map_page.html:355
+#: templates/map_page.html:356
 msgid "Edit"
 msgstr "แก้ไข"
 
-#: templates/map_page.html:374 templates/map_page.html.py:375
+#: templates/map_page.html:375 templates/map_page.html.py:376
 msgid "Countries"
 msgstr "ประเทศ"
 
-#: templates/map_page.html:375
+#: templates/map_page.html:376
 msgid "Places"
 msgstr "สถานที่"
 
-#: templates/map_page.html:417
+#: templates/map_page.html:418
 msgid "Display"
 msgstr "แสดงผล"
 
-#: templates/map_page.html:431
+#: templates/map_page.html:432
 msgid "CDs/books request"
 msgstr "ขอซีดีและหนังสือ"
 
@@ -596,6 +595,22 @@ msgstr "อังกฤษ"
 #: watna_location/settings.py:36
 msgid "Thailand"
 msgstr "ประเทศไทย"
+
+#, fuzzy
+#~ msgid ""
+#~ "<p class=\"text-warning\">Drag and drop the marker to pinpoint the place."
+#~ "</p>"
+#~ msgstr "ลากและวางเครื่องหมายเพื่อเลือกที่ตั้งของสถานที่"
+
+#~ msgid ""
+#~ "<a href=\"#map_modal\" role=\"button\" class=\"btn btn-success\" data-"
+#~ "toggle=\"modal\">Use map for locating your place</a>"
+#~ msgstr ""
+#~ "<a href=\"#map_modal\" role=\"button\" class=\"btn btn-success\" data-"
+#~ "toggle=\"modal\">ใช้แผนที่เพื่อกำหนดพิกัดของสถานที่</a>"
+
+#~ msgid "Use map for locating your place"
+#~ msgstr "ใช้แผนที่เพื่อกำหนดตำแหน่งของสถานที่"
 
 #~ msgid "Logged in as"
 #~ msgstr "เข้าสู่ระบบโดย"
