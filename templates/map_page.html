@@ -363,7 +363,8 @@
     </div>
   </div>     
   <div ng-app="app" class="row-fluid" style="height: 100%;">       
-    <div id="nav_bar" class="span3 hidden-phone hidden-tablet">    
+    <div id="nav_bar" class="span3 hidden-phone hidden-tablet">  
+      {% if not is_phone %}  
       <div style="margin-top:10px;">
         <b>{% trans 'Search' %}</b>
           <input class="input-medium search-query" ng-model="query">
@@ -401,6 +402,7 @@
           </div>
         </div>
       </div>
+      {% endif %}
     </div>    
     
     <div id="map_container" class="span9 span12-tablet">      
