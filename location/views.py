@@ -443,7 +443,8 @@ def edit_location_page(request, pk):
         form = LocationForm(request.POST, instance=location)
         if form.is_valid():
             location = form.save()
-            location.user = request.user;
+            if location.user == None:
+                location.user = request.user;
             location.save()
             update_location_task.apply_async((location,), countdown=0)
             request.flash['message'] = ('alert-success', _('Place updated successfully'))
