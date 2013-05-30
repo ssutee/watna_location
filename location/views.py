@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.core.files import File
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.decorators.cache import cache_page
 
 from location.forms import MapForm, SearchMapForm, SearchMapPhoneForm, LocationForm, RegistrationForm, UserForm, MyInfoForm
 from location.models import Location, Profile, Picture, Region, CredentialsModel
@@ -25,6 +26,7 @@ from django_countries.fields import Country
 import os.path, httplib2
 from apiclient.discovery import build
 from oauth2client.client import SignedJwtAssertionCredentials
+
 
 import logging
 
@@ -127,7 +129,8 @@ def create_info_content(location):
 def get_info_content(request, pk):
     location = Location.objects.get(pk=pk)
     return HttpResponse(simplejson.dumps({'result': create_info_content(location)}), mimetype="application/json")
-    
+
+@cache_page(60 * 10)    
 def get_stat(request):
     places = Location.objects.all().count()
     countries = Location.objects.all().values('country').annotate(total=Count('country')).count()
