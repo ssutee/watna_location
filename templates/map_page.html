@@ -120,7 +120,7 @@
           suppressInfoWindows: true,
           styles: [
           {
-            where: 'Organization = 0 AND Status > 2',
+            where: 'Status > 2',
             markerOptions: {
               iconName: "man"
             }
@@ -132,7 +132,7 @@
             }
           },
           {
-            where: 'Organization = 0 AND Status < 3',
+            where: 'Status < 3',
             markerOptions: {
               iconName: "orange_blank"
             },
