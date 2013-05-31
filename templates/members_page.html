@@ -175,10 +175,16 @@
           <p id="additional_info">{{location.activities_list}}</p>
         </td>
         <td>
-         {% if location.hide_address %}
+         {% if location.hide_address and not user.is_superuser %}
             -
-          {% else %}
+          {% elif not user.is_superuser %}
             {{ location.address }}
+          {% else %}
+            <div>
+            {{ location.address }}
+            </div>
+            <br/>
+            <div>{% trans "Geolocation" %} : {{ location.latitude }},{{ location.longitude}}</div>
           {% endif %}
         </td>
         <td>

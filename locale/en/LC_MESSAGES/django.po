@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-21 10:41+0700\n"
+"POT-Creation-Date: 2013-05-31 22:45+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "invalid city"
 msgstr ""
 
-#: location/forms.py:27 location/forms.py:54 location/forms.py:168
+#: location/forms.py:27 location/forms.py:54 location/forms.py:179
 #: messages/forms.py:22
 msgid "Save"
 msgstr ""
@@ -91,31 +91,31 @@ msgstr ""
 msgid "E-mail is already taken."
 msgstr ""
 
-#: location/forms.py:172 location/models.py:149 location/models.py:221
+#: location/forms.py:183 location/models.py:149 location/models.py:221
 #: templates/map_page.html:330
 msgid "Activities"
 msgstr ""
 
-#: location/forms.py:173 location/models.py:142
+#: location/forms.py:184 location/models.py:142
 #: templates/locations_page.html:32
 msgid "Latitude"
 msgstr ""
 
-#: location/forms.py:174 location/models.py:141
+#: location/forms.py:185 location/models.py:141
 #: templates/locations_page.html:33
 msgid "Longitude"
 msgstr ""
 
-#: location/forms.py:189 location/models.py:152 templates/map_page.html:336
+#: location/forms.py:200 location/models.py:152 templates/map_page.html:336
 msgid "Additional information"
 msgstr ""
 
-#: location/forms.py:192
+#: location/forms.py:203
 msgid ""
 "If you want to request the Dhamma media, please use the another channel."
 msgstr ""
 
-#: location/forms.py:193
+#: location/forms.py:204
 msgid ""
 "<p class=\"text-warning\">If you want Dhamma media or have suggestion, "
 "Please click <a class=\"btn btn-success\" href=\"https://spreadsheets.google."
@@ -123,7 +123,7 @@ msgid ""
 "p>"
 msgstr ""
 
-#: location/forms.py:205
+#: location/forms.py:216
 msgid "<p class=\"text-warning\">Please use the map to locate your place.</p>"
 msgstr ""
 
@@ -149,7 +149,7 @@ msgstr ""
 msgid "Place name"
 msgstr ""
 
-#: location/models.py:135 location/views.py:533
+#: location/models.py:135 location/views.py:537
 #: templates/members_page.html:136
 msgid "Organization"
 msgstr ""
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Hide address"
 msgstr ""
 
-#: location/models.py:159 templates/members_page.html:210
+#: location/models.py:159 templates/members_page.html:216
 msgid "View count"
 msgstr ""
 
@@ -232,60 +232,60 @@ msgstr ""
 msgid "Region"
 msgstr ""
 
-#: location/views.py:253 templates/members_page.html:89
+#: location/views.py:256 templates/members_page.html:89
 #: templates/members_page.html.py:99
 msgid "All"
 msgstr ""
 
-#: location/views.py:255 templates/map_page.html:423
+#: location/views.py:258 templates/map_page.html:425
 msgid "Monk"
 msgstr ""
 
-#: location/views.py:257 templates/map_page.html:426
+#: location/views.py:260 templates/map_page.html:428
 msgid "Layperson"
 msgstr ""
 
-#: location/views.py:403
+#: location/views.py:406
 msgid "Your information updated successfully"
 msgstr ""
 
-#: location/views.py:425
+#: location/views.py:428
 msgid "Password changed successfully"
 msgstr ""
 
-#: location/views.py:449
+#: location/views.py:453
 msgid "Place updated successfully"
 msgstr ""
 
-#: location/views.py:474
+#: location/views.py:478
 msgid "New place added successfully"
 msgstr ""
 
-#: location/views.py:528 location/views.py:531 location/views.py:537
+#: location/views.py:532 location/views.py:535 location/views.py:541
 msgid "Only member"
 msgstr ""
 
-#: location/views.py:533
+#: location/views.py:537
 msgid "Person"
 msgstr ""
 
-#: location/views.py:545 location/views.py:547 location/views.py:549
+#: location/views.py:549 location/views.py:551 location/views.py:553
 msgid "hidden"
 msgstr ""
 
-#: location/views.py:587
+#: location/views.py:591
 msgid "Logout successfully"
 msgstr ""
 
-#: location/views.py:597
+#: location/views.py:601
 msgid "Login successfully"
 msgstr ""
 
-#: location/views.py:599
+#: location/views.py:603
 msgid "Invalid email or password"
 msgstr ""
 
-#: location/views.py:614
+#: location/views.py:618
 msgid "Registration completed successfully"
 msgstr ""
 
@@ -415,19 +415,6 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: templates/location_content.html:55 templates/location_content.html.py:65
-msgid "Drag and drop the marker to pinpoint the place."
-msgstr ""
-
-#: templates/location_content.html:59
-msgid "Find your location"
-msgstr ""
-
-#: templates/location_content.html:60 templates/map_page.html:368
-#: templates/members_page.html:124
-msgid "Search"
-msgstr ""
-
 #: templates/locations_page.html:49 templates/map_page.html:346
 #: templates/map_page.html.py:360 templates/members_page.html:112
 #: templates/location/picture_form.html:5
@@ -451,19 +438,23 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: templates/map_page.html:375 templates/map_page.html.py:376
+#: templates/map_page.html:369 templates/members_page.html:124
+msgid "Search"
+msgstr ""
+
+#: templates/map_page.html:376 templates/map_page.html.py:377
 msgid "Countries"
 msgstr ""
 
-#: templates/map_page.html:376
+#: templates/map_page.html:377
 msgid "Places"
 msgstr ""
 
-#: templates/map_page.html:418
+#: templates/map_page.html:420
 msgid "Display"
 msgstr ""
 
-#: templates/map_page.html:432
+#: templates/map_page.html:434
 msgid "CDs/books request"
 msgstr ""
 
@@ -491,27 +482,31 @@ msgstr ""
 msgid "Phone"
 msgstr ""
 
-#: templates/members_page.html:196
+#: templates/members_page.html:187
+msgid "Geolocation"
+msgstr ""
+
+#: templates/members_page.html:202
 msgid "visited"
 msgstr ""
 
-#: templates/members_page.html:197
+#: templates/members_page.html:203
 msgid "visit"
 msgstr ""
 
-#: templates/members_page.html:200 templates/members_page.html.py:203
+#: templates/members_page.html:206 templates/members_page.html.py:209
 msgid "Visitors"
 msgstr ""
 
-#: templates/members_page.html:204
+#: templates/members_page.html:210
 msgid "persons"
 msgstr ""
 
-#: templates/members_page.html:204
+#: templates/members_page.html:210
 msgid "person"
 msgstr ""
 
-#: templates/members_page.html:210
+#: templates/members_page.html:216
 msgid "times"
 msgstr ""
 
