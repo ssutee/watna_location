@@ -525,7 +525,11 @@ def set_display_page(request):
     
 @csrf_exempt
 def find_location_by_id_page(request):    
-    location = Location.objects.get(pk=int(request.POST.get('id', 1)))    
+    try:
+        location = Location.objects.get(pk=int(request.POST.get('id', 1)))    
+    except Location.DoesNotExist, e:
+        return HttpResponse(simplejson.dumps(0), mimetype="application/json")
+        
     is_authenticated = request.user.is_authenticated()
     data = {
         'place_name': location.place_name,

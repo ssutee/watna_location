@@ -29,6 +29,9 @@
         $.post("/find_location_by_id/", 
           { id: location_id }, 
           function(data) {
+            if (data == 0) {
+              return;
+            }
             $('#info_modal_label').text(location_id + '. ' + data.place_name + ' (' + data.info +'/'+ data.status + ')');
             $('#contact_name').text(data.first_name + " " + data.last_name);
             $('#email').text(data.email);
