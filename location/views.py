@@ -56,7 +56,7 @@ class PictureCreateView(CreateView):
             for p in location.pictures.all():
                 try:
                     filesize = p.file.size
-                except OSError, e:
+                except Exception, e:
                     filesize = 0                    
                 files.append({
                     'name':p.file.name, 'size':filesize, 
