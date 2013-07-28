@@ -646,12 +646,16 @@ def export_page(request):
         
         for location in Location.objects.all():
             row = []
+            row += [str(location.id)] if request.POST.get('id') else []
             row += [location.user.first_name+' '+location.user.last_name] if request.POST.get('name') else []
             row += [location.user.email] if request.POST.get('email') else []
             row += [location.phone_number] if request.POST.get('phone') else []
             row += [location.address] if request.POST.get('address') else []
-            row += [location.country.name] if request.POST.get('country') else []            
-            row += [location.user_skills()] if request.POST.get('skills') else []            
+            row += [location.country.name] if request.POST.get('country') else []
+            row += [location.city] if request.POST.get('city') else []            
+            row += [location.user_skills()] if request.POST.get('skills') else []
+            row += [location.place_name] if request.POST.get('place_name') else []
+            row += ['%.6f:%.6f'%(location.latitude,location.longitude)] if request.POST.get('geolocation') else []
 
             if row:
                 writer.writerow(map(lambda x: x.encode('utf8'), row))

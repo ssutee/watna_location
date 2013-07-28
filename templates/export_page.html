@@ -7,6 +7,11 @@
 <form method="post">{% csrf_token %}
   <fieldset>
     <legend>Select fields</legend>
+
+    <label class="checkbox">
+      <input type="checkbox" value="1" name="id"> ID
+    </label>
+    
     <label class="checkbox">
       <input type="checkbox" value="1" name="name"> Name
     </label>
@@ -26,9 +31,21 @@
     <label class="checkbox">
       <input type="checkbox" value="1" name="country"> Country
     </label>
+
+    <label class="checkbox">
+      <input type="checkbox" value="1" name="city"> City
+    </label>
     
     <label class="checkbox">
       <input type="checkbox" value="1" name="skills"> Skills
+    </label>
+
+    <label class="checkbox">
+      <input type="checkbox" value="1" name="place_name"> Place name
+    </label>
+
+    <label class="checkbox">
+      <input type="checkbox" value="1" name="geolocation"> Geolocation
     </label>
 
     <br/>
