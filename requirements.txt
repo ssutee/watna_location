@@ -5,6 +5,7 @@ South
 pyopenssl
 python-cloudfiles
 PIL
+celery==3.0.16
 django-celery
 django-celery-with-mongodb
 celery-with-mongodb
