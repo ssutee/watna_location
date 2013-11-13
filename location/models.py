@@ -25,7 +25,7 @@ class Picture(models.Model):
     thumbnail = models.ImageField(upload_to=lower_thumbnails, max_length=500, null=True, blank=True)
     slug = models.SlugField(max_length=50, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True, related_name="pictures")
-    position = models.IntegerField(null=True, blank=True)
+    position = models.BigIntegerField(null=True, blank=True)
 
     class Meta:
         ordering = ('position', 'pk',)
