@@ -656,6 +656,8 @@ def export_page(request):
             row += [location.user_skills()] if request.POST.get('skills') else []
             row += [location.place_name] if request.POST.get('place_name') else []
             row += ['%.6f:%.6f'%(location.latitude,location.longitude)] if request.POST.get('geolocation') else []
+            row += [str(location.organization)] if request.POST.get('organization') else []
+            row += [location.status.name] if request.POST.get('status') else []
 
             if row:
                 writer.writerow(map(lambda x: x.encode('utf8'), row))
